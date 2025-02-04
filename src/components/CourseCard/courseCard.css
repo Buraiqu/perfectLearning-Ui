@@ -1,0 +1,111 @@
+
+.course-card {
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    overflow: hidden;
+    height: 486px;
+    width: 100%;
+    margin: 0 auto;
+    transition: transform 0.2s, box-shadow 0.2s;
+    background: white;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1), 0px 5px 0.5px #649CD2;
+  }
+  
+  .course-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1), 0px 4px 2.5px #649CD2;
+  }
+  
+  .course-image-container {
+    width: 100%;
+    height: 279px;
+    overflow: hidden;
+  }
+  
+  .course-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .course-content {
+    padding: 1.5rem;
+  }
+  
+  .course-title {
+    font-size: 20px;
+    font-weight: 500;
+    color: #2A2A2A;
+    line-height: 24px;
+  }
+  
+  .course-type {
+    display: inline-block;
+    padding: 5px;
+    background-color: white;
+    color: #2E69A2;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 400;
+    border: 1px solid #2E69A2;
+    width: 109px;
+    height: 31px;
+    text-align: center;
+  }
+  
+  .course-subtitle {
+    font-size: 16px;
+    color: #2A2A2A;
+    line-height: 24px;
+    margin-bottom: 1rem;
+    width: 60%;
+    font-weight: 300;
+  }
+  
+  .rating {
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+  }
+
+  .star-filled {
+    color: #03488B;
+    width: 19px;
+    height: 19px;
+    font-size: 19px;
+  }
+
+  .star-empty {
+    color: #F3F2F0;
+    width: 19px;
+    height: 19px;
+    font-size: 19px;
+  }
+  
+  .rating-count {
+    font-size: 0.875rem;
+    color: #6b7280;
+  }
+  
+.enroll-btn {
+  background-color: #03488B !important;
+  padding: 0px 0px;
+  font-size: 14px;
+  font-weight: 400;
+  border-radius: 6px;
+  width: 97px;
+  height: 32px;
+}
+
+.view-btn {
+  padding: 0px 0px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 400;
+  width: 97px;
+  height: 32px;
+  border: 1px solid #03488B !important;
+  background-color: white !important;
+  color: #03488B !important;
+}
