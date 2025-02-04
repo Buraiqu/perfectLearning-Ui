@@ -1,7 +1,3 @@
-.landing-page {
-  padding-top: 76px;
-}
-
 .hero-section {
   padding: 2rem 1rem 4rem;
   background-color: #ffffff;
@@ -64,7 +60,8 @@
 }
 
 .other-course-card {
-  width: 604px;
+  width: 100%;
+  max-width: 604px;
   height: 216px;
   font-size: 36px;
   font-weight: 500;
@@ -73,6 +70,7 @@
   color: #FFFFFF;
   border-radius: 10px;
   background-color: #2E69A2;
+  margin: 0 auto;
 }
 
 .other-course-card:hover {
@@ -92,10 +90,41 @@
   align-items: center;
   padding-left: 50px;
   padding-right: 50px;
+  height: 100%;
 }
 
-.other-card-title{
+.other-card-title {
   font-size: 36px !important;
+}
+
+@media (max-width: 768px) {
+  .other-course-card {
+    height: 180px;
+  }
+  
+  .other-card-title {
+    font-size: 28px !important;
+  }
+  
+  .other-card-body {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  .other-course-card {
+    height: 150px;
+  }
+  
+  .other-card-title {
+    font-size: 24px !important;
+  }
+  
+  .other-card-body {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
 }
 
 .show-more-btn {
@@ -108,4 +137,13 @@
   font-size: 16px;
   line-height: 19.2px;
   color: #FFFFFF;
+  border: none;
+}
+
+.show-more-btn:hover {
+  background-color: #03478bda;
+}
+
+.show-more-btn:active {
+  background-color: #03488B !important;
 }

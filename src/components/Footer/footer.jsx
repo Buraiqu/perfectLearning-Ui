@@ -1,46 +1,42 @@
+import { Container, Row, Col } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { FaFacebook, FaTwitter, FaLinkedin, FaInstagram } from 'react-icons/fa';
+import logo from '../../assets/logo_full_white.svg';
 import './footer.css';
-import { Container, Row, Col, Nav } from 'react-bootstrap';
 
 const CustomFooter = () => {
     return (
         <footer className="footer">
-            <Container>
-                <Row className="py-4">
-                    <Col md={3}>
-                        <img src="path-to-logo.png" alt="Logo" height="30" className="mb-3" />
-                        <p className="text-light small">Perfect Learning - Your path to success</p>
-                    </Col>
-                    <Col md={3}>
-                        <h5 className="text-light">Quick Links</h5>
-                        <Nav className="flex-column">
-                            <Nav.Link href="#" className="text-light py-1">About Us</Nav.Link>
-                            <Nav.Link href="#" className="text-light py-1">Courses</Nav.Link>
-                            <Nav.Link href="#" className="text-light py-1">Contact</Nav.Link>
-                        </Nav>
-                    </Col>
-                    <Col md={3}>
-                        <h5 className="text-light">Support</h5>
-                        <Nav className="flex-column">
-                            <Nav.Link href="#" className="text-light py-1">Help Center</Nav.Link>
-                            <Nav.Link href="#" className="text-light py-1">Terms of Service</Nav.Link>
-                            <Nav.Link href="#" className="text-light py-1">Privacy Policy</Nav.Link>
-                        </Nav>
-                    </Col>
-                    <Col md={3}>
-                        <h5 className="text-light">Follow Us</h5>
-                        <div className="social-icons">
-                            <a href="#" className="text-light me-3"><i className="bi bi-facebook"></i></a>
-                            <a href="#" className="text-light me-3"><i className="bi bi-twitter"></i></a>
-                            <a href="#" className="text-light me-3"><i className="bi bi-instagram"></i></a>
-                            <a href="#" className="text-light"><i className="bi bi-linkedin"></i></a>
-                        </div>
-                    </Col>
-                </Row>
-                <Row className="border-top border-secondary py-3">
-                    <Col className="text-center text-light small">
-                        © {new Date().getFullYear()} Perfect Learning. All rights reserved.
-                    </Col>
-                </Row>
+            <Container className='footer-container'>
+                <div className="footer-top">
+                    <div className="footer-logo">
+                        <Link to="/">
+                            <img src={logo} alt="Perfect Learning" />
+                        </Link>
+                    </div>
+                    <div className="footer-nav">
+                        <Link to="/about">About Us</Link>
+                        <Link to="/contact">Contact</Link>
+                        <Link to="/blog">Blog</Link>
+                    </div>
+                    <div className="social-links">
+                        <Link to="#"><FaFacebook /></Link>
+                        <Link to="#"><FaTwitter /></Link>
+                        <Link to="#"><FaLinkedin /></Link>
+                        <Link to="#"><FaInstagram /></Link>
+                    </div>
+                </div>
+                <div className="footer-bottom">
+                    <div className="copyright">
+                        © All rights reserved.
+                    </div>
+                    {/* <div className="footer-links"> */}
+                        <Link to="/privacy">Privacy Policy</Link>
+                        <Link to="/terms">Terms & Conditions</Link>
+                        <Link to="/cancellation">Cancellation & Refund</Link>
+                        <Link to="/shipping">Shipment & Delivery</Link>
+                    {/* </div> */}
+                </div>
             </Container>
         </footer>
     );
