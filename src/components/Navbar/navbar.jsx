@@ -1,4 +1,4 @@
-import { Container, Button, Navbar, Nav, Form } from 'react-bootstrap';
+import { Container, Navbar, Nav, Form, Button} from 'react-bootstrap';
 import fullLogo from '../../assets/logo_full.svg';
 import './navbar.css';
 
@@ -33,7 +33,7 @@ const CustomNavbar = () => {
                     </Form>
                     <div className="auth-buttons">
                         <Button className="me-1 sign-in-btn">Sign In</Button>
-                        <Button className="sign-up-btn">Sign Up</Button>
+                        <Button className="sign-up-btn filled-button">Sign Up</Button>
                     </div>
                 </Navbar.Collapse>
             </Container>

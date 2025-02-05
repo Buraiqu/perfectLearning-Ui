@@ -141,16 +141,8 @@
   font-weight: 400;
   font-size: 15px;
   border-radius: 6px;
-  background-color: #03488B !important;
-  border-color: #03488B !important;
-  color: #FFFFFF;
   line-height: 19.2px;
   transition: all 0.2s ease;
-}
-
-.sign-up-btn:hover {
-  background-color: #0052a3 !important;
-  border-color: #0052a3 !important;
 }
 
 /* Responsive Adjustments */

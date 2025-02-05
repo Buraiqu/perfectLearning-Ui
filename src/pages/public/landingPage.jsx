@@ -1,8 +1,10 @@
 import React from 'react';
-import { Container, Row, Col, Card, Button } from 'react-bootstrap';
+import { Container, Row, Col, Card, Button, Carousel } from 'react-bootstrap';
 import './landingPage.css';
 import CourseCard from '../../components/CourseCard/courseCard';
 import carousal1 from '../../assets/carousal-1.svg';
+import carousal2 from '../../assets/carousal-2.svg';
+import carousal3 from '../../assets/carousal-3.svg';
 
 const LandingPage = () => {
   
@@ -21,17 +23,25 @@ const LandingPage = () => {
   return (
     <div className="landing-page">
       <section className="hero-section">
-        <Container>
+        <Container className='container-fluid'>
           <Row className="align-items-center">
-            {/* <Col md={6}>
-              <h1>
-                <span className="text-navy">SET</span><br />
-                <span className="text-blue">YOUR</span><br />
-                <span className="text-navy">TARGET</span>
-              </h1>
-            </Col> */}
             <Col md={12}>
-              <img src={carousal1} alt="Target" className="hero-image" />
+              <Carousel
+                controls={false}
+                indicators={false}
+                interval={3000}
+                pause={false}
+              >
+                <Carousel.Item>
+                  <img src={carousal1} alt="Target" className="hero-image" />
+                </Carousel.Item>
+                <Carousel.Item>
+                  <img src={carousal2} alt="Target" className="hero-image" />
+                </Carousel.Item>
+                <Carousel.Item>
+                  <img src={carousal3} alt="Target" className="hero-image" />
+                </Carousel.Item>
+              </Carousel>
             </Col>
           </Row>
         </Container>
@@ -48,7 +58,7 @@ const LandingPage = () => {
             ))}
           </Row>
           <div className="mb-4">
-            <Button className='show-more-btn'>Show More</Button>
+            <Button className='filled-button show-more-btn'>Show More</Button>
           </div>
         </Container>
       </section>
@@ -63,7 +73,7 @@ const LandingPage = () => {
             ))}
           </Row>
           <div className="mb-4">
-          <Button className='show-more-btn'>Show More</Button>
+          <Button className='filled-button show-more-btn'>Show More</Button>
           </div>
         </Container>
       </section>
@@ -84,7 +94,7 @@ const LandingPage = () => {
             ))}
           </Row>
           <div className="mb-4">
-            <Button className='show-more-btn'>Show More</Button>
+            <Button className='filled-button show-more-btn'>Show More</Button>
           </div>
         </Container>
       </section>

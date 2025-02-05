@@ -5,41 +5,43 @@
     overflow: hidden;
     height: 486px;
     width: 100%;
+    max-width: 400px;
     margin: 0 auto;
     transition: transform 0.2s, box-shadow 0.2s;
     background: white;
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1), 0px 5px 0.5px #649CD2;
-  }
-  
-  .course-card:hover {
+}
+
+.course-card:hover {
     transform: translateY(-2px);
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1), 0px 4px 2.5px #649CD2;
-  }
-  
-  .course-image-container {
+}
+
+.course-image-container {
     width: 100%;
     height: 279px;
     overflow: hidden;
-  }
-  
-  .course-image-container img {
+}
+
+.course-image-container img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-  }
-  
-  .course-content {
+}
+
+.course-content {
     padding: 1.5rem;
-  }
-  
-  .course-title {
+}
+
+.course-title {
     font-size: 20px;
     font-weight: 500;
     color: #2A2A2A;
     line-height: 24px;
-  }
-  
-  .course-type {
+    max-width: calc(100% - 120px);
+}
+
+.course-type {
     display: inline-block;
     padding: 5px;
     background-color: white;
@@ -49,9 +51,72 @@
     font-weight: 400;
     border: 1px solid #2E69A2;
     width: 109px;
-    height: 31px;
     text-align: center;
-  }
+}
+
+/* Responsive styles */
+@media (min-width: 1200px) {
+    .course-card {
+        max-width: none;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+    .course-card {
+        max-width: 450px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .course-card {
+        max-width: 400px;
+    }
+    
+    .course-image-container {
+        height: 250px;
+    }
+    
+    .course-content {
+        padding: 1.25rem;
+    }
+    
+    .course-title {
+        font-size: 18px;
+        line-height: 22px;
+    }
+}
+
+@media (max-width: 767px) {
+    .course-card {
+        max-width: 450px;
+        height: auto;
+        min-height: 450px;
+    }
+    
+    .course-image-container {
+        height: 240px;
+    }
+    
+    .course-content {
+        padding: 1rem;
+    }
+    
+    .course-title {
+        font-size: 18px;
+        line-height: 22px;
+    }
+    
+    .d-flex.gap-2 {
+        flex-wrap: wrap;
+        gap: 1rem !important;
+    }
+    
+    .enroll-btn,
+    .view-btn {
+        flex: 1;
+        min-width: 120px;
+    }
+}
   
   .course-subtitle {
     font-size: 16px;
@@ -89,7 +154,6 @@
   }
   
 .enroll-btn {
-  background-color: #03488B !important;
   padding: 0px 0px;
   font-size: 14px;
   font-weight: 400;
@@ -105,7 +169,4 @@
   font-weight: 400;
   width: 97px;
   height: 32px;
-  border: 1px solid #03488B !important;
-  background-color: white !important;
-  color: #03488B !important;
 }

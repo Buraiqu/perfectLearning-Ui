@@ -2,6 +2,37 @@
   font-family: 'Poppins', sans-serif;
 }
 
+.filled-button{
+  background-color: #03488B !important;
+  border-color: #03488B !important;
+  color: #FFFFFF !important;
+}
+
+.filled-button:hover {
+  background-color: #03478bda !important;
+}
+
+.filled-button:active {
+  background-color: #03488B !important;
+}
+
+.outline-button{
+  background-color: white !important;
+  color: #03488B !important;
+  border: 1px solid #03488B !important;
+}
+
+.outline-button:hover{
+  background-color: rgb(234, 234, 234) !important;
+  color: #03488B !important;
+  border: 1px solid #03488B !important;
+}
+
+.outline-button:active{
+  background-color: rgb(255, 255, 255) !important;
+  color: #03488B !important;
+  border: 1px solid #03488B !important;
+}
 
 /* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;

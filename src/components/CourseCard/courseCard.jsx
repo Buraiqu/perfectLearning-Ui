@@ -13,7 +13,7 @@ const CourseCard = ({ course }) => {
     };
 
     return (
-        <Col md={4} className="mb-4">
+        <Col xl={4} lg={6} md={6} sm={12} className="mb-4">
         <Card className="course-card">
             <Card.Body className="p-0">
             <div className="course-image-container">
@@ -29,8 +29,8 @@ const CourseCard = ({ course }) => {
                     <div className="d-flex align-items-center me-5">
                         <div className="rating me-2">{renderStars(course.rating)}</div>
                     </div>
-                    <Button className="enroll-btn">Enroll</Button>
-                    <Button className="view-btn">View More</Button>
+                    <Button className="filled-button enroll-btn">Enroll</Button>
+                    <Button className="outline-button view-btn">View More</Button>
                 </div>
             </div>
             </Card.Body>
