@@ -6,6 +6,8 @@ import PublicLayout from './layouts/publicLayout';
 import LandingPage from './pages/public/landingPage';
 import Logo from './assets/logo_short.svg';
 import { useEffect } from 'react';
+import AboutPage from './pages/public/About/about';
+import SubscriptionPlans from './pages/public/SubscriptionPans/subscriptionPlans';
 
 function App() {
 
@@ -25,6 +27,8 @@ function App() {
         <Routes>
           <Route element={<PublicLayout />}>
             <Route path="/" element={<LandingPage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/subscription" element={<SubscriptionPlans />} />  
           </Route>
 
           {/* <Route element={<PrivateRoute />}>

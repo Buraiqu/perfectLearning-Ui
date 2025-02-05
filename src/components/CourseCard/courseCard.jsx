@@ -1,6 +1,7 @@
 import {Col, Card, Button } from 'react-bootstrap';
 import './courseCard.css';
 import courseCardLogo from '../../assets/course-card-logo.svg';
+import { Link } from "react-router";
 
 const CourseCard = ({ course }) => {
     
@@ -29,8 +30,12 @@ const CourseCard = ({ course }) => {
                     <div className="d-flex align-items-center me-5">
                         <div className="rating me-2">{renderStars(course.rating)}</div>
                     </div>
-                    <Button className="filled-button enroll-btn">Enroll</Button>
-                    <Button className="outline-button view-btn">View More</Button>
+                    <Link to="/subscription">
+                        <Button className="filled-button enroll-btn">Enroll</Button>
+                    </Link>
+                    <Link to="/subscription">
+                        <Button className="outline-button view-btn">View More</Button>
+                    </Link>
                 </div>
             </div>
             </Card.Body>

@@ -25,7 +25,7 @@ const LandingPage = () => {
       <section className="hero-section">
         <Container className='container-fluid'>
           <Row className="align-items-center">
-            <Col md={12}>
+            <Col md={12} style={{paddingLeft: "0px", paddingRight: "0px"}}>
               <Carousel
                 controls={false}
                 indicators={false}

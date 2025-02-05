@@ -1,4 +1,5 @@
 import { Container, Navbar, Nav, Form, Button} from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import fullLogo from '../../assets/logo_full.svg';
 import './navbar.css';
 
@@ -6,15 +7,15 @@ const CustomNavbar = () => {
     return (
         <Navbar bg="white" expand="lg" className="navbar-custom mt-3">
             <Container fluid className="px-4">
-                <Navbar.Brand href="#" className="me-5">
+                <Navbar.Brand as={Link} to="/" className="me-5">
                     <img src={fullLogo} alt="Perfect Learning" height="50" />
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbar-nav" />
                 <Navbar.Collapse id="navbar-nav">
                     <Nav className="nav-links">
-                        <Nav.Link href="#" className="px-4">About</Nav.Link>
-                        <Nav.Link href="#" className="px-4">Courses</Nav.Link>
-                        <Nav.Link href="#" className="px-4">Instructors</Nav.Link>
+                        <Nav.Link as={Link} to="/about" className="px-4">About</Nav.Link>
+                        <Nav.Link as={Link} to="/" className="px-4">Courses</Nav.Link>
+                        <Nav.Link as={Link} to="#" className="px-4">Instructors</Nav.Link>
                     </Nav>
                     <Form className="d-flex align-items-center search-form me-4 me-auto">
                         <div className="search-container">
