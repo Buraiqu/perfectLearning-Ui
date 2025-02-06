@@ -3,11 +3,14 @@ import './App.css'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { AuthProvider } from './context/authContext';
 import PublicLayout from './layouts/publicLayout';
+import AuthLayout from './layouts/authLayout';
 import LandingPage from './pages/public/landingPage';
 import Logo from './assets/logo_short.svg';
 import { useEffect } from 'react';
 import AboutPage from './pages/public/About/about';
 import SubscriptionPlans from './pages/public/SubscriptionPans/subscriptionPlans';
+import Login from './pages/auth/Login/login';
+import Signup from './pages/auth/Signup/signup';
 
 function App() {
 
@@ -25,12 +28,20 @@ function App() {
     <AuthProvider>
       <Router>
         <Routes>
+          {/* Public routes with navbar and footer */}
           <Route element={<PublicLayout />}>
             <Route path="/" element={<LandingPage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/subscription" element={<SubscriptionPlans />} />  
           </Route>
 
+          {/* Auth routes without navbar and footer */}
+          <Route element={<AuthLayout />}>
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+          </Route>
+
+          {/* Private routes */}
           {/* <Route element={<PrivateRoute />}>
             <Route path="/dashboard" element={<Dashboard />} />
           </Route> */}

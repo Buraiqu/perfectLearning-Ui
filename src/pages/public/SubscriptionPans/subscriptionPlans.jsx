@@ -80,8 +80,9 @@ const SubscriptionPlans = () => {
         <div className="subscription-page">
             <Container>
                 <div className="course-selector mb-4">
-                    <Form.Group>
-                        <Form.Label>Select the Course</Form.Label>
+                    
+                    <Form.Group className="form-group">
+                        <Form.Label>Select the Course </Form.Label>
                         <Form.Select defaultValue="IIT JEE Advanced">
                             <option>IIT JEE Advanced</option>
                         </Form.Select>
