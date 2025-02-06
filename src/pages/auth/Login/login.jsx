@@ -1,84 +1,118 @@
 import React, { useState } from 'react';
-import { Form, Button } from 'react-bootstrap';
+import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { FcGoogle } from 'react-icons/fc';
+import LoginImage from '../../assets/login_photo.svg';
+import PerfectLearningLogo from '../../assets/logo_full.svg';
 import './login.css';
 
 const Login = () => {
+  const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     email: '',
-    password: '',
+    password: ''
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prevState => ({
-      ...prevState,
+    setFormData(prev => ({
+      ...prev,
       [name]: value
     }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle login logic here
-    console.log('Login form submitted:', formData);
+    console.log('Form submitted:', formData);
+  };
+
+  const handleGoogleLogin = () => {
+    console.log('Google login clicked');
   };
 
   return (
-    <div className="auth-container">
-      <div className="auth-card">
-        <div className="auth-header">
-          <h2>Welcome Back!</h2>
-          <p>Please login to your account</p>
-        </div>
-
-        <Form onSubmit={handleSubmit}>
-          <Form.Group className="mb-3">
-            <Form.Label>Email</Form.Label>
-            <Form.Control
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="Enter your email"
-              required
-            />
-          </Form.Group>
-
-          <Form.Group className="mb-4">
-            <Form.Label>Password</Form.Label>
-            <Form.Control
-              type="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              placeholder="Enter your password"
-              required
-            />
-          </Form.Group>
-
-          <div className="d-flex justify-content-between align-items-center mb-4">
-            <Form.Check
-              type="checkbox"
-              label="Remember me"
-            />
-            <Link to="/forgot-password" className="forgot-password">
-              Forgot Password?
-            </Link>
+    <Container fluid className="login-container">
+      <Row className="h-100">
+        <Col md={6} className="left-section">
+          <div className="image-container">
+            <LoginImage alt="Learning" className="login-background-image" />
           </div>
+        </Col>
+        <Col md={6} className="right-section d-flex align-items-center justify-content-center">
+          <div className="login-form-container">
+            <div className="text-center mb-4">
+              <PerfectLearningLogo 
+                alt="Perfect Learning" 
+                className="logo mb-3"
+              />
+              <h1 className="login-title">Log In</h1>
+              <p className="login-subtitle">Enter your credentials to access you account</p>
+            </div>
 
-          <Button type="submit" className="w-100 mb-3">
-            Login
-          </Button>
+            <button 
+              className="google-login-btn" 
+              onClick={handleGoogleLogin}
+            >
+              <FcGoogle className="google-icon" />
+              Log in with Google
+            </button>
 
-          <p className="text-center mb-0">
-            Don't have an account?{' '}
-            <Link to="/signup" className="signup-link">
-              Sign up
-            </Link>
-          </p>
-        </Form>
-      </div>
-    </div>
+            <div className="divider">
+              <span>OR</span>
+            </div>
+
+            <Form onSubmit={handleSubmit}>
+              <Form.Group className="mb-3">
+                <Form.Label>Email ID</Form.Label>
+                <Form.Control
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="example@gmail.com"
+                  className="custom-input"
+                />
+              </Form.Group>
+
+              <Form.Group className="mb-3">
+                <Form.Label>Password</Form.Label>
+                <div className="password-input-container">
+                  <Form.Control
+                    type={showPassword ? "text" : "password"}
+                    name="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    placeholder="••••••••••••"
+                    className="custom-input"
+                  />
+                  <button
+                    type="button"
+                    className="password-toggle"
+                    onClick={() => setShowPassword(!showPassword)}
+                  >
+                    <i className={`bi bi-eye${showPassword ? '-slash' : ''}`}></i>
+                  </button>
+                </div>
+              </Form.Group>
+
+              <div className="text-end mb-3">
+                <Link to="/forgot-password" className="forgot-password">
+                  Forgot Password?
+                </Link>
+              </div>
+
+              <Button type="submit" className="login-btn">
+                Log In
+              </Button>
+
+              <p className="signup-text">
+                New to Perfect Learning? <Link to="/signup" className="signup-link">Sign Up</Link>
+              </p>
+            </Form>
+          </div>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 
