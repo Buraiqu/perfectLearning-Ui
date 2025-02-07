@@ -115,6 +115,7 @@
 
 .notification-section {
     text-align: center;
+    padding-top: 10px;
 }
 
 .notification-btn {
@@ -136,7 +137,7 @@
 .important-dates {
     display: flex;
     flex-direction: column;
-    gap: 1.75rem;
+    gap: 1.4rem;
     width: 100%;
 }
 
@@ -144,6 +145,7 @@
     display: flex;
     align-items: flex-start;
     gap: 0.7rem;
+    margin-bottom: 4px;
 }
 
 .date-icon {
@@ -172,6 +174,7 @@
     font-size: 16px;
     font-weight: 400;
     line-height: 24px;
+    margin-top: 2px;
 }
 
 .date-value {
@@ -290,9 +293,8 @@
 .plans-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
+    gap: 40px;
     margin-bottom: 3rem;
-    padding: 0 16px;
 }
 
 @media (max-width: 1200px) {
@@ -316,10 +318,10 @@
     min-height: 610px;
     border-radius: 16px;
     padding: 20px;
-    box-shadow: 0px 1px 3px rgba(16, 24, 40, 0.1), 0px 1px 2px rgba(16, 24, 40, 0.06);
+    box-shadow: 0px 1px 4px rgb(16 24 40 / 15%), 1px 2px 4px rgb(16 24 40 / 10%);
     position: relative;
     width: 100%;
-    max-width: 373px;
+    max-width: 400px;
     margin: 0 auto;
 }
 
@@ -338,10 +340,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 8px;
+    border-radius: 4px;
     font-size: 14px;
     font-weight: 500;
     flex-shrink: 0;
+    margin-top: -30px;
 }
 
 .plan-title {
@@ -367,6 +370,7 @@
 
 .standard-price span {
     font-weight: 500;
+    color: #03488B;
 }
 
 .offer-price {
@@ -384,14 +388,14 @@
 }
 
 .offer-price .price-value {
-    color: #2563EB;
+    color: #03488B;
     font-weight: 500;
 }
 
 .offer-ends {
     color: #6B7280;
     font-size: 12px;
-    margin-left: 30px;
+    margin-left: 60px;
 }
 
 .features-list {
