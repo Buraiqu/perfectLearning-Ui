@@ -1,107 +1,122 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { FcGoogle } from 'react-icons/fc';
+import PerfectLearningLogo from '../../../assets/logo_full.svg';
 import './signup.css';
 
 const Signup = () => {
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [formData, setFormData] = useState({
-    name: '',
     email: '',
     password: '',
-    confirmPassword: '',
+    confirmPassword: ''
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prevState => ({
-      ...prevState,
+    setFormData(prev => ({
+      ...prev,
       [name]: value
     }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle signup logic here
-    console.log('Signup form submitted:', formData);
+    console.log('Form submitted:', formData);
+  };
+
+  const handleGoogleSignup = () => {
+    console.log('Google signup clicked');
   };
 
   return (
-    <div className="auth-container">
-      <div className="auth-card">
-        <div className="auth-header">
-          <h2>Create Account</h2>
-          <p>Join Perfect Learning today</p>
-        </div>
+    <div className="signup-form-container">
+      <div className="logo-container">
+        <img src={PerfectLearningLogo} alt="Perfect Learning Logo" className="logo" />
+      </div>
+      
+      <h1 className="signup-title">Sign Up</h1>
+      <p className="signup-subtitle">Create your account</p>
 
-        <Form onSubmit={handleSubmit}>
-          <Form.Group className="mb-3">
-            <Form.Label>Full Name</Form.Label>
-            <Form.Control
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              placeholder="Enter your full name"
-              required
-            />
-          </Form.Group>
+      <button
+        className="google-signup-btn"
+        onClick={handleGoogleSignup}
+      >
+        <FcGoogle className="google-icon" />
+        Signup with Google
+      </button>
 
-          <Form.Group className="mb-3">
-            <Form.Label>Email</Form.Label>
-            <Form.Control
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="Enter your email"
-              required
-            />
-          </Form.Group>
+      <div className="divider">
+        <span>OR</span>
+      </div>
 
-          <Form.Group className="mb-3">
-            <Form.Label>Password</Form.Label>
+      <Form onSubmit={handleSubmit}>
+        <Form.Group className="form-group">
+          <Form.Label>Email ID</Form.Label>
+          <Form.Control
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            placeholder="example@gmail.com"
+            className="custom-input"
+          />
+        </Form.Group>
+
+        <Form.Group className="form-group">
+          <Form.Label>Password</Form.Label>
+          <div className="password-input-container">
             <Form.Control
-              type="password"
+              type={showPassword ? "text" : "password"}
               name="password"
               value={formData.password}
               onChange={handleChange}
-              placeholder="Create a password"
-              required
+              placeholder="••••••••••••"
+              className="custom-input"
             />
-          </Form.Group>
+            <button
+              type="button"
+              className="password-toggle"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              <i className={`bi bi-eye${showPassword ? '-slash' : ''}`}></i>
+            </button>
+          </div>
+        </Form.Group>
 
-          <Form.Group className="mb-4">
-            <Form.Label>Confirm Password</Form.Label>
+        <Form.Group className="form-group">
+          <Form.Label>Re-enter Password</Form.Label>
+          <div className="password-input-container">
             <Form.Control
-              type="password"
+              type={showConfirmPassword ? "text" : "password"}
               name="confirmPassword"
               value={formData.confirmPassword}
               onChange={handleChange}
-              placeholder="Confirm your password"
-              required
+              placeholder="••••••••••••"
+              className="custom-input"
             />
-          </Form.Group>
+            <button
+              type="button"
+              className="password-toggle"
+              onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+            >
+              <i className={`bi bi-eye${showConfirmPassword ? '-slash' : ''}`}></i>
+            </button>
+          </div>
+        </Form.Group>
 
-          <Form.Group className="mb-4">
-            <Form.Check
-              type="checkbox"
-              label="I agree to the Terms of Service and Privacy Policy"
-              required
-            />
-          </Form.Group>
+        <Button type="submit" className="signup-btn">
+          Sign Up
+        </Button>
 
-          <Button type="submit" className="w-100 mb-3">
-            Create Account
-          </Button>
-
-          <p className="text-center mb-0">
-            Already have an account?{' '}
-            <Link to="/login" className="login-link">
-              Login
-            </Link>
+        <div className="login-container">
+          <p className="login-text">
+            Already have an account? <Link to="/login" className="login-link">Log In</Link>
           </p>
-        </Form>
-      </div>
+        </div>
+      </Form>
     </div>
   );
 };

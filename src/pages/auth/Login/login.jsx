@@ -3,6 +3,7 @@ import { Form, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { FcGoogle } from 'react-icons/fc';
 import PerfectLearningLogo from '../../../assets/logo_full.svg';
+import ResetPasswordModal from '../../../components/ResetPasswordModal/ResetPasswordModal';
 import './login.css';
 
 const Login = () => {
@@ -11,6 +12,7 @@ const Login = () => {
     email: '',
     password: ''
   });
+  const [showResetModal, setShowResetModal] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -30,13 +32,13 @@ const Login = () => {
   };
 
   return (
-
     <div className="login-form-container">
-      <div className="text-center mb-4">
-        <img src="" alt="" />
-        <h1 className="login-title">Log In</h1>
-        <p className="login-subtitle">Enter your credentials to access you account</p>
+      <div className="logo-container">
+        <img src={PerfectLearningLogo} alt="Perfect Learning Logo" className="logo" />
       </div>
+      
+      <h1 className="login-title">Log In</h1>
+      <p className="login-subtitle">Enter your credentials to access you account</p>
 
       <button
         className="google-login-btn"
@@ -51,7 +53,7 @@ const Login = () => {
       </div>
 
       <Form onSubmit={handleSubmit}>
-        <Form.Group className="mb-3">
+        <Form.Group className="form-group">
           <Form.Label>Email ID</Form.Label>
           <Form.Control
             type="email"
@@ -63,7 +65,7 @@ const Login = () => {
           />
         </Form.Group>
 
-        <Form.Group className="mb-3">
+        <Form.Group className="form-group">
           <Form.Label>Password</Form.Label>
           <div className="password-input-container">
             <Form.Control
@@ -84,20 +86,30 @@ const Login = () => {
           </div>
         </Form.Group>
 
-        <div className="text-end mb-3">
-          <Link to="/forgot-password" className="forgot-password">
+        <div className="forgot-password-container">
+          <button 
+            className="forgot-password-link"
+            onClick={() => setShowResetModal(true)}
+          >
             Forgot Password?
-          </Link>
+          </button>
         </div>
 
         <Button type="submit" className="login-btn">
           Log In
         </Button>
 
-        <p className="signup-text">
-          New to Perfect Learning? <Link to="/signup" className="signup-link">Sign Up</Link>
-        </p>
+        <div className="signup-container">
+          <p className="signup-text">
+            New to Perfect Learning? <Link to="/signup" className="signup-link">Sign Up</Link>
+          </p>
+        </div>
       </Form>
+
+      <ResetPasswordModal 
+        show={showResetModal}
+        onHide={() => setShowResetModal(false)}
+      />
     </div>
   );
 };
