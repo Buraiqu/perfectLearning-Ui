@@ -11,6 +11,7 @@ import AboutPage from './pages/public/About/about';
 import SubscriptionPlans from './pages/public/SubscriptionPans/subscriptionPlans';
 import Login from './pages/auth/Login/login';
 import Signup from './pages/auth/Signup/signup';
+import OnBoarding from './pages/auth/OnBoarding/onBoarding';
 
 function App() {
 
@@ -39,6 +40,7 @@ function App() {
           <Route element={<AuthLayout />}>
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
+            <Route path="onboarding" element={<OnBoarding />} />
           </Route>
 
           {/* Private routes */}

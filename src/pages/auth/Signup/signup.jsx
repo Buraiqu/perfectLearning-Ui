@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './signup.css';
 
 const Signup = () => {
+
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -23,6 +26,12 @@ const Signup = () => {
     e.preventDefault();
     // Handle signup logic here
     console.log('Signup form submitted:', formData);
+
+    localStorage.setItem('email', formData.email);
+    localStorage.setItem('userId', '123123');
+
+    navigate(`/signup?stage=onboarding&email=${formData.email}&userId=${'123123'}`);
+
   };
 
   return (
