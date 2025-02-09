@@ -87,4 +87,44 @@
     padding: 1.5rem;
     padding-right: 0;
   }
+<<<<<<< HEAD
 }
+=======
+  .image-container img{
+    width: 100%;
+    height: 100%;
+    left: 0;
+  }
+  
+  .login-background-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+
+
+.onboarding-container {
+    min-height: 100vh;
+    background-color: #ffffff;
+  }
+  
+  .left-section {
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .image-container {
+    position: absolute;
+    top: 0px;
+    left: 30px;
+    width: 499px;
+    height: 100%;
+  }
+  .image-container img{
+    width: 110%;
+    height: 100%;
+    left: 0;
+  }
+>>>>>>> 68a0277b4202c293503a6570c198e563d4bc3e85
