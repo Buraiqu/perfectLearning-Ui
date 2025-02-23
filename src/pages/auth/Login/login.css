@@ -1,12 +1,8 @@
-.right-section {
-  padding: 2rem;
-}
-
 .login-form-container {
   width: 100%;
-  max-width: 420px;
+  max-width: 500px;
   margin: 0 auto;
-  padding: 2rem 1.5rem;
+  padding: 2rem 0rem;
 }
 
 .logo-container {

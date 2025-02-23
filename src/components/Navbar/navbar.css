@@ -189,6 +189,9 @@
     margin: 1rem 0;
     text-align: center;
   }
+  .nav-links .nav-link{
+    cursor: pointer;
+  }
 
   .navbar-custom .nav-link {
     padding: 0.75rem 0 !important;
