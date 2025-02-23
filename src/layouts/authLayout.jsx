@@ -38,20 +38,37 @@ const AuthLayout = () => {
 
   return (
     <div className="auth-layout">
-      <Container fluid className="p-0">
-        <Row className="g-0">
-          <Col md={6} className="left-section">
-            <div className="image-container">
-              <img src={LoginImage} alt="Learning" className="auth-image" />
-            </div>
-          </Col>
-          <Col md={6} className="right-section">
-            <div className="form-wrapper">
-              <Outlet />
-            </div>
-          </Col>
-        </Row>
-      </Container>
+      <main>
+        {stage && stage === 'onboarding' ? (  
+          <Container fluid className="onboarding-container">
+            <Row className="h-100">
+              <Col md={5} className="left-section">
+                <div className="image-container">
+                  <img src={OnBoardingImage} alt="Learning" />
+                </div>
+              </Col>
+              <Col md={7} className="right-section">
+                <OnBoarding/>
+              </Col>
+            </Row>
+          </Container>
+        ) : (  
+          <Container fluid className="login-container">
+            <Row className="h-100">
+              <Col md={6} className="left-section">
+                <div className="image-container">
+                  <img src={LoginImage} alt="Learning" />
+                </div>
+              </Col>
+              <Col md={6} className="right-section d-flex align-items-center justify-content-center">
+                <Outlet />
+              </Col>
+            </Row>
+          </Container>
+        )}
+
+
+      </main>
     </div>
   );
 };

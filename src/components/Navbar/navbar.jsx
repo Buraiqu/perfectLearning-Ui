@@ -2,8 +2,12 @@ import { Container, Navbar, Nav, Form, Button} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import fullLogo from '../../assets/logo_full.svg';
 import './navbar.css';
+import { useNavigate } from "react-router-dom";
 
 const CustomNavbar = () => {
+
+    const navigate = useNavigate();
+
     return (
         <Navbar bg="white" expand="lg" className="navbar-custom mt-3">
             <Container fluid className="px-4">
@@ -14,7 +18,7 @@ const CustomNavbar = () => {
                 <Navbar.Collapse id="navbar-nav">
                     <Nav className="nav-links">
                         <Nav.Link as={Link} to="/about" className="px-4">About</Nav.Link>
-                        <Nav.Link as={Link} to="/" className="px-4">Courses</Nav.Link>
+                        <Nav.Link as={Link} to="/" className="px-4" >Courses</Nav.Link>
                         <Nav.Link as={Link} to="#" className="px-4">Instructors</Nav.Link>
                     </Nav>
                     <Form className="d-flex align-items-center search-form me-4 me-auto">
@@ -33,8 +37,8 @@ const CustomNavbar = () => {
                         </div>
                     </Form>
                     <div className="auth-buttons">
-                        <Button className="me-1 sign-in-btn">Sign In</Button>
-                        <Button className="sign-up-btn filled-button">Sign Up</Button>
+                        <Button className="me-1 sign-in-btn" onClick={() => navigate("/login")}>Sign In</Button>
+                        <Button className="sign-up-btn filled-button" onClick={() => navigate("/signup")}>Sign Up</Button>
                     </div>
                 </Navbar.Collapse>
             </Container>
