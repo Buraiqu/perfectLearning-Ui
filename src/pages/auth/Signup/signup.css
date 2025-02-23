@@ -80,6 +80,7 @@
 
 .signup-form-container {
   width: 100%;
+  padding: 0px 6rem !important;
 }
 
 .logo-container {
@@ -236,8 +237,8 @@
   box-shadow: none !important;
 }
 
-.login-container {
-  text-align: left;
+.login-contain {
+  text-align: left !important;
 }
 
 .login-text {
