@@ -14,6 +14,7 @@ import Signup from './pages/auth/Signup/signup';
 import OnBoarding from './pages/auth/OnBoarding/onBoarding';
 import LoginVerification from './pages/auth/Verification/loginVerification';
 import SignupVerification from './pages/auth/Verification/signupVerification';
+import PasswordResetPage from './pages/auth/PasswordReset/passwordResetPage';
 
 function App() {
 
@@ -45,6 +46,7 @@ function App() {
             <Route path="onboarding" element={<OnBoarding />} />
             <Route path="/signupVerification" element={<SignupVerification />} />
             <Route path="/loginVerification" element={<LoginVerification />} />
+            <Route path="/PasswordResetPage" element={<PasswordResetPage />} />
           </Route>
 
           {/* Private routes */}
