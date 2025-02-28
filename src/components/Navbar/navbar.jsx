@@ -9,7 +9,7 @@ const CustomNavbar = () => {
     const navigate = useNavigate();
 
     return (
-        <Navbar bg="white" expand="lg" className="navbar-custom mt-3">
+        <Navbar bg="white" expand="custom" className="navbar-custom mt-3">
             <Container fluid className="px-4">
                 <Navbar.Brand as={Link} to="/" className="me-5">
                     <img src={fullLogo} alt="Perfect Learning" height="50" />

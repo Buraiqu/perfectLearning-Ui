@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FcGoogle } from 'react-icons/fc';
 import PerfectLearningLogo from '../../../assets/logo_full.svg';
 import './signup.css';
@@ -13,6 +13,7 @@ const Signup = () => {
     password: '',
     confirmPassword: ''
   });
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -24,6 +25,10 @@ const Signup = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    localStorage.setItem('email', formData.email);
+    localStorage.setItem('userId', '12345');
+    localStorage.setItem('stage', 'onboarding');
+    navigate('/signupVerification');
     console.log('Form submitted:', formData);
   };
 

@@ -49,7 +49,7 @@ const LandingPage = () => {
 
       {/* Entrance Courses Section */}
       <section className="courses-section">
-        <Container>
+        <Container className='custom-cont'>
           <h2 className="section-title">COURSES OFFERED</h2>
           <h3 className="course-category">Entrance Courses (11)</h3>
           <Row>
@@ -65,7 +65,7 @@ const LandingPage = () => {
 
       {/* Job Exam Courses Section */}
       <section className="courses-section">
-        <Container>
+        <Container className='custom-cont'>
           <h3 className="course-category">Job Exam Courses (11)</h3>
           <Row>
             {jobExamCourses.slice(0, 6).map((course, index) => (
@@ -80,7 +80,7 @@ const LandingPage = () => {
 
       {/* Other Courses Section */}
       <section className="courses-section">
-        <Container>
+        <Container className='custom-cont'>
           <h3 className="course-category">Other Courses (5)</h3>
           <Row>
             {Array(4).fill().map((_, index) => (
