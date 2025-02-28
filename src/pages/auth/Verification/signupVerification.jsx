@@ -33,7 +33,7 @@ const SignupVerification = () => {
 
   const handleVerify = () => {
     const code = verificationCode.join('');
-
+    navigate(`/signup?stage=onboarding&email=${localStorage.getItem('email')}&userId=${localStorage.getItem('userId')}`);
     console.log('Verification code:', code);
   };
 

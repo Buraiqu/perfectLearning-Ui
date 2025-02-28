@@ -12,6 +12,12 @@
     padding: 2rem;
 }
 
+@media (max-width: 768px) {
+  .verification-content {
+    padding: 0;
+  }
+}
+
 .verification-content span {
     font-weight: 500;
 }
