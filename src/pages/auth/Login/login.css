@@ -202,7 +202,7 @@
 
 @media (max-width: 480px) {
   .login-form-container {
-    padding: 1.5rem 1rem;
+    padding: 1.5rem 1rem !important;
   }
   
   .login-title {
