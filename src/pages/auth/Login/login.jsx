@@ -89,6 +89,7 @@ const Login = () => {
 
         <div className="forgot-password-container">
           <button 
+            type='button'
             className="forgot-password-link"
             onClick={() => setShowResetModal(true)}
           >
