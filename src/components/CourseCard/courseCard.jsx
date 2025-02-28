@@ -27,7 +27,7 @@ const CourseCard = ({ course }) => {
                 </div>
                 <p className="course-subtitle mb-4">{course.description}</p>
                 <div className="d-flex gap-2">
-                    <div className="d-flex align-items-center me-5">
+                    <div className="d-flex align-items-center me-lg-5 star-me-5">
                         <div className="rating me-2">{renderStars(course.rating)}</div>
                     </div>
                     <div className="button-container d-flex gap-2">
