@@ -1,3 +1,4 @@
+import React, { useContext } from 'react';
 import { Outlet } from 'react-router-dom';
 import LoginImage from '../assets/login_photo.svg';
 import OnBoardingImage from '../assets/on_boarding_image.svg';
@@ -7,30 +8,35 @@ import { useSearchParams } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import OnBoarding from '../pages/auth/OnBoarding/onBoarding';
+import { AuthContext } from '../context/authContext';
 
 const AuthLayout = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-
+  const {user} = useContext(AuthContext)
   const stage = searchParams.get('stage');  
   const email = searchParams.get('email');
   const userId = searchParams.get('userId');
 
   useEffect(() => {
-    if (stage === 'onboarding') {
-      console.log(stage, email, userId);
-      const storedEmail = localStorage.getItem('email');
-      const storedUserId = localStorage.getItem('userId');
-
-      if (!email || !userId) {
-        if (storedEmail && storedUserId) {
-          // Add email and userId to URL from localStorage
-          navigate(`?stage=onboarding&email=${storedEmail}&userId=${storedUserId}`, { replace: true });
-        } else {
-          // Redirect to signup if no valid email/userId
-          navigate('/signup', { replace: true });
+    if(!user){
+      if (stage === 'onboarding') {
+        console.log(stage, email, userId);
+        const storedEmail = localStorage.getItem('email');
+        const storedUserId = localStorage.getItem('userId');
+  
+        if (!email || !userId) {
+          if (storedEmail && storedUserId) {
+            // Add email and userId to URL from localStorage
+            navigate(`?stage=onboarding&email=${storedEmail}&userId=${storedUserId}`, { replace: true });
+          } else {
+            // Redirect to signup if no valid email/userId
+            navigate('/signup', { replace: true });
+          }
         }
       }
+    }else{
+      navigate('/dashboard')
     }
   }, [stage, navigate]);
 
