@@ -27,15 +27,17 @@ const CourseCard = ({ course }) => {
                 </div>
                 <p className="course-subtitle mb-4">{course.description}</p>
                 <div className="d-flex gap-2">
-                    <div className="d-flex align-items-center me-5">
+                    <div className="d-flex align-items-center me-lg-5 star-me-5">
                         <div className="rating me-2">{renderStars(course.rating)}</div>
                     </div>
-                    <Link to="/subscription">
-                        <Button className="filled-button enroll-btn">Enroll</Button>
-                    </Link>
-                    <Link to="/subscription">
-                        <Button className="outline-button view-btn">View More</Button>
-                    </Link>
+                    <div className="button-container d-flex gap-2">
+                        <Link to="/subscription">
+                            <Button className="filled-button enroll-btn">Enroll</Button>
+                        </Link>
+                        <Link to="/subscription">
+                            <Button className="outline-button view-btn">View More</Button>
+                        </Link>
+                    </div>
                 </div>
             </div>
             </Card.Body>

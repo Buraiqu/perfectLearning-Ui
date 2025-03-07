@@ -1,8 +1,15 @@
 .navbar-custom {
   padding: 0.5rem 40px;
-  background: white;
-  height: 76px;
+  height: 110px;
   transition: all 0.3s ease;
+}
+
+.background-grey{
+  background-color: #F3F2F0 !important;
+}
+
+.background-white{
+  background-color: white !important;
 }
 
 .navbar-custom .navbar-brand {
@@ -100,9 +107,9 @@
     right: -24px;
   }
 }
-@media (max-width: 991.98px) {
+@media (max-width: 1131px) {
   .search-container {
-    max-width: 100%;
+    max-width: 98%;
   }
   
   .search-input,
@@ -110,7 +117,6 @@
     height: 42px;
   }
 }
-
 
 /* Auth Buttons */
 .auth-buttons {
@@ -145,17 +151,63 @@
   transition: all 0.2s ease;
 }
 
+/* Custom navbar expand breakpoint */
+
 /* Responsive Adjustments */
 @media (max-width: 1200px) {
   .search-input {
     width: 300px;
   }
-}
-
-@media (max-width: 991.98px) {
   .navbar-custom {
     height: auto;
+    padding: 0;
+  }
+}
+@media (min-width: 1131px) {
+  .navbar-expand-custom {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+  }
+  .navbar-expand-custom .navbar-nav {
+    flex-direction: row;
+  }
+  .navbar-expand-custom .navbar-collapse {
+    display: flex !important;
+    flex-basis: auto;
+  }
+  .navbar-expand-custom .navbar-toggler {
+    display: none;
+  }
+
+  .nav-custome-link{
+    display: none !important;
+  }
+}
+
+@media (max-width: 1130px) {
+  .navbar-collapse {
+    position: fixed;
+    top: 80px;
+    left: 0;
+    right: 0;
+    background: white;
+    z-index: 1030;
+    padding: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-height: calc(100vh - 80px);
+    overflow-y: auto;
+  }
+
+  .navbar-custom {
+    position: relative;
+    z-index: 1031;
+    height: auto;
     padding: 0.5rem 20px;
+    background: white;
+  }
+
+  .navbar-collapse.collapsing {
+    transition: none !important;
   }
 
   .navbar-custom .navbar-brand img {
@@ -167,7 +219,7 @@
     padding: 1rem;
     border-radius: 8px;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    margin-top: 0.5rem;
+    margin-top: 0rem;
   }
 
   .search-form {
@@ -201,6 +253,10 @@
 
   .navbar-custom .nav-link:last-child {
     border-bottom: none;
+  }
+
+  .custom-show{
+    display: none !important;
   }
 }
 

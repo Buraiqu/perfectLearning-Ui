@@ -20,9 +20,20 @@
   height: 100%;
 }
 .login-container .image-container img{
-  width: 100%;
   height: 100%;
   left: 0;
+}
+
+@media (max-width: 1024px) {
+  .left-section {
+    display: none !important;
+  }
+  
+  .right-section {
+    width: 100% !important;
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+  }
 }
 
 

@@ -1,7 +1,15 @@
 .hero-section {
-  padding: 2rem 1rem 4rem;
+  padding: 1rem 1rem 4rem;
   background-color: #ffffff;
   position: relative;
+}
+
+.background-grey{
+  background-color: #F3F2F0 !important;
+}
+
+.background-white{
+  background-color: white !important;
 }
 
 .hero-section h1 {
@@ -206,3 +214,8 @@
 .carousel-indicators .active {
   opacity: 1;
 } */
+@media (min-width: 768px) and (max-width: 991px) {
+  .custom-cont{
+    max-width: 758px !important;
+  }
+}

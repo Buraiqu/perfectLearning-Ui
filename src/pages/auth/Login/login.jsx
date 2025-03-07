@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FcGoogle } from 'react-icons/fc';
 import PerfectLearningLogo from '../../../assets/logo_full.svg';
 import ResetPasswordModal from '../../../components/ResetPasswordModal/ResetPasswordModal';
@@ -13,7 +13,7 @@ const Login = () => {
     password: ''
   });
   const [showResetModal, setShowResetModal] = useState(false);
-
+  const navigate = useNavigate();
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({
@@ -24,6 +24,7 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    navigate('/loginVerification');
     console.log('Form submitted:', formData);
   };
 
@@ -88,6 +89,7 @@ const Login = () => {
 
         <div className="forgot-password-container">
           <button 
+            type='button'
             className="forgot-password-link"
             onClick={() => setShowResetModal(true)}
           >

@@ -1,0 +1,67 @@
+
+.modal-content {
+    border-radius: 8px;
+    border: none;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.modal-header {
+    border-bottom: 1px solid #E5E7EB;
+    padding: 20px;
+}
+
+.modal-title {
+    font-size: 18px;
+    font-weight: 500;
+    color: #1A1A1A;
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+.modal-body p {
+    color: #4B5563;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.modal-footer {
+    border-top: none;
+    padding: 20px;
+}
+
+.form-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #1A1A1A;
+    margin-bottom: 8px;
+}
+
+.form-control,
+.form-select {
+    border: 1px solid #E5E7EB;
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-size: 14px;
+    color: #1A1A1A;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: #03488B;
+    box-shadow: 0 0 0 2px rgba(3, 72, 139, 0.1);
+}
+
+.form-control::placeholder {
+    color: #9CA3AF;
+}
+
+/* Close button */
+.btn-close {
+    opacity: 0.5;
+}
+
+.btn-close:hover {
+    opacity: 0.75;
+}

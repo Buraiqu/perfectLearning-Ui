@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Container, Row, Col, Card, Button, Carousel } from 'react-bootstrap';
 import './landingPage.css';
 import CourseCard from '../../components/CourseCard/courseCard';
 import carousal1 from '../../assets/carousal-1.svg';
 import carousal2 from '../../assets/carousal-2.svg';
 import carousal3 from '../../assets/carousal-3.svg';
+import { AuthContext } from '../../context/authContext';
 
 const LandingPage = () => {
+  const {user} = useContext(AuthContext)
   
   const entranceCourses = Array(6).fill({
     title: 'JEE Advanced 2023',
@@ -22,7 +24,7 @@ const LandingPage = () => {
 
   return (
     <div className="landing-page">
-      <section className="hero-section">
+      <section className={`hero-section ${user ? 'background-grey' : 'background-white'}`}>
         <Container className='container-fluid'>
           <Row className="align-items-center">
             <Col md={12} style={{paddingLeft: "0px", paddingRight: "0px"}}>
@@ -49,7 +51,7 @@ const LandingPage = () => {
 
       {/* Entrance Courses Section */}
       <section className="courses-section">
-        <Container>
+        <Container className='custom-cont'>
           <h2 className="section-title">COURSES OFFERED</h2>
           <h3 className="course-category">Entrance Courses (11)</h3>
           <Row>
@@ -65,7 +67,7 @@ const LandingPage = () => {
 
       {/* Job Exam Courses Section */}
       <section className="courses-section">
-        <Container>
+        <Container className='custom-cont'>
           <h3 className="course-category">Job Exam Courses (11)</h3>
           <Row>
             {jobExamCourses.slice(0, 6).map((course, index) => (
@@ -80,7 +82,7 @@ const LandingPage = () => {
 
       {/* Other Courses Section */}
       <section className="courses-section">
-        <Container>
+        <Container className='custom-cont'>
           <h3 className="course-category">Other Courses (5)</h3>
           <Row>
             {Array(4).fill().map((_, index) => (
