@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 import { AuthProvider } from './context/authContext';
 import PublicLayout from './layouts/publicLayout';
 import AuthLayout from './layouts/authLayout';
@@ -11,10 +11,12 @@ import AboutPage from './pages/public/About/about';
 import SubscriptionPlans from './pages/public/SubscriptionPans/subscriptionPlans';
 import Login from './pages/auth/Login/login';
 import Signup from './pages/auth/Signup/signup';
-import OnBoarding from './pages/auth/OnBoarding/onBoarding';
 import LoginVerification from './pages/auth/Verification/loginVerification';
 import SignupVerification from './pages/auth/Verification/signupVerification';
 import PasswordResetPage from './pages/auth/PasswordReset/passwordResetPage';
+import PrivateRoute from './routes/privateRoute';
+import Dashboard from './pages/Main/Dashboard/dashboard';
+import MyCourse from './pages/Main/MyCourse/myCourse';
 
 function App() {
 
@@ -43,16 +45,23 @@ function App() {
           <Route element={<AuthLayout />}>
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
-            <Route path="onboarding" element={<OnBoarding />} />
             <Route path="/signupVerification" element={<SignupVerification />} />
             <Route path="/loginVerification" element={<LoginVerification />} />
             <Route path="/PasswordResetPage" element={<PasswordResetPage />} />
           </Route>
 
-          {/* Private routes */}
-          {/* <Route element={<PrivateRoute />}>
-            <Route path="/dashboard" element={<Dashboard />} />
-          </Route> */}
+          {/* Private routes - All authenticated routes */}
+          <Route element={<PrivateRoute />}>
+            <Route path="/main" >
+              <Route index element={<Navigate to="/main/dashboard" replace />} />
+              <Route path="dashboard" element={<Dashboard />} />
+              <Route path="my-courses" element={<MyCourse />} />
+            </Route>
+          </Route>
+
+          {/* Catch all route */}
+          <Route path="*" element={<Navigate to="/" replace />} />
+          
         </Routes>
       </Router>
     </AuthProvider>

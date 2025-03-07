@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Container, Row, Col, Card, Button, Carousel } from 'react-bootstrap';
 import './landingPage.css';
 import CourseCard from '../../components/CourseCard/courseCard';
 import carousal1 from '../../assets/carousal-1.svg';
 import carousal2 from '../../assets/carousal-2.svg';
 import carousal3 from '../../assets/carousal-3.svg';
+import { AuthContext } from '../../context/authContext';
 
 const LandingPage = () => {
+  const {user} = useContext(AuthContext)
   
   const entranceCourses = Array(6).fill({
     title: 'JEE Advanced 2023',
@@ -22,7 +24,7 @@ const LandingPage = () => {
 
   return (
     <div className="landing-page">
-      <section className="hero-section">
+      <section className={`hero-section ${user ? 'background-grey' : 'background-white'}`}>
         <Container className='container-fluid'>
           <Row className="align-items-center">
             <Col md={12} style={{paddingLeft: "0px", paddingRight: "0px"}}>

@@ -1,0 +1,333 @@
+body {
+    background-color: #F8F9FA;
+}
+
+.my-courses-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    min-height: 97vh;
+    background: #f4f4f4;
+}
+
+.my-courses-topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px 24px 20px 24px;
+    flex-wrap: nowrap;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.topbar-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 1;
+    min-width: 0;
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+    flex-shrink: 1;
+    min-width: 0;
+}
+
+.logo-image {
+    height: 50px;
+    width: auto;
+    max-width: 100%;
+}
+
+.topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-shrink: 0;
+}
+
+@media (max-width: 1130px) {
+    .my-courses-topbar {
+        padding: 24px 16px 16px 16px;
+    }
+
+    .logo-image {
+        height: 40px;
+    }
+
+    .topbar-right {
+        gap: 12px;
+    }
+}
+
+.my-courses-content {
+    padding: 24px;
+}
+
+.page-title {
+    font-size: 20px;
+    font-weight: 500;
+    color: #0E0E0E;
+    margin-bottom: 25px;
+    line-height: 24px;
+}
+
+.my-courses-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.my-course-card {
+    background: #fff;
+    border-radius: 4px;
+    padding: 24px;
+    box-shadow: 0px 1px 3px rgba(16, 24, 40, 0.1), 0px 1px 2px rgba(16, 24, 40, 0.06);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.my-course-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.my-course-title {
+    font-size: 16px;
+    font-weight: 500;
+    color: #101828;
+    margin-bottom: 8px;
+    line-height: 24px;
+}
+
+.my-course-plan {
+    display: inline-flex;
+    padding: 4px 10px;
+    background: #C5DDF399;
+    color: #03488B;
+    border-radius: 5px;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 20px;
+    align-items: center;
+}
+
+.my-course-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.btn-upgrade {
+    padding: 10px 18px;
+    border: 1px solid #03488B;
+    border-radius: 6px;
+    background: #FFFFFF;
+    color: #03488B;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    height: 40px;
+    white-space: nowrap;
+    line-height: 20px;
+    box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+}
+
+.btn-upgrade:hover {
+    background: #F9FAFB;
+    border-color: #D0D5DD;
+}
+
+.btn-go-to-course {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 8px;
+    background: #03488B;
+    color: white;
+    font-size: 15px;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: 40px;
+    white-space: nowrap;
+    line-height: 20px;
+    box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+}
+
+.btn-go-to-course:hover {
+    background: #03478bd7;
+}
+
+.btn-go-to-course svg {
+    width: 20px;
+    height: 20px;
+    stroke-width: 2;
+}
+
+.more-options-container {
+    position: relative;
+}
+
+.btn-more {
+    padding: 10px;
+    border: none;
+    background: #FFFFFF;
+    color: #667085;
+    cursor: pointer;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    height: 40px;
+    width: 40px;
+}
+
+.btn-more:hover {
+    background: #F9FAFB;
+    border-color: #D0D5DD;
+}
+
+.btn-more svg {
+    width: 20px;
+    height: 20px;
+}
+
+.more-options-dropdown {
+    position: absolute;
+    top: calc(100% + 4px);
+    right: 0;
+    background: white;
+    border-radius: 4px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    min-width: 120px;
+    z-index: 1000;
+    padding: 4px;
+    border: 1px solid #E5E7EB;
+}
+
+.more-option-item {
+    width: 100%;
+    padding: 8px;
+    border: none;
+    background: none;
+    text-align: left;
+    color: #1A1A1A;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+}
+
+.more-option-item:hover {
+    background: #F4F4F4;
+}
+
+@media (max-width: 640px) {
+    .more-options-dropdown {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        min-width: 120px;
+        border-radius: 4px;
+        padding: 4px;
+        background: #FFFFFF;
+        border: 1px solid #E5E7EB;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .more-option-item {
+        padding: 8px;
+        font-size: 14px;
+        justify-content: flex-start;
+        border-radius: 2px;
+    }
+
+    .more-option-item:not(:last-child) {
+        margin-bottom: 0;
+    }
+}
+
+@media (max-width: 640px) {
+    .my-course-card {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 16px;
+        gap: 16px;
+        position: relative;
+    }
+
+    .my-course-info {
+        padding-right: 40px;
+    }
+
+    .my-course-actions {
+        flex-direction: column;
+        width: 100%;
+        gap: 8px;
+    }
+
+    .btn-upgrade,
+    .btn-go-to-course {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .more-options-container {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+    }
+
+    .btn-more {
+        height: 32px;
+        width: 32px;
+        padding: 6px;
+    }
+
+    .btn-more img {
+        width: 16px;
+        height: 16px;
+    }
+}
+
+@media (max-width: 640px) {
+    .my-courses-container {
+        padding: 16px;
+    }
+
+    .my-course-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+        padding: 16px;
+    }
+
+    .my-course-actions {
+        width: 100%;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+    }
+
+    .btn-upgrade,
+    .btn-go-to-course {
+        flex: 1;
+        min-width: 140px;
+    }
+
+    .btn-more {
+        order: -1;
+        margin-left: auto;
+    }
+}

@@ -1,0 +1,483 @@
+.subscription-page {
+    padding: 2rem 0;
+}
+
+/* Course Selector Styles */
+.course-selector {
+    margin-bottom: 2rem;
+}
+
+.course-selector .form-group {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.course-selector label {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 24px;
+    color: #0E0E0E;
+    margin-bottom: 0;
+    white-space: nowrap;
+}
+
+.course-selector select {
+    flex: 1;
+    max-width: 400px;
+    height: 40px;
+    border: 1px solid #E2E8F0;
+    border-radius: 6px;
+    padding: 0 10px;
+    background-color: #fff;
+    font-size: 16px;
+    color: #000;
+}
+
+.course-selector select:disabled {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: none;
+    cursor: default;
+}
+
+/* Course Details Styles */
+.course-details {
+    background: #FFFFFF;
+    border: 1px solid #E5E5E5;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    border-radius: 16px;
+    padding: 2rem;
+    margin-bottom: 3rem;
+}
+
+.course-details-content {
+    display: flex;
+    position: relative;
+    gap: 3rem;
+}
+
+.course-details-content::after {
+    content: '';
+    position: absolute;
+    left: 70%;
+    top: 0;
+    bottom: 10px;
+    width: 2.4px;
+    background-color: #F4F5F9;
+}
+
+.course-details-left {
+    flex: 0 0 70%;
+    padding-right: 2rem;
+}
+
+.course-details-right {
+    flex: 0 0 27%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.course-details h2 {
+    font-size: 16px;
+    font-weight: 500;
+    color: #2A2A2A;
+    line-height: 19.2px;
+    margin-bottom: 1rem;
+}
+
+.course-link {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
+    color: #011D38;
+    margin-bottom: 1rem;
+}
+
+.course-link a {
+    color: #03488B;
+    text-decoration: none;
+    margin-left: 4px;
+}
+
+.course-code {
+    display: inline-block;
+    padding: 6px 12px;
+    width: 161px;
+    height: 29px;
+    border-radius: 4px;
+    background-color: #C5DDF399;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
+    color: #03488B;
+}
+
+.course-description {
+    color: #0E0E0E;
+    line-height: 24px;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.notification-section {
+    text-align: center;
+    padding-top: 10px;
+}
+
+.notification-btn {
+    background-color: #03488B;
+    color: white;
+    border: none;
+    padding: 12px 32px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 400;
+    transition: background-color 0.2s;
+}
+
+.notification-btn:hover {
+    background-color: #023b73;
+}
+
+.important-dates {
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
+    width: 100%;
+}
+
+.date-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.7rem;
+    margin-bottom: 4px;
+}
+
+.date-icon {
+    flex-shrink: 0;
+    width: 19px;
+    height: 19px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5px;
+}
+
+.date-icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+.date-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.date-label {
+    color: #0E0E0E;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    margin-top: 2px;
+}
+
+.date-value {
+    color: #03488B;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19.2px;
+    letter-spacing: -0.2px;
+}
+
+@media (max-width: 1024px) {
+    .course-details-content {
+        gap: 2rem;
+    }
+
+    .course-details-left {
+        flex: 0 0 65%;
+    }
+
+    .course-details-right {
+        flex: 0 0 35%;
+    }
+
+    .course-details-content::after {
+        left: 65%;
+    }
+}
+
+@media (max-width: 768px) {
+    .course-details {
+        padding: 1.5rem;
+    }
+
+    .course-details-content {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .course-details-left,
+    .course-details-right {
+        flex: 0 0 100%;
+        padding: 0;
+    }
+
+    .course-details-content::after {
+        left: 0;
+        right: 0;
+        top: auto;
+        bottom: 0;
+        width: 100%;
+        height: 1px;
+    }
+
+    .course-description {
+        font-size: 15px;
+        line-height: 22px;
+    }
+
+    .important-dates {
+        padding-top: 2rem;
+        max-width: 100%;
+    }
+
+    .notification-section{
+        padding-top: 30px;
+    }
+
+    .date-item {
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .course-details {
+        padding: 1.25rem;
+    }
+
+    .course-details-content {
+        gap: 1.5rem;
+    }
+
+    .date-text {
+        flex: 1;
+    }
+
+    .date-label {
+        font-size: 15px;
+        line-height: 22px;
+    }
+
+    .date-value {
+        font-size: 14px;
+        line-height: 20px;
+    }
+    .notification-section{
+        padding-top: 30px;
+    }
+
+    .notification-btn {
+        width: 100%;
+        padding: 12px 20px;
+        font-size: 15px;
+    }
+}
+
+/* Subscription Plans Styles */
+.subscription-title {
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 500;
+    color: #0E0E0E;
+    margin-bottom: 2rem;
+    margin-top: 3rem;
+}
+
+.plans-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    margin-bottom: 3rem;
+}
+
+@media (max-width: 1200px) {
+    .plans-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .plans-container {
+        grid-template-columns: 1fr;
+        padding: 0 12px;
+    }
+    .plan-card {
+        max-width: 100%;
+    }
+}
+
+.plan-card {
+    background: white;
+    min-height: 610px;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0px 1px 4px rgb(16 24 40 / 15%), 1px 2px 4px rgb(16 24 40 / 10%);
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.plan-badge {
+    width: 49px;
+    height: 48px;
+    background-color: #E8F1F8;
+    color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    flex-shrink: 0;
+    margin-top: -30px;
+}
+
+.plan-title {
+    font-size: 16px;
+    line-height: 19.2px;
+    font-weight: 500;
+    color: #2A2A2A;
+    margin: 0;
+}
+
+.card-header {
+    padding-bottom: 16px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid #E5E7EB;
+}
+
+.standard-price {
+    font-size: 14px;
+    color: #011D38;
+    margin-bottom: 4px;
+    margin-top: 7px;
+}
+
+.standard-price span {
+    font-weight: 500;
+    color: #03488B;
+}
+
+.offer-price {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 14px;
+}
+
+.offer-price-amount {
+    font-size: 14px;
+    color: #011D38;
+    margin-bottom: 4px;
+    margin-top: 5px;
+}
+
+.offer-price .price-value {
+    color: #03488B;
+    font-weight: 500;
+}
+
+.offer-ends {
+    color: #6B7280;
+    font-size: 12px;
+    margin-left: 60px;
+}
+
+.features-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+}
+
+.features-list li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 2px 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.6;
+    color: #2A2A2A;
+    margin-bottom: 1rem;
+}
+
+.features-list label {
+    font-size: 14px;
+    line-height: 21px;
+    color: #0E0E0E;
+    font-weight: 400;
+}
+
+.feature-icon {
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.feature-icon.available {
+    color: #000;
+}
+
+.feature-icon.not-available {
+    color: #9CA3AF;
+}
+
+.enroll-btn-orange {
+    width: 100%;
+    height: 40px;
+    background-color: #E88139;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 19.2px;
+    transition: background-color 0.2s;
+}
+
+.enroll-btn-orange:hover {
+    background-color: #e67142;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .important-dates {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .plans-container {
+        grid-template-columns: 1fr;
+    }
+
+    .course-selector select {
+        width: 100%;
+    }
+}
