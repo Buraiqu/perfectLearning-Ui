@@ -1,7 +1,7 @@
 import { Container, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { FaFacebook, FaTwitter, FaLinkedin, FaInstagram } from 'react-icons/fa';
-import logo from '../../assets/logo_full_white.svg';
+import logo from '/assets/logo_full_white.svg';
 import './footer.css';
 
 const CustomFooter = () => {

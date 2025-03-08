@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import PerfectLearningLogo from '../../../assets/logo_full.svg';
+import PerfectLearningLogo from '/assets/logo_full.svg';
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
 import './onBoarding.css';

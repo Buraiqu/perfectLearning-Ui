@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import { FcGoogle } from 'react-icons/fc';
-import PerfectLearningLogo from '../../../assets/logo_full.svg';
+import PerfectLearningLogo from '/assets/logo_full.svg';
 import './signup.css';
 
 const Signup = () => {

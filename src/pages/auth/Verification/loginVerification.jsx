@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import PerfectLearningLogo from '../../../assets/logo_full.svg';
+import PerfectLearningLogo from '/assets/logo_full.svg';
 import circleGreenTickIcon from '../../../icons/circle-green-tick-icon.svg';
 import { useNavigate } from 'react-router-dom';
 import './loginVerification.css';
