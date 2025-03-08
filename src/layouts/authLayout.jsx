@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Outlet } from 'react-router-dom';
-import LoginImage from '../assets/login_photo.svg';
-import OnBoardingImage from '../assets/on_boarding_image.svg';
+import LoginImage from '/assets/login_photo.svg';
+import OnBoardingImage from '/assets/on_boarding_Image.svg';
 import { Container, Row, Col } from 'react-bootstrap';
 import './css/authLayout.css';
 import { useSearchParams } from "react-router-dom";

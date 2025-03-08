@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import verticalThreeDotIcon from "../../../icons/verticalThreeDot-icon.svg";
-import logo from "../../../assets/logo_full.svg";
+import logo from "/assets/logo_full.svg";
 import "./myCourse.css";
 import NavAvatar from "../../../components/NavAvatar/navAvatar";
 import Notification from "../../../components/Notification/notification";

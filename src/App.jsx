@@ -5,7 +5,7 @@ import { AuthProvider } from './context/authContext';
 import PublicLayout from './layouts/publicLayout';
 import AuthLayout from './layouts/authLayout';
 import LandingPage from './pages/public/landingPage';
-import Logo from './assets/logo_short.svg';
+import Logo from '/assets/logo_short.svg';
 import { useEffect } from 'react';
 import AboutPage from './pages/public/About/about';
 import SubscriptionPlans from './pages/public/SubscriptionPans/subscriptionPlans';

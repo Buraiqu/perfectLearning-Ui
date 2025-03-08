@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import PerfectLearningLogo from '../../../assets/logo_full.svg';
+import PerfectLearningLogo from '/assets/logo_full.svg';
 import './passwordResetPage.css';
 
 const PasswordResetPage = () => {
