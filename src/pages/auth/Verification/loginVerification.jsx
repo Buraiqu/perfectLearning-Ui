@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import PerfectLearningLogo from '/assets/logo_full.svg';
 import circleGreenTickIcon from '../../../icons/circle-green-tick-icon.svg';
 import { useNavigate } from 'react-router-dom';
 import './loginVerification.css';
+import { AuthContext } from '../../../context/authContext';
 
 const LoginVerification = () => {
 
@@ -32,10 +33,20 @@ const LoginVerification = () => {
     }
   };
 
-  const handleVerify = () => {
-    const code = verificationCode.join('');
+  const { setUser } = useContext(AuthContext);
 
-    console.log('Verification code:', code);
+  const handleVerifyLoginOtp = () => {
+    const code = verificationCode.join('');
+    const userData = {
+      id: '123',
+      email: 'test_user@gmail.com',
+      name: 'Test User',
+      isVerified: true,
+      token: 'sample-token'
+    };
+    setUser(userData);
+    navigate('/')
+  
   };
 
   return (
@@ -87,7 +98,7 @@ const LoginVerification = () => {
           ))}
         </div>
 
-        <button className="verify-button" onClick={handleVerify}>
+        <button className="verify-button" onClick={handleVerifyLoginOtp}>
           Verify
         </button>
 
