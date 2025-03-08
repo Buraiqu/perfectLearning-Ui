@@ -1,0 +1,18 @@
+.layout {
+    min-height: 100vh;
+    display: flex;
+    background: #F8F9FA;
+}
+
+.main-content {
+    flex: 1;
+    margin-left: 80px;
+    padding: 24px;
+    transition: margin-left 0.3s ease;
+}
+
+/* When no sidebar is present */
+.main-content.no-sidebar {
+    margin-left: 0;
+    padding: 0px;
+}

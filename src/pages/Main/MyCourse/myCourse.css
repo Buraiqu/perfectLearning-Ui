@@ -3,9 +3,9 @@ body {
 }
 
 .my-courses-container {
-    max-width: 1400px;
+    max-width: 1440px;
     margin: 0 auto;
-    min-height: 97vh;
+    min-height: 99vh;
     background: #f4f4f4;
 }
 

@@ -1,7 +1,7 @@
 import { Container, Navbar, Nav, Form, Button} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import fullLogo from '../../assets/logo_full.svg';
+import fullLogo from '/assets/logo_full.svg';
 import './navbar.css';
 import { useNavigate } from "react-router-dom";
 import Notification from '../Notification/notification';

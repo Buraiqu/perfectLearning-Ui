@@ -1,6 +1,6 @@
 import {Col, Card, Button } from 'react-bootstrap';
 import './courseCard.css';
-import courseCardLogo from '../../assets/course-card-logo.svg';
+import courseCardLogo from '/assets/course-card-logo.svg';
 import { Link } from "react-router";
 
 const CourseCard = ({ course }) => {

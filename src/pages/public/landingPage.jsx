@@ -2,9 +2,9 @@ import React, { useContext } from 'react';
 import { Container, Row, Col, Card, Button, Carousel } from 'react-bootstrap';
 import './landingPage.css';
 import CourseCard from '../../components/CourseCard/courseCard';
-import carousal1 from '../../assets/carousal-1.svg';
-import carousal2 from '../../assets/carousal-2.svg';
-import carousal3 from '../../assets/carousal-3.svg';
+import carousal1 from '/assets/carousal-1.svg';
+import carousal2 from '/assets/carousal-2.svg';
+import carousal3 from '/assets/carousal-3.svg';
 import { AuthContext } from '../../context/authContext';
 
 const LandingPage = () => {
