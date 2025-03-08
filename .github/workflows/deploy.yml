@@ -34,4 +34,4 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: ${{ secrets.AWS_REGION }}
           S3_BUCKET: ${{ secrets.S3_BUCKET_NAME }}
-          SOURCE_DIR: "build"
+          SOURCE_DIR: "dist"
