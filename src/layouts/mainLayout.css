@@ -7,8 +7,18 @@
 .main-content {
     flex: 1;
     margin-left: 80px;
-    padding: 24px;
     transition: margin-left 0.3s ease;
+    background-color: #F4F5F9;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.main-content-wrapper {
+    flex: 1;
+    overflow-y: auto;
+    padding: 5px;
 }
 
 /* When no sidebar is present */
