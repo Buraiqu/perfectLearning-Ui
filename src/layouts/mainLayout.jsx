@@ -1,6 +1,7 @@
 import { Outlet, useLocation } from "react-router-dom";
 import Sidebar from "../components/Sidebar/sidebar";
 import "./mainLayout.css";
+import MainTopBar from "../components/MainTopBar/mainTopBar";
 
 const MainLayout = () => {
   const location = useLocation();
@@ -10,7 +11,10 @@ const MainLayout = () => {
     <div className="layout">
       {showSidebar && <Sidebar />}
       <main className={`main-content ${!showSidebar ? 'no-sidebar' : ''}`}>
-        <Outlet />
+        {showSidebar && <MainTopBar />}
+        <div className="main-content-wrapper">
+          <Outlet />
+        </div>
       </main>
     </div>
   );
