@@ -215,74 +215,107 @@ const Dashboard = () => {
 
     return (
         <div className="dashboard-container">
-            {/* Exam Progress Card */}
-            <div className="exam-progress-card">
-                <div className="exam-info">
-                    <div className="exam-icon">
-                        <img src="/icons/engineering.svg" alt="Engineering icon" />
-                    </div>
-                    <div className="exam-details">
-                        <h2>Engineering Entrance Exams</h2>
-                        <div className="progress-bar">
-                            <div className="progress" style={{ width: '0%' }}></div>
+            {/* Exam Cards Container */}
+            <div className="exam-cards-container">
+                {/* Exam Progress Card */}
+                <div className="exam-progress-card">
+                    <div className="exam-info">
+                        <div className="exam-icon">
+                            <img src="/assets/engineer-icon.svg" alt="Engineering icon" />
                         </div>
-                        <p>Overall Progress</p>
+                        <div className="exam-details">
+                            <h2>Engineering Entrance Exams</h2>
+                            <div className="progress-bar">
+                                <div className="progress" style={{ width: '0%' }}></div>
+                            </div>
+                            <p>Overall Progress</p>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Exam Countdown Card */}
+                <div className="exam-countdown-card">
+                    <div className="exam-logo">
+                        <img src="/assets/iitlogo.svg" alt="IIT logo" />
+                    </div>
+                    <div className="exam-countdown-info">
+                        <h2>IIT JEE 2024</h2>
+                        <p>in June 2024</p>
+                    </div>
+                    <div className="countdown">
+                        <h1>50</h1>
+                        <p>Weeks to go</p>
                     </div>
                 </div>
             </div>
 
-            {/* Exam Countdown Card */}
-            <div className="exam-countdown-card">
-                <div className="exam-logo">
-                    <img src="/icons/iit.svg" alt="IIT logo" />
+            {/* Study and Flashcards Sections Container */}
+            <div className="dashboard-sections-container">
+                {/* Study Section */}
+                <div className="study-section">
+                    <h2>Pickup where you left off</h2>
+                    <div className="study-card">
+                        <div className="study-image">
+                            <img src="/assets/pickupwhereyouleftoff.svg" alt="Pickup where you left off" />
+                        </div>
+                        <div className="study-content">
+                            <h3>Types of sets</h3>
+                            <p>in Sets, Relations and Functions</p>
+                            <div className="subject-tag-container">
+                                <span className="subject-tag">Mathematics</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button className="continue-btn">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM10 16.5V7.5L16 12L10 16.5Z" fill="white"/>
+                        </svg>
+                        Continue
+                    </button>
                 </div>
-                <div className="exam-countdown-info">
-                    <h2>IIT JEE 2024</h2>
-                    <p>in June 2024</p>
-                </div>
-                <div className="countdown">
-                    <h1>50</h1>
-                    <p>Weeks to go</p>
-                </div>
-            </div>
 
-            {/* Study Section */}
-            <div className="study-section">
-                <h2>Pickup where you left off</h2>
-                <div className="study-card">
-                    <div className="study-image">
-                        <img src="/images/math-notes.jpg" alt="Math notes" />
+                {/* Flashcards Section */}
+                <div className="flashcards-section">
+                    <h2>Flash Cards</h2>
+                    <div className="flashcard-stats">
+                        <div className="stat-item flashcard-stat mastered">
+                            <div className="stat-row">
+                                <div className="stat-icon">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="12" cy="12" r="10" stroke="#00875A" strokeWidth="2" fill="none"/>
+                                        <path d="M8 12L11 15L16 9" stroke="#00875A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                    </svg>
+                                </div>
+                                <span>Mastered</span>
+                            </div>
+                            <h3>0</h3>
+                        </div>
+                        <div className="stat-item flashcard-stat to-learn">
+                            <div className="stat-row">
+                                <div className="stat-icon">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="12" cy="12" r="10" stroke="#EF4444" strokeWidth="2" fill="none"/>
+                                        <path d="M12 8V12M12 16H12.01" stroke="#EF4444" strokeWidth="2" strokeLinecap="round"/>
+                                    </svg>
+                                </div>
+                                <span>To Learn</span>
+                            </div>
+                            <h3>70</h3>
+                        </div>
+                        <div className="stat-item flashcard-stat bookmarked">
+                            <div className="stat-row">
+                                <div className="stat-icon">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M5 5C5 3.89543 5.89543 3 7 3H17C18.1046 3 19 3.89543 19 5V21L12 17.5L5 21V5Z" stroke="#03488B" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                    </svg>
+                                </div>
+                                <span>Bookmarked</span>
+                            </div>
+                            <h3>8</h3>
+                        </div>
                     </div>
-                    <div className="study-content">
-                        <h3>Types of sets</h3>
-                        <p>in Sets, Relations and Functions</p>
-                        <span className="subject-tag">Mathematics</span>
-                        <button className="continue-btn">Continue</button>
-                    </div>
+                    <button className="open-flashcards-btn">Open Flashcards</button>
                 </div>
-            </div>
-
-            {/* Flashcards Section */}
-            <div className="flashcards-section">
-                <h2>Flash Cards</h2>
-                <div className="flashcard-stats">
-                    <div className="stat-item mastered">
-                        <img src="/icons/mastered.svg" alt="Mastered icon" />
-                        <span>Mastered</span>
-                        <h3>0</h3>
-                    </div>
-                    <div className="stat-item to-learn">
-                        <img src="/icons/to-learn.svg" alt="To Learn icon" />
-                        <span>To Learn</span>
-                        <h3>70</h3>
-                    </div>
-                    <div className="stat-item bookmarked">
-                        <img src="/icons/bookmark.svg" alt="Bookmark icon" />
-                        <span>Bookmarked</span>
-                        <h3>8</h3>
-                    </div>
-                </div>
-                <button className="open-flashcards-btn">Open Flashcards</button>
             </div>
 
             {/* Goals Card */}
@@ -311,7 +344,7 @@ const Dashboard = () => {
                             <div className="progress-bar">
                                 <div className="progress" style={{ width: '0%' }}></div>
                             </div>
-                            <span className="progress-text">0%</span>
+                            <div className="progress-text">0<span>%</span></div>
                         </div>
                         <div className="goal-right">
                             <button className="icon-btn edit-btn" aria-label="Edit goal">
@@ -322,7 +355,7 @@ const Dashboard = () => {
                             <button className="icon-btn delete-btn" aria-label="Delete goal">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.166L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                                </svg>
+                            </svg>
                             </button>
                         </div>
                     </div>
@@ -338,7 +371,7 @@ const Dashboard = () => {
                             <div className="progress-bar">
                                 <div className="progress" style={{ width: '0%' }}></div>
                             </div>
-                            <span className="progress-text">0%</span>
+                            <div className="progress-text">0<span>%</span></div>
                         </div>
                         <div className="goal-right">
                             <button className="icon-btn edit-btn" aria-label="Edit goal">
@@ -349,7 +382,7 @@ const Dashboard = () => {
                             <button className="icon-btn delete-btn" aria-label="Delete goal">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.166L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                                </svg>
+                            </svg>
                             </button>
                         </div>
                     </div>
@@ -365,7 +398,7 @@ const Dashboard = () => {
                             <div className="progress-bar">
                                 <div className="progress" style={{ width: '100%' }}></div>
                             </div>
-                            <span className="progress-text">100%</span>
+                            <div className="progress-text">100<span>%</span></div>
                         </div>
                         <div className="goal-right">
                             <button className="icon-btn edit-btn" aria-label="Edit goal">
@@ -376,7 +409,7 @@ const Dashboard = () => {
                             <button className="icon-btn delete-btn" aria-label="Delete goal">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.166L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                                </svg>
+                            </svg>
                             </button>
                         </div>
                     </div>
@@ -458,21 +491,40 @@ const Dashboard = () => {
                 <div className="performance-header">
                     <h2>This Week's Performance</h2>
                     <button className="insights-btn">
-                        <i className="fas fa-chart-line"></i> More Insights
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M3 3v18h18"></path>
+                            <path d="M18 9l-5 5-2.5-2.5L7 15"></path>
+                        </svg>
+                        More Insights
                     </button>
                 </div>
                 
                 <div className="performance-content">
                     <div className="performance-stats">
                         <div className="stat-item tests-taken">
-                            <div className="stat-icon"><i className="fas fa-clipboard-list"></i></div>
-                            <div className="stat-label">Tests Taken</div>
+                            <div className="stat-row">
+                                <div className="stat-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                        <path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"></path>
+                                        <rect x="9" y="3" width="6" height="4" rx="2"></rect>
+                                        <path d="M9 14l2 2 4-4"></path>
+                                    </svg>
+                                </div>
+                                <div className="stat-label">Tests Taken</div>
+                            </div>
                             <div className="stat-value">5</div>
                         </div>
                         
                         <div className="stat-item answers-correct">
-                            <div className="stat-icon"><i className="fas fa-check"></i></div>
-                            <div className="stat-label">Correctly Answered</div>
+                            <div className="stat-row">
+                                <div className="stat-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                    </svg>
+                                </div>
+                                <div className="stat-label">Correctly Answered</div>
+                            </div>
                             <div className="stat-value">80/120</div>
                         </div>
                         
@@ -528,7 +580,7 @@ const Dashboard = () => {
                     <h2>Tip of the day</h2>
                     <div className="tip-content">
                         <div className="tip-image">
-                            <img src="/images/motivation.jpg" alt="Motivational message" />
+                            <img src="/assets/tipofthedayimage.svg" alt="Tip of the day" />
                         </div>
                         <div className="tip-text">
                             <p className="quote">" Reading about the topics and answering questions about them on the exact day can help you understand them better. "</p>
@@ -540,12 +592,8 @@ const Dashboard = () => {
                 {/* Stay Motivated */}
                 <div className="motivation-card">
                     <h2>Stay motivated</h2>
-                    <div className="video-container">
-                        <img src="/images/video-thumbnail.jpg" alt="IIT-JEE Journey Part 01" className="video-thumbnail" />
-                        <div className="video-duration">12:15</div>
-                        <div className="play-button">
-                            <i className="fas fa-play"></i>
-                        </div>
+                    <div className="motivation-image-container">
+                        <img src="/assets/staymotivated.svg" alt="Stay motivated" className="motivation-image" />
                     </div>
                 </div>
             </div>
@@ -556,7 +604,7 @@ const Dashboard = () => {
                     <div className="modal-container">
                         <div className="modal-header">
                             <div className="modal-title">
-                                <svg className="modal-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <svg className="modal-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#0066FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                     <circle cx="12" cy="12" r="10"></circle>
                                     <line x1="12" y1="8" x2="12" y2="16"></line>
                                     <line x1="8" y1="12" x2="16" y2="12"></line>
