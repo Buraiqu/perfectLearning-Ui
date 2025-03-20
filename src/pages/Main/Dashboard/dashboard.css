@@ -1,16 +1,358 @@
 .dashboard-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
     padding: 20px;
+    background-color: #f5f5f7;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* Card Styles */
+.card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+/* Learning Summary Card */
+.learning-summary-card h2 {
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+    margin: 0 0 20px 0;
+}
+
+.learning-content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.learning-left {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 310px;
+}
+
+.learning-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    border-radius: 8px;
+}
+
+.video-item {
+    background-color: #edf5ff;
+}
+
+.reading-item, .practice-item {
+    background-color: white;
+    border: 1px solid #eee;
+}
+
+.learning-icon {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #2196f3;
+    font-size: 16px;
+}
+
+.learning-info {
+    flex: 1;
+}
+
+.learning-label {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 4px;
+    font-weight: 400;
+}
+
+.learning-time, .learning-value {
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+}
+
+.unit {
+    font-size: 12px;
+    font-weight: normal;
+    color: #666;
+    margin-left: 1px;
+    margin-right: 2px;
+}
+
+/* Chart Container */
+.chart-container {
+    position: relative;
+    width: 350px;
+    height: 220px;
+}
+
+.subject-labels {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+/* Subject Labels */
+.subject {
+    position: absolute;
+}
+
+.math {
+    bottom: 0;
+    left: 0;
+    text-align: left;
+}
+
+.physics {
+    bottom: 0;
+    right: 0;
+    text-align: right;
+}
+
+.chemistry {
+    bottom: 0;
+    right: 125px;
+    text-align: right;
+}
+
+.subject-name {
+    font-weight: 500;
+    margin-bottom: 3px;
+    font-size: 14px;
+}
+
+.math .subject-name {
+    color: #4caf50;
+}
+
+.physics .subject-name {
+    color: #2196f3;
+}
+
+.chemistry .subject-name {
+    color: #f44336;
+}
+
+.subject-time {
+    font-size: 13px;
+    color: #666;
+}
+
+/* Goals Card */
+.goals-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+    overflow: hidden;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 0;
+    border-bottom: none;
+}
+
+.card-header h2 {
+    font-size: 18px;
+    font-weight: 500;
+    margin: 0;
+    color: #333;
+}
+
+.set-goal-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #0066FF;
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.set-goal-btn:hover {
+    background-color: #0052CC;
+}
+
+.set-goal-btn svg {
+    width: 16px;
+    height: 16px;
+}
+
+.goal-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.goal-row {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+}
+
+.goal-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 45%;
+    min-width: 300px;
+}
+
+.circle-icon {
+    width: 18px;
+    height: 18px;
+    color: #ccc;
+    flex-shrink: 0;
+}
+
+.checkmark-icon {
+    width: 18px;
+    height: 18px;
+    color: #4CAF50;
+    flex-shrink: 0;
+}
+
+.goal-text {
+    font-size: 14px;
+    font-weight: 400;
+    color: #333;
+    line-height: 1.4;
+}
+
+.goal-highlight {
+    font-weight: 600;
+    color: #000;
+}
+
+.goal-date {
+    font-weight: 500;
+    color: #666;
+}
+
+.progress-bar-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: flex-end;
+    width: 200px;
+    margin: 0 32px;
+}
+
+.progress-bar {
+    width: 140px;
+    height: 6px;
+    background-color: #E5EFFF;
+    border-radius: 3px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background-color: #0066FF;
+    border-radius: 3px;
+    transition: width 0.3s ease;
+}
+
+.progress-text {
+    font-size: 14px;
+    font-weight: 400;
+    color: #666;
+    min-width: 32px;
+    text-align: right;
+}
+
+.goal-row.completed .progress {
+    background-color: #4CAF50;
+}
+
+.goal-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-left: auto;
+}
+
+.icon-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: #888;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.icon-btn:hover {
+    background-color: #f5f5f5;
+    color: #555;
+}
+
+.edit-btn:hover {
+    color: #0066FF;
+}
+
+.delete-btn:hover {
+    color: #EF4444;
+}
+
+.set-goal-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #0066FF;
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.set-goal-btn:hover {
+    background-color: #0052CC;
+}
+
+.set-goal-btn svg {
+    width: 16px;
+    height: 16px;
 }
 
 /* Exam Progress Card */
 .exam-progress-card {
     background: white;
-    border-radius: 12px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
     padding: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .exam-info {
@@ -42,7 +384,7 @@
 .progress-bar {
     width: 100%;
     height: 8px;
-    background: #E8F0FE;
+    background: #ADD8E6;
     border-radius: 4px;
     margin-bottom: 8px;
 }
@@ -61,12 +403,12 @@
 /* Exam Countdown Card */
 .exam-countdown-card {
     background: white;
-    border-radius: 12px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
     padding: 20px;
     display: flex;
     align-items: center;
     gap: 16px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .exam-logo {
@@ -117,11 +459,11 @@
 
 .study-card {
     background: white;
-    border-radius: 12px;
+    border-radius: 10px;
     display: flex;
     gap: 20px;
     padding: 16px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
 .study-image {
@@ -180,9 +522,9 @@
 .flashcards-section {
     grid-column: 1 / -1;
     background: white;
-    border-radius: 12px;
+    border-radius: 10px;
     padding: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
 .flashcards-section h2 {
@@ -241,4 +583,713 @@
     border-radius: 8px;
     font-size: 14px;
     cursor: pointer;
+}
+
+/* Goals and Learning Summary Layout */
+.goals-section, .learning-summary-section {
+    background: #f9f9f9;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.goals-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.learning-summary-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.summary-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.set-goal-btn {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Additional Styling for Consistency */
+.goal-item, .summary-item {
+    margin-bottom: 16px;
+}
+
+.goal-date, .summary-item span {
+    font-weight: bold;
+    color: #555;
+}
+
+.pie-chart {
+    width: 50%;
+}
+
+/* Performance Section */
+.performance-section {
+    background: #f9f9f9;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    margin-bottom: 24px;
+}
+
+.performance-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.score-breakdown {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.score-item {
+    text-align: center;
+}
+
+.take-test-btn {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Tip of the Day */
+.tip-of-the-day {
+    background: #fff3cd;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    margin-bottom: 24px;
+}
+
+/* Stay Motivated */
+.stay-motivated {
+    background: #f9f9f9;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    margin-bottom: 24px;
+}
+
+.stay-motivated img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+/* Performance Card */
+.performance-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+    padding: 20px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.performance-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.performance-header h2 {
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+    margin: 0;
+}
+
+.insights-btn {
+    background-color: #0b4d8c;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 14px;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.performance-content {
+    display: flex;
+    gap: 30px;
+}
+
+.performance-stats {
+    flex: 0 0 250px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border-right: 1px solid #eee;
+    padding-right: 20px;
+}
+
+.stat-item {
+    position: relative;
+    padding-left: 30px;
+}
+
+.stat-icon {
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 16px;
+    color: #666;
+}
+
+.stat-label {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.stat-value {
+    font-size: 24px;
+    font-weight: 500;
+    color: #333;
+}
+
+.take-test-container {
+    margin-top: 10px;
+}
+
+.take-test-btn {
+    width: 100%;
+    background-color: #0b4d8c;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 10px;
+    font-size: 14px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.performance-chart {
+    flex: 1;
+}
+
+.chart-header {
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 20px;
+}
+
+.chart-label {
+    font-size: 14px;
+    color: #666;
+    margin-right: 10px;
+}
+
+.chart-percentage {
+    font-size: 24px;
+    font-weight: 600;
+    color: #0b4d8c;
+}
+
+.subject-bars {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    height: 170px;
+    align-items: flex-end;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 20px;
+}
+
+.subject-bar-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    position: relative;
+}
+
+.subject-icon {
+    width: 28px;
+    height: 28px;
+    background-color: #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: -14px;
+    z-index: 1;
+    font-size: 12px;
+    color: white;
+}
+
+.math-icon {
+    background-color: #8bc34a;
+}
+
+.physics-icon {
+    background-color: #2196f3;
+}
+
+.chemistry-icon {
+    background-color: #ff9800;
+}
+
+.subject-bar {
+    width: 100%;
+    border-radius: 6px 6px 0 0;
+    position: relative;
+}
+
+.math-bar {
+    background-color: #e8f5e9;
+}
+
+.physics-bar {
+    background-color: #e3f2fd;
+}
+
+.chemistry-bar {
+    background-color: #fff3e0;
+}
+
+.bar-value {
+    position: absolute;
+    top: -25px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.subject-name {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #666;
+}
+
+/* Bottom Cards Container */
+.bottom-cards {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+/* Tip Card */
+.tip-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+    padding: 20px;
+    flex: 1;
+}
+
+.tip-card h2 {
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+    margin: 0 0 20px 0;
+}
+
+.tip-content {
+    display: flex;
+    gap: 15px;
+}
+
+.tip-image {
+    flex: 0 0 120px;
+    height: 120px;
+    overflow: hidden;
+    border-radius: 6px;
+}
+
+.tip-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.tip-text {
+    flex: 1;
+}
+
+.quote {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #333;
+    margin: 0 0 15px 0;
+    font-style: italic;
+}
+
+.author {
+    font-size: 12px;
+    color: #666;
+    margin: 0;
+}
+
+/* Motivation Card */
+.motivation-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+    padding: 20px;
+    flex: 1;
+}
+
+.motivation-card h2 {
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+    margin: 0 0 20px 0;
+}
+
+.video-container {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    height: 180px;
+}
+
+.video-thumbnail {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.video-duration {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    font-size: 12px;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    color: #333;
+}
+
+/* Modal Styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-container {
+    background-color: white;
+    border-radius: 8px;
+    width: 400px;
+    max-width: 90%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.modal-title {
+    display: flex;
+    align-items: center;
+}
+
+.modal-title h2 {
+    font-size: 18px;
+    font-weight: 500;
+    margin: 0;
+}
+
+.modal-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    color: #888;
+}
+
+.close-btn:hover {
+    color: #555;
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #333;
+}
+
+.select-container {
+    position: relative;
+}
+
+.select-container select {
+    width: 100%;
+    padding: 10px 36px 10px 12px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background-color: white;
+    appearance: none;
+}
+
+.select-arrow {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    color: #888;
+    pointer-events: none;
+}
+
+.set-goal-submit-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 20px;
+    padding: 12px;
+    background-color: #0071e3;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.set-goal-submit-btn:hover {
+    background-color: #0062c3;
+}
+
+.set-goal-submit-btn svg {
+    margin-right: 8px;
+}
+
+/* Custom Dropdown Styles - Updated to match screenshot */
+.custom-dropdown {
+    position: relative;
+    cursor: pointer;
+    width: 100%;
+}
+
+.selected-option {
+    position: relative;
+    width: 100%;
+    padding: 10px 36px 10px 12px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+}
+
+.selected-option .select-arrow {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    color: #888;
+    pointer-events: none;
+}
+
+.dropdown-options {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    border: 1px solid #eee;
+}
+
+.dropdown-option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    color: #333;
+    cursor: pointer;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.dropdown-option:last-child {
+    border-bottom: none;
+}
+
+.dropdown-option:hover {
+    background-color: #f8f8f8;
+}
+
+.dropdown-option.selected {
+    background-color: #e6f0ff;
+}
+
+.option-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.option-icon {
+    width: 18px;
+    height: 18px;
+    color: #666;
+}
+
+.day-name {
+    color: #777;
+    font-size: 14px;
+    margin-left: auto;
+}
+
+/* Calendar Styles */
+.calendar-container {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 30;
+    overflow: hidden;
+    padding: 15px;
+    border: 1px solid #eee;
+    margin-top: 5px;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.month-year {
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+}
+
+.calendar-nav {
+    display: flex;
+    gap: 10px;
+}
+
+.calendar-nav-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #555;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.calendar-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    margin-bottom: 10px;
+}
+
+.weekday {
+    text-align: center;
+    font-size: 12px;
+    font-weight: 500;
+    color: #666;
+    padding: 5px 0;
+}
+
+.calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+}
+
+.calendar-day {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: #333;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.calendar-day:hover {
+    background-color: #f0f0f0;
+}
+
+.calendar-day.empty {
+    pointer-events: none;
+}
+
+.calendar-day.selected {
+    background-color: #0071e3;
+    color: white;
 }
