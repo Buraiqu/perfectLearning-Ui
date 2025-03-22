@@ -13,7 +13,6 @@ const SubscriptionPlansComponent = ({data}) => {
     const {user} = useContext(AuthContext)
     const [showModal, setShowModal] = useState(false)
     const navigate = useNavigate()
-    console.log(data)
 
     const plans = [
     {

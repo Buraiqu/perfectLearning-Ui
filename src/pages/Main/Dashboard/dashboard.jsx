@@ -1,5 +1,4 @@
 import './dashboard.css';
-import ReactApexChart from 'react-apexcharts';
 import ColumnChartWithImages from '../../../components/Charts/ColumnChartWithImages';
 import { useState, useRef, useEffect } from 'react';
 import goalIcon from '../../../icons/goal-icon.svg';
@@ -501,31 +500,7 @@ const Dashboard = () => {
                     </div>
                     
                     <div className="chart-container">
-                        {/* <ReactApexChart options={pieChartOptions} series={pieChartSeries} type="donut" height={220} /> */}
                         <SemiCirclePieChart data={pieChartData} />
-                        
-                        {/* <div className="subject-labels">
-                            <div className="subject math">
-                                <div className="subject-name">Mathematics</div>
-                                <div className="subject-time">
-                                    4<span className="unit">hrs</span> 15<span className="unit">mins</span>
-                                </div>
-                            </div>
-                            
-                            <div className="subject physics">
-                                <div className="subject-name">Physics</div>
-                                <div className="subject-time">
-                                    1<span className="unit">hr</span> 15<span className="unit">mins</span>
-                                </div>
-                            </div>
-                            
-                            <div className="subject chemistry">
-                                <div className="subject-name">Chemistry</div>
-                                <div className="subject-time">
-                                    2<span className="unit">hrs</span> 15<span className="unit">mins</span>
-                                </div>
-                            </div>
-                        </div> */}
                     </div>
                 </div>
             </div>
