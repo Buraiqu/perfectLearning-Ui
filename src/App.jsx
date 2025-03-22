@@ -17,6 +17,8 @@ import PasswordResetPage from './pages/auth/PasswordReset/passwordResetPage';
 import PrivateRoute from './routes/privateRoute';
 import Dashboard from './pages/Main/Dashboard/dashboard';
 import MyCourse from './pages/Main/MyCourse/myCourse';
+import ProfilePage from './pages/Main/Profile/profile';
+import UpgradePlans from './pages/Main/UpgradePlans/upgradePlans';
 
 function App() {
 
@@ -56,6 +58,8 @@ function App() {
               <Route index element={<Navigate to="/main/dashboard" replace />} />
               <Route path="dashboard" element={<Dashboard />} />
               <Route path="my-courses" element={<MyCourse />} />
+              <Route path="profile" element={<ProfilePage />} />
+              <Route path="upgrade-plan" element={<UpgradePlans />} />
             </Route>
           </Route>
 

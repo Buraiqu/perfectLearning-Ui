@@ -9,12 +9,67 @@ import { AuthContext } from '../../context/authContext';
 import { useNavigate } from 'react-router-dom';
 import CourseUpdatesAndNotificationModal from '../courseUpdatesAndNotificationsModal/courseUpdatesAndNotificationsModal';
 
-const SubscriptionPlansComponent = ({}) => {
+const SubscriptionPlansComponent = ({data}) => {
     const {user} = useContext(AuthContext)
     const [showModal, setShowModal] = useState(false)
     const navigate = useNavigate()
+    console.log(data)
 
-    const courseDetails = {
+    const plans = [
+    {
+        title: 'LDC 2022 Basic',
+        standardPrice: 200,
+        offerPrice: 140,
+        features: [
+            { name: 'Complete syllabus', available: true },
+            { name: 'Videos', available: true },
+            { name: 'Access to teachers', available: false },
+            { name: 'Class notes', available: true },
+            { name: 'Practice questions', available: true },
+            { name: 'Mock Exams', available: true, count: 15 },
+            { name: 'Discussion forum', available: false },
+            { name: 'Ask the expert', available: false },
+            { name: 'Mentorship', available: false },
+            { name: 'Tool tips', available: true }
+        ]
+    },
+    {
+        title: 'LDC 2022 Intermediate',
+        standardPrice: 200,
+        offerPrice: 140,
+        features: [
+            { name: 'Complete syllabus', available: true },
+            { name: 'Videos', available: true },
+            { name: 'Access to teachers', available: false },
+            { name: 'Class notes', available: true },
+            { name: 'Practice questions', available: true },
+            { name: 'Mock Exams', available: true, count: 20 },
+            { name: 'Discussion forum', available: false },
+            { name: 'Ask the expert', available: false },
+            { name: 'Mentorship', available: false },
+            { name: 'Tool tips', available: true }
+        ]
+    },
+    {
+        title: 'LDC 2022 Advanced',
+        standardPrice: 200,
+        offerPrice: 140,
+        features: [
+            { name: 'Complete syllabus', available: true },
+            { name: 'Videos', available: true },
+            { name: 'Access to teachers', available: false },
+            { name: 'Class notes', available: true },
+            { name: 'Practice questions', available: true },
+            { name: 'Mock Exams', available: true, count: 20 },
+            { name: 'Discussion forum', available: false },
+            { name: 'Ask the expert', available: false },
+            { name: 'Mentorship', available: false },
+            { name: 'Tool tips', available: true }
+        ]
+    }
+];
+
+const courseDetails = {
         title: 'Joint Entrance Examination Advanced',
         link: 'https://jeeadv.ac.in/',
         code: 'JEE Advanced 2023',
@@ -108,185 +163,49 @@ const SubscriptionPlansComponent = ({}) => {
                 <h3 className="subscription-title">Subscription Plans</h3>
 
                 <div className="plans-container">
-                    {/* Basic Plan */}
-                    <div className="plan-card">
-                        <div className="card-header">
-                            <div className="plan-badge">LD</div>
-                            <div>
-                                <h4 className="plan-title">LDC 2022 Basic</h4>
-                                <div className="standard-price">Standard Price: <span>$200</span></div>
-                                <div className="offer-price">
-                                    <div className="offer-price-amount">Offer Price: <span className="price-value">$140</span></div>
-                                    <span className="offer-ends">Offer ends in 5 days</span>
+                    {plans.map((plan, index) => (
+                        <div key={index} className={`plan-card ${data && data.index && data.index == index ? 'current-plan' : ''}`}>
+                            <div className="card-header">
+                                <div className="plan-badge">LD</div>
+                                <div>
+                                    <h4 className="plan-title">{plan.title}</h4>
+                                    <div className="standard-price">Standard Price: <span>${plan.standardPrice}</span></div>
+                                    <div className="offer-price">
+                                        <div className="offer-price-amount">Offer Price: <span className="price-value">${plan.offerPrice}</span></div>
+                                        <span className="offer-ends">Offer ends in 5 days</span>
+                                    </div>
                                 </div>
                             </div>
+
+                            <ul className="features-list">
+                                {plan.features.map((feature, featureIndex) => (
+                                    <li key={featureIndex}>
+                                        <span className={`feature-icon ${feature.available ? 'available' : 'not-available'}`}>
+                                            <img src={feature.available ? circleTickIcon : circleCrossIcon} alt="" />
+                                        </span>
+                                        <label>{feature.name === 'Mock Exams' ? `${feature.count} ${feature.name}` : feature.name}</label>
+                                    </li>
+                                ))}
+                            </ul>
+                            {data && data.index && data.index == index ? (
+                                <button className="current-plan-btn">Current Plan</button>
+                            ):(
+                                <>
+                                    {data && data.action && data.action === 'upgrade-plan' ? (
+                                        <div className="upgrade-section">
+                                            <hr />
+                                            <div className='pending-price'>
+                                                <span style={{fontSize: '20px', color: '#03488B', fontWeight: '500'}}>$50</span> <span style={{fontSize: '15px', fontWeight: '400'}}>to upgrade from current plan</span>
+                                            </div>
+                                            <button className="enroll-btn-orange">Upgrade</button>
+                                        </div>
+                                    ) : (
+                                        <button className="enroll-btn-orange" style={{marginTop: 'auto'}}>Enroll</button>
+                                    )}
+                                </>
+                            )}
                         </div>
-
-                        <ul className="features-list">
-                            <li>
-                                <span className="feature-icon available"><img src={circleTickIcon} alt="" /></span>
-                                <label>Complete syllabus</label>
-                            </li>
-                            <li>
-                                <span className="feature-icon available"><img src={circleTickIcon} alt="" /></span>
-                                <label>Videos</label>
-                            </li>
-                            <li>
-                                <span className="feature-icon not-available"><img src={circleCrossIcon} alt="" /></span>
-                                <label>Access to teachers</label>
-                            </li>
-                            <li>
-                                <span className="feature-icon available"><img src={circleTickIcon} alt="" /></span>
-                                <label>Class notes</label>
-                            </li>
-                            <li>
-                                <span className="feature-icon available"><img src={circleTickIcon} alt="" /></span>
-                                <label>Practice questions</label>
-                            </li>
-                            <li>
-                                <span className="feature-icon available"><img src={circleTickIcon} alt="" /></span>
-                                <label>15 Mock Exams</label>
-                            </li>
-                            <li>
-                                <span className="feature-icon not-available"><img src={circleCrossIcon} alt="" /></span>
-                                <label>Discussion forum</label>
-                            </li>
-                            <li>
-                                <span className="feature-icon not-available"><img src={circleCrossIcon} alt="" /></span>
-                                <label>Ask the expert</label>
-                            </li>
-                            <li>
-                                <span className="feature-icon not-available"><img src={circleCrossIcon} alt="" /></span>
-                                <label>Mentorship</label>
-                            </li>
-                            <li>
-                                <span className="feature-icon available"><img src={circleTickIcon} alt="" /></span>
-                                <label>Tool tips</label>
-                            </li>
-                        </ul>
-
-                        <button className="enroll-btn-orange">Enroll</button>
-                    </div>
-
-                    {/* Intermediate Plan */}
-                    <div className="plan-card">
-                        <div className="card-header">
-                            <div className="plan-badge">LD</div>
-                            <div>
-                                <h4 className="plan-title">LDC 2022 Intermediate</h4>
-                                <div className="standard-price">Standard Price: <span>$200</span></div>
-                                <div className="offer-price">
-                                    <div className="offer-price-amount">Offer Price: <span className="price-value">$140</span></div>
-                                    <span className="offer-ends">Offer ends in 5 days</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <ul className="features-list">
-                            <li>
-                                <span className="feature-icon available"><img src={circleTickIcon} alt="" /></span>
-                                <label>Complete syllabus</label>
-                            </li>
-                            <li>
-                                <span className="feature-icon available"><img src={circleTickIcon} alt="" /></span>
-                                <label>Videos</label>
-                            </li>
-                            <li>
-                                <span className="feature-icon not-available"><img src={circleCrossIcon} alt="" /></span>
-                                <label>Access to teachers</label>
-                            </li>
-                            <li>
-                                <span className="feature-icon available"><img src={circleTickIcon} alt="" /></span>
-                                <label>Class notes</label>
-                            </li>
-                            <li>
-                                <span className="feature-icon available"><img src={circleTickIcon} alt="" /></span>
-                                <label>Practice questions</label>
-                            </li>
-                            <li>
-                                <span className="feature-icon available"><img src={circleTickIcon} alt="" /></span>
-                                <label>20 Mock Exams</label>
-                            </li>
-                            <li>
-                                <span className="feature-icon not-available"><img src={circleCrossIcon} alt="" /></span>
-                                <label>Discussion forum</label>
-                            </li>
-                            <li>
-                                <span className="feature-icon not-available"><img src={circleCrossIcon} alt="" /></span>
-                                <label>Ask the expert</label>
-                            </li>
-                            <li>
-                                <span className="feature-icon not-available"><img src={circleCrossIcon} alt="" /></span>
-                                <label>Mentorship</label>
-                            </li>
-                            <li>
-                                <span className="feature-icon available"><img src={circleTickIcon} alt="" /></span>
-                                <label>Tool tips</label>
-                            </li>
-                        </ul>
-
-                        <button className="enroll-btn-orange">Enroll</button>
-                    </div>
-
-                    {/* Advanced Plan */}
-                    <div className="plan-card">
-                        <div className="card-header">
-                            <div className="plan-badge">LD</div>
-                            <div>
-                                <h4 className="plan-title">LDC 2022 Advanced</h4>
-                                <div className="standard-price">Standard Price: <span>$200</span></div>
-                                <div className="offer-price">
-                                    <div className="offer-price-amount">Offer Price: <span className="price-value">$140</span></div>
-                                    <span className="offer-ends">Offer ends in 5 days</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <ul className="features-list">
-                            <li>
-                                <span className="feature-icon available"><img src={circleTickIcon} alt="" /></span>
-                                <label>Complete syllabus</label>
-                            </li>
-                            <li>
-                                <span className="feature-icon available"><img src={circleTickIcon} alt="" /></span>
-                                <label>Videos</label>
-                            </li>
-                            <li>
-                                <span className="feature-icon not-available"><img src={circleCrossIcon} alt="" /></span>
-                                <label>Access to teachers</label>
-                            </li>
-                            <li>
-                                <span className="feature-icon available"><img src={circleTickIcon} alt="" /></span>
-                                <label>Class notes</label>
-                            </li>
-                            <li>
-                                <span className="feature-icon available"><img src={circleTickIcon} alt="" /></span>
-                                <label>Practice questions</label>
-                            </li>
-                            <li>
-                                <span className="feature-icon available"><img src={circleTickIcon} alt="" /></span>
-                                <label>20 Mock Exams</label>
-                            </li>
-                            <li>
-                                <span className="feature-icon not-available"><img src={circleCrossIcon} alt="" /></span>
-                                <label>Discussion forum</label>
-                            </li>
-                            <li>
-                                <span className="feature-icon not-available"><img src={circleCrossIcon} alt="" /></span>
-                                <label>Ask the expert</label>
-                            </li>
-                            <li>
-                                <span className="feature-icon not-available"><img src={circleCrossIcon} alt="" /></span>
-                                <label>Mentorship</label>
-                            </li>
-                            <li>
-                                <span className="feature-icon available"><img src={circleTickIcon} alt="" /></span>
-                                <label>Tool tips</label>
-                            </li>
-                        </ul>
-
-                        <button className="enroll-btn-orange">Enroll</button>
-                    </div>
+                    ))}
                 </div>
             </Container>
             <CourseUpdatesAndNotificationModal showModal={showModal} setShowModal={setShowModal}/>

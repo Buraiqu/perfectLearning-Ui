@@ -8,12 +8,13 @@
 }
 
 /* Card Styles */
-.card {
+.dashboard-container .card {
     background: white;
     border-radius: 12px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
     padding: 20px;
     margin-bottom: 20px;
+    border: none;
 }
 
 /* Learning Summary Card */
@@ -26,31 +27,31 @@
 
 .learning-content {
     display: flex;
-    justify-content: space-between;
 }
 
 .learning-left {
     display: flex;
     flex-direction: column;
     gap: 12px;
-    width: 310px;
+    width: 344px;
 }
 
 .learning-item {
     display: flex;
     align-items: center;
     gap: 12px;
-    padding: 16px;
+    padding: 0px 16px;
     border-radius: 8px;
+    height: 75px;
 }
 
 .video-item {
-    background-color: #edf5ff;
+    background-color: #C5DDF399;
 }
 
 .reading-item, .practice-item {
     background-color: white;
-    border: 1px solid #eee;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
 .learning-icon {
@@ -59,7 +60,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #2196f3;
     font-size: 16px;
 }
 
@@ -68,22 +68,21 @@
 }
 
 .learning-label {
-    font-size: 14px;
-    color: #666;
-    margin-bottom: 4px;
+    font-size: 16px;
+    color: #03488B;
     font-weight: 400;
 }
 
 .learning-time, .learning-value {
     font-size: 16px;
-    font-weight: 500;
-    color: #333;
+    font-weight: 400;
+    color: #03488B;
 }
 
 .unit {
     font-size: 12px;
     font-weight: normal;
-    color: #666;
+    color: #03488B;
     margin-left: 1px;
     margin-right: 2px;
 }
@@ -91,8 +90,10 @@
 /* Chart Container */
 .chart-container {
     position: relative;
-    width: 350px;
+    width: 700px;
     height: 220px;
+    margin-left: 10%;
+    margin-top: 2%;
 }
 
 .subject-labels {
@@ -153,9 +154,10 @@
 .goals-card {
     background: white;
     border-radius: 12px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
     padding: 20px;
     overflow: hidden;
+    border: none;
 }
 
 .card-header {
@@ -169,10 +171,10 @@
 }
 
 .card-header h2 {
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 500;
     margin: 0;
-    color: #333;
+    color: #0E0E0E;
 }
 
 .set-goal-btn {
@@ -208,7 +210,6 @@
     display: flex;
     align-items: center;
     padding: 15px;
-    border-bottom: 1px solid #f0f0f0;
 }
 
 .goal-row:last-child {
@@ -238,20 +239,20 @@
 }
 
 .goal-text {
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 400;
     color: #333;
     line-height: 1.4;
 }
 
 .goal-highlight {
-    font-weight: 600;
+    font-weight: 500;
     color: #000;
 }
 
 .goal-date {
-    font-weight: 400;
-    color: #666;
+    font-weight: 500;
+    color: #03488B;
 }
 
 .progress-bar-container {
@@ -283,29 +284,37 @@
 }
 
 .progress-text {
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 400;
-    color: #666;
+    color: #03488B;
     min-width: 40px;
     text-align: right;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+}
+.progress-text1 {
+    font-size: 16px;
+    font-weight: 400;
+    color: #38A169;
+    min-width: 40px;
+    text-align: right;
+    display: flex;
+    align-items: center;
 }
 
 .progress-text span {
-    font-size: 14px;
+    font-size: 16px;
     display: inline-block;
 }
 
-.goal-row.completed .progress {
+.goal-row .completed .progress {
     background-color: #03488B;
 }
 
 .goal-right {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 0px;
     margin-left: auto;
 }
 
@@ -374,6 +383,7 @@
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
     padding: 16px;
+    height: 140px;
 }
 
 .exam-info {
@@ -383,8 +393,8 @@
 }
 
 .exam-icon {
-    width: 48px;
-    height: 48px;
+    width: 74px;
+    height: 92px;
     background: #E5EFFF;
     border-radius: 8px;
     display: flex;
@@ -394,8 +404,8 @@
 }
 
 .exam-icon img {
-    width: 24px;
-    height: 24px;
+    width: 42px;
+    height: 60px;
 }
 
 .exam-details {
@@ -404,38 +414,60 @@
 }
 
 .exam-details h2 {
-    font-size: 14px;
+    font-size: 18px;
     margin-bottom: 12px;
-    color: #1A1C1E;
-    font-weight: 500;
+    color: #0E0E0E;
+    font-weight: 400;
+}
+
+.exam-details .progress-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+
+.progress-bar1 {
+    width: 100%;
+    height: 8px;
+    background: #C4C7CF;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-bar1 .progress1 {
+    height: 100%;
+    background: #38A169;
+    border-radius: 3px;
+    transition: width 0.3s ease;
 }
 
 .progress-bar {
     width: 100%;
-    height: 6px;
-    background: #E5EFFF;
-    border-radius: 3px;
-    margin-bottom: 8px;
+    height: 8px;
+    background: #C5DDF3;
+    border-radius: 10px;
     overflow: hidden;
 }
 
 .progress-bar .progress {
     height: 100%;
-    background: #0066FF;
+    background: #03488B;
     border-radius: 3px;
     transition: width 0.3s ease;
 }
 
 .exam-details p {
-    font-size: 12px;
-    color: #71767A;
+    font-size: 14px;
+    color: #484A54;
+    font-weight: 400;
     margin: 0;
 }
 
 /* Exam Countdown Card */
 .exam-countdown-card {
     flex: 1;
-    background: #F5F9FF;
+    background: #C5DDF399;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
     padding: 16px;
@@ -445,7 +477,6 @@
 }
 
 .exam-logo {
-    width: 48px;
     height: 48px;
     display: flex;
     align-items: center;
@@ -454,8 +485,8 @@
 }
 
 .exam-logo img {
-    width: 32px;
-    height: 32px;
+    width: 82px;
+    height: 80px;
 }
 
 .exam-countdown-info {
@@ -463,15 +494,16 @@
 }
 
 .exam-countdown-info h2 {
-    font-size: 14px;
+    font-size: 20px;
     margin: 0 0 4px 0;
     color: #1A1C1E;
     font-weight: 500;
 }
 
 .exam-countdown-info p {
-    font-size: 12px;
-    color: #03488B;
+    font-size: 14px;
+    color: #6C6E79;
+    font-weight: 400;
     margin: 0;
 }
 
@@ -481,15 +513,15 @@
 }
 
 .countdown h1 {
-    font-size: 36px;
-    font-weight: 600;
+    font-size: 48px;
+    font-weight: 500;
     color: #03488B;
     margin: 0;
     line-height: 1;
 }
 
 .countdown p {
-    font-size: 12px;
+    font-size: 16px;
     color: #03488B;
     margin: 4px 0 0 0;
 }
@@ -512,7 +544,7 @@
 }
 
 .study-section h2 {
-    font-size: 18px;
+    font-size: 20px;
     margin-bottom: 16px;
     color: #1A1C1E;
     font-weight: 500;
@@ -528,7 +560,7 @@
 }
 
 .study-image {
-    width: 100px;
+    width: 188px;
     height: 100px;
     border-radius: 8px;
     overflow: hidden;
@@ -547,16 +579,17 @@
 }
 
 .study-content h3 {
-    font-size: 16px;
+    font-size: 18px;
     margin-bottom: 4px;
     color: #1A1C1E;
-    font-weight: 500;
+    font-weight: 400;
 }
 
 .study-content p {
     font-size: 14px;
-    color: #71767A;
+    color: #0E0E0E;
     margin-bottom: 8px;
+    font-weight: 400;
 }
 
 .subject-tag-container {
@@ -566,11 +599,12 @@
 .subject-tag {
     display: inline-block;
     padding: 4px 12px;
-    background: #F5F9FF;
-    border: 1px solid #E8F0FE;
-    border-radius: 16px;
+    background: #FFFFFF;
+    border: 1px solid #2E69A2;
+    border-radius: 8px;
     font-size: 14px;
-    color: #03488B;
+    color: #2E69A2;
+    font-weight: 400;
 }
 
 .continue-btn {
@@ -583,8 +617,8 @@
     color: white;
     border: none;
     border-radius: 8px;
-    font-size: 14px;
-    font-weight: 500;
+    font-size: 16px;
+    font-weight: 400;
     cursor: pointer;
     width: 100%;
 }
@@ -601,9 +635,9 @@
 }
 
 .flashcards-section h2 {
-    font-size: 18px;
+    font-size: 20px;
     margin-bottom: 16px;
-    color: #1A1C1E;
+    color: #484A54;
     font-weight: 500;
 }
 
@@ -613,6 +647,7 @@
     width: 100%;
     margin: 0 auto 20px;
     padding: 10px 0;
+    gap: 0;
 }
 
 .flashcard-stat {
@@ -620,7 +655,19 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-    margin: 0 45px;
+    padding: 0 45px;
+    position: relative;
+}
+
+.flashcard-stat:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 90px;
+    background-color: #eee;
 }
 
 .flashcard-stat .stat-row {
@@ -642,7 +689,6 @@
 .flashcard-stat span {
     font-size: 14px;
     color: #71767A;
-    margin-bottom: 4px;
 }
 
 .flashcard-stat h3 {
@@ -672,7 +718,7 @@
     color: #03488B;
     border: 1px solid #03488B;
     border-radius: 8px;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 500;
     cursor: pointer;
     margin-top: auto;
@@ -718,13 +764,18 @@
     margin-bottom: 16px;
 }
 
-.goal-date, .summary-item span {
+.summary-item span {
     font-weight: bold;
     color: #555;
 }
 
 .pie-chart {
     width: 50%;
+}
+
+.edit-icon, .trash-icon {
+    width: 18px;
+    height: 18px;
 }
 
 /* Performance Section */
@@ -799,12 +850,13 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
+    margin-top: 15px;
 }
 
 .performance-header h2 {
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 500;
-    color: #333;
+    color: #484A54;
     margin: 0;
 }
 
@@ -831,7 +883,7 @@
 }
 
 .performance-stats {
-    flex: 0 0 250px;
+    flex: 0 0 340px;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -854,18 +906,19 @@
 
 .stat-icon {
     margin-right: 10px;
-    color: #666;
+    color: black;
     display: flex;
     align-items: center;
 }
 
 .stat-label {
-    font-size: 14px;
-    color: #666;
+    font-size: 18px;
+    color: #0E0E0E;
+    font-weight: 400;
 }
 
 .stat-value {
-    font-size: 24px;
+    font-size: 30px;
     font-weight: 500;
     color: #03488B;
 }
@@ -876,9 +929,9 @@
 
 .take-test-btn {
     width: 100%;
-    background-color: #03488B;
-    color: white;
-    border: none;
+    background-color: white;
+    color: #03488B;
+    border: 1px solid #03488B;
     border-radius: 6px;
     padding: 10px;
     font-size: 14px;
@@ -892,19 +945,21 @@
 
 .chart-header {
     display: flex;
-    align-items: baseline;
+    gap: 5px;
+    align-items: center;
     margin-bottom: 20px;
 }
 
 .chart-label {
-    font-size: 14px;
-    color: #666;
+    font-size: 18px;
+    color: #0E0E0E;
     margin-right: 10px;
+    font-weight: 400;
 }
 
 .chart-percentage {
-    font-size: 24px;
-    font-weight: 600;
+    font-size: 30px;
+    font-weight:500;
     color: #0b4d8c;
 }
 
@@ -1001,6 +1056,7 @@
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
     padding: 20px;
     flex: 1;
+    height: 380px;
 }
 
 .tip-card h2 {
@@ -1016,21 +1072,10 @@
 }
 
 .tip-image {
-    flex: 0 0 150px;
-    height: 150px;
+    flex: 0 0 250px;
+    height: 220px;
     overflow: hidden;
-    border-radius: 6px;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #F5F9FF;
-}
-
-.tip-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    padding: 10px;
 }
 
 .tip-text {
@@ -1038,11 +1083,11 @@
 }
 
 .quote {
-    font-size: 14px;
+    font-size: 20px;
     line-height: 1.5;
-    color: #333;
+    color: #0E0E0E;
     margin: 0 0 15px 0;
-    font-style: italic;
+    font-weight: 400;
 }
 
 .author {
@@ -1070,8 +1115,7 @@
 .motivation-image-container {
     border-radius: 8px;
     overflow: hidden;
-    height: 180px;
-    background-color: #F5F9FF;
+    height: 280px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1151,11 +1195,11 @@
     padding: 20px;
 }
 
-.form-group {
+.dashboard-container .modal-body .form-group {
     margin-bottom: 16px;
 }
 
-.form-group label {
+.dashboard-container .modal-body .form-group label {
     display: block;
     margin-bottom: 8px;
     font-weight: 500;
