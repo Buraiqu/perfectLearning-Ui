@@ -1,6 +1,23 @@
 import './dashboard.css';
 import ReactApexChart from 'react-apexcharts';
+import ColumnChartWithImages from '../../../components/Charts/ColumnChartWithImages';
 import { useState, useRef, useEffect } from 'react';
+import goalIcon from '../../../icons/goal-icon.svg';
+import bsCheckCircleFillIcon from '../../../icons/BsCheckCircleFill.svg';
+import bsPencilSquareIcon from '../../../icons/BsPencilSquare.svg';
+import bsTrashIcon from '../../../icons/BsTrash.svg';
+import bsCameraVideoIcon from '../../../icons/BsCameraVideo.svg';
+import tickSquareIcon from '../../../icons/tick-square-icon.svg'
+import bsLightningChargeIcon from '../../../icons/BsLightningCharge.svg'
+import chartStarIcon from '../../../icons/column-chart-star-icon.svg'
+import chartWarningIcon from '../../../icons/column-chart-warning-icon.svg'
+import chartTrophyIcon from '../../../icons/column-chart-trophy-icon.svg'
+import SemiCirclePieChart from '../../../components/Charts/SemiCirclePieChart'
+import EngineerIcon from '../../../icons/engineer-icon.svg'
+import BsBookmarksIcon from '../../../icons/BsBookmarks.svg'
+import BsPatchCheckIcon from '../../../icons/BsPatchCheck.svg'
+import BsPatchExclamationIcon from '../../../icons/BsPatchExclamation.svg'
+import BsCirclePlayOutlineWhiteIcon from '../../../icons/circle-play-outline-white-icon.svg'
 
 const chartOptions = {
     chart: {
@@ -84,7 +101,56 @@ const pieChartOptions = {
 const pieChartSeries = [255, 75, 135]; // Minutes for each subject
 
 const Dashboard = () => {
+
     const [showGoalModal, setShowGoalModal] = useState(false);
+
+    const pieChartData = [
+      { 
+        value: 70, 
+        category: "Mathematics",
+        hours: "4",
+        minutes: "15",
+        hrs: "Hrs",
+        mins: "Mins"
+      },
+      { 
+        value: 20, 
+        category: "Physics",
+        hours: "1",
+        minutes: "15",
+        hrs: "Hrs",
+        mins: "Mins"
+      },
+      { 
+        value: 10, 
+        category: "Chemistry",
+        hours: "2",
+        minutes: "15",
+        hrs: "Hrs",
+        mins: "Mins"
+      }
+    ];
+
+    const userPerformanceData = [
+        {
+            name: "Mathematics",
+            value: 70,
+            bulletSettings: { src: chartTrophyIcon },
+            color: "#C4DD9B"
+        },
+        {
+            name: "Physics",
+            value: 100,
+            bulletSettings: { src: chartStarIcon },
+            color: "#B0CCE7"
+        },
+        {
+            name: "Chemistry",
+            value: 60,
+            bulletSettings: { src: chartWarningIcon },
+            color: "#FFCFB6"
+        }
+    ];
     const [subjectValue, setSubjectValue] = useState('Mathematics');
     const [topicValue, setTopicValue] = useState('Sets, Relations & Functions');
     const [deadlineValue, setDeadlineValue] = useState('Tomorrow');
@@ -221,12 +287,15 @@ const Dashboard = () => {
                 <div className="exam-progress-card">
                     <div className="exam-info">
                         <div className="exam-icon">
-                            <img src="/assets/engineer-icon.svg" alt="Engineering icon" />
+                            <img src={EngineerIcon} alt="Engineering icon" />
                         </div>
                         <div className="exam-details">
                             <h2>Engineering Entrance Exams</h2>
-                            <div className="progress-bar">
-                                <div className="progress" style={{ width: '0%' }}></div>
+                            <div className="progress-container">
+                                <div className="progress-bar1">
+                                    <div className="progress1" style={{ width: '10%' }}></div>
+                                </div>
+                                <div className="progress-text1">10<span>%</span></div>
                             </div>
                             <p>Overall Progress</p>
                         </div>
@@ -243,7 +312,9 @@ const Dashboard = () => {
                         <p>in June 2024</p>
                     </div>
                     <div className="countdown">
-                        <h1>50</h1>
+                        <div style={{ display: 'flex', justifyContent: 'center' }}>
+                            <h1>50</h1>
+                        </div>
                         <p>Weeks to go</p>
                     </div>
                 </div>
@@ -267,9 +338,7 @@ const Dashboard = () => {
                         </div>
                     </div>
                     <button className="continue-btn">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM10 16.5V7.5L16 12L10 16.5Z" fill="white"/>
-                        </svg>
+                        <img src={BsCirclePlayOutlineWhiteIcon} alt="" />
                         Continue
                     </button>
                 </div>
@@ -281,10 +350,7 @@ const Dashboard = () => {
                         <div className="stat-item flashcard-stat mastered">
                             <div className="stat-row">
                                 <div className="stat-icon">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <circle cx="12" cy="12" r="10" stroke="#00875A" strokeWidth="2" fill="none"/>
-                                        <path d="M8 12L11 15L16 9" stroke="#00875A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                                    </svg>
+                                    <img src={BsPatchCheckIcon} alt="" />
                                 </div>
                                 <span>Mastered</span>
                             </div>
@@ -293,10 +359,7 @@ const Dashboard = () => {
                         <div className="stat-item flashcard-stat to-learn">
                             <div className="stat-row">
                                 <div className="stat-icon">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <circle cx="12" cy="12" r="10" stroke="#EF4444" strokeWidth="2" fill="none"/>
-                                        <path d="M12 8V12M12 16H12.01" stroke="#EF4444" strokeWidth="2" strokeLinecap="round"/>
-                                    </svg>
+                                    <img src={BsPatchExclamationIcon} alt="" />
                                 </div>
                                 <span>To Learn</span>
                             </div>
@@ -305,9 +368,7 @@ const Dashboard = () => {
                         <div className="stat-item flashcard-stat bookmarked">
                             <div className="stat-row">
                                 <div className="stat-icon">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M5 5C5 3.89543 5.89543 3 7 3H17C18.1046 3 19 3.89543 19 5V21L12 17.5L5 21V5Z" stroke="#03488B" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                                    </svg>
+                                    <img src={BsBookmarksIcon} alt="" />
                                 </div>
                                 <span>Bookmarked</span>
                             </div>
@@ -335,63 +396,49 @@ const Dashboard = () => {
                 <div className="goal-list">
                     <div className="goal-row">
                         <div className="goal-left">
-                            <svg className="circle-icon" viewBox="0 0 24 24">
-                                <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" fill="none" />
-                            </svg>
+                            <img src={goalIcon} alt="" />
                             <div className="goal-text">Complete <span className="goal-highlight">Sets, Relations & Functions</span> by <span className="goal-date">1st September</span></div>
                         </div>
                         <div className="progress-bar-container">
                             <div className="progress-bar">
-                                <div className="progress" style={{ width: '0%' }}></div>
+                                <div className="progress" style={{ width: '10%' }}></div>
                             </div>
-                            <div className="progress-text">0<span>%</span></div>
+                            <div className="progress-text">10<span>%</span></div>
                         </div>
                         <div className="goal-right">
                             <button className="icon-btn edit-btn" aria-label="Edit goal">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                                </svg>
+                                <img src={bsPencilSquareIcon} className="edit-icon" alt="" />
                             </button>
                             <button className="icon-btn delete-btn" aria-label="Delete goal">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.166L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                            </svg>
+                                <img src={bsTrashIcon} className="trash-icon" alt="" />
                             </button>
                         </div>
                     </div>
                     
                     <div className="goal-row">
                         <div className="goal-left">
-                            <svg className="circle-icon" viewBox="0 0 24 24">
-                                <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" fill="none" />
-                            </svg>
+                            <img src={goalIcon} alt="" />
                             <div className="goal-text">Complete <span className="goal-highlight">Organic Chemistry</span> by <span className="goal-date">Tomorrow</span></div>
                         </div>
                         <div className="progress-bar-container">
                             <div className="progress-bar">
-                                <div className="progress" style={{ width: '0%' }}></div>
+                                <div className="progress" style={{ width: '0%' , minWidth: '1%'}}></div>
                             </div>
                             <div className="progress-text">0<span>%</span></div>
                         </div>
                         <div className="goal-right">
                             <button className="icon-btn edit-btn" aria-label="Edit goal">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                                </svg>
+                                <img src={bsPencilSquareIcon} className="edit-icon" alt="" />
                             </button>
                             <button className="icon-btn delete-btn" aria-label="Delete goal">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.166L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                            </svg>
+                                <img src={bsTrashIcon} className="trash-icon" alt="" />
                             </button>
                         </div>
                     </div>
                     
                     <div className="goal-row completed">
                         <div className="goal-left">
-                            <svg className="checkmark-icon" viewBox="0 0 24 24">
-                                <path d="M20 6L9 17L4 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-                            </svg>
+                            <img src={bsCheckCircleFillIcon} alt="" />
                             <div className="goal-text">Completed <span className="goal-highlight">Organic Chemistry</span> by <span className="goal-date">29th August</span></div>
                         </div>
                         <div className="progress-bar-container">
@@ -402,14 +449,10 @@ const Dashboard = () => {
                         </div>
                         <div className="goal-right">
                             <button className="icon-btn edit-btn" aria-label="Edit goal">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                                </svg>
+                                <img src={bsPencilSquareIcon} className="edit-icon" alt="" />
                             </button>
                             <button className="icon-btn delete-btn" aria-label="Delete goal">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.166L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                            </svg>
+                                <img src={bsTrashIcon} className="trash-icon" alt="" />
                             </button>
                         </div>
                     </div>
@@ -424,13 +467,13 @@ const Dashboard = () => {
                     <div className="learning-left">
                         <div className="learning-item video-item">
                             <span className="learning-icon">
-                                <i className="far fa-play-circle"></i>
+                                <img src={bsCameraVideoIcon} alt="" />
                             </span>
                             <div className="learning-info">
                                 <div className="learning-label">Video Lectures</div>
-                                <div className="learning-time">
-                                    5<span className="unit">hrs</span> 30<span className="unit">mins</span>
-                                </div>
+                            </div>
+                            <div className="learning-time">
+                                5<span className="unit">hrs</span> 30<span className="unit">mins</span>
                             </div>
                         </div>
                         
@@ -440,9 +483,9 @@ const Dashboard = () => {
                             </span>
                             <div className="learning-info">
                                 <div className="learning-label">Reading Material</div>
-                                <div className="learning-time">
-                                    40<span className="unit">min</span>
-                                </div>
+                            </div>
+                            <div className="learning-time">
+                                40<span className="unit">min</span>
                             </div>
                         </div>
                         
@@ -452,15 +495,16 @@ const Dashboard = () => {
                             </span>
                             <div className="learning-info">
                                 <div className="learning-label">Practice Questions</div>
-                                <div className="learning-value">50</div>
                             </div>
+                            <div className="learning-value">50</div>
                         </div>
                     </div>
                     
                     <div className="chart-container">
-                        <ReactApexChart options={pieChartOptions} series={pieChartSeries} type="donut" height={220} />
+                        {/* <ReactApexChart options={pieChartOptions} series={pieChartSeries} type="donut" height={220} /> */}
+                        <SemiCirclePieChart data={pieChartData} />
                         
-                        <div className="subject-labels">
+                        {/* <div className="subject-labels">
                             <div className="subject math">
                                 <div className="subject-name">Mathematics</div>
                                 <div className="subject-time">
@@ -481,7 +525,7 @@ const Dashboard = () => {
                                     2<span className="unit">hrs</span> 15<span className="unit">mins</span>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>
@@ -518,14 +562,11 @@ const Dashboard = () => {
                         <div className="stat-item answers-correct">
                             <div className="stat-row">
                                 <div className="stat-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                                    </svg>
+                                    <img src={bsLightningChargeIcon} alt="" />
                                 </div>
                                 <div className="stat-label">Correctly Answered</div>
                             </div>
-                            <div className="stat-value">80/120</div>
+                            <div className="stat-value">80 <span style={{color: 'black'}}>/120</span></div>
                         </div>
                         
                         <div className="take-test-container">
@@ -535,41 +576,12 @@ const Dashboard = () => {
                     
                     <div className="performance-chart">
                         <div className="chart-header">
+                            <img src={tickSquareIcon} style={{width: '17px', height: '17px'}} alt="" />
                             <div className="chart-label">Avg. Score Percentage</div>
                             <div className="chart-percentage">70%</div>
                         </div>
                         
-                        <div className="subject-bars">
-                            <div className="subject-bar-container">
-                                <div className="subject-icon math-icon">
-                                    <i className="fas fa-trophy"></i>
-                                </div>
-                                <div className="subject-bar math-bar" style={{ width: '86%' }}>
-                                    <div className="bar-value">86%</div>
-                                </div>
-                                <div className="subject-name">Mathematics</div>
-                            </div>
-                            
-                            <div className="subject-bar-container">
-                                <div className="subject-icon physics-icon">
-                                    <i className="fas fa-star"></i>
-                                </div>
-                                <div className="subject-bar physics-bar" style={{ width: '78%' }}>
-                                    <div className="bar-value">78%</div>
-                                </div>
-                                <div className="subject-name">Physics</div>
-                            </div>
-                            
-                            <div className="subject-bar-container">
-                                <div className="subject-icon chemistry-icon">
-                                    <i className="fas fa-flask"></i>
-                                </div>
-                                <div className="subject-bar chemistry-bar" style={{ width: '60%' }}>
-                                    <div className="bar-value">60%</div>
-                                </div>
-                                <div className="subject-name">Chemistry</div>
-                            </div>
-                        </div>
+                        <ColumnChartWithImages data={userPerformanceData} />
                     </div>
                 </div>
             </div>

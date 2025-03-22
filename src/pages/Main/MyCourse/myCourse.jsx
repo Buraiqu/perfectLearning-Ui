@@ -4,8 +4,11 @@ import logo from "/assets/logo_full.svg";
 import "./myCourse.css";
 import NavAvatar from "../../../components/NavAvatar/navAvatar";
 import Notification from "../../../components/Notification/notification";
+import { useNavigate } from "react-router-dom";
 
 const MyCourse = () => {
+
+    const navigate = useNavigate()
     const [activeDropdown, setActiveDropdown] = useState(null);
     const dropdownRef = useRef(null);
 
@@ -72,8 +75,8 @@ const MyCourse = () => {
                             <span className="my-course-plan">{course.plan}</span>
                         </div>
                         <div className="my-course-actions">
-                            <button className="btn-upgrade">Upgrade</button>
-                            <button className="btn-go-to-course">
+                            <button className="btn-upgrade" onClick={() => navigate('/main/upgrade-plan')}>Upgrade</button>
+                            <button className="btn-go-to-course" onClick={() => navigate('/main/dashboard')}>
                                 Go to Course
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M4.16669 10H15.8334M15.8334 10L10 4.16669M15.8334 10L10 15.8334" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
