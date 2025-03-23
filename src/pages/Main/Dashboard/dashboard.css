@@ -1313,6 +1313,15 @@
     }
 }
 
+@media screen and (max-width: 1125px) {
+    .tip-card{
+        height: 50%;
+    }
+    .tip-text{
+        font-size: 0.6em;
+    }
+}
+
 @media screen and (max-width: 900px) {
     .exam-progress-card,
     .exam-countdown-card,
