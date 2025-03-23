@@ -74,7 +74,10 @@ const NavAvatar = ({showOnlyIcon}) => {
                         >
                             My courses
                         </button>
-                        <button className="dropdown-item">
+                        <button 
+                            className="dropdown-item"
+                            onClick={() => navigate('/main/profile')}
+                        >
                             My profile
                         </button>
                         <button className="dropdown-item logout-item" onClick={() => handleLogout()}>

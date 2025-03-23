@@ -89,11 +89,11 @@
   font-size: 14px;
 }
 
-.form-group {
+.login-form-container .form-group {
   margin-bottom: 1.25rem;
 }
 
-.form-label {
+.login-form-container .form-label {
   display: block;
   color: #0F172A;
   font-weight: 500;

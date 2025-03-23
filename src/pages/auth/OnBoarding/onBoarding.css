@@ -43,7 +43,7 @@
   }
 }
 
-.progress-container {
+.onboarding-form-container .progress-container {
   display: flex;
   gap: 12px;
   width: 150px;
@@ -250,7 +250,7 @@
   color: #94A3B8;
 }
 
-.phone-input {
+.onboarding-form-container .phone-input {
   display: flex;
   align-items: center;
   gap: 12px;
