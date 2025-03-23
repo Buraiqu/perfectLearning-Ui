@@ -52,7 +52,7 @@ const ProfileSubscriptions = () => {
                 </div>
             </div>
 
-            <button className="explore-courses-btn">
+            <button className="explore-courses-btn" onClick={() => navigate('/')}>
                 Explore other courses
             </button>
         </div>
