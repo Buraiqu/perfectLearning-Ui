@@ -591,11 +591,7 @@ const Dashboard = () => {
                     <div className="modal-container">
                         <div className="modal-header">
                             <div className="modal-title">
-                                <svg className="modal-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#0066FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                    <circle cx="12" cy="12" r="10"></circle>
-                                    <line x1="12" y1="8" x2="12" y2="16"></line>
-                                    <line x1="8" y1="12" x2="16" y2="12"></line>
-                                </svg>
+                                <img src={goalIcon} alt="" />
                                 <h2>Set New Goal</h2>
                             </div>
                             <button className="close-btn" onClick={closeGoalModal}>
@@ -608,7 +604,7 @@ const Dashboard = () => {
                         <div className="modal-body">
                             <div className="form-group">
                                 <label>Pick a Subject</label>
-                                <div className="select-container">
+                                <div className="select-container" style={{width: '40%'}}>
                                     <select 
                                         value={subjectValue} 
                                         onChange={(e) => setSubjectValue(e.target.value)}
@@ -624,7 +620,7 @@ const Dashboard = () => {
                             </div>
                             <div className="form-group">
                                 <label>Select Topic</label>
-                                <div className="select-container">
+                                <div className="select-container" style={{width: '70%'}}>
                                     <select 
                                         value={topicValue} 
                                         onChange={(e) => setTopicValue(e.target.value)}
@@ -640,7 +636,7 @@ const Dashboard = () => {
                             </div>
                             <div className="form-group">
                                 <label>Complete topic by</label>
-                                <div className="select-container custom-dropdown" ref={dateDropdownRef}>
+                                <div className="select-container custom-dropdown" style={{width: '50%'}} ref={dateDropdownRef}>
                                     <div className="selected-option" onClick={toggleDateDropdown}>
                                         {deadlineValue}
                                         <svg className="select-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -757,14 +753,16 @@ const Dashboard = () => {
                                     )}
                                 </div>
                             </div>
-                            <button className="set-goal-submit-btn" onClick={handleSetGoal}>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                    <circle cx="12" cy="12" r="10"></circle>
-                                    <line x1="12" y1="8" x2="12" y2="16"></line>
-                                    <line x1="8" y1="12" x2="16" y2="12"></line>
-                                </svg>
-                                Set goal
-                            </button>
+                            <div style={{display: 'flex', justifyContent: 'center'}}>
+                                <button className="set-goal-submit-btn" onClick={handleSetGoal}>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <line x1="12" y1="8" x2="12" y2="16"></line>
+                                        <line x1="8" y1="12" x2="16" y2="12"></line>
+                                    </svg>
+                                    Set goal
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>

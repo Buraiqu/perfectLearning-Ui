@@ -95,11 +95,7 @@ const courseDetails = {
                 <div className="course-selector mb-4">
 
                     <Form.Group className="form-group">
-                        <Form.Label>Select the Course </Form.Label>
-
-                        <Form.Select defaultValue="IIT JEE Advanced" disabled>
-                            <option disabled>IIT JEE Advanced</option>
-                        </Form.Select>
+                        <Form.Label>Selected Course : &nbsp; IIT JEE Advanced</Form.Label>
                     </Form.Group>
                 </div>
 

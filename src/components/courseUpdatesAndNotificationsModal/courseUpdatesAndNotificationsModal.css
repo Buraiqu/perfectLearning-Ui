@@ -31,18 +31,28 @@
     padding: 20px;
 }
 
-.form-label {
+.course-updates-modal .form-label {
     font-size: 14px;
     font-weight: 500;
     color: #1A1A1A;
     margin-bottom: 8px;
 }
 
-.form-control,
-.form-select {
-    border: 1px solid #E5E7EB;
-    border-radius: 4px;
-    padding: 8px 12px;
+.course-updates-modal .notification-radio-group {
+    display: flex;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+.course-updates-modal .notification-radio {
+    margin: 0;
+}
+
+.course-updates-modal .notification-radio .form-check-input {
+    margin-right: 10px;
+}
+
+.course-updates-modal .notification-radio .form-check-label {
     font-size: 14px;
     color: #1A1A1A;
 }
