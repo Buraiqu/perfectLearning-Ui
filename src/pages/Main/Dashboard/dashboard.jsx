@@ -17,6 +17,7 @@ import BsBookmarksIcon from '../../../icons/BsBookmarks.svg'
 import BsPatchCheckIcon from '../../../icons/BsPatchCheck.svg'
 import BsPatchExclamationIcon from '../../../icons/BsPatchExclamation.svg'
 import BsCirclePlayOutlineWhiteIcon from '../../../icons/circle-play-outline-white-icon.svg'
+import ProgressBar from '../../../components/ProgressBar/progressBar';
 
 const chartOptions = {
     chart: {
@@ -157,6 +158,29 @@ const Dashboard = () => {
     const [showCalendar, setShowCalendar] = useState(false);
     const [currentDate, setCurrentDate] = useState(new Date());
     const [selectedDate, setSelectedDate] = useState(null);
+    const  goals = [
+        {
+            subject: "Mathematics",
+            topic: "Sets, Relations & Functions",
+            deadline: "1st September",
+            status: "In-Progress",
+            progress: '50'
+        },
+        {
+            subject: "Chemistry",
+            topic: "Organic Chemistry",
+            deadline: "Tomorrow",
+            status: "In-Progress",
+            progress: '0'
+        },
+        {
+            subject: "Chemistry",
+            topic: "Organic Chemistry",
+            deadline: "29th August",
+            status: "Completed",
+            progress: '100'
+        }
+    ]
     
     const dateDropdownRef = useRef(null);
     const calendarRef = useRef(null);
@@ -290,11 +314,8 @@ const Dashboard = () => {
                         </div>
                         <div className="exam-details">
                             <h2>Engineering Entrance Exams</h2>
-                            <div className="progress-container">
-                                <div className="progress-bar1">
-                                    <div className="progress1" style={{ width: '10%' }}></div>
-                                </div>
-                                <div className="progress-text1">10<span>%</span></div>
+                            <div style={{width: '97%'}}>
+                                <ProgressBar percentage={50} color={'#38A169'} backgroundColor={'#C4C7CF'}/>
                             </div>
                             <p>Overall Progress</p>
                         </div>
@@ -314,7 +335,7 @@ const Dashboard = () => {
                         <div style={{ display: 'flex', justifyContent: 'center' }}>
                             <h1>50</h1>
                         </div>
-                        <p>Weeks to go</p>
+                        <p>Weeks To Go</p>
                     </div>
                 </div>
             </div>
@@ -323,13 +344,13 @@ const Dashboard = () => {
             <div className="dashboard-sections-container">
                 {/* Study Section */}
                 <div className="study-section">
-                    <h2>Pickup where you left off</h2>
+                    <h2>Pickup Where You Left Off</h2>
                     <div className="study-card">
                         <div className="study-image">
                             <img src="/assets/pickupwhereyouleftoff.svg" alt="Pickup where you left off" />
                         </div>
                         <div className="study-content">
-                            <h3>Types of sets</h3>
+                            <h3>Types Of Sets</h3>
                             <p>in Sets, Relations and Functions</p>
                             <div className="subject-tag-container">
                                 <span className="subject-tag">Mathematics</span>
@@ -388,73 +409,34 @@ const Dashboard = () => {
                             <line x1="12" y1="8" x2="12" y2="16"></line>
                             <line x1="8" y1="12" x2="16" y2="12"></line>
                         </svg>
-                        Set new goal
+                        Set New Goal
                     </button>
                 </div>
                 
                 <div className="goal-list">
-                    <div className="goal-row">
-                        <div className="goal-left">
-                            <img src={goalIcon} alt="" />
-                            <div className="goal-text">Complete <span className="goal-highlight">Sets, Relations & Functions</span> by <span className="goal-date">1st September</span></div>
-                        </div>
-                        <div className="progress-bar-container">
-                            <div className="progress-bar">
-                                <div className="progress" style={{ width: '10%' }}></div>
+                    {goals.map((goal, index) => (
+                        <div className="goal-row" key={index}>
+                            <div className="goal-left">
+                                {goal.status === "In-Progress" ? (
+                                    <img src={goalIcon} alt="" />
+                                ): (
+                                    <img src={bsCheckCircleFillIcon} alt="" />
+                                )}
+                                <div className="goal-text">{goal.status === "In-Progress" ? "Complete " : "Completed " }<span className="goal-highlight">{goal.topic}</span> by <span className="goal-date">{goal.deadline}</span></div>
                             </div>
-                            <div className="progress-text">10<span>%</span></div>
-                        </div>
-                        <div className="goal-right">
-                            <button className="icon-btn edit-btn" aria-label="Edit goal">
-                                <img src={bsPencilSquareIcon} className="edit-icon" alt="" />
-                            </button>
-                            <button className="icon-btn delete-btn" aria-label="Delete goal">
-                                <img src={bsTrashIcon} className="trash-icon" alt="" />
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <div className="goal-row">
-                        <div className="goal-left">
-                            <img src={goalIcon} alt="" />
-                            <div className="goal-text">Complete <span className="goal-highlight">Organic Chemistry</span> by <span className="goal-date">Tomorrow</span></div>
-                        </div>
-                        <div className="progress-bar-container">
-                            <div className="progress-bar">
-                                <div className="progress" style={{ width: '0%' , minWidth: '1%'}}></div>
+                            <div className='goal-progress'>
+                                <ProgressBar percentage={goal.progress} color={'#03488B'}/>
+                            </div>                            
+                            <div className="goal-right">
+                                <button className="icon-btn edit-btn" aria-label="Edit goal">
+                                    <img src={bsPencilSquareIcon} className="edit-icon" alt="" />
+                                </button>
+                                <button className="icon-btn delete-btn" aria-label="Delete goal">
+                                    <img src={bsTrashIcon} className="trash-icon" alt="" />
+                                </button>
                             </div>
-                            <div className="progress-text">0<span>%</span></div>
                         </div>
-                        <div className="goal-right">
-                            <button className="icon-btn edit-btn" aria-label="Edit goal">
-                                <img src={bsPencilSquareIcon} className="edit-icon" alt="" />
-                            </button>
-                            <button className="icon-btn delete-btn" aria-label="Delete goal">
-                                <img src={bsTrashIcon} className="trash-icon" alt="" />
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <div className="goal-row completed">
-                        <div className="goal-left">
-                            <img src={bsCheckCircleFillIcon} alt="" />
-                            <div className="goal-text">Completed <span className="goal-highlight">Organic Chemistry</span> by <span className="goal-date">29th August</span></div>
-                        </div>
-                        <div className="progress-bar-container">
-                            <div className="progress-bar">
-                                <div className="progress" style={{ width: '100%' }}></div>
-                            </div>
-                            <div className="progress-text">100<span>%</span></div>
-                        </div>
-                        <div className="goal-right">
-                            <button className="icon-btn edit-btn" aria-label="Edit goal">
-                                <img src={bsPencilSquareIcon} className="edit-icon" alt="" />
-                            </button>
-                            <button className="icon-btn delete-btn" aria-label="Delete goal">
-                                <img src={bsTrashIcon} className="trash-icon" alt="" />
-                            </button>
-                        </div>
-                    </div>
+                    ))}
                 </div>
             </div>
 
@@ -541,7 +523,7 @@ const Dashboard = () => {
                                 </div>
                                 <div className="stat-label">Correctly Answered</div>
                             </div>
-                            <div className="stat-value">80 <span style={{color: 'black'}}>/120</span></div>
+                            <div className="stat-value">80 /120</div>
                         </div>
                         
                         <div className="take-test-container">
@@ -564,7 +546,7 @@ const Dashboard = () => {
             <div className="bottom-cards">
                 {/* Tip of the Day */}
                 <div className="tip-card">
-                    <h2>Tip of the day</h2>
+                    <h2>Tip Of The Day</h2>
                     <div className="tip-content">
                         <div className="tip-image">
                             <img src="/assets/tipofthedayimage.svg" alt="Tip of the day" />
@@ -578,7 +560,7 @@ const Dashboard = () => {
 
                 {/* Stay Motivated */}
                 <div className="motivation-card">
-                    <h2>Stay motivated</h2>
+                    <h2>Stay Motivated</h2>
                     <div className="motivation-image-container">
                         <img src="/assets/staymotivated.svg" alt="Stay motivated" className="motivation-image" />
                     </div>

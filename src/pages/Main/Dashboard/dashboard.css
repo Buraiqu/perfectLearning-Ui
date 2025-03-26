@@ -96,13 +96,12 @@
     display: flex;
     flex-direction: column;
     gap: 12px;
-    width: 344px;
 }
 
 .learning-item {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 16px;
     padding: 0px 16px;
     border-radius: 8px;
     height: 75px;
@@ -128,18 +127,29 @@
 
 .learning-info {
     flex: 1;
+    min-width: 300px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .learning-label {
     font-size: 16px;
     color: #03488B;
     font-weight: 400;
+    flex: 1;
 }
 
 .learning-time, .learning-value {
     font-size: 16px;
     font-weight: 400;
     color: #03488B;
+    text-align: left;
+    min-width: 100px;
+}
+
+.goal-progress{
+    width: 45%;
 }
 
 .unit {
@@ -318,43 +328,6 @@
     color: #03488B;
 }
 
-.progress-bar-container {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    justify-content: flex-end;
-    width: 200px;
-    margin: 0 32px;
-}
-
-.progress-bar {
-    width: 140px;
-    height: 6px;
-    background-color: #E5EFFF;
-    border-radius: 3px;
-    overflow: hidden;
-    position: relative;
-}
-
-.progress {
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100%;
-    background-color: #0b4d8c;
-    border-radius: 3px;
-    transition: width 0.3s ease;
-}
-
-.progress-text {
-    font-size: 16px;
-    font-weight: 400;
-    color: #03488B;
-    min-width: 40px;
-    text-align: right;
-    display: flex;
-    align-items: center;
-}
 .progress-text1 {
     font-size: 16px;
     font-weight: 400;
@@ -467,8 +440,8 @@
 }
 
 .exam-icon img {
-    width: 42px;
-    height: 60px;
+    width: 50%;
+    height: 50%;
 }
 
 .exam-details {
@@ -483,12 +456,6 @@
     font-weight: 400;
 }
 
-.exam-details .progress-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 12px;
-}
 
 .progress-bar1 {
     width: 100%;
@@ -501,21 +468,6 @@
 .progress-bar1 .progress1 {
     height: 100%;
     background: #38A169;
-    border-radius: 3px;
-    transition: width 0.3s ease;
-}
-
-.progress-bar {
-    width: 100%;
-    height: 8px;
-    background: #C5DDF3;
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-.progress-bar .progress {
-    height: 100%;
-    background: #03488B;
     border-radius: 3px;
     transition: width 0.3s ease;
 }
@@ -1383,6 +1335,10 @@
         width: 100%;
     }
 
+    .goal-progress{
+        width: 92%;
+    }
+
     .progress-bar-container {
         width: 100%;
     }
@@ -1425,6 +1381,10 @@
         font-size: 15px;
     }
 
+    .learning-info {
+        min-width: 30px;
+    }
+
     .exam-progress-card,
     .exam-countdown-card,
     .study-section,
@@ -1443,8 +1403,13 @@
 
     .exam-icon,
     .exam-logo {
-        width: 40px;
-        height: 40px;
+        width: 16%;
+        height: 7vh;
+    }
+
+    .exam-logo img {
+        width: 100%;
+        height: 100%;
     }
 
     .study-image,
@@ -1500,6 +1465,10 @@
     .calendar-container {
         width: 100%;
         left: 0;
+    }
+
+    .goal-progress{
+        width: 85%;
     }
 }
 

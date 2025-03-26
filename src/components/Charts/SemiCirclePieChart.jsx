@@ -4,9 +4,9 @@ import * as am5percent from "@amcharts/amcharts5/percent";
 import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
 
 const colors = {
-  Mathematics: "#38A169",
-  Physics: "#85ABD0",
-  Chemistry: "#E53E3E"
+  Mathematics: "#6dbd92",
+  Physics: "#a1b9d1",
+  Chemistry: "#f28a8a"
 };
 
 const SemiCirclePieChart = ({ data }) => {
@@ -44,7 +44,7 @@ const SemiCirclePieChart = ({ data }) => {
 
     // Set custom labels
     series.labels.template.setAll({
-      text: "{category}\n{hours}[fontSize: 20px]{hrs}[/] {minutes}[fontSize: 20px]{mins}[/]",
+      text: "{category}\n[fontSize: 17px]{hours}[fontSize: 13px]{hrs}[/] [fontSize: 17px]{minutes}[fontSize: 13px]{mins}[/]",
       radius: 30,
       centerX: am5.percent(100),
       textType: "circular",
