@@ -29,7 +29,7 @@ const Sidebar = ({expand, onMenuClick}) => {
         },
         {
             title: 'Study Planner',
-            path: '/study-planner',
+            path: '/main/study-planner',
             icon: studyPlannerIcon,
             activeIcon: studyPlannerActiveIcon
         },
