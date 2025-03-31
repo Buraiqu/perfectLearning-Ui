@@ -19,6 +19,7 @@ import Dashboard from './pages/Main/Dashboard/dashboard';
 import MyCourse from './pages/Main/MyCourse/myCourse';
 import ProfilePage from './pages/Main/Profile/profile';
 import UpgradePlans from './pages/Main/UpgradePlans/upgradePlans';
+import StudyPlanner from './pages/Main/StudyPlanner/studyPlanner';
 
 function App() {
 
@@ -60,6 +61,7 @@ function App() {
               <Route path="my-courses" element={<MyCourse />} />
               <Route path="profile" element={<ProfilePage />} />
               <Route path="upgrade-plan" element={<UpgradePlans />} />
+              <Route path="study-planner" element={<StudyPlanner />} />
             </Route>
           </Route>
 
