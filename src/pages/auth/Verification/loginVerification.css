@@ -27,7 +27,7 @@
   height: 50px !important;
 }
 
-h2 {
+.verification-container h2 {
   color: #03488B;
   font-size: 30px;
   margin-bottom: 1rem;

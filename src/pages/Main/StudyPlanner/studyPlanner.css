@@ -1,0 +1,280 @@
+.study-planner-container {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.prep-info-card {
+    background: #FFFFFF;
+    border-radius: 12px;
+    padding: 0px 0px 0px 15px;
+    display: flex;
+    gap: 24px;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.prep-time-section {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    width: 50%;
+}
+
+.icon-section {
+    height: 72px;
+    background: #C5DDF399;
+    border-radius: 8px;
+    padding: 12px;
+    width: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.prep-icon svg {
+    display: block;
+}
+
+.prep-text {
+    display: flex;
+    gap: 8px;
+}
+
+.prep-text .text {
+    font-size: 18px;
+    font-weight: 400;
+    color: #0E0E0E;
+}
+
+.prep-text .weeks {
+    font-size: 20px;
+    font-weight: 500;
+    color: #03488B;
+}
+
+.edit-btn {
+    background: none;
+    border: none;
+    padding: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.edit-btn:hover {
+    background: #E6EEF7;
+    border-radius: 4px;
+}
+
+.edit-btn svg{
+    width: 20px;
+    height: 20px;
+}
+
+.prep-icon img{
+    width: 28px;
+    height: 40px;
+}
+
+.avg-prep-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #C5DDF399;
+    padding: 16px;
+    width: 50%;
+    border-bottom-right-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.prep-time-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.info-title {
+    font-size: 20px;
+    font-weight: 500;
+    color: #0E0E0E;
+}
+
+.info-subtitle {
+    font-size: 14px;
+    color: #6C6E79;
+    font-weight: 400;
+}
+
+.time-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.time {
+    font-size: 36px;
+    font-weight: 500;
+    color: #03488B;
+}
+
+.unit {
+    font-size: 16px;
+    color: #03488B;
+}
+
+/* Study Plan Section Styles */
+.study-plan-section {
+    background: #FFFFFF;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.study-plan-section h2 {
+    font-size: 20px;
+    font-weight: 500;
+    color: #0E0E0E;
+    margin: 0 0 24px 0;
+}
+
+.weeks-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.week-item {
+    border-bottom: 1px solid #E6EEF7;
+    border-radius: 8px;
+}
+
+.week-header {
+    padding: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.week-header:hover {
+    background: #F5F8FB;
+}
+
+.week-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.week-title h3 {
+    font-size: 16px;
+    font-weight: 500;
+    color: #0E0E0E;
+    margin: 0;
+}
+
+.expand-icon {
+    transition: transform 0.2s;
+    color: #03488B;
+}
+
+.week-header.expanded .expand-icon {
+    transform: rotate(180deg);
+}
+
+.week-content {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 96%;
+    margin-left: 30px;
+}
+
+.subject-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.subject-info {
+    display: flex;
+    align-items: center;
+    width: 55%;
+}
+
+.subject-name {
+    font-size: 16px;
+    color: #0E0E0E;
+    font-weight: 400;
+}
+
+.subject-time {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: #6C6E79;
+    font-size: 14px;
+    width: 14%;
+}
+
+.progress-bar {
+    flex: 0 0 200px;
+    height: 8px;
+    background: #E6EEF7;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background: #03488B;
+    border-radius: 4px;
+    transition: width 0.3s;
+}
+
+.progress-text {
+    font-size: 14px;
+    color: #03488B;
+    font-weight: 500;
+    width: 20px;
+}
+
+.goals-header h2 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333333;
+    margin: 0;
+}
+
+.set-goal-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #03488B;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.set-goal-btn:hover {
+    background: #023668;
+}
+
+.goals-content {
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.no-goals {
+    color: #666666;
+    font-size: 14px;
+    margin: 0;
+}

@@ -14,10 +14,10 @@ import courseMaterialActiveIcon from '../../icons/courseMaterial-active-icon.svg
 import practiceTestActiveIcon from '../../icons/practiceTests-active-icon.svg';
 import myPerformanceActiveIcon from '../../icons/myPerformance-active-icon.svg';
 import myNotesActiveIcon from '../../icons/myNotes-active-icon.svg';
+import useWindowSize from '../../hooks/useWindowSize';
 import './sidebar.css';
 
-const Sidebar = () => {
-    const [isExpanded, setIsExpanded] = useState(false);
+const Sidebar = ({expand, onMenuClick}) => {
     const location = useLocation();
 
     const menuItems = [
@@ -29,7 +29,7 @@ const Sidebar = () => {
         },
         {
             title: 'Study Planner',
-            path: '/study-planner',
+            path: '/main/study-planner',
             icon: studyPlannerIcon,
             activeIcon: studyPlannerActiveIcon
         },
@@ -58,17 +58,18 @@ const Sidebar = () => {
             activeIcon: myNotesActiveIcon
         }
     ];
-
+    const windowSize = useWindowSize();
+    const isMobile = windowSize.width < 768;
     return (
         <>
-            {isExpanded && <div className="sidebar-overlay" onClick={() => setIsExpanded(false)} />}
+            {expand && <div className="sidebar-overlay" onClick={() => onMenuClick(false)} />}
             <div 
-                className={`sidebar ${isExpanded ? 'expanded' : ''}`}
-                onMouseEnter={() => setIsExpanded(true)}
-                onMouseLeave={() => setIsExpanded(false)}
+                className={`sidebar ${expand ? 'expanded' : isMobile ? 'mobile-view': ''}`}
+                onMouseEnter={() => onMenuClick(true)}
+                onMouseLeave={() => onMenuClick(false)}
             >
             <div className="sidebar-header">
-                {isExpanded ? (
+                {expand ? (
                     <img src={logo_full} alt="Perfect Learning" className="logo" />
                 ) : (
                     <img src={logo_short} alt="Perfect Learning" className="logo" />
@@ -77,7 +78,7 @@ const Sidebar = () => {
                     <div className="side-bar-course-badge">
                         <span>IJ</span>
                     </div>
-                    {isExpanded && <div className="course-name">IIT JEE Advanced</div>}
+                    {expand && <div className="course-name">IIT JEE Advanced</div>}
                 </div>
                 <div style={{border: '1px solid #E0E1E9', marginTop: '20px'}}></div>
             </div>
@@ -90,7 +91,7 @@ const Sidebar = () => {
                         className={`side-nav-item ${location.pathname === item.path ? 'active' : ''}`}
                     >
                         <img className="menu-icon" src={location.pathname === item.path ? item.activeIcon : item.icon}></img>
-                        {isExpanded && <span className="menu-title">{item.title}</span>}
+                        {expand && <span className="menu-title">{item.title}</span>}
                     </Link>
                 ))}
             </nav>

@@ -1,0 +1,521 @@
+.goal-section{
+
+    .card {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        padding: 20px;
+        margin-bottom: 20px;
+        border: none;
+    }
+
+    .goals-card{
+        flex: 1;
+        min-width: 300px;
+        background: white;
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        overflow: hidden;
+        border: none;
+    }
+
+    .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        padding: 0;
+        border-bottom: none;
+        background-color: transparent;
+    }
+    
+    .card-header h2 {
+        font-size: 20px;
+        font-weight: 500;
+        margin: 0;
+        color: #0E0E0E;
+    }
+
+    .set-goal-btn {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 16px;
+        border: none;
+        border-radius: 4px;
+        background-color: #0b4d8c;
+        color: white;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+    }
+    
+    .set-goal-btn:hover {
+        background-color: #0a4378;
+    }
+    
+    .set-goal-btn svg {
+        width: 16px;
+        height: 16px;
+    }
+
+    .set-goal-btn {
+        padding: 10px 20px;
+        border-radius: 5px;
+    }
+
+    .goal-list {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .goal-row {
+        display: flex;
+        align-items: center;
+        padding: 15px;
+    }
+    
+    .goal-row:last-child {
+        border-bottom: none;
+    }
+    
+    .goal-left {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        width: 45%;
+        min-width: 300px;
+    }
+
+
+    .goal-text {
+        font-size: 16px;
+        font-weight: 400;
+        color: #333;
+        line-height: 1.4;
+    }
+
+    .goal-highlight {
+        font-weight: 500;
+        color: #000;
+    }
+
+    .goal-date {
+        font-weight: 500;
+        color: #03488B;
+    }
+
+    .goal-progress{
+        width: 45%;
+    }
+
+    .goal-right {
+        display: flex;
+        align-items: center;
+        gap: 0px;
+        margin-left: auto;
+    }
+
+    .icon-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        padding: 0;
+        border: none;
+        background: none;
+        cursor: pointer;
+        color: #888;
+        border-radius: 4px;
+        transition: all 0.2s ease;
+    }
+    
+    .icon-btn:hover {
+        background-color: #f5f5f5;
+        color: #555;
+    }
+
+    .edit-btn:hover {
+        color: #0066FF;
+    }
+
+    .delete-btn:hover {
+        color: #EF4444;
+    }
+
+    /* Modal Styles */
+    .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+    }
+
+    .modal-container {
+        background-color: white;
+        border-radius: 6px;
+        width: 600px;
+        max-width: 90%;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 30px 40px 10px;
+        border-bottom: none;
+    }
+
+    .modal-title {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .modal-title h2 {
+        font-size: 20px;
+        font-weight: 500;
+        margin: 0;
+        color: #0E0E0E;
+    }
+
+    .close-btn {
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        color: #888;
+        width: 24px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .close-btn:hover {
+        color: #555;
+    }
+
+    .modal-body {
+        padding: 20px 40px 30px;
+    }
+    
+    .modal-body .form-group {
+        margin-bottom: 16px;
+    }
+    
+    .modal-body .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+        color: #333;
+    }
+
+    .select-container {
+        position: relative;
+    }
+    
+    .select-container select {
+        width: 100%;
+        padding: 10px 36px 10px 12px;
+        font-size: 16px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        background-color: white;
+        appearance: none;
+    }
+
+    .select-arrow {
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 16px;
+        height: 16px;
+        color: #888;
+        pointer-events: none;
+    }
+
+    .selected-option {
+        position: relative;
+        width: 100%;
+        padding: 10px 36px 10px 12px;
+        font-size: 16px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        background-color: white;
+        display: flex;
+        align-items: center;
+    }
+
+    .selected-option .select-arrow {
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 16px;
+        height: 16px;
+        color: #888;
+        pointer-events: none;
+    }
+
+    /* Custom Dropdown Styles - Updated to match screenshot */
+    .custom-dropdown {
+        position: relative;
+        cursor: pointer;
+        width: 100%;
+    }
+
+    .dropdown-option {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 16px;
+        color: #333;
+        cursor: pointer;
+        border-bottom: 1px solid #f0f0f0;
+    }
+    
+    .dropdown-option:last-child {
+        border-bottom: none;
+    }
+    
+    .dropdown-option:hover {
+        background-color: #f8f8f8;
+    }
+    
+    .dropdown-option.selected {
+        background-color: #e6f0ff;
+    }
+
+    .option-left {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .option-icon {
+        width: 18px;
+        height: 18px;
+        color: #666;
+    }
+
+    .day-name {
+        color: #777;
+        font-size: 14px;
+        margin-left: auto;
+    }
+
+
+    /* Calendar Styles */
+    .calendar-container {
+        position: absolute;
+        top: -100%;
+        left: 40%;
+        width: 100%;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        z-index: 30;
+        overflow: hidden;
+        padding: 15px;
+        border: 1px solid #eee;
+        margin-top: 5px;
+
+    }
+
+    .calendar-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+    }
+
+    .month-year {
+        font-size: 16px;
+        font-weight: 500;
+        color: #333;
+    }
+
+    .calendar-nav {
+        display: flex;
+        gap: 10px;
+    }
+
+    .calendar-nav-btn {
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: #555;
+        padding: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .calendar-weekdays {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        margin-bottom: 10px;
+    }
+
+    .weekday {
+        text-align: center;
+        font-size: 12px;
+        font-weight: 500;
+        color: #666;
+        padding: 5px 0;
+    }
+
+    .calendar-days {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+    }
+
+    .calendar-day {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        color: #333;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+
+    .calendar-day:hover {
+        background-color: #f0f0f0;
+    }
+
+    .calendar-day.empty {
+        pointer-events: none;
+    }
+
+    .calendar-day.selected {
+        background-color: #0071e3;
+        color: white;
+    }
+
+    .dropdown-options {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: white;
+        border-radius: 6px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        z-index: 100;
+        border: 1px solid #eee;
+    }
+
+    .set-goal-submit-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 140px;
+        margin-top: 20px;
+        padding: 12px;
+        background-color: #03488B;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-size: 16px;
+        font-weight: 500;
+        cursor: pointer;
+    }
+
+    .set-goal-submit-btn:hover {
+        background-color: #03478bdb;
+    }
+
+    .set-goal-submit-btn svg {
+        margin-right: 8px;
+    }
+
+
+    /* Media Queries */
+    @media screen and (max-width: 1200px) {
+
+        .goals-card{
+            flex: 1 1 100%;
+        }
+    }
+
+    @media screen and (max-width: 900px) {
+
+        .goals-card{
+            flex: 1 1 100%;
+            min-width: 100%;
+        }
+
+        .card {
+            padding: 15px;
+        }
+
+        .card-header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .goal-row {
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .goal-left {
+            width: 100%;
+        }
+
+        .goal-progress{
+            width: 92%;
+        }
+
+        .goal-right {
+            width: 100%;
+            justify-content: flex-start;
+        }
+
+    }
+
+    @media screen and (max-width: 510px) {
+
+        .goals-card{
+            padding: 15px;
+        }
+
+        .card {
+            padding: 10px;
+        }
+
+        .modal-container {
+            width: 95%;
+            margin: 10px;
+        }
+
+        .select-container {
+            width: 100% !important;
+        }
+
+        .calendar-container {
+            width: 100%;
+            left: 0;
+        }
+
+        .goal-progress{
+            width: 85%;
+        }
+    }
+
+}
