@@ -35,7 +35,7 @@ const Sidebar = ({expand, onMenuClick}) => {
         },
         {
             title: 'Course Material',
-            path: '/course-material',
+            path: '/main/course-material',
             icon: courseMaterialIcon,
             activeIcon: courseMaterialActiveIcon
         },
