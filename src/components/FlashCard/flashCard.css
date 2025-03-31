@@ -9,218 +9,218 @@
     justify-content: center;
     align-items: center;
     z-index: 1000;
-}
 
-.flash-card-content {
-    background: white;
-    border-radius: 6px;
-    width: 90%;
-    max-width: 600px;
-    padding: 32px;
-    position: relative;
-    padding-top: 20px;
-}
+    .flash-card-content {
+        background: white;
+        border-radius: 6px;
+        width: 90%;
+        max-width: 600px;
+        padding: 32px;
+        position: relative;
+        padding-top: 20px;
+    }
 
-.flash-card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-}
+    .flash-card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+    }
 
-.flash-card-title {
-    font-size: 20px;
-    font-weight: 500;
-    color: #333;
-}
+    .flash-card-title {
+        font-size: 20px;
+        font-weight: 500;
+        color: #333;
+    }
 
-.flash-card-close {
-    cursor: pointer;
-    padding: 8px;
-    background: none;
-    border: none;
-}
+    .flash-card-close {
+        cursor: pointer;
+        padding: 8px;
+        background: none;
+        border: none;
+    }
 
-.flash-subject-loader{
-    width: 32%;
-}
+    .flash-subject-loader{
+        width: 32%;
+    }
 
-.flash-card-actions {
-    display: flex;
-    gap: 12px;
-    margin-bottom: 12px;
-    justify-content: center;
-    align-items: center;
-}
+    .flash-card-actions {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 12px;
+        justify-content: center;
+        align-items: center;
+    }
 
-.filters-button {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 16px;
-    border: 1.7px solid #E0E1E9;
-    border-radius: 6px;
-    background: white;
-    color: #333;
-    cursor: pointer;
-    font-size: 14px;
-}
+    .filters-button {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 16px;
+        border: 1.7px solid #E0E1E9;
+        border-radius: 6px;
+        background: white;
+        color: #333;
+        cursor: pointer;
+        font-size: 14px;
+    }
 
-.flash-card-container {
-    display: flex;
-    justify-content: center;
-    position: relative;
-    padding-top: 32px;
-}
+    .flash-card-container {
+        display: flex;
+        justify-content: center;
+        position: relative;
+        padding-top: 32px;
+    }
 
-/* Bottom card */
-.flash-card-container::before {
-    content: '';
-    position: absolute;
-    top: 4px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 310px;
-    height: 320px;
-    background: #2E69A2;
-    border-radius: 25px;
-    z-index: 1;
-}
+    /* Bottom card */
+    .flash-card-container::before {
+        content: '';
+        position: absolute;
+        top: 4px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 310px;
+        height: 320px;
+        background: #2E69A2;
+        border-radius: 25px;
+        z-index: 1;
+    }
 
-.flash-filter-loader{
-    width: 20% !important;
-}
+    .flash-filter-loader{
+        width: 20% !important;
+    }
 
-/* Middle card */
-.flash-card-container::after {
-    content: '';
-    position: absolute;
-    top: 18px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 368px;
-    height: 240px;
-    background: #85ABD0;
-    border-radius: 25px;
-    z-index: 2;
-}
+    /* Middle card */
+    .flash-card-container::after {
+        content: '';
+        position: absolute;
+        top: 18px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 368px;
+        height: 240px;
+        background: #85ABD0;
+        border-radius: 25px;
+        z-index: 2;
+    }
 
-.flash-card-main {
-    position: relative;
-    padding-bottom: 40px;
-}
+    .flash-card-main {
+        position: relative;
+        padding-bottom: 40px;
+    }
 
-.flash-card {
-    background: #C5DDF3;
-    border-radius: 16px;
-    padding: 40px;
-    position: relative;
-    height: 360px;
-    width: 400px;
-    z-index: 3;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
+    .flash-card {
+        background: #C5DDF3;
+        border-radius: 16px;
+        padding: 40px;
+        position: relative;
+        height: 360px;
+        width: 400px;
+        z-index: 3;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
 
-.flash-card-nav {
-    position: absolute;
-    top: 45%;
-    left: 0;
-    right: 0;
-    transform: translateY(-50%);
-    display: flex;
-    justify-content: space-between;
-    padding: 0 16px;
-    pointer-events: none;
-}
+    .flash-card-nav {
+        position: absolute;
+        top: 45%;
+        left: 0;
+        right: 0;
+        transform: translateY(-50%);
+        display: flex;
+        justify-content: space-between;
+        padding: 0 16px;
+        pointer-events: none;
+    }
 
-.nav-button {
-    width: 48px;
-    height: 48px;
-    background: white;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    pointer-events: auto;
-}
+    .nav-button {
+        width: 48px;
+        height: 48px;
+        background: white;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        pointer-events: auto;
+    }
 
-.icon-button {
-    position: absolute;
-    top: 24px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 4px;
-}
+    .icon-button {
+        position: absolute;
+        top: 24px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 4px;
+    }
 
-.icon-button.warning-icon {
-    left: 24px;
-}
+    .icon-button.warning-icon {
+        left: 24px;
+    }
 
-.icon-button.bookmark-icon {
-    right: 56px;
-}
+    .icon-button.bookmark-icon {
+        right: 56px;
+    }
 
-.icon-button img {
-    width: 26px;
-    height: 26px;
-}
+    .icon-button img {
+        width: 26px;
+        height: 26px;
+    }
 
-.icon-button.check-icon {
-    right: 24px;
-}
+    .icon-button.check-icon {
+        right: 24px;
+    }
 
-.icon-button svg path {
-    stroke: #03488B;
-}
+    .icon-button svg path {
+        stroke: #03488B;
+    }
 
-.flash-content{
-    display: flex;
-    text-align: left;
-    align-items: center;
-    justify-content: center;
-}
+    .flash-content{
+        display: flex;
+        text-align: left;
+        align-items: center;
+        justify-content: center;
+    }
 
-.flash-card p {
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 1.6;
-    color: #333;
-    margin-bottom: 32px;
-    margin-top: 60px;
-    max-width: 352px;
-}
+    .flash-card p {
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 1.6;
+        color: #333;
+        margin-bottom: 32px;
+        margin-top: 60px;
+        max-width: 352px;
+    }
 
-.flash-card-formula {
-    background: white;
-    border-radius: 8px;
-    padding: 16px;
-    text-align: center;
-    max-width: 352px;
-    width: 352px;
-}
+    .flash-card-formula {
+        background: white;
+        border-radius: 8px;
+        padding: 16px;
+        text-align: center;
+        max-width: 352px;
+        width: 352px;
+    }
 
-.flash-card-formula img {
-    max-width: 100%;
-    height: auto;
-}
+    .flash-card-formula img {
+        max-width: 100%;
+        height: auto;
+    }
 
-.flash-card-progress {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    text-align: center;
-    color: #666;
-    font-size: 20px;
-    font-weight: 500;
-}
+    .flash-card-progress {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        color: #666;
+        font-size: 20px;
+        font-weight: 500;
+    }
 
-/* Adjusting SubjectLoader inside flashcard */
-.flash-card-actions .subject-select {
-    min-width: 100px;
-}
-.flash-card-actions .filter-select {
-    min-width: 100px;
+    /* Adjusting SubjectLoader inside flashcard */
+    .flash-card-actions .subject-select {
+        min-width: 100px;
+    }
+    .flash-card-actions .filter-select {
+        min-width: 100px;
+    }
 }
