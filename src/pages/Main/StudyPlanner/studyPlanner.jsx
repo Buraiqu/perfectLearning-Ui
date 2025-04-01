@@ -2,16 +2,20 @@ import { useState } from 'react';
 import './studyPlanner.css'
 import EngineerIcon from '../../../icons/Engineer-Icon.svg'
 import GoalsSection from '../../../components/GoalsSection/goalsSection'
+import ProgressBar from '../../../components/ProgressBar/progressBar';
+import PreparationTimeModal from '../../../components/PreparationTimeModal/preparationTimeModal';
 
 const StudyPlanner = () => {
     const [expandedWeek, setExpandedWeek] = useState(1);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [weeks, setWeeks] = useState(40);
 
     const weekData = [
         {
             weekNumber: 1,
             subjects: [
-                { name: 'Chemistry - Introduction to organic Chemistry', hours: 6, progress: 0 },
-                { name: 'Mathematics - Sets, Relations & Functions', hours: 9, progress: 0 },
+                { name: 'Chemistry - Introduction to organic Chemistry', hours: 6, progress: 50 },
+                { name: 'Mathematics - Sets, Relations & Functions', hours: 9, progress: 25 },
                 { name: 'Physics - Theory of relativity', hours: 10, progress: 0 },
             ]
         },
@@ -52,7 +56,7 @@ const StudyPlanner = () => {
                     </div>
                     <div className="prep-text">
                         <span className='text'>Complete preparation in</span> <span className="weeks">40 Weeks</span>
-                        <button className="edit-btn">
+                        <button className="edit-btn" onClick={() => setIsModalOpen(true)}>
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M11 4H4C3.46957 4 2.96086 4.21071 2.58579 4.58579C2.21071 4.96086 2 5.46957 2 6V20C2 20.5304 2.21071 21.0391 2.58579 21.4142C2.96086 21.7893 3.46957 22 4 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V13" stroke="#03488B" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                                 <path d="M18.5 2.50001C18.8978 2.10219 19.4374 1.87869 20 1.87869C20.5626 1.87869 21.1022 2.10219 21.5 2.50001C21.8978 2.89784 22.1213 3.4374 22.1213 4.00001C22.1213 4.56262 21.8978 5.10219 21.5 5.50001L12 15L8 16L9 12L18.5 2.50001Z" stroke="#03488B" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -106,9 +110,8 @@ const StudyPlanner = () => {
                                                 </svg>
                                                 <span>{subject.hours} Hr</span>
                                             </div>
-                                            <span className="progress-text">{subject.progress}%</span>
-                                            <div className="progress-bar">
-                                                <div className="progress" style={{ width: `${subject.progress}%` }}></div>
+                                            <div style={{width: '18%'}}>
+                                                <ProgressBar percentage={subject.progress} showPercentageFirst={true}/>
                                             </div>
                                         </div>
                                     ))}
@@ -118,6 +121,11 @@ const StudyPlanner = () => {
                     ))}
                 </div>
             </div>
+            <PreparationTimeModal 
+                isOpen={isModalOpen} 
+                onClose={() => setIsModalOpen(false)} 
+                initialWeeks={weeks}
+            />
         </div>
     )
 }

@@ -10,7 +10,7 @@
     .progress-bar {
         width: 90%;
         height: 8px;
-        background-color: #E5EFFF;
+        background-color: #C5DDF3;
         border-radius: 3px;
         overflow: hidden;
         position: relative;
@@ -23,6 +23,7 @@
         height: 100%;
         border-radius: 3px;
         transition: width 0.3s ease;
+        background-color: #03488B;
     }
 
     .progress-text {

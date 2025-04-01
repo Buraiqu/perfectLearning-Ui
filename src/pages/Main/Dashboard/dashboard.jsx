@@ -1,7 +1,7 @@
 import './dashboard.css';
 import ColumnChartWithImages from '../../../components/Charts/ColumnChartWithImages';
 import { useState} from 'react';
-import bsCameraVideoIcon from '../../../icons/BsCameraVideo.svg';
+import bsCameraVideoIcon from '../../../icons/BsCameraVideoBlue.svg';
 import tickSquareIcon from '../../../icons/tick-square-icon.svg'
 import bsLightningChargeIcon from '../../../icons/BsLightningCharge.svg'
 import chartStarIcon from '../../../icons/column-chart-star-icon.svg'

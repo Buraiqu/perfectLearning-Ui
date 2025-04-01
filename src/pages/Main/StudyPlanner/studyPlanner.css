@@ -186,7 +186,6 @@
     padding: 16px;
     display: flex;
     flex-direction: column;
-    gap: 16px;
     width: 96%;
     margin-left: 30px;
 }
@@ -195,7 +194,13 @@
     display: flex;
     align-items: center;
     gap: 16px;
+    padding: 18px;
 }
+
+.subject-item:hover {
+    background: #F5F8FB;
+}
+
 
 .subject-info {
     display: flex;
@@ -215,29 +220,7 @@
     gap: 4px;
     color: #6C6E79;
     font-size: 14px;
-    width: 14%;
-}
-
-.progress-bar {
-    flex: 0 0 200px;
-    height: 8px;
-    background: #E6EEF7;
-    border-radius: 4px;
-    overflow: hidden;
-}
-
-.progress {
-    height: 100%;
-    background: #03488B;
-    border-radius: 4px;
-    transition: width 0.3s;
-}
-
-.progress-text {
-    font-size: 14px;
-    color: #03488B;
-    font-weight: 500;
-    width: 20px;
+    width: 23%;
 }
 
 .goals-header h2 {
@@ -245,6 +228,189 @@
     font-weight: 600;
     color: #333333;
     margin: 0;
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 700px) {
+    .study-planner-container {
+        padding: 16px;
+        gap: 16px;
+    }
+
+    .prep-info-card {
+        flex-direction: column;
+        padding: 16px;
+        gap: 16px;
+    }
+
+    .prep-time-section,
+    .avg-prep-section {
+        width: 100%;
+    }
+
+    .avg-prep-section {
+        border-radius: 8px;
+    }
+
+    .prep-text {
+        flex-wrap: wrap;
+        align-items: center;
+    }
+
+    .prep-text .text,
+    .prep-text .weeks {
+        font-size: 16px;
+    }
+
+    .info-title {
+        font-size: 18px;
+    }
+
+    .info-subtitle {
+        font-size: 12px;
+    }
+
+    .time {
+        font-size: 28px;
+    }
+
+    .unit {
+        font-size: 14px;
+    }
+
+    .study-plan-section {
+        padding: 24px;
+    }
+
+    .study-plan-section h2 {
+        font-size: 18px;
+        margin-bottom: 16px;
+    }
+
+    .week-content {
+        width: 100%;
+        margin-left: 0;
+        padding: 12px;
+    }
+
+    .subject-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 12px;
+        background: #F5F8FB;
+        border-radius: 8px;
+    }
+
+    .subject-info,
+    .subject-time {
+        width: 100%;
+    }
+
+    .subject-name {
+        font-size: 14px;
+        line-height: 1.4;
+    }
+
+    .subject-item > div:last-child {
+        width: 100% !important;
+    }
+
+    .week-header {
+        padding: 12px;
+    }
+
+    .week-title h3 {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .study-planner-container {
+        padding: 12px;
+        gap: 12px;
+    }
+
+    .prep-info-card {
+        padding: 12px;
+    }
+
+    .icon-section {
+        height: 60px;
+        width: 50px;
+        padding: 8px;
+    }
+
+    .prep-icon img {
+        width: 24px;
+        height: 34px;
+    }
+
+    .prep-text .text,
+    .prep-text .weeks {
+        font-size: 14px;
+    }
+
+    .edit-btn svg {
+        width: 16px;
+        height: 16px;
+    }
+
+    .info-title {
+        font-size: 16px;
+    }
+
+    .info-subtitle {
+        font-size: 11px;
+    }
+
+    .time {
+        font-size: 24px;
+    }
+
+    .unit {
+        font-size: 12px;
+    }
+
+    .study-plan-section {
+        padding: 24px;
+    }
+
+    .study-plan-section h2 {
+        font-size: 16px;
+        margin-bottom: 12px;
+    }
+
+    .week-content {
+        padding: 8px;
+    }
+
+    .subject-item {
+        padding: 10px;
+        gap: 8px;
+    }
+
+    .subject-name {
+        font-size: 13px;
+    }
+
+    .subject-time {
+        font-size: 12px;
+    }
+
+    .subject-time svg {
+        width: 14px;
+        height: 14px;
+    }
+
+    .expand-icon {
+        width: 20px;
+        height: 20px;
+    }
+
+    .week-title h3 {
+        font-size: 13px;
+    }
 }
 
 .set-goal-btn {
