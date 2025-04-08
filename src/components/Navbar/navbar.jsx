@@ -49,7 +49,7 @@ const CustomNavbar = ({user}) => {
                                         {isMobile && <Notification showOnlyIcon={false} />}
                                     </span>
                                 </Nav.Link>
-                                <Nav.Link as={Link}className="px-4 nav-custome-link">
+                                <Nav.Link className="px-4 nav-custome-link">
                                     <span className="align-items-center gap-2">
                                         {isMobile && <NavAvatar showOnlyIcon={false}/>}
                                     </span>
