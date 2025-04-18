@@ -19,10 +19,10 @@ import Dashboard from './pages/Main/Dashboard/dashboard';
 import MyCourse from './pages/Main/MyCourse/myCourse';
 import ProfilePage from './pages/Main/Profile/profile';
 import UpgradePlans from './pages/Main/UpgradePlans/upgradePlans';
-// import StudyPlanner from './pages/Main/StudyPlanner/studyPlanner';
-// import CourseMaterialTopics from './pages/Main/CourseMaterial/CourseMaterialTopics/courseMaterialTopics';
-// import CourseMaterialMain from './pages/Main/CourseMaterial/CourseMaterialLanding/courseMaterial';
-// import CourseMaterialContentViewer from './pages/Main/CourseMaterial/CourseMaterialContentViewer/courseMaterialContentViewer';
+import StudyPlanner from './pages/Main/StudyPlanner/studyPlanner';
+import CourseMaterialTopics from './pages/Main/CourseMaterial/CourseMaterialTopics/courseMaterialTopics';
+import CourseMaterialMain from './pages/Main/CourseMaterial/CourseMaterialLanding/courseMaterial';
+import CourseMaterialContentViewer from './pages/Main/CourseMaterial/CourseMaterialContentViewer/courseMaterialContentViewer';
 
 function App() {
 
@@ -64,10 +64,10 @@ function App() {
               <Route path="my-courses" element={<MyCourse />} />
               <Route path="profile" element={<ProfilePage />} />
               <Route path="upgrade-plan" element={<UpgradePlans />} />
-              {/* <Route path="study-planner" element={<StudyPlanner />} />
+              <Route path="study-planner" element={<StudyPlanner />} />
               <Route path="course-material" element={<CourseMaterialMain/>} />
               <Route path="course-material-topics" element={<CourseMaterialTopics />} />
-              <Route path="course-material-content-viewer" element={<CourseMaterialContentViewer />} /> */}
+              <Route path="course-material-content-viewer" element={<CourseMaterialContentViewer />} />
             </Route>
           </Route>
 

@@ -1,0 +1,199 @@
+.preparation-modal{
+
+    .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+    }
+    
+    .modal-container {
+        background: white;
+        border-radius: 6px;
+        width: 100%;
+        max-width: 600px;
+        position: relative;
+    }
+    
+    .modal-header {
+        padding: 25px 40px 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .modal-header h2 {
+        margin: 0;
+        font-size: 20px;
+        font-weight: 500;
+        color: #0E0E0E;
+    }
+    
+    .close-btn {
+        background: none;
+        border: none;
+        font-size: 24px;
+        color: #666;
+        cursor: pointer;
+        padding: 0;
+        line-height: 1;
+    }
+    
+    .modal-body {
+        padding: 20px 40px 30px;
+    }
+    
+    .slider-container {
+        margin-bottom: 22px;
+        display: flex;
+        align-items: center;
+        width: 436px;
+        gap: 15px;
+    }
+    
+    .weeks-slider {
+        width: 300px;
+        height: 4px;
+        background: #E1E1E1;
+        border-radius: 2px;
+        -webkit-appearance: none;
+        appearance: none;
+        position: relative;
+    }
+
+    .weeks-slider::-webkit-slider-runnable-track {
+        height: 4px;
+        border-radius: 2px;
+        background: linear-gradient(to right, #03488B 0%, #03488B var(--value-percent, 50%), #E1E1E1 var(--value-percent, 50%));
+    }
+    
+    .weeks-slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        background: #03488B;
+        cursor: pointer;
+        box-shadow: 0 0 0 1px #03488B;
+        margin-top: -5px;
+        position: relative;
+        z-index: 1;
+    }
+    
+    .weeks-slider::-moz-range-track {
+        height: 4px;
+        border-radius: 2px;
+        background: linear-gradient(to right, #03488B 0%, #03488B var(--value-percent, 50%), #E1E1E1 var(--value-percent, 50%));
+    }
+
+    .weeks-slider::-moz-range-thumb {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background: #03488B;
+        cursor: pointer;
+        border: 3px solid white;
+        box-shadow: 0 0 0 1px #03488B;
+        margin-top: -10px;
+        position: relative;
+        z-index: 1;
+    }
+    
+    .weeks-display {
+        text-align: center;
+        font-size: 16px;
+        font-weight: 500;
+        color: #03488B;
+    }
+    
+    .completion-date {
+        text-align: center;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+    
+    .completion-date p {
+        margin: 0 0 0px;
+        font-size: 16px;
+        font-weight: 400;
+        color: #0E0E0E;
+    }
+    
+    .completion-date span {
+        font-size: 16px;
+        font-weight: 500;
+        color: #0E0E0E;
+    }
+    
+    .modal-footer {
+        padding: 0 40px 20px;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+    }
+    
+    .save-btn {
+        background: #03488B;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        padding: 12px 32px;
+        font-size: 16px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background-color 0.2s;
+        width: 72px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .save-btn:hover {
+        background: #023668;
+    }
+    
+    @media screen and (max-width: 480px) {
+        .modal-container {
+            margin: 20px;
+        }
+    
+        .modal-header {
+            padding: 24px 24px 8px;
+        }
+    
+        .modal-body {
+            padding: 16px 24px 24px;
+        }
+    
+        .modal-footer {
+            padding: 0 24px 24px;
+        }
+    
+        .weeks-display {
+            font-size: 20px;
+        }
+    
+        .completion-date p {
+            font-size: 13px;
+        }
+    
+        .completion-date span {
+            font-size: 15px;
+        }
+    
+        .save-btn {
+            width: 100%;
+            padding: 10px;
+            font-size: 15px;
+        }
+    }
+}
