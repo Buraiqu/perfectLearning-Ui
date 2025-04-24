@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import downArrowIcon from '../../../../icons/down-arrow-icon.svg';
 import './courseMaterialContentViewer.css'
@@ -18,6 +18,57 @@ const CourseMaterialContentViewer = () => {
     const navigate = useNavigate()
     const [breadcrumb, setBreadcrumb] = useState([])
     const [bookMark, setBookMark] = useState(false)
+    const [notesOpen, setNotesOpen] = useState(false)
+    const [notes, setNotes] = useState([
+        {
+            id: 1,
+            text: 'Very important to remember the shortcut for solving super set problem',
+            date: '15th May 2023'
+        }
+    ])
+    const [newNote, setNewNote] = useState('')
+    const noteInputRef = useRef(null)
+    
+    const toggleNotes = () => {
+        setNotesOpen(!notesOpen)
+    }
+    
+    const handleAddNote = () => {
+        if (newNote.trim()) {
+            const date = new Date()
+            const formattedDate = `${date.getDate()}${getOrdinalSuffix(date.getDate())} ${getMonthName(date.getMonth())} ${date.getFullYear()}`
+            
+            const newNoteItem = {
+                id: Date.now(),
+                text: newNote,
+                date: formattedDate
+            }
+            
+            setNotes([...notes, newNoteItem])
+            setNewNote('')
+        }
+    }
+    
+    const handleDeleteNote = (id) => {
+        setNotes(notes.filter(note => note.id !== id))
+    }
+    
+    const getOrdinalSuffix = (day) => {
+        if (day > 3 && day < 21) return 'th'
+        switch (day % 10) {
+            case 1: return 'st'
+            case 2: return 'nd'
+            case 3: return 'rd'
+            default: return 'th'
+        }
+    }
+    
+    const getMonthName = (month) => {
+        const months = ['January', 'February', 'March', 'April', 'May', 'June', 
+                      'July', 'August', 'September', 'October', 'November', 'December']
+        return months[month]
+    }
+    
     const topics = [
         {
             name: 'Types of sets',
@@ -63,8 +114,58 @@ const CourseMaterialContentViewer = () => {
 
     return (
         <div className="content-viewer-section">
+            {/* Notes Sidebar */}
+            {/* Removed overlay as per request */}
+            <div className={`notes-sidebar ${notesOpen ? 'open' : ''}`}>
+                <div className="notes-content-container">
+                    <div className="notes-header">
+                        <h2>Notes</h2>
+                        <button className="close-notes" onClick={toggleNotes}>
+                            ×
+                        </button>
+                    </div>
+                    <div className="notes-content">
+                        {notes.map(note => (
+                            <div key={note.id} className="note-item">
+                                <div className="note-content">
+                                    <p className="note-text">{note.text}</p>
+                                    <p className="note-date">{note.date}</p>
+                                    <div className="note-actions">
+                                        <button className="edit-note">
+                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M12.5 6.5L9.5 3.5L2 11V14H5L12.5 6.5Z" stroke="#03488B" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                                            </svg>
+                                        </button>
+                                        <button className="delete-note" onClick={() => handleDeleteNote(note.id)}>
+                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M2 4H3.33333H14" stroke="#03488B" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                                                <path d="M5.33334 4V2.66667C5.33334 2.31305 5.47382 1.97391 5.72387 1.72386C5.97392 1.47381 6.31305 1.33334 6.66668 1.33334H9.33334C9.68697 1.33334 10.0261 1.47381 10.2762 1.72386C10.5262 1.97391 10.6667 2.31305 10.6667 2.66667V4M12.6667 4V13.3333C12.6667 13.687 12.5262 14.0261 12.2762 14.2761C12.0261 14.5262 11.687 14.6667 11.3333 14.6667H4.66668C4.31305 14.6667 3.97392 14.5262 3.72387 14.2761C3.47382 14.0261 3.33334 13.687 3.33334 13.3333V4H12.6667Z" stroke="#03488B" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                    <div className="add-note-container">
+                        <input 
+                            type="text" 
+                            placeholder="Add Note" 
+                            className="add-note-input" 
+                            value={newNote} 
+                            onChange={(e) => setNewNote(e.target.value)}
+                            ref={noteInputRef}
+                            onKeyPress={(e) => e.key === 'Enter' && handleAddNote()}
+                        />
+                        <button className="add-note-button" onClick={handleAddNote}>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10 5V15M5 10H15" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
             <div className="content-viewer">
-
                 <div className="content-viewer-header">
                     <div className="content-viewer-breadcrumb">
                         {breadcrumb.map((item, index) => (
@@ -81,10 +182,9 @@ const CourseMaterialContentViewer = () => {
                     </div>
                 </div>
                 <div className="content-viewer-body">
-
                     <div className="content-viewer-container">
                         <div className="content-controls">
-                            <button className="take-notes-button">
+                            <button className="take-notes-button" onClick={toggleNotes}>
                                 Take Notes
                             </button>
                             <div className="navigation-controls">
