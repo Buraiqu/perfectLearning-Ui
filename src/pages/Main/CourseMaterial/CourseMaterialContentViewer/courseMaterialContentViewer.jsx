@@ -91,6 +91,42 @@ const CourseMaterialContentViewer = () => {
     ]
 
     const [selectedContent, setSelectedContent] = useState(topics[0].items[0])
+    const [currentTopicIndex, setCurrentTopicIndex] = useState(0)
+    const [currentItemIndex, setCurrentItemIndex] = useState(0)
+
+    const navigateContent = (direction) => {
+        let newTopicIndex = currentTopicIndex
+        let newItemIndex = currentItemIndex
+
+        if (direction === 'next') {
+            // If there are more items in current topic
+            if (newItemIndex < topics[currentTopicIndex].items.length - 1) {
+                newItemIndex++
+            } 
+            // If there are more topics
+            else if (newTopicIndex < topics.length - 1) {
+                newTopicIndex++
+                newItemIndex = 0
+            }
+        } else if (direction === 'prev') {
+            // If we can go back in current topic
+            if (newItemIndex > 0) {
+                newItemIndex--
+            }
+            // If we can go to previous topic
+            else if (newTopicIndex > 0) {
+                newTopicIndex--
+                newItemIndex = topics[newTopicIndex].items.length - 1
+            }
+        }
+
+        // Update state if navigation is possible
+        if (newTopicIndex !== currentTopicIndex || newItemIndex !== currentItemIndex) {
+            setCurrentTopicIndex(newTopicIndex)
+            setCurrentItemIndex(newItemIndex)
+            setSelectedContent(topics[newTopicIndex].items[newItemIndex])
+        }
+    }
 
     useEffect(() => {
         const params = new URLSearchParams(location.search)
@@ -184,15 +220,27 @@ const CourseMaterialContentViewer = () => {
                 <div className="content-viewer-body">
                     <div className="content-viewer-container">
                         <div className="content-controls">
-                            <button className="take-notes-button" onClick={toggleNotes}>
-                                Take Notes
-                            </button>
+                            {selectedContent && selectedContent.type !== 'pptx' ? (
+                                <button className="take-notes-button" onClick={toggleNotes}>
+                                    Take Notes
+                                </button>
+                            ):(
+                                <div></div>
+                            )}
                             <div className="navigation-controls">
-                                <button className="nav-button prev">
+                                <button 
+                                    className="nav-button prev" 
+                                    onClick={() => navigateContent('prev')}
+                                    disabled={currentTopicIndex === 0 && currentItemIndex === 0}
+                                >
                                     <img src={downArrowIcon} alt="" />
                                     Previous
                                 </button>
-                                <button className="nav-button next">
+                                <button 
+                                    className="nav-button next"
+                                    onClick={() => navigateContent('next')}
+                                    disabled={currentTopicIndex === topics.length - 1 && currentItemIndex === topics[currentTopicIndex].items.length - 1}
+                                >
                                     Next
                                     <img src={downArrowIcon} alt="" />
                                 </button>
@@ -207,57 +255,67 @@ const CourseMaterialContentViewer = () => {
                                 <McqViewer/>
                             ) : null}
                         </div>
-                        <div className="content-actions">
-                            <div className="bookmark-container">
-                                <button 
-                                    className="content-action-button" 
-                                    onClick={() => {
-                                        setBookMark(!bookMark);
-                                    }}>
-                                    <img src={!bookMark ? BsBookMark : BsBookMarkRemove} alt="Bookmark" />
-                                    Bookmark video
-                                </button>
-                                {bookMark && (
-                                    <div className="bookmark-tooltip">
-                                        <div className="tooltip-content">
-                                            <h3>Added to Bookmarks</h3>
-                                        </div>
-                                    </div>
-                                )}
-                            </div>
-                            <button className="content-action-button">
-                                <img src={BsSaveBlueIcon} alt="Save" />
-                                Save Offline
-                            </button>
-                        </div>
-                        <div className="formula-sheet">
-                            <h2>Formula Sheet</h2>
-                            <div className="formula-list">
-                                {[1, 2, 3].map((num) => (
-                                    <div key={num} className="formula-item">
-                                        <div className="formula-content">
-                                            <span className="formula-title">Formula {num}</span>
-                                            <div className="formula-actions">
-                                                <button className="action-button">
-                                                    <img src={BsBookMarkBlue} alt="Bookmark" />
-                                                    Bookmark
-                                                </button>
-                                                <button className="action-button outline">
-                                                    <img src={BsExclamationTriangle} alt="Report" />
-                                                    Report
-                                                </button>
+                        {selectedContent && selectedContent.type !== 'pptx' ? (
+                            <>
+                                <div className="content-actions">
+                                    <div className="bookmark-container">
+                                        <button 
+                                            className="content-action-button" 
+                                            onClick={() => {
+                                                setBookMark(!bookMark);
+                                            }}>
+                                            <img src={!bookMark ? BsBookMark : BsBookMarkRemove} alt="Bookmark" />
+                                            Bookmark video
+                                        </button>
+                                        {bookMark && (
+                                            <div className="bookmark-tooltip">
+                                                <div className="tooltip-content">
+                                                    <h3>Added to Bookmarks</h3>
+                                                </div>
                                             </div>
-                                        </div>
+                                        )}
                                     </div>
-                                ))}
-                            </div>
-                        </div>
+                                    <button className="content-action-button">
+                                        <img src={BsSaveBlueIcon} alt="Save" />
+                                        Save Offline
+                                    </button>
+                                </div>
+                                <div className="formula-sheet">
+                                    <h2>Formula Sheet</h2>
+                                    <div className="formula-list">
+                                        {[1, 2, 3].map((num) => (
+                                            <div key={num} className="formula-item">
+                                                <div className="formula-content">
+                                                    <span className="formula-title">Formula {num}</span>
+                                                    <div className="formula-actions">
+                                                        <button className="action-button">
+                                                            <img src={BsBookMarkBlue} alt="Bookmark" />
+                                                            Bookmark
+                                                        </button>
+                                                        <button className="action-button outline">
+                                                            <img src={BsExclamationTriangle} alt="Report" />
+                                                            Report
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            </>
+                        ) : null}
                     </div>
                 </div>
             </div>
-            <TopicsSideBardLoader 
+            <TopicsSideBardLoader
+                selectedTopic={currentTopicIndex}
+                selectedItem={currentItemIndex}
                 topics={topics} 
-                onSelectItem={(item) => setSelectedContent(item)}
+                onSelectItem={(item, topicIndex, itemIndex) => {
+                    setSelectedContent(item);
+                    setCurrentTopicIndex(topicIndex);
+                    setCurrentItemIndex(itemIndex);
+                }}
             />
         </div>
     )
