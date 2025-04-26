@@ -8,9 +8,23 @@ import mcqConceptVideoIcon from '../../icons/mcq_concept_video.svg';
 import mcqConceptNotesIcon from '../../icons/mcq_concept_notes.svg';
 
 const McqViewer = ({ question }) => {
-    const [selectedOption, setSelectedOption] = useState(1); // Default to first option selected
-    const [isSubmitted, setIsSubmitted] = useState(true); // Set to true to show the submitted state
-    const [isCorrect, setIsCorrect] = useState(false);
+    // Array of MCQ states for each instance
+    const [mcqStates, setMcqStates] = useState([
+        {
+            id: 1,
+            title: 'Q1 - Submitted Example',
+            selectedOption: 1,
+            isSubmitted: true,
+            isCorrect: false
+        },
+        {
+            id: 2,
+            title: 'Q1 - Not Submitted Example',
+            selectedOption: null,
+            isSubmitted: false,
+            isCorrect: false
+        }
+    ]);
 
     // Default question if none provided
     const defaultQuestion = {
@@ -28,94 +42,112 @@ const McqViewer = ({ question }) => {
 
     const questionData = question || defaultQuestion;
 
-    const handleOptionSelect = (optionId) => {
-        if (!isSubmitted) {
-            setSelectedOption(optionId);
-        }
+    const handleOptionSelect = (optionId, mcqId) => {
+        setMcqStates(prevStates => 
+            prevStates.map(state => 
+                state.id === mcqId && !state.isSubmitted
+                    ? { ...state, selectedOption: optionId }
+                    : state
+            )
+        );
     };
 
-    const handleSubmit = () => {
-        if (selectedOption !== null && !isSubmitted) {
-            const selectedOptionData = questionData.options.find(option => option.id === selectedOption);
-            setIsCorrect(selectedOptionData.isCorrect);
-            setIsSubmitted(true);
-        }
+    const handleSubmit = (mcqId) => {
+        setMcqStates(prevStates => 
+            prevStates.map(state => {
+                if (state.id === mcqId && state.selectedOption !== null && !state.isSubmitted) {
+                    const selectedOptionData = questionData.options.find(option => 
+                        option.id === state.selectedOption
+                    );
+                    return {
+                        ...state,
+                        isSubmitted: true,
+                        isCorrect: selectedOptionData.isCorrect
+                    };
+                }
+                return state;
+            })
+        );
     };
 
     return (
-        <div className="pl-mcq-viewer">
-            <div className="pl-mcq-header">
-                <div className="pl-mcq-type">Q1 ({questionData.type})</div>
-                <div className="pl-mcq-actions">
-                    <button className="pl-icon-button">
-                        <img src={mcqBookmarkIcon} alt="Bookmark" width="20" height="20" />
-                    </button>
-                    <button className="pl-icon-button">
-                        <img src={mcqReportIcon} alt="Report" width="20" height="20" />
-                    </button>
-                </div>
-            </div>
-            
-            <div className="pl-mcq-content">
-                <p className="pl-mcq-question">{questionData.text}</p>
-                <div className="pl-mcq-difficulty">{questionData.difficulty}</div>
-                
-                <div className="pl-mcq-options">
-                    {questionData.options.map((option) => (
-                        <div 
-                            key={option.id} 
-                            className={`pl-mcq-option ${selectedOption === option.id ? 'selected' : ''} ${
-                                isSubmitted && option.id === selectedOption && !option.isCorrect ? 'incorrect' : ''
-                            } ${isSubmitted && option.isCorrect ? 'correct-answer' : ''}`}
-                            onClick={() => handleOptionSelect(option.id)}
-                        >
-                            <div className="pl-option-radio">
-                                {selectedOption === option.id && (
-                                    <div className="pl-option-radio-inner"></div>
-                                )}
-                            </div>
-                            <div className="pl-option-text">{option.text}</div>
-                            {isSubmitted && option.isCorrect && (
-                                <div className="pl-correct-label">Correct Answer</div>
-                            )}
+        <>
+            {mcqStates.map(mcqState => (
+                <div key={mcqState.id} className="pl-mcq-viewer">
+                    <div className="pl-mcq-header">
+                        <div className="pl-mcq-type">{mcqState.title} ({questionData.type})</div>
+                        <div className="pl-mcq-actions">
+                            <button className="pl-icon-button">
+                                <img src={mcqBookmarkIcon} alt="Bookmark" width="20" height="20" />
+                            </button>
+                            <button className="pl-icon-button">
+                                <img src={mcqReportIcon} alt="Report" width="20" height="20" />
+                            </button>
                         </div>
-                    ))}
-                </div>
-                
-                {isSubmitted && selectedOption !== null && !isCorrect && (
-                    <div className="pl-wrong-answer-message">Wrong answer</div>
-                )}
-                
-                {isSubmitted ? (
-                    <div className="pl-mcq-footer">
-                        <button className="pl-footer-button">
-                            <img src={mcqSolutionIcon} alt="Solution" width="16" height="16" />
-                            <span>Solution</span>
-                        </button>
-                        <button className="pl-footer-button">
-                            <img src={mcqCorrectPercentageIcon} alt="Correct Percentage" width="16" height="16" />
-                            <span>Correct %age</span>
-                        </button>
-                        <button className="pl-footer-button">
-                            <img src={mcqConceptVideoIcon} alt="Concept Video" width="16" height="16" />
-                            <span>Concept Video</span>
-                        </button>
-                        <button className="pl-footer-button">
-                            <img src={mcqConceptNotesIcon} alt="Concept Notes" width="16" height="16" />
-                            <span>Concept Notes</span>
-                        </button>
                     </div>
-                ) : (
-                    <button 
-                        className={`pl-submit-button ${selectedOption === null ? 'disabled' : ''}`}
-                        onClick={handleSubmit}
-                        disabled={selectedOption === null}
-                    >
-                        Submit
-                    </button>
-                )}
-            </div>
-        </div>
+                    
+                    <div className="pl-mcq-content">
+                        <p className="pl-mcq-question">{questionData.text}</p>
+                        <div className="pl-mcq-difficulty">{questionData.difficulty}</div>
+                        
+                        <div className="pl-mcq-options">
+                            {questionData.options.map((option) => (
+                                <div 
+                                    key={option.id} 
+                                    className={`pl-mcq-option ${mcqState.selectedOption === option.id ? 'selected' : ''} ${
+                                        mcqState.isSubmitted && option.id === mcqState.selectedOption && !option.isCorrect ? 'incorrect' : ''
+                                    } ${mcqState.isSubmitted && option.isCorrect ? 'correct-answer' : ''}`}
+                                    onClick={() => handleOptionSelect(option.id, mcqState.id)}
+                                >
+                                    <div className="pl-option-radio">
+                                        {mcqState.selectedOption === option.id && (
+                                            <div className="pl-option-radio-inner"></div>
+                                        )}
+                                    </div>
+                                    <div className="pl-option-text">{option.text}</div>
+                                    {mcqState.isSubmitted && option.isCorrect && (
+                                        <div className="pl-correct-label">Correct Answer</div>
+                                    )}
+                                </div>
+                            ))}
+                        </div>
+                        
+                        {mcqState.isSubmitted && mcqState.selectedOption !== null && !mcqState.isCorrect && (
+                            <div className="pl-wrong-answer-message">Wrong answer</div>
+                        )}
+                        
+                        {mcqState.isSubmitted ? (
+                            <div className="pl-mcq-footer">
+                                <button className="pl-footer-button">
+                                    <img src={mcqSolutionIcon} alt="Solution" width="16" height="16" />
+                                    <span>Solution</span>
+                                </button>
+                                <button className="pl-footer-button">
+                                    <img src={mcqCorrectPercentageIcon} alt="Correct Percentage" width="16" height="16" />
+                                    <span>Correct %age</span>
+                                </button>
+                                <button className="pl-footer-button">
+                                    <img src={mcqConceptVideoIcon} alt="Concept Video" width="16" height="16" />
+                                    <span>Concept Video</span>
+                                </button>
+                                <button className="pl-footer-button">
+                                    <img src={mcqConceptNotesIcon} alt="Concept Notes" width="16" height="16" />
+                                    <span>Concept Notes</span>
+                                </button>
+                            </div>
+                        ) : (
+                            <button 
+                                className={`pl-submit-button ${mcqState.selectedOption === null ? 'disabled' : ''}`}
+                                onClick={() => handleSubmit(mcqState.id)}
+                                disabled={mcqState.selectedOption === null}
+                            >
+                                Submit
+                            </button>
+                        )}
+                    </div>
+                </div>
+            ))}
+        </>
     );
 };
 
