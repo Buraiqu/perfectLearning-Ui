@@ -7,7 +7,7 @@ import BsSaveBlueIcon from '../../../../icons/BsSaveBlueIcon.svg'
 import BsBookMarkRemove from '../../../../icons/BsBookMarkRemove.svg'
 import BsBookMarkBlue from '../../../../icons/BsBookMarkBlue.svg'
 import BsExclamationTriangle from '../../../../icons/BsExclamationTriangle.svg'
-import video from './img3_video5432.mp4'
+import video from './movie.mov'
 import TopicsSideBardLoader from '../../../../components/TopicsSideBardLoader/topicsSideBarLoader'
 import VideoViewer from '../../../../components/VideoViewer/videoViewer';
 import PDFViewer from '../../../../components/PDFViewer/pdfViewer';
