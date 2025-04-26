@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import bsCameraVideoIcon from '../../icons/BsCameraVideoBlack.svg'
-import BsFileEaMarkText from '../../icons/BsFileEarMarkText.svg'
+import BsFileEaMarkText from '../../icons/BsFileEarmarkText.svg'
 import BsFilePpt from '../../icons/BsFilePpt.svg'
 import downArrowIcon from '../../icons/down-arrow-icon.svg';
 import circleGreenTick from  '../../icons/BsCheckCircleFill.svg'
