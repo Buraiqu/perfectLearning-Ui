@@ -3,9 +3,12 @@
     justify-content: space-between;
     display: flex;
     height: 9vh;
+    position: relative;
 
     .content-viewer{
         width: 79%;
+        position: relative;
+        z-index: 1;
     }
 
     .content-viewer-header{
@@ -374,4 +377,166 @@
         font-size: 12px;
         color: #666;
     } */
+    
+    /* Notes Sidebar Styles */
+    .notes-sidebar {
+        position: fixed;
+        top: 0;
+        right: -350px; /* Back to original size */
+        width: 350px;
+        height: 100vh;
+        background-color: #d8dade; /* Keeping the darker grey background */
+        z-index: 1001;
+        transition: right 0.3s ease;
+        display: flex;
+        justify-content: center; /* Center the white container */
+        align-items: center;
+        padding: 0;
+    }
+    
+    .notes-sidebar.open {
+        right: 0; /* Slide in */
+    }
+    
+    .notes-content-container {
+        width: 300px;
+        height: 95%; /* Reduced height for equal spacing */
+        background-color: #ffffff;
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
+    }
+    
+    .notes-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 16px 20px;
+        border-bottom: 1px solid #eaeaea;
+    }
+    
+    .notes-header h2 {
+        margin: 0;
+        font-size: 20px;
+        font-weight: 500;
+        color: #333;
+    }
+    
+    .close-notes {
+        background: transparent;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+        color: #666;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+    }
+    
+    .close-notes:hover {
+        background-color: #f5f5f5;
+    }
+    
+    .notes-content {
+        flex: 1;
+        overflow-y: auto;
+        padding: 10px;
+        background-color: #ffffff; /* White background */
+    }
+    
+    .note-item {
+        margin-bottom: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        border-radius: 8px;
+    }
+    
+    .note-content {
+        flex: 1;
+        background-color: #f4f5f7; /* Light grey background for note bubble */
+        padding: 15px;
+        border-radius: 8px;
+        position: relative;
+        padding-right: 65px; /* Make room for the action buttons */
+    }
+    
+    .note-text {
+        margin: 0 0 8px;
+        font-size: 14px;
+        line-height: 1.5;
+        color: #333;
+    }
+    
+    .note-date {
+        margin: 0;
+        font-size: 12px;
+        color: #666;
+    }
+    
+    .note-actions {
+        display: flex;
+        gap: 8px;
+        position: absolute;
+        top: 12px;
+        right: 12px;
+    }
+    
+    .edit-note,
+    .delete-note {
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 4px;
+        border-radius: 4px;
+        opacity: 0.8;
+    }
+    
+    .edit-note:hover,
+    .delete-note:hover {
+        background-color: #f5f5f5;
+    }
+    
+    .add-note-container {
+        display: flex;
+        padding: 16px 20px;
+        background-color: #ffffff;
+        border-top: 1px solid #eaeaea;
+        border-radius: 0 0 8px 8px;
+    }
+    
+    .add-note-input {
+        flex: 1;
+        padding: 10px 14px;
+        border: 1px solid #d1d1d1;
+        border-radius: 4px;
+        font-size: 14px;
+        color: #888;
+    }
+    
+    .add-note-button {
+        background: #03488B;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        padding: 0 12px;
+        margin-left: 8px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 40px;
+        height: 38px;
+    }
+    
+    .add-note-button:hover {
+        background: #023b73;
+    }
 }
