@@ -22,7 +22,7 @@ const McqViewer = ({ question }) => {
             title: 'Q1 - Not Submitted Example',
             selectedOption: null,
             isSubmitted: false,
-            isCorrect: false
+            isCorrect: true
         }
     ]);
 
