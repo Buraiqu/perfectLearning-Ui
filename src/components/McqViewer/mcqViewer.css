@@ -6,10 +6,10 @@
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
     padding: 24px;
     margin: 20px 0;
-    max-width: 900px;
+    max-width: 1000px;
     width: 100%;
     border: 1px solid #EAECF0;
-    
+
     .pl-mcq-header {
         display: flex;
         justify-content: space-between;
