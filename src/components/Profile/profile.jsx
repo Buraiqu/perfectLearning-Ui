@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import profileIcon from '../../icons/profile-icon.svg';
 import pencilIcon from '../../icons/pencil-icon-blue.svg';
 import './profile.css';
+import CustomSelect from '../../components/SelectBox/selectBox';
 
 const Profile = () => {
     const [country, setCountry] = useState('India');
@@ -23,9 +24,12 @@ const Profile = () => {
                 </div>
                 <div className="profile-stream">
                     <label>Stream</label>
-                    <select defaultValue="Engineering">
-                        <option value="Engineering">Engineering</option>
-                    </select>
+                    <CustomSelect
+                        value='Engineering'
+                        onChange={setGender}
+                        options={['Engineering']}
+                        className="custom-select"
+                    />
                 </div>
             </div>
 
@@ -43,10 +47,12 @@ const Profile = () => {
 
                 <div className="form-row">
                     <div className="form-group">
-                        <label>Country</label>
-                        <select value={country} onChange={(e) => setCountry(e.target.value)}>
-                            <option value="India">India</option>
-                        </select>
+                        <CustomSelect
+                            label="Country"
+                            value={country}
+                            onChange={setCountry}
+                            options={['India']}
+                        />
                     </div>
                     <div className="form-group">
                         <label>Address Line 2</label>
@@ -70,12 +76,12 @@ const Profile = () => {
 
                 <div className="form-row">
                     <div className="form-group">
-                        <label>Gender</label>
-                        <select value={gender} onChange={(e) => setGender(e.target.value)}>
-                            <option value="Female">Female</option>
-                            <option value="Male">Male</option>
-                            <option value="Other">Other</option>
-                        </select>
+                        <CustomSelect
+                            label="Gender"
+                            value={gender}
+                            onChange={setGender}
+                            options={['Female', 'Male', 'Other']}
+                        />
                     </div>
                     <div className="form-group">
                         <label>City</label>
@@ -112,10 +118,12 @@ const Profile = () => {
 
                 <div className="form-row">
                     <div className="form-group">
-                        <label>Education Qualification</label>
-                        <select value={education} onChange={(e) => setEducation(e.target.value)}>
-                            <option value="11th Standard">11th Standard</option>
-                        </select>
+                        <CustomSelect
+                            label="Education Qualification"
+                            value={education}
+                            onChange={setEducation}
+                            options={['11th Standard']}
+                        />
                     </div>
                 </div>
 
