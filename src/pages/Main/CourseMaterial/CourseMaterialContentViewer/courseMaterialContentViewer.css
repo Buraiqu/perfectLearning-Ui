@@ -246,6 +246,12 @@
         font-size: 16px;
         background: none;
         border: none;
+        transition: opacity 0.2s ease;
+    }
+
+    .nav-button:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
     }
     
     /* .nav-button img {

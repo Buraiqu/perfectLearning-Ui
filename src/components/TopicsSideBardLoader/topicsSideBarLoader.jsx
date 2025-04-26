@@ -6,9 +6,8 @@ import downArrowIcon from '../../icons/down-arrow-icon.svg';
 import circleGreenTick from  '../../icons/BsCheckCircleFill.svg'
 import './topicsSideBarLoader.css'
 
-const TopicsSideBardLoader = ({topics, onSelectItem}) => {
+const TopicsSideBardLoader = ({topics, onSelectItem, selectedTopic, selectedItem}) => {
 
-    const [selectedItem, setSelectedItem] = useState(topics[0].items[0])
     const [expand, setExpand] = useState(true)
 
 
@@ -55,10 +54,11 @@ const TopicsSideBardLoader = ({topics, onSelectItem}) => {
                                 {topic.items.map((item) => (
                                     <div 
                                         key={item.id} 
-                                        className={`topic-item ${selectedItem.id === item.id ? 'selected' : ''}`}
+                                        className={`topic-item ${selectedTopic === index && topics[selectedTopic].items[selectedItem].id === item.id ? 'selected' : ''}`}
                                         onClick={() => {
-                                            setSelectedItem(item);
-                                            onSelectItem?.(item);
+                                            // Find the index of the item within its topic
+                                            const itemIndex = topic.items.findIndex(i => i.id === item.id);
+                                            onSelectItem?.(item, index, itemIndex);
                                         }}
                                     >
                                         {item.status === 'completed' ? (
