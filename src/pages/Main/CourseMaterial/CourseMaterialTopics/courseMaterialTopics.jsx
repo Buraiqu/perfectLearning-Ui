@@ -4,7 +4,7 @@ import verticalThreeDot from '../../../../icons/verticalThreeDot-icon.svg'
 import downArrowIcon from '../../../../icons/down-arrow-icon.svg';
 import circleGreenTick from  '../../../../icons/BsCheckCircleFill.svg'
 import bsCameraVideoIcon from '../../../../icons/BsCameraVideoBlack.svg';
-import BsFileEaMarkText from '../../../../icons/BsFileEarMarkText.svg'
+import BsFileEaMarkText from '../../../../icons/BsFileEarmarkText.svg'
 import BsFilePpt from '../../../../icons/BsFilePpt.svg'
 import BsGeo from '../../../../icons/BsGeo.svg'
 import BsGeoAlt from '../../../../icons/BsGeoAlt.svg'
