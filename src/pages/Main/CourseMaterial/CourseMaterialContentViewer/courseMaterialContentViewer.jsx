@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import downArrowIcon from '../../../../icons/down-arrow-icon.svg';
 import './courseMaterialContentViewer.css'
-import BsBookMark from '../../../../icons/BsBookMarks.svg'
+import BsBookMark from '../../../../icons/BsBookmarks.svg'
 import BsSaveBlueIcon from '../../../../icons/BsSaveBlueIcon.svg'
 import BsBookMarkRemove from '../../../../icons/BsBookMarkRemove.svg'
 import BsBookMarkBlue from '../../../../icons/BsBookMarkBlue.svg'
