@@ -7,12 +7,18 @@ import { useNavigate } from "react-router-dom";
 import Notification from '../Notification/notification';
 import NavAvatar from '../NavAvatar/navAvatar';
 import useWindowSize from '../../hooks/useWindowSize';
+import { useSearch } from '../../context/searchContext';
 
 const CustomNavbar = ({user}) => {
     const navigate = useNavigate();
     const [expanded, setExpanded] = useState(false);
     const { width } = useWindowSize();
     const isMobile = width <= 1130;
+    const { searchQuery, setSearchQuery } = useSearch();
+
+    const handleSearchChange = (e) => {
+        setSearchQuery(e.target.value);
+    };
 
     useEffect(() => {
         if (expanded && isMobile) {
@@ -64,6 +70,8 @@ const CustomNavbar = ({user}) => {
                                 placeholder="Search"
                                 className="search-input"
                                 aria-label="Search"
+                                value={searchQuery}
+                                onChange={handleSearchChange}
                             />
                             <div className="search-icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
