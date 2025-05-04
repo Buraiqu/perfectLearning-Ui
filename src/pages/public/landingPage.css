@@ -196,6 +196,72 @@
   border: none;
 }
 
+/* Skeleton Loader Styles */
+@keyframes pulse {
+  0% { opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { opacity: 0.6; }
+}
+
+.skeleton-category {
+  height: 32px;
+  width: 250px;
+  background-color: #e0e0e0;
+  margin-top: 2rem;
+  margin-bottom: 1.5rem;
+  border-radius: 4px;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.skeleton-course-card {
+  height: 100%;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.skeleton-image {
+  height: 180px;
+  background-color: #e0e0e0;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.skeleton-content {
+  padding: 1rem;
+}
+
+.skeleton-title {
+  height: 24px;
+  width: 80%;
+  background-color: #e0e0e0;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.skeleton-text {
+  height: 16px;
+  width: 90%;
+  background-color: #e0e0e0;
+  margin-bottom: 16px;
+  border-radius: 4px;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.skeleton-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.skeleton-button {
+  height: 36px;
+  flex: 1;
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
 /* Carousel Customization */
 
 /* .carousel-indicators {
