@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Container, Form, Modal, Spinner } from 'react-bootstrap';
+import { Container, Form, Modal, Spinner, Button } from 'react-bootstrap';
 import calenderIcon from '../../icons/calender-icon.svg'
 import clockIcon from '../../icons/clock-icon.svg'
 import circleTickIcon from '../../icons/circle-tick-icon.svg'
@@ -18,6 +18,7 @@ const SubscriptionPlansComponent = ({courseId, data}) => {
     const [coursePlanFeatures, setCoursePlanFeatures] = useState([])
     const [isLoading, setIsLoading] = useState(false)
     const [planLoading, setPlanLoading] = useState(false)
+    const [showDescModal, setShowDescModal] = useState(false)
 
     const navigate = useNavigate()
     useEffect(() => {
@@ -122,6 +123,28 @@ const SubscriptionPlansComponent = ({courseId, data}) => {
         }
     };
 
+
+    function truncateHtml(htmlString, maxLength) {
+        if (!htmlString) return '';
+
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = htmlString;
+        
+        const textContent = tempDiv.textContent || tempDiv.innerText;
+        
+        if (textContent.length <= maxLength) {
+            return htmlString;
+        }
+        
+        let truncatedText = textContent.substring(0, maxLength);
+        const lastSpaceIndex = truncatedText.lastIndexOf(' ');
+        if (lastSpaceIndex > maxLength * 0.8) {
+            truncatedText = truncatedText.substring(0, lastSpaceIndex);
+        }
+    
+        return truncatedText;
+    };
+
     const isFeatureAvailable = (availabilityDate) => {
         if (!availabilityDate) return false;
         
@@ -178,7 +201,27 @@ const SubscriptionPlansComponent = ({courseId, data}) => {
                                 </div>
                             )}
                             <div className="course-code mb-3">{courseDetails.Exam_Short_Name}</div>
-                            <p className="course-description">{courseDetails.Course_Description}</p>
+                            <div className="course-description">
+                                <div dangerouslySetInnerHTML={{ __html: truncateHtml(courseDetails.Course_Description, 305) }}></div>
+                                {courseDetails.Course_Description && courseDetails.Course_Description.length > 305 && (
+                                    <div className="view-more-container">
+                                        <span>...</span>
+                                        <Button variant="link" className="view-more-btn" onClick={() => setShowDescModal(true)}>View More</Button>
+                                    </div>
+                                )}
+                            </div>
+
+                            <Modal show={showDescModal} onHide={() => setShowDescModal(false)} size="xl" centered>
+                                <Modal.Header closeButton>
+                                    <Modal.Title>Course Description</Modal.Title>
+                                </Modal.Header>
+                                <Modal.Body>
+                                    <div dangerouslySetInnerHTML={{ __html: courseDetails.Course_Description }}></div>
+                                </Modal.Body>
+                                <Modal.Footer>
+                                    <Button variant="secondary" onClick={() => setShowDescModal(false)}>Close</Button>
+                                </Modal.Footer>
+                            </Modal>
                         </div>
 
                         <div className="course-details-right">
@@ -263,9 +306,9 @@ const SubscriptionPlansComponent = ({courseId, data}) => {
                                 <div className="plan-badge">LD</div>
                                 <div>
                                     <h4 className="plan-title">{plan.Course_Plan_Name}</h4>
-                                    <div className="standard-price">Standard Price: <span>{getCurrencySymbol(plan.Currency_Code)}{plan.Course_Plan_Standard_Price}</span></div>
+                                    <div className="standard-price">Standard Price: <span>{getCurrencySymbol('INR')}{plan.Course_Plan_Standard_Price}</span></div>
                                     <div className="offer-price">
-                                        <div className="offer-price-amount">Offer Price: <span className="price-value">{getCurrencySymbol(plan.Currency_Code)}{plan.Course_Plan_Current_Offer_Price}</span></div>
+                                        <div className="offer-price-amount">Offer Price: <span className="price-value">{getCurrencySymbol('INR')}{plan.Course_Plan_Current_Offer_Price}</span></div>
                                         <span className="offer-ends">{calculateDaysRemaining(plan.Course_Plan_Current_Offer_Price_End_Date)}</span>
                                     </div>
                                 </div>

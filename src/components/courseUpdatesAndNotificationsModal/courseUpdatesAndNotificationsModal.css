@@ -1,77 +1,108 @@
 
-.course-updates-modal .modal-content {
-    border-radius: 8px;
-    border: none;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-}
+.course-updates-modal{
 
-.course-updates-modal .modal-header {
-    border-bottom: none;
-    padding: 20px 40px 10px;
-}
-
-.course-updates-modal .modal-title {
-    font-size: 18px;
-    font-weight: 500;
-    color: #1A1A1A;
-}
-
-.course-updates-modal .modal-body {
-    padding: 10px 40px;
-}
-
-.course-updates-modal .modal-body p {
-    color: #4B5563;
-    font-size: 14px;
-    margin-bottom: 20px;
-}
-
-.course-updates-modal .modal-footer {
-    border-top: none;
-    padding: 20px 40px;
-}
-
-.course-updates-modal .form-label {
-    font-size: 14px;
-    font-weight: 500;
-    color: #1A1A1A;
-    margin-bottom: 8px;
-}
-
-.course-updates-modal .notification-radio-group {
-    display: flex;
-    gap: 12px;
-    margin-top: 8px;
-}
-
-.course-updates-modal .notification-radio {
-    margin: 0;
-}
-
-.course-updates-modal .notification-radio .form-check-input {
-    margin-right: 10px;
-}
-
-.course-updates-modal .notification-radio .form-check-label {
-    font-size: 14px;
-    color: #1A1A1A;
-}
-
-.form-control:focus,
-.form-select:focus {
-    border-color: #03488B;
-    box-shadow: 0 0 0 2px rgba(3, 72, 139, 0.1);
-}
-
-.form-control::placeholder {
-    color: #9CA3AF;
-}
-
-/* Close button */
-.btn-close {
-    opacity: 0.5;
-}
-
-.btn-close:hover {
-    opacity: 0.75;
+    .modal-dialog {
+        max-width: 600px;
+    }
+    .modal-content {
+        border-radius: 8px;
+        border: none;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    }
+    
+    .modal-header {
+        border-bottom: none;
+        padding: 40px 70px 10px;
+    }
+    
+    .modal-title {
+        font-size: 18px;
+        font-weight: 500;
+        color: #1A1A1A;
+    }
+    
+    
+    .notification-btn {
+        background-color: #03488B;
+        color: white;
+        border: none;
+        padding: 12px 32px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: 400;
+        transition: background-color 0.2s;
+    }
+    
+    .notification-btn:hover {
+        background-color: #023b73;
+    }
+    
+    .modal-body {
+        padding: 10px 70px;
+    }
+    
+    .modal-body p {
+        color: #4B5563;
+        font-size: 14px;
+        margin-bottom: 20px;
+    }
+    
+    .modal-footer {
+        border-top: none;
+        padding: 40px 70px;
+    }
+    
+    .form-label {
+        font-size: 14px;
+        font-weight: 500;
+        color: #1A1A1A;
+        margin-bottom: 8px;
+    }
+    
+    .notification-radio-group {
+        display: flex;
+        gap: 12px;
+        margin-top: 8px;
+    }
+    
+    .notification-radio {
+        margin: 0;
+    }
+    
+    .notification-radio .form-check-input {
+        margin-right: 10px;
+    }
+    
+    .notification-radio .form-check-label {
+        font-size: 14px;
+        color: #1A1A1A;
+    }
+    
+    .form-control:focus,
+    .form-select:focus {
+        border-color: #03488B;
+        box-shadow: 0 0 0 2px rgba(3, 72, 139, 0.1);
+    }
+    
+    .form-control::placeholder {
+        color: #9CA3AF;
+    }
+    
+    /* Close button */
+    .btn-close {
+        opacity: 0.5;
+    }
+    
+    .btn-close:hover {
+        opacity: 0.75;
+    }
+    
+    @media (max-width: 480px) {
+        .notification-btn {
+            width: 100%;
+            padding: 12px 20px;
+            font-size: 15px;
+        }
+    }
 }
