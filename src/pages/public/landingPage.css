@@ -1,0 +1,287 @@
+.hero-section {
+  padding: 1rem 1rem 4rem;
+  background-color: #ffffff;
+  position: relative;
+}
+
+.background-grey{
+  background-color: #F3F2F0 !important;
+}
+
+.background-white{
+  background-color: white !important;
+}
+
+.hero-section h1 {
+  font-size: 4rem;
+  font-weight: bold;
+  line-height: 1.2;
+}
+
+.text-navy {
+  color: #003366;
+}
+
+.text-blue {
+  color: #0066cc;
+}
+
+.hero-image {
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+}
+
+.section-title {
+  color: #2A2A2A;
+  margin-bottom: 5rem;
+  font-weight: 500;
+  text-align: center;
+  font-size: 48px;
+  line-height: 1.2;
+}
+
+.course-category {
+  color: #2A2A2A;
+  margin-bottom: 2.5rem;
+  font-size: 36px;
+  line-height: 1.2;
+  font-weight: 500;
+}
+
+/* Responsive text sizes */
+@media (max-width: 1199px) {
+  .section-title {
+    font-size: 42px;
+    margin-bottom: 4rem;
+  }
+  
+  .course-category {
+    font-size: 32px;
+    margin-bottom: 2rem;
+  }
+}
+
+@media (max-width: 991px) {
+  .section-title {
+    font-size: 36px;
+    margin-bottom: 3.5rem;
+  }
+  
+  .course-category {
+    font-size: 28px;
+    margin-bottom: 1.8rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .section-title {
+    font-size: 32px;
+    margin-bottom: 3rem;
+  }
+  
+  .course-category {
+    font-size: 24px;
+    margin-bottom: 1.5rem;
+  }
+}
+
+@media (max-width: 575px) {
+  .section-title {
+    font-size: 28px;
+    margin-bottom: 2.5rem;
+  }
+  
+  .course-category {
+    font-size: 22px;
+    margin-bottom: 1.2rem;
+  }
+}
+
+.courses-section {
+  padding: 2rem 0;
+  background-color: #F3F2F0;
+}
+
+@media (max-width: 768px) {
+  .course-title {
+    font-size: 1.25rem;
+  }
+  
+  .course-image-container {
+    height: 160px;
+  }
+  
+  .course-content {
+    padding: 1rem;
+  }
+}
+
+.other-course-card {
+  width: 100%;
+  max-width: 604px;
+  height: 216px;
+  font-size: 36px;
+  font-weight: 500;
+  line-height: 43.2px;
+  text-align: center;
+  color: #FFFFFF;
+  border-radius: 10px;
+  background-color: #2E69A2;
+  margin: 0 auto;
+}
+
+.other-course-card:hover {
+  transform: translateY(-2px);
+}
+
+.other-course-card .card-title {
+  font-size: 1rem;
+  margin: 0;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.other-card-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 50px;
+  padding-right: 50px;
+  height: 100%;
+}
+
+.other-card-title {
+  font-size: 36px !important;
+}
+
+@media (max-width: 768px) {
+  .other-course-card {
+    height: 180px;
+  }
+  
+  .other-card-title {
+    font-size: 28px !important;
+  }
+  
+  .other-card-body {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  .other-course-card {
+    height: 150px;
+  }
+  
+  .other-card-title {
+    font-size: 24px !important;
+  }
+  
+  .other-card-body {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
+.show-more-btn {
+  width: 139px;
+  height: 48px;
+  border-radius: 6px;
+  padding: 0px 10px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19.2px;
+  border: none;
+}
+
+/* Skeleton Loader Styles */
+@keyframes pulse {
+  0% { opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { opacity: 0.6; }
+}
+
+.skeleton-category {
+  height: 32px;
+  width: 250px;
+  background-color: #e0e0e0;
+  margin-top: 2rem;
+  margin-bottom: 1.5rem;
+  border-radius: 4px;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.skeleton-course-card {
+  height: 100%;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.skeleton-image {
+  height: 180px;
+  background-color: #e0e0e0;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.skeleton-content {
+  padding: 1rem;
+}
+
+.skeleton-title {
+  height: 24px;
+  width: 80%;
+  background-color: #e0e0e0;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.skeleton-text {
+  height: 16px;
+  width: 90%;
+  background-color: #e0e0e0;
+  margin-bottom: 16px;
+  border-radius: 4px;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.skeleton-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.skeleton-button {
+  height: 36px;
+  flex: 1;
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+/* Carousel Customization */
+
+/* .carousel-indicators {
+  bottom: -50px;
+}
+
+.carousel-indicators [data-bs-target] {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #03488B;
+  opacity: 0.5;
+  margin: 0 5px;
+}
+
+.carousel-indicators .active {
+  opacity: 1;
+} */
+@media (min-width: 768px) and (max-width: 991px) {
+  .custom-cont{
+    max-width: 758px !important;
+  }
+}

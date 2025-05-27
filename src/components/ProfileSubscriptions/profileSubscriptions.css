@@ -1,0 +1,85 @@
+.subscription-content {
+    padding: 24px;
+    background: #fff;
+}
+
+.subscription-table {
+    width: 100%;
+    margin-bottom: 24px;
+    border: 1px solid #E0E1E9;
+    border-radius: 12px;
+}
+
+.table-header {
+    display: grid;
+    grid-template-columns: 2fr 2fr 1.5fr 1fr 1fr 1fr;
+    padding: 16px 24px;
+    color: #666;
+    font-size: 14px;
+}
+
+.header-cell {
+    text-align: left;
+    font-weight: 500;
+    color: #6C6E79;
+}
+
+.table-body {
+    background: #fff;
+}
+
+.table-row {
+    display: grid;
+    grid-template-columns: 2fr 2fr 1.5fr 1fr 1fr 1fr;
+    padding: 16px 24px;
+    align-items: center;
+}
+
+.table-row:nth-child(odd) {
+    background-color: #F8FBFF;
+}
+
+.body-cell {
+    color: #333;
+    font-size: 14px;
+}
+
+.body-cell:first-child {
+    color: #2E69A2;
+    font-size: 16px;
+    font-weight: 500;
+}
+.body-cell:nth-child(2) {
+    color: #2E69A2;
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.status-badge.active {
+    color: #666;
+    font-size: 14px;
+}
+
+.upgrade-btn {
+    background-color: #03488B;
+    color: white;
+    border: none;
+    padding: 4px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: 400;
+}
+
+.explore-courses-btn {
+    background-color: #03488B;
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 400;
+    display: block;
+    margin: 24px auto;
+    font-size: 14px;
+}

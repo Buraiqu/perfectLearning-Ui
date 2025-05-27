@@ -1,0 +1,334 @@
+.course-material-topics-section {
+    padding: 24px;
+
+    .course-material-topics {
+        padding: 24px;
+        background: #FFFFFF;
+    }
+
+    .topics-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 24px;
+    }
+
+    .header-left h2 {
+        font-size: 24px;
+        color: #03488B;
+        margin-bottom: 8px;
+    }
+
+    .header-left h3 {
+        font-size: 16px;
+        color: #666;
+        font-weight: normal;
+    }
+
+    .course-material-topics-header{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 25px;
+    }
+
+    .topics-breadcrumb {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: #03488B;
+        font-size: 16px;
+    }
+
+    .breadcrumb-item {
+        cursor: pointer;
+    }
+
+    .breadcrumb-item:hover {
+        text-decoration: underline;
+    }
+
+    .breadcrumb-separator {
+        color: #666;
+    }
+
+    .download-syllabus {
+        padding: 8px 16px;
+        background: #F4F5F9;
+        border: 1px solid #03488B;
+        color: #03488B;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    .download-syllabus:hover {
+        background: #F5F8FB;
+    }
+
+    .progress-summary {
+        display: flex;
+        align-items: center;
+        gap: 32px;
+        border-radius: 8px;
+    }
+
+    .time-left {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+    }
+
+    .time-left span {
+        font-size: 14px;
+        color: #0E0E0E;
+        font-weight: 500;
+    }
+
+    .time-left .label {
+        font-size: 14px;
+        color: #6C6E79;
+        font-weight: 400;
+    }
+
+    /* .topics-container {
+        background: #FFFFFF;
+        border-radius: 8px;
+    } */
+
+    .topic-section {
+        background-color: #FFFFFF;
+        border-radius: 8px;
+        margin-bottom: 10px;
+    }
+
+    .topic-header{
+        justify-content: space-between;
+    }
+
+    .topic-header, .subsection-header {
+        display: flex;
+        align-items: center;
+        padding: 16px 25px;
+        cursor: pointer;
+        transition: background-color 0.2s;
+    }
+
+    /* .topic-header:hover, .subsection-header:hover {
+        background-color: #F5F8FB;
+    } */
+
+    /* .topic-header.expanded, .subsection-header.expanded {
+        background-color: #F5F8FB;
+    } */
+
+    .topic-name {
+        font-size: 20px;
+        font-weight: 500;
+        color: #0E0E0E;
+    }
+
+    .subsection {
+        margin-left: 24px;
+        margin-top: 10px;
+    }
+
+    .subsection-header {
+        padding: 12px 16px;
+    }
+
+    .subsection-name {
+        font-size: 20px;
+        font-weight: 400;
+        color: #0E0E0E;
+    }
+
+    .items-list {
+        margin-left: 24px;
+        margin-right: 20px;
+        padding-bottom: 10px;
+    }
+
+    .topics-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 24px;
+    }
+
+    .topics-header h3 {
+        font-size: 20px;
+        font-weight: 500;
+        color: #0E0E0E;
+    }
+
+    .dropdown-arrow {
+        width: 16px;
+        height: 16px;
+        transition: transform 0.2s ease;
+        transform: rotate(270deg);
+        margin-right: 12px;
+    }
+    
+    .dropdown-arrow.rotated {
+        transform: rotate(0deg);
+    }
+
+    .course-topics-progress-bar-section{
+        display: flex;
+        justify-content: center;
+    }
+
+    .course-topics-progress-bar{
+        border-radius: 0px;
+        height: 4px;
+        background: #E0E1E9;
+        overflow: hidden;
+        position: relative;
+        width: 95%;
+    }
+
+    .course-topics-progress{
+        background: #03488B;
+        min-width: 1%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        transition: width 0.3s ease;
+    }
+
+    .threedot-container {
+        position: relative;
+    }
+
+    .vertical-threedot {
+        cursor: pointer;
+        width: 40px;
+        height: 40px;
+        padding: 10px;
+    }
+
+    .topic-info-dropdown {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        width: 280px;
+        z-index: 1000;
+        padding: 16px;
+    }
+
+    .topic-info-item {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        margin-bottom: 16px;
+    }
+
+    .topic-info-item:last-child {
+        margin-bottom: 0;
+    }
+
+    .topic-info-icon {
+        width: 20px;
+        height: 20px;
+    }
+
+    .topic-info-text {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .last-item{
+        color: black;
+        text-decoration: none !important;
+        cursor: default;
+    }
+
+    .info-label {
+        font-size: 14px;
+        color: #6C6E79;
+        font-weight: 400;
+    }
+
+    .info-value {
+        font-size: 16px;
+        color: #0E0E0E;
+        font-weight: 500;
+    }
+
+    .subtopics-list {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .topic-item {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 8px 16px;
+        cursor: pointer;
+        transition: background-color 0.2s;
+        margin: 4px 0;
+        border-radius: 5px;
+    }
+
+    .item-content{
+        display: flex;
+        flex-direction: column;
+        width: 84%;
+    }
+
+    .resume-button{
+        background-color: #03488B;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        padding: 10px;
+    }
+
+    .topic-item:hover {
+        background-color: #C5DDF399;
+    }
+
+    /* .topic-item.completed {
+        background-color: #F5F8FB;
+    } */
+
+    .subtopic-item:hover {
+        background: #C5DDF399;
+    }
+
+    .subtopic-item.completed {
+        background: #F5F8FB;
+    }
+
+    .type-icon {
+        font-size: 16px;
+        width: 24px;
+        text-align: center;
+    }
+
+    .item-name {
+        flex: 1;
+        font-size: 14px;
+        color: #0E0E0E;
+    }
+
+    .item-duration {
+        color: #666;
+        font-size: 12px;
+    }
+
+    .completed-icon {
+        color: #03488B;
+        font-size: 18px;
+    }
+}

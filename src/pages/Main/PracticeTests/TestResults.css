@@ -1,0 +1,529 @@
+.test-results-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Inter', sans-serif;
+    color: #333;
+}
+
+.test-results-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.test-results-header-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.test-results-logo {
+    width: 40px;
+    height: 40px;
+}
+
+.test-results-header-left h1 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+}
+
+.test-results-header-right {
+    font-size: 14px;
+    color: #666;
+}
+
+.results-cards-row {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 30px;
+    gap: 20px;
+}
+
+.result-card {
+    background-color: #f9f9f9;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    text-align: left;
+    flex: 1;
+    max-width: calc(50% - 10px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 220px;
+}
+
+.result-card h2 {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.score-display h3, .score-percentage h4 {
+    font-size: 32px;
+    color: #003986;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+/* Combined with .score-display h3, so this specific rule can be removed or commented out if no longer needed elsewhere. For safety, I'll comment it out. */
+/*
+.score-percentage h4 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #003986;
+    margin: 8px 0;
+}
+*/
+
+.score-note p {
+    font-size: 14px;
+    color: #777;
+    margin-top: auto;
+    line-height: 1.4;
+}
+
+.score-note p strong {
+    color: #003986;
+    font-weight: 600;
+}
+
+.subject-performance-card {
+    flex: 2;
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.subject-performance-card h2 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: #333;
+}
+
+.score-display h3 {
+    font-size: 36px;
+    font-weight: 700;
+    color: #003986;
+    margin: 8px 0;
+    text-align: center;
+}
+
+.score-percentage h4 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #003986;
+    margin: 8px 0;
+    text-align: center;
+}
+
+.score-note {
+    font-size: 12px;
+    color: #666;
+    margin-top: 16px;
+    text-align: center;
+}
+
+.subject-performance-card {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.subject-performance-card h2 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.chart-container {
+    padding: 10px 20px;
+    margin-top: 10px;
+}
+
+.bar-graph-row {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+    position: relative;
+    min-height: 160px;
+    padding-bottom: 2px;
+}
+
+.base-line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: #e0e0e0;
+    z-index: 1;
+}
+
+.bar-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 160px;
+    position: relative;
+    padding-top: 30px;
+}
+
+.percentage-label {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    position: absolute;
+    top: -20px;
+    text-align: center;
+    width: 100%;
+}
+
+.test-results-chart-icon {
+    width: 75px;
+    height: 75px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+}
+
+.test-results-chart-icon.green {
+    fill: #4CAF50;
+}
+
+.test-results-chart-icon.blue {
+    fill: #1E5AA8;
+}
+
+.test-results-chart-icon.orange {
+    fill: #FF9800;
+}
+
+.bar {
+    width: 140px;
+    height: 100px;
+    border-radius: 4px 4px 0 0;
+    margin-top: 0;
+    min-height: 40px;
+    transition: height 0.3s ease;
+    position: relative;
+    transform-origin: bottom;
+}
+
+.subject-name {
+    margin-top: 8px;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #333;
+    text-align: center;
+    font-weight: 500;
+}
+
+.subject-label {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #333;
+    text-align: center;
+}
+
+.score-note p {
+    margin: 4px 0;
+}
+
+.score-note strong {
+    color: #003986;
+    font-weight: 600;
+}
+
+.subject-performance-card h2 {
+    margin-bottom: 20px;
+}
+
+.test-score-card h2 {
+    margin-bottom: 20px;
+}
+
+.subject-wise-summary {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 32px;
+}
+
+.subject-wise-summary h2 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 24px;
+    color: #333;
+}
+
+.subject-summary-charts {
+    display: flex;
+    justify-content: space-around;
+    gap: 24px;
+}
+
+.subject-summary-chart {
+    flex: 1;
+    text-align: center;
+}
+
+.subject-summary-chart h3 {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: #333;
+}
+
+.chart-bars {
+    display: flex;
+    justify-content: space-around;
+    height: 220px;
+    margin-bottom: 8px;
+    align-items: flex-end;
+    gap: 8px;
+}
+
+.chart-bar {
+    width: 40px;
+    border-radius: 4px 4px 0 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.bar-value {
+    position: absolute;
+    top: -25px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #333;
+}
+
+.bar-label {
+    position: absolute;
+    bottom: -30px;
+    font-size: 10px;
+    text-align: center;
+    color: #666;
+    width: 100%;
+}
+
+.chart-labels {
+    display: flex;
+    justify-content: space-around;
+    font-size: 10px;
+    color: #666;
+}
+
+.test-stats-summary {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 32px;
+    gap: 16px;
+}
+
+.stat-item {
+    flex: 1;
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.stat-item h3 {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: #666;
+}
+
+.stat-value {
+    font-size: 24px;
+    font-weight: 700;
+    color: #003986;
+}
+
+.questions-review-section {
+    margin-bottom: 32px;
+}
+
+.question-review-card {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 24px;
+    border-left: 4px solid transparent;
+}
+
+.question-review-card.correct {
+    border-left-color: #84cc16;
+}
+
+.question-review-card.incorrect {
+    border-left-color: #ef4444;
+}
+
+.question-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.question-id {
+    font-weight: 600;
+    color: #333;
+}
+
+.time-spent {
+    font-size: 14px;
+    color: #666;
+}
+
+.question-text {
+    margin-bottom: 16px;
+    line-height: 1.5;
+}
+
+.question-scoring {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 16px;
+    font-size: 13px;
+}
+
+.correct-score {
+    color: #84cc16;
+}
+
+.wrong-score {
+    color: #ef4444;
+}
+
+.options-container {
+    margin-bottom: 16px;
+}
+
+.option {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    margin-bottom: 8px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+}
+
+.option.selected {
+    background-color: #eef4ff;
+    border-color: #003986;
+}
+
+.option.correct {
+    background-color: #f0fdf4;
+    border-color: #84cc16;
+}
+
+.option.selected.correct {
+    background-color: #f0fdf4;
+    border-color: #84cc16;
+}
+
+.option-radio {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #003986;
+    border-radius: 50%;
+    margin-right: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.radio-inner {
+    width: 10px;
+    height: 10px;
+    background-color: #003986;
+    border-radius: 50%;
+}
+
+.option-id {
+    margin-right: 8px;
+    color: #666;
+}
+
+.answer-status {
+    margin-bottom: 16px;
+    font-size: 14px;
+    color: #666;
+}
+
+.question-actions {
+    display: flex;
+    gap: 12px;
+}
+
+.action-btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #f5f5f5;
+    color: #333;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.action-btn:hover {
+    background-color: #e0e0e0;
+}
+
+.action-btn.bookmark {
+    color: #003986;
+}
+
+.action-btn.solution {
+    color: #84cc16;
+}
+
+.action-btn.report {
+    color: #ef4444;
+}
+
+.back-to-tests {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.back-btn {
+    padding: 10px 24px;
+    background-color: #003986;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.back-btn:hover {
+    background-color: #002b66;
+}
