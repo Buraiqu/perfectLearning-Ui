@@ -23,6 +23,10 @@ import StudyPlanner from './pages/Main/StudyPlanner/studyPlanner';
 import CourseMaterialTopics from './pages/Main/CourseMaterial/CourseMaterialTopics/courseMaterialTopics';
 import CourseMaterialMain from './pages/Main/CourseMaterial/CourseMaterialLanding/courseMaterial';
 import CourseMaterialContentViewer from './pages/Main/CourseMaterial/CourseMaterialContentViewer/courseMaterialContentViewer';
+import PracticeTests from './pages/Main/PracticeTests/practiceTests';
+import TestPage from './pages/Main/PracticeTests/TestPage';
+import TestResults from './pages/Main/PracticeTests/TestResults';
+import TestNavigator from './pages/Main/PracticeTests/TestNavigator';
 
 function App() {
 
@@ -68,6 +72,10 @@ function App() {
               <Route path="course-material" element={<CourseMaterialMain/>} />
               <Route path="course-material-topics" element={<CourseMaterialTopics />} />
               <Route path="course-material-content-viewer" element={<CourseMaterialContentViewer />} />
+              <Route path="practice-tests" element={<PracticeTests />} />
+              <Route path="practice-tests/test" element={<TestPage />} />
+              <Route path="practice-tests/results" element={<TestResults />} />
+              <Route path="practice-tests/navigator" element={<TestNavigator />} />
             </Route>
           </Route>
 

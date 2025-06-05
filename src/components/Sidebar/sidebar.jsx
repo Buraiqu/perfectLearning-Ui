@@ -41,7 +41,7 @@ const Sidebar = ({expand, onMenuClick}) => {
         },
         {
             title: 'Practice Tests',
-            path: '/practice-tests',
+            path: '/main/practice-tests',
             icon: practiceTestIcon,
             activeIcon: practiceTestActiveIcon
         },
@@ -88,9 +88,9 @@ const Sidebar = ({expand, onMenuClick}) => {
                     <Link
                         key={index}
                         to={item.path}
-                        className={`side-nav-item ${location.pathname === item.path ? 'active' : ''}`}
+                        className={`side-nav-item ${location.pathname.startsWith(item.path) ? 'active' : ''}`}
                     >
-                        <img className="menu-icon" src={location.pathname === item.path ? item.activeIcon : item.icon}></img>
+                        <img className="menu-icon" src={location.pathname.startsWith(item.path) ? item.activeIcon : item.icon} alt={item.title}></img>
                         {expand && <span className="menu-title">{item.title}</span>}
                     </Link>
                 ))}

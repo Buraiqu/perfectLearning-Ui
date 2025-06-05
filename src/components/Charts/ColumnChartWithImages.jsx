@@ -125,21 +125,22 @@ const ColumnChartWithImages = ({ data }) => {
       return labelBullet;
     });
 
-    // Add bullet for images
+    // Add bullet for images - more submerged in the bar graph
     series.bullets.push(function() {
       return am5.Bullet.new(root, {
         locationY: 1,
         sprite: am5.Picture.new(root, {
           templateField: "bulletSettings",
-          width: 50,
-          height: 50,
+          width: 50, // Increased from 40 to 50
+          height: 50, // Increased from 40 to 50
           centerX: am5.p50,
-          centerY: am5.p50,
+          centerY: am5.p100,
+          dy: 30, // Changed to positive 30px to position much deeper into the bar
           shadowColor: am5.color(0x000000),
-          shadowBlur: 4,
-          shadowOffsetX: 4,
-          shadowOffsetY: 4,
-          shadowOpacity: 0.6
+          shadowBlur: 3,
+          shadowOffsetX: 2,
+          shadowOffsetY: 2,
+          shadowOpacity: 0.4
         })
       });
     });
