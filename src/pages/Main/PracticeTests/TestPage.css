@@ -1,0 +1,706 @@
+.test-page {
+    display: flex;
+    flex-direction: column;
+    gap: 24px; /* Increased gap between header and content */
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2000;
+    background-color: #F5F5F7;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: #344054;
+}
+
+/* Header Styles */
+.test-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Restored for side element positioning */
+    background-color: #F5F5F7; /* Match page background */
+    padding: 16px 24px 0 16px; /* Further increased top padding to shift content down */
+    height: 72px; /* Further increased height */
+    /* box-shadow: 0px 1px 3px rgba(16, 24, 40, 0.1); */ /* Shadow removed to blend header */
+    position: relative; /* Essential for absolute positioning of children */
+}
+
+.header-left-content { /* Formerly .logo-section */
+    display: flex;
+    align-items: center;
+    gap: 12px; /* Increased gap between logo and title */
+    min-width: 180px; /* To prevent title from wrapping too early, adjust if needed */
+    /* margin-right: auto; Removed */
+}
+
+.header-left-content span {
+    font-size: 19px; /* Increased font size by 3px */
+    font-weight: 500;
+    color: #000000;
+    white-space: nowrap;
+}
+
+.header-middle-group { /* New group for Timer and Attempted Count */
+    position: absolute;
+    left: 50%;
+    top: calc(50% + 8px); /* Adjusted to move content lower and align */
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center its own children (Timer and Attempted) */
+    gap: 80px; /* Maximizing gap between Timer and Attempted Count */
+}
+
+.header-center-content { /* Formerly .time-section, now for Timer */
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Gap between timer icon and text */
+    color: #003986;
+    font-size: 17px; /* Increased font size by 3px */
+    font-weight: 500;
+}
+
+.attempt-section { /* For Attempted Count */
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Gap between attempted icon and text */
+    color: #003986;
+    font-size: 17px; /* Increased font size by 3px */
+    font-weight: 500;
+}
+
+.exit-section { /* For Exit Button */
+    display: flex;
+    align-items: center;
+    gap: 6px; /* Gap between exit icon and text */
+    font-size: 16px; /* Increased font size by 3px */
+    color: #000000; /* Reverted text color to black */
+    background-color: #ffffff; /* Set background to white */
+    font-weight: 500;
+    cursor: pointer;
+    padding: 10px 18px; /* Further increased padding */
+    border-radius: 4px;
+    /* margin-left: auto; Removed */
+}
+
+.exit-section:hover {
+    opacity: 0.8;
+}
+
+.test-timer, .test-progress {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #344054;
+    font-size: 14px;
+}
+
+.test-timer strong, .test-progress strong {
+    color: #003986;
+    font-weight: 600;
+    margin-left: 0;
+}
+
+.exit-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background-color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 6px 10px;
+    cursor: pointer;
+    font-size: 13px;
+    color: #000000;
+    font-weight: 500;
+}
+
+.exit-btn:hover {
+    background-color: #F9FAFB;
+}
+
+/* Content Styles */
+.test-content {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+    padding: 16px;
+    padding-left: 120px; /* Significantly increased left spacing */
+    padding-right: 40px; /* 1/3 of the left padding */
+    padding-bottom: 4px; /* Minimal bottom padding */
+    gap: 12px;
+    justify-content: space-between;
+}
+
+.question-section {
+    flex: 1;
+    padding: 24px 24px 12px 24px; /* Reduced bottom padding */
+    overflow-y: hidden; /* Hide vertical scrollbar */
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0px 1px 3px rgba(16, 24, 40, 0.1);
+    margin-right: 16px;
+}
+
+.question-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    /* border-bottom: 1px solid #eaecf0; */ /* Removed to eliminate line above question content */
+}
+
+.question-number {
+    font-size: 14px;
+    font-weight: 600;
+    color: #101828;
+}
+
+.question-actions {
+    display: flex;
+    gap: 16px;
+}
+
+.bookmark-btn, .report-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.question-content {
+    margin-bottom: 16px;
+    color: #344054;
+    line-height: 1.5;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #eaecf0;
+}
+
+.question-content p {
+    margin-bottom: 12px;
+    font-size: 14px;
+}
+
+.scoring-info {
+    display: flex;
+    gap: 16px;
+    margin-top: 8px;
+    font-size: 13px;
+    background-color: #f5f7f9;
+    padding: 6px 12px;
+    border-radius: 4px;
+    display: inline-flex;
+}
+
+.correct-score {
+    color: #027a48;
+    font-weight: 500;
+}
+
+.wrong-score {
+    color: #b42318;
+    font-weight: 500;
+}
+
+.answer-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 24px;
+    margin-top: 20px;
+}
+
+.answer-option {
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    border: none; /* Removed border */
+    border-radius: 6px;
+    cursor: pointer;
+    height: 36px;
+}
+
+.answer-option:hover {
+    background-color: #f9fafb;
+}
+
+.option-radio {
+    width: 16px; /* Further reduced size */
+    height: 16px; /* Further reduced size */
+    border: 2px solid #000000; /* Black ring for unselected */
+    background-color: transparent;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    box-sizing: border-box; /* Include border in size */
+}
+
+.radio-inner {
+    width: 100%; /* Fill parent's content area */
+    height: 100%; /* Fill parent's content area */
+    background-color: transparent; /* Make hollow */
+    border: 3px solid #003986; /* Adjusted blue ring for slightly larger hollow */
+    border-radius: 50%;
+    box-sizing: border-box; /* Ensure border is within dimensions */
+}
+
+.option-id {
+    width: 20px;
+    color: #000000; /* Changed to black */
+    font-size: 13px;
+}
+
+.option-text {
+    color: #000000; /* Changed to black */
+    font-size: 13px;
+}
+
+.question-actions-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 24px;
+    padding-top: 16px;
+}
+
+.revisit-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    color: #344054;
+}
+
+.revisit-checkbox input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    margin: 0;
+    accent-color: #003986;
+}
+
+.checkbox-text {
+    font-size: 13px;
+    color: #344054;
+}
+
+.navigation-buttons {
+    display: flex;
+    gap: 16px;
+}
+
+.nav-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-size: 13px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.nav-btn.prev {
+    border: 1px solid #d0d5dd;
+    color: #003986;
+    background-color: white;
+}
+
+.nav-btn.next {
+    background-color: #003986;
+    color: white;
+    border: none;
+}
+
+.nav-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Sidebar Styles */
+.question-sidebar {
+    width: 280px; /* Increased width */
+    padding: 10px;
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    overflow-y: auto;
+    box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+}
+
+.questions-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    padding: 8px;
+    margin-top: 25px;
+}
+
+.q-btn {
+    height: 28px; /* Increased height */
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 12px; /* Pill shape */
+    background-color: #f5f5f7; /* Lighter gray background */
+    color: #667085; /* Light grey text color */
+    font-size: 12px; /* Increased font-size */
+    font-weight: 500;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.2s ease;
+    box-shadow: none;
+}
+
+.q-btn:hover {
+    background-color: #eaeaed;
+}
+
+.q-btn.active {
+    background-color: #003986;
+    color: white;
+    box-shadow: none;
+    border: none;
+}
+
+.q-btn.attempted {
+    background-color: #f0f7ff;
+    color: #003986;
+    border: none;
+}
+
+/* Footer Styles */
+.test-footer {
+    display: flex;
+    justify-content: flex-end; /* Changed to push single button to the right */
+    align-items: center;
+    padding: 12px 32px; /* Increased right padding */
+    background-color: #F5F5F7; /* Match page background */
+    /* border-top: 1px solid #eaecf0; Removed to blend */
+}
+
+.test-instructions {
+    color: #003986;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.test-instructions:hover {
+    text-decoration: underline;
+}
+
+.test-instructions-container {
+    padding: 0px 40px 0px 120px; /* Align with test-content, removed bottom padding */
+    background-color: #F5F5F7; /* Match page background */
+}
+
+.test-instructions-standalone {
+    color: #003986;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.test-instructions-standalone:hover {
+    text-decoration: underline;
+}
+
+.all-questions-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: white;
+    border: 1px solid #003986; /* Blue border */
+    color: #003986; /* Blue text */
+    padding: 14px 80px; /* Even wider */
+    border-radius: 10px; /* Increased border-radius */
+    font-size: 15px; /* Increased font-size */
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.all-questions-btn:hover {
+    background-color: #f0f7ff;
+}
+
+.main-and-footer-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow: hidden; /* Manages overflow within this wrapper */
+}
+
+/* All Questions Panel Styles */
+.all-questions-panel {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 450px; /* Adjust as needed */
+    max-height: calc(100vh - 100px); /* Max height considering header/footer */
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(16, 24, 40, 0.15);
+    z-index: 1050; /* Ensure it's above other elements */
+    display: flex;
+    flex-direction: column;
+    transform: translateX(105%) translateY(105%); /* Start off-screen (bottom-right) */
+    opacity: 0;
+    visibility: hidden;
+    transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.35s cubic-bezier(0.23, 1, 0.32, 1), visibility 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.all-questions-panel.open {
+    transform: translateX(0) translateY(0); /* Slide in to position */
+    opacity: 1;
+    visibility: visible;
+}
+
+.all-questions-panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    border-bottom: 1px solid #eaecf0;
+}
+
+.all-questions-panel-header h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #101828;
+}
+
+.close-panel-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.close-panel-btn:hover {
+    background-color: #f0f2f5;
+}
+
+.close-panel-btn svg {
+    display: block; /* Prevents extra space below SVG */
+}
+
+.all-questions-panel-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 8px 0px; /* Add some padding top/bottom, side padding will be on items */
+}
+
+.panel-question-item {
+    display: block; /* Changed to block for vertical stacking */
+    padding: 16px 20px;
+    cursor: pointer;
+    border-bottom: 1px solid #f0f2f5;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.panel-question-item:last-child {
+    border-bottom: none;
+}
+
+.panel-question-item:hover {
+    background-color: #f9fafb;
+}
+
+.panel-question-item.current {
+    background-color: #eef4ff; /* Light blue for current question */
+    font-weight: 600;
+    color: #003986;
+}
+
+.panel-question-header {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.panel-question-id {
+    font-size: 15px;
+    font-weight: 600;
+    color: #1d2939;
+}
+
+.panel-question-type {
+    font-size: 13px;
+    color: #667085;
+}
+
+.panel-question-text {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #344054;
+    margin-bottom: 12px;
+    /* Clamp text to a few lines if it's too long */
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Show up to 3 lines */
+    line-clamp: 3; /* Standard property for future compatibility */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.status-tags {
+    display: flex;
+    gap: 8px; /* Increased gap slightly */
+    margin-top: 10px; /* Added margin-top */
+}
+
+.status-tag {
+    font-size: 11px;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-weight: 500;
+}
+
+.status-tag.answered {
+    background-color: #e6f7f0; /* Light green */
+    color: #0d8a4a;
+}
+
+.status-tag.revisit {
+    background-color: #ffffff; /* White background */
+    color: #003986; /* Blue text */
+    border: 1px solid #003986; /* Blue border */
+    padding: 2px 10px; /* Adjusted padding to match screenshot */
+}
+
+/* Add more status tag styles as needed: not-answered, answered-revisit etc. */
+
+/* Finish Test Modal Styles */
+.finish-test-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.finish-test-modal {
+    position: relative;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    width: 650px; /* Increased width from 500px to 650px */
+    max-width: 90%;
+    padding: 24px; /* Slightly increased padding */
+    border: 1px solid #e4e7ec;
+}
+
+.finish-modal-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #101828;
+    margin: 0 0 16px 0;
+    text-align: center;
+    padding-bottom: 12px;
+}
+
+.close-modal-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.close-modal-btn:hover {
+    background-color: #f2f4f7;
+}
+
+.close-modal-btn svg {
+    display: block;
+}
+
+.finish-modal-summary {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 8px 0;
+    margin-bottom: 16px;
+}
+
+.summary-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 8px;
+    padding: 0 8px;
+}
+
+.summary-item-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
+}
+
+.summary-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #475467;
+}
+
+.summary-label {
+    font-size: 14px;
+    color: #475467;
+    font-weight: 500;
+}
+
+.summary-value {
+    font-size: 22px;
+    font-weight: 600;
+    color: #003986; /* Perfect Learning Blue */
+}
+
+.finish-modal-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 12px;
+}
+
+.finish-modal-confirm-btn {
+    background-color: #003986; /* Perfect Learning Blue */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 12px 32px; /* Increased padding for bigger button */
+    font-size: 16px; /* Increased font size */
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.finish-modal-confirm-btn:hover {
+    background-color: #002b66; /* Darker blue on hover */
+}
