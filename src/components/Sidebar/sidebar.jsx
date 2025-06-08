@@ -47,13 +47,13 @@ const Sidebar = ({expand, onMenuClick}) => {
         },
         {
             title: 'My Performance',
-            path: '/my-performance',
+            path: '/main/my-performance',
             icon: myPerformanceIcon,
             activeIcon: myPerformanceActiveIcon
         },
         {
             title: 'My Notes',
-            path: '/my-notes',
+            path: '/main/my-notes',
             icon: myNotesIcon,
             activeIcon: myNotesActiveIcon
         }
