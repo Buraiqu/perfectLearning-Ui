@@ -27,6 +27,7 @@ import PracticeTests from './pages/Main/PracticeTests/practiceTests';
 import TestPage from './pages/Main/PracticeTests/TestPage';
 import TestResults from './pages/Main/PracticeTests/TestResults';
 import TestNavigator from './pages/Main/PracticeTests/TestNavigator';
+import MyPerformance from './pages/Main/MyPerformance/myPerformance';
 
 function App() {
 
@@ -76,6 +77,7 @@ function App() {
               <Route path="practice-tests/test" element={<TestPage />} />
               <Route path="practice-tests/results" element={<TestResults />} />
               <Route path="practice-tests/navigator" element={<TestNavigator />} />
+              <Route path="my-performance" element={<MyPerformance />} />
             </Route>
           </Route>
 
