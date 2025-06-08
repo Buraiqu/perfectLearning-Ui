@@ -5,7 +5,6 @@ import WeeklyLearningChart from '../Charts/WeeklyLearningChart';
 import SubjectPracticeChart from '../Charts/SubjectPracticeChart';
 import AccuracyGaugeChart from '../Charts/AccuracyGaugeChart';
 import WeeklyAccuracyChart from '../Charts/WeeklyAccuracyChart';
-import SubjectAccuracyChart from '../Charts/SubjectAccuracyChart';
 import DifficultyAccuracyChart from '../Charts/DifficultyAccuracyChart';
 import SubjectGoalChart from '../Charts/SubjectGoalChart';
 import TopicWiseAccuracyChart from '../Charts/TopicWiseAccuracyChart';
