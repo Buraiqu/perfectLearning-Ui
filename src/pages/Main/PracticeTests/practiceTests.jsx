@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './practiceTests.css';
-// Import custom SVG icons
+
 import customTestsIcon from '../../../icons/custom_tests.svg';
 import mockTestsIcon from '../../../icons/mock_tests.svg';
 import closeIcon from '../../../icons/close-icon.svg';

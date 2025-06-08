@@ -24,13 +24,42 @@
         justify-content: center;
         width: 30px;
         height: 30px;
-        margin-right: 15px;
-        font-size: 20px;
-        color: #000;
+        font-weight: 50px;
+        /*margin-right: 15px;*/
+        padding-bottom: 10px;
+        color: #000; /* For text color, SVG fill is separate */
+
+        /* Reset font properties that might be used by icon fonts */
+        font-family: inherit !important;
+        font-size: initial !important; /* Effectively removes the old font-size: 20px */
+        font-style: normal !important;
+        font-weight: normal !important;
+        line-height: initial !important;
+        text-rendering: auto !important;
+        -webkit-font-smoothing: auto !important;
+        -moz-osx-font-smoothing: auto !important;
+
+        /* Ensure no background image is showing */
+        background-image: none !important;
+        background-color: transparent !important;
+
+        &::before,
+        &::after {
+            content: "" !important;
+            display: none !important;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Or 'cover' if it should fill, 'scale-down' if it should fit without cropping */
+            display: block;
+        }
     }
 
     .time-title {
         flex-grow: 0.1;
+        padding-bottom: 10px;
     }
 
     .time-title h2 {
@@ -44,6 +73,7 @@
         font-size: 16px;
         font-weight: 500;
         color: #03488B;
+        padding-bottom: 10px;
     }
 
     .time-content {
@@ -53,7 +83,8 @@
     .chart-container {
         display: flex;
         justify-content: center;
-        margin: 0px 0 20px;
+        margin: 0px 0 0px;
+        padding-bottom: 2px;
     }
 
     /* amCharts will handle the pie chart rendering */
@@ -63,6 +94,7 @@
         display: flex;
         justify-content: center;
         gap: 20px;
+        padding-top: 20px;
     }
 
     .legend-item {
@@ -93,9 +125,13 @@
 
     .subject-legend {
         display: flex;
-        gap: 15px;
-        margin: 1px 0;
+        gap: 15px;  
     }
+
+    .week-wise-legend {
+        padding-top: 30px;
+    }
+
 
     .legend-dot {
         display: inline-block;
@@ -127,8 +163,8 @@
     .time-periods {
         display: flex;
         justify-content: space-between;
-        margin-top: 5px;
-        padding: 0 10px;
+        margin-top: -10px;
+        padding: 0 20px 20px 40px;
     }
 
     .time-period {

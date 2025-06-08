@@ -25,9 +25,11 @@ const SubjectGoalChart = ({ data }) => {
             goals: [
               {
                 name: 'Target Score',
-                value: 85,
+                value: 45,
                 strokeHeight: 5,
-                strokeColor: '#775DD0'
+                strokeColor: '#775DD0',
+                strokeWidth:20,
+                
               }
             ]
           },
@@ -57,6 +59,11 @@ const SubjectGoalChart = ({ data }) => {
         fontFamily: 'Roboto, Arial, sans-serif',
         background: 'transparent'
       },
+      grid :{
+          padding :{
+            top: 1
+          }
+        },
       plotOptions: {
         bar: {
           columnWidth: '60%',
