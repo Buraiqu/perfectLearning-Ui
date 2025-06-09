@@ -1,181 +1,197 @@
-import React, { useLayoutEffect, useRef } from 'react';
-import * as am5 from '@amcharts/amcharts5';
-import * as am5xy from '@amcharts/amcharts5/xy';
-import * as am5radar from '@amcharts/amcharts5/radar';
-import am5themes_Animated from '@amcharts/amcharts5/themes/Animated';
+import React, { useEffect, useState } from 'react';
 
 const AccuracyGaugeChart = ({ accuracy = 64 }) => {
-  const chartRef = useRef(null);
-
-  useLayoutEffect(() => {
-    if (chartRef.current && chartRef.current._root) {
-      chartRef.current._root.dispose();
-    }
-
-    const root = am5.Root.new(chartRef.current);
-    chartRef.current._root = root;
-
-    root.setThemes([am5themes_Animated.new(root)]);
-
-    const chart = root.container.children.push(
-      am5radar.RadarChart.new(root, {
-        panX: false,
-        panY: false,
-        startAngle: 180,
-        endAngle: 360,
-        paddingBottom: 0,
-        paddingTop: 0
-      })
-    );
-
-    const axisRenderer = am5radar.AxisRendererCircular.new(root, {
-      innerRadius: -10,
-      strokeOpacity: 0.1
-    });
-
-    axisRenderer.ticks.template.setAll({
-      visible: true,
-      strokeOpacity: 0.5,
-      length: 5,
-      location: 0.5
-    });
-
-    axisRenderer.grid.template.setAll({
-      visible: true,
-      strokeOpacity: 0.1
-    });
-
-    const xAxis = chart.xAxes.push(
-      am5xy.ValueAxis.new(root, {
-        maxDeviation: 0,
-        min: 0,
-        max: 100,
-        strictMinMax: true,
-        renderer: axisRenderer
-      })
-    );
-
-    const bandsData = [
-      { color: "#F8A07E", lowScore: 0, highScore: 40 },
-      { color: "#F8D07E", lowScore: 40, highScore: 60 },
-      { color: "#B5D99C", lowScore: 60, highScore: 100 }
-    ];
-
-    am5.array.each(bandsData, function(data) {
-      const axisRange = xAxis.createAxisRange(xAxis.makeDataItem({}));
-
-      axisRange.setAll({
-        value: data.lowScore,
-        endValue: data.highScore
-      });
-
-      axisRange.get("axisFill").setAll({
-        visible: true,
-        fill: am5.color(data.color),
-        fillOpacity: 0.9,
-        thickness: 15
-      });
-
-      axisRange.get("label").setAll({
-        forceHidden: true
-      });
-    });
-
-    const percentages = [0, 20, 40, 60, 80, 100];
-    percentages.forEach(percent => {
-      const range = xAxis.createAxisRange(xAxis.makeDataItem({}));
-      range.setAll({
-        value: percent
-      });
+  const [animatedValue, setAnimatedValue] = useState(0);
+  
+  // SVG dimensions and parameters
+  const size = 205;
+  const radius = 110;
+  const centerX = size / 2;
+  const centerY = size / 2 + 20; // Fine-tuned for centering
+  const strokeWidth = 25; // Thicker arc for bolder look
+  
+  // Calculate the needle angle based on accuracy
+  const startAngle = -220;
+  const endAngle = 40;
+  const angleRange = endAngle - startAngle;
+  const valueAngle = startAngle + (angleRange * animatedValue / 100);
+  
+  // Calculate coordinates for the needle
+  const needleLength = radius -36;
+  const needleX = centerX + needleLength * Math.cos((valueAngle * Math.PI) / 180);
+  const needleY = centerY + needleLength * Math.sin((valueAngle * Math.PI) / 180);
+  
+  // Animation effect
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (animatedValue < accuracy) {
+        setAnimatedValue(prev => Math.min(prev + 2, accuracy));
+      }
+    }, 20);
+    
+    return () => clearTimeout(timer);
+  }, [animatedValue, accuracy]);
+  
+  // Generate tick marks
+  const generateTicks = () => {
+    const ticks = [];
+    
+    // Major ticks (with labels)
+    for (let i = 0; i <= 100; i += 20) {
+      const tickAngle = startAngle + (angleRange * i / 100);
+      const innerRadius = radius - strokeWidth / 1;
+      const outerRadius = radius -34; // Shorter tick marks
+      const x1 = centerX + innerRadius * Math.cos((tickAngle * Math.PI) / 180);
+      const y1 = centerY + innerRadius * Math.sin((tickAngle * Math.PI) / 180);
+      const x2 = centerX + outerRadius * Math.cos((tickAngle * Math.PI) / 180);
+      const y2 = centerY + outerRadius * Math.sin((tickAngle * Math.PI) / 180);
       
-      range.get("label").setAll({
-        text: percent + "%",
-        fontSize: 10,
-        fill: am5.color("#999999"),
-        visible: true
-      });
-    });
-
-    for (let i = 5; i < 100; i += 5) {
-      if (!percentages.includes(i)) {
-        const range = xAxis.createAxisRange(xAxis.makeDataItem({}));
-        range.setAll({
-          value: i
-        });
+      // Calculate label position - adjust to be inside the gauge
+      const labelRadius = (radius-33)- (strokeWidth * 0.7);
+      const labelX = centerX + labelRadius * Math.cos((tickAngle * Math.PI) / 180);
+      const labelY = centerY + labelRadius * Math.sin((tickAngle * Math.PI) / 180);
+      
+      ticks.push(
+        <g key={i}>
+          <line
+            x1={x1}
+            y1={y1}
+            x2={x2}
+            y2={y2}
+            stroke="#999999"
+            strokeWidth="2"
+          />
+          <text
+            x={labelX}
+            y={labelY}
+            textAnchor="middle"
+            dominantBaseline="middle"
+            fill="#666666"
+            fontSize="10"
+            fontWeight="600"
+          >
+            {i}%
+          </text>
+        </g>
+      );
+    }
+    // Minor ticks (without labels)
+    for (let i = 0; i < 100; i += 5) {
+      if (i % 20 !== 0) { // Skip positions where we already have major ticks
+        const tickAngle = startAngle + (angleRange * i / 100);
+        const innerRadius = radius - strokeWidth / 1;
+        const outerRadius = radius -31; // Even shorter for minor ticks
+        const x1 = centerX + innerRadius * Math.cos((tickAngle * Math.PI) / 180);
+        const y1 = centerY + innerRadius * Math.sin((tickAngle * Math.PI) / 180);
+        const x2 = centerX + outerRadius * Math.cos((tickAngle * Math.PI) / 180);
+        const y2 = centerY + outerRadius * Math.sin((tickAngle * Math.PI) / 180);
         
-        range.get("tick").setAll({
-          visible: true,
-          length: 3,
-          strokeOpacity: 0.2
-        });
+        ticks.push(
+          <g key={`minor-${i}`}>
+            <line
+              x1={x1}
+              y1={y1}
+              x2={x2}
+              y2={y2}
+              stroke="#CCCCCC"
+              strokeWidth="1"
+            />
+          </g>
+        );
       }
     }
-
-    const axisDataItem = xAxis.makeDataItem({});
-
-    const clockHand = am5radar.ClockHand.new(root, {
-      pinRadius: 5,
-      radius: am5.percent(90),
-      bottomWidth: 3,
-      fill: am5.color("#B5D99C"),
-      stroke: am5.color("#B5D99C")
-    });
-
-    clockHand.pin.setAll({
-      fill: am5.color("#B5D99C"),
-      stroke: am5.color("#B5D99C")
-    });
-
-    clockHand.hand.setAll({
-      fill: am5.color("#B5D99C"),
-      stroke: am5.color("#B5D99C")
-    });
-
-    const bullet = axisDataItem.set("bullet", am5xy.AxisBullet.new(root, {
-      sprite: clockHand
-    }));
-
-    xAxis.createAxisRange(axisDataItem);
-
-    chart.radarContainer.children.push(
-      am5.Circle.new(root, {
-        centerX: am5.percent(50),
-        centerY: am5.percent(50),
-        radius: 25,
-        fill: am5.color("#B5D99C"),
-        fillOpacity: 0.3
-      })
+    
+    return ticks;
+  };
+  
+  // Create a complete semi-circle arc with two colors
+  const createGauge = () => {
+    // Calculate the point where colors change (60%)
+    const dividerAngle = startAngle + (angleRange * 60 / 100);
+    const dividerRadians = (dividerAngle * Math.PI) / 180;
+    const dividerX = centerX + radius * Math.cos(dividerRadians);
+    const dividerY = centerY + radius * Math.sin(dividerRadians);
+    
+    // Start and end points of the entire arc
+    const startRadians = (startAngle * Math.PI) / 180;
+    const endRadians = (endAngle * Math.PI) / 180;
+    const startX = centerX + radius * Math.cos(startRadians);
+    const startY = centerY + radius * Math.sin(startRadians);
+    const endX = centerX + radius * Math.cos(endRadians);
+    const endY = centerY + radius * Math.sin(endRadians);
+    
+    return (
+      <>
+        {/* Orange arc (0-60%) */}
+        <path
+          d={`
+            M ${startX} ${startY}
+            A ${radius} ${radius} 0 0 1 ${dividerX} ${dividerY}
+          `}
+          fill="none"
+          stroke="#F8A07E"
+          strokeWidth={strokeWidth}
+        />
+        
+        {/* Green arc (60-100%) */}
+        <path
+          d={`
+            M ${dividerX} ${dividerY}
+            A ${radius} ${radius} 0 0 1 ${endX} ${endY}
+          `}
+          fill="none"
+          stroke="#B5D99C"
+          strokeWidth={strokeWidth}
+        />
+      </>
     );
-
-    chart.radarContainer.children.push(
-      am5.Label.new(root, {
-        centerX: am5.percent(50),
-        centerY: am5.percent(50),
-        textAlign: "center",
-        text: accuracy + "%",
-        fontSize: 18,
-        fontWeight: "400",
-        fill: am5.color("#4CAF50")
-      })
-    );
-
-    axisDataItem.set("value", 0);
-
-    axisDataItem.animate({
-      key: "value",
-      to: accuracy,
-      duration: 1000,
-      easing: am5.ease.out(am5.ease.cubic)
-    });
-
-    chart.appear(1000, 100);
-
-    return () => {
-      root.dispose();
-    };
-  }, [accuracy]);
-
-  return <div ref={chartRef} style={{ width: '100%', height: '200px' }} />;
+  };
+  
+  return (
+    <div style={{ width: '100%', height: '200px', position: 'relative' }}>
+      <svg width="100%" height="100%" viewBox={`0 0 ${size} ${size}`}>
+        {/* Gauge arcs */}
+        {createGauge()}
+        
+        {/* Tick marks and labels */}
+        {generateTicks()}
+        
+        {/* Needle */}
+        <line
+          x1={centerX}
+          y1={centerY}
+          x2={needleX}
+          y2={needleY}
+          stroke="#B5D99C"
+          strokeWidth="5"
+          strokeLinecap="round"
+        />
+        
+        {/* Center circle */}
+        <circle
+          cx={centerX}
+          cy={centerY}
+          r="20"
+          fill="#B5D99C"
+          fillOpacity="1"
+        />
+        
+        {/* Percentage text */}
+        <text
+          x={centerX}
+          y={centerY}
+          textAnchor="middle"
+          dominantBaseline="middle"
+          fill="#4CAF50"
+          fontWeight="600"
+          fontSize="15"
+        >
+          {accuracy}%
+        </text>
+      </svg>
+    </div>
+  );
 };
+
 
 export default AccuracyGaugeChart;

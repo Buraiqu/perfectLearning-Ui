@@ -1,0 +1,13 @@
+.my-notes-container {
+  padding: 20px;
+  background-color: #f9f9f9; /* Added a light background for distinction */
+  min-height: calc(100vh - 56px); /* Assuming header height is 56px */
+}
+
+.my-notes-container h1 {
+  color: #333;
+  margin-bottom: 20px;
+  font-size: 24px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
