@@ -18,6 +18,9 @@ const PracticeTests = () => {
     // State to track whether the mock tests section is visible
     const [showMockTests, setShowMockTests] = useState(false);
     
+    // State to track whether the custom tests section is visible
+    const [showCustomTests, setShowCustomTests] = useState(false);
+    
     // State to track which test series is expanded
     const [expandedSeries, setExpandedSeries] = useState(null);
     
@@ -39,6 +42,9 @@ const PracticeTests = () => {
     // State for editing test name
     const [isEditingTestName, setIsEditingTestName] = useState(false);
     const [tempTestName, setTempTestName] = useState('Custom Test 1');
+    
+    // State for completed tests
+    const [completedTests, setCompletedTests] = useState([]);
     
     // State to show the test page
     const [showTestPage, setShowTestPage] = useState(false);
@@ -67,7 +73,11 @@ const PracticeTests = () => {
                 {/* Test cards container */}
                 <div className="test-cards-container">
                     {/* Custom Tests Card */}
-                    <div className="test-card" onClick={() => setShowCustomTestModal(true)}>
+                    <div className={`test-card ${showCustomTests ? 'active' : ''}`} onClick={() => {
+                        setShowCustomTests(!showCustomTests);
+                        setShowMockTests(false);
+
+                    }}>
                         <div className="test-card-icon">
                             <img src={customTestsIcon} alt="Custom Tests" />
                         </div>
@@ -77,7 +87,10 @@ const PracticeTests = () => {
                     {/* Mock Tests Card */}
                     <div 
                         className={`test-card ${showMockTests ? 'active' : ''}`}
-                        onClick={() => setShowMockTests(!showMockTests)}
+                        onClick={() => {
+                            setShowMockTests(!showMockTests);
+                            setShowCustomTests(false);
+                        }}
                     >
                         <div className="test-card-icon">
                             <img src={mockTestsIcon} alt="Mock Tests" className="mock-test-icon" />
@@ -85,6 +98,46 @@ const PracticeTests = () => {
                         <div className="test-card-title">Mock Tests</div>
                     </div>
                 </div>
+
+                {/* Custom Tests Container - only shown when showCustomTests is true */}
+                {showCustomTests && (
+                    <div className="custom-tests-container">
+                        <div className="create-test-button-container">
+                            <button className="create-test-button" onClick={() => setShowCustomTestModal(true)}>
+                                Create Test
+                            </button>
+                        </div>
+                        
+                        <div className="completed-tests-section">
+                            <h3>Completed Tests</h3>
+                            <div className="tests-count">
+                                <span className="test-icon">📈</span>
+                                <span>{completedTests.length} {completedTests.length === 1 ? 'Test' : 'Tests'}</span>
+                            </div>
+                            
+                            {completedTests.length === 0 ? (
+                                <div className="no-tests-message">
+                                    No tests taken yet
+                                </div>
+                            ) : (
+                                <div className="completed-tests-list">
+                                    {completedTests.map(test => (
+                                        <div key={test.id} className="completed-test-item">
+                                            <div className="test-name">{test.name}</div>
+                                            <div className="test-info">
+                                                <span className="duration-icon"></span> {test.duration} Mins | {test.questions} Questions | {test.difficulty} Difficulty
+                                            </div>
+                                            <div className="test-score">Score Percentage: <span className="score-value">{test.scorePercentage}%</span></div>
+                                            <div className="test-summary-link-container">
+                                                <a href="#" className="test-summary-link">Test Summary</a>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                )}
 
                 {/* Mock Test Series Container - only shown when showMockTests is true */}
                 {showMockTests && <div className="mock-test-series-container">
@@ -370,59 +423,67 @@ const PracticeTests = () => {
                 <div className="custom-test-modal-overlay">
                     <div className="custom-test-modal">
                         <div className="custom-test-modal-header">
-                            {customTestStep !== 3 && (
-                                <div className="title-container">
-                                    {isEditingTestName ? (
-                                        <div className="edit-title-container">
-                                            <input 
-                                                type="text" 
-                                                value={tempTestName} 
-                                                onChange={(e) => setTempTestName(e.target.value)}
-                                                className="edit-title-input"
-                                                autoFocus
-                                                onKeyDown={(e) => {
-                                                    if (e.key === 'Enter') {
-                                                        if (tempTestName.trim() !== '') {
-                                                            setCustomTestData({
-                                                                ...customTestData,
-                                                                testName: tempTestName.trim()
-                                                            });
-                                                            setIsEditingTestName(false);
-                                                        }
-                                                    } else if (e.key === 'Escape') {
-                                                        setTempTestName(customTestData.testName);
-                                                        setIsEditingTestName(false);
-                                                    }
-                                                }}
-                                                onBlur={() => {
+                            <div className="title-container">
+                                {customTestStep !== 1 && (
+                                    <button 
+                                        className="modal-back-button"
+                                        onClick={() => setCustomTestStep(customTestStep - 1)}
+                                    >
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M15 18L9 12L15 6" stroke="#344054" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                        </svg>
+                                    </button>
+                                )}
+                                {isEditingTestName ? (
+                                    <div className="edit-title-container">
+                                        <input 
+                                            type="text" 
+                                            value={tempTestName} 
+                                            onChange={(e) => setTempTestName(e.target.value)}
+                                            className="edit-title-input"
+                                            autoFocus
+                                            onKeyDown={(e) => {
+                                                if (e.key === 'Enter') {
                                                     if (tempTestName.trim() !== '') {
                                                         setCustomTestData({
                                                             ...customTestData,
                                                             testName: tempTestName.trim()
                                                         });
-                                                    } else {
-                                                        setTempTestName(customTestData.testName);
+                                                        setIsEditingTestName(false);
                                                     }
-                                                    setIsEditingTestName(false);
-                                                }}
-                                            />
-                                        </div>
-                                    ) : (
-                                        <>
-                                            <h2>{customTestData.testName}</h2>
-                                            <img 
-                                                src={editIcon} 
-                                                alt="Edit" 
-                                                className="edit-icon" 
-                                                onClick={() => {
+                                                } else if (e.key === 'Escape') {
                                                     setTempTestName(customTestData.testName);
-                                                    setIsEditingTestName(true);
-                                                }}
-                                            />
-                                        </>
-                                    )}
-                                </div>
-                            )}
+                                                    setIsEditingTestName(false);
+                                                }
+                                            }}
+                                            onBlur={() => {
+                                                if (tempTestName.trim() !== '') {
+                                                    setCustomTestData({
+                                                        ...customTestData,
+                                                        testName: tempTestName.trim()
+                                                    });
+                                                } else {
+                                                    setTempTestName(customTestData.testName);
+                                                }
+                                                setIsEditingTestName(false);
+                                            }}
+                                        />
+                                    </div>
+                                ) : (
+                                    <>
+                                        <h2>{customTestData.testName}</h2>
+                                        <img 
+                                            src={editIcon} 
+                                            alt="Edit" 
+                                            className="edit-icon" 
+                                            onClick={() => {
+                                                setTempTestName(customTestData.testName);
+                                                setIsEditingTestName(true);
+                                            }}
+                                        />
+                                    </>
+                                )}
+                            </div>
                             <button className="close-button" onClick={() => {
                                 setShowCustomTestModal(false);
                                 setCustomTestStep(1);
@@ -601,14 +662,20 @@ const PracticeTests = () => {
                                                     min="10" 
                                                     max="120" 
                                                     value={customTestData.duration} 
-                                                    onChange={(e) => setCustomTestData({
-                                                        ...customTestData,
-                                                        duration: parseInt(e.target.value)
-                                                    })}
+                                                    onChange={(e) => {
+                                                        const value = parseInt(e.target.value);
+                                                        setCustomTestData({
+                                                            ...customTestData,
+                                                            duration: value
+                                                        });
+                                                        // Update the slider thumb position via CSS variable
+                                                        const percent = ((value - 10) / (120 - 10)) * 100;
+                                                        e.target.parentElement.style.setProperty('--slider-percent', `${percent}%`);
+                                                    }}
                                                     className="custom-slider"
                                                 />
                                             </div>
-                                            <span className="slider-value">{customTestData.duration}mins</span>
+                                            <span className="slider-value">{customTestData.duration} Mins</span>
                                         </div>
                                     </div>
                                     
@@ -625,10 +692,16 @@ const PracticeTests = () => {
                                                     min="5" 
                                                     max="50" 
                                                     value={customTestData.questions} 
-                                                    onChange={(e) => setCustomTestData({
-                                                        ...customTestData,
-                                                        questions: parseInt(e.target.value)
-                                                    })}
+                                                    onChange={(e) => {
+                                                        const value = parseInt(e.target.value);
+                                                        setCustomTestData({
+                                                            ...customTestData,
+                                                            questions: value
+                                                        });
+                                                        // Update the slider thumb position via CSS variable
+                                                        const percent = ((value - 5) / (50 - 5)) * 100;
+                                                        e.target.parentElement.style.setProperty('--slider-percent', `${percent}%`);
+                                                    }}
                                                     className="custom-slider"
                                                 />
                                             </div>
@@ -671,9 +744,6 @@ const PracticeTests = () => {
                                 </div>
                                 
                                 <div className="modal-footer">
-                                    <button className="back-button" onClick={() => setCustomTestStep(1)}>
-                                        Back
-                                    </button>
                                     <button 
                                         className="start-test-button" 
                                         onClick={() => setCustomTestStep(3)}
@@ -686,24 +756,6 @@ const PracticeTests = () => {
                         
                         {customTestStep === 3 && (
                             <div className="custom-test-modal-content final-step">
-                                <div className="back-button-container">
-                                    <button 
-                                        className="modal-back-button"
-                                        onClick={() => setCustomTestStep(2)}
-                                    >
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M15 18L9 12L15 6" stroke="#344054" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                                        </svg>
-                                    </button>
-                                    <div className="test-title-display">
-                                        <span>Custom Test 1</span>
-                                        <button className="edit-title-btn">
-                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M9.33337 2.66667L11.3334 4.66667L4.66671 11.3333H2.66671V9.33333L9.33337 2.66667Z" stroke="#344054" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                                            </svg>
-                                        </button>
-                                    </div>
-                                </div>
                                 
                                 <div className="test-info-row">
                                     <div className="info-item">
@@ -729,9 +781,26 @@ const PracticeTests = () => {
                                     <button 
                                         className="start-test-button" 
                                         onClick={() => {
+                                            // Create a mock completed test
+                                            const mockCompletedTest = {
+                                                id: Date.now(),
+                                                name: customTestData.testName,
+                                                duration: customTestData.duration,
+                                                questions: customTestData.questions,
+                                                difficulty: customTestData.difficulty,
+                                                scorePercentage: Math.floor(Math.random() * 41) + 60, // Random score between 60-100%
+                                                completedDate: new Date()
+                                            };
+                                            
+                                            // Add the completed test to the state
+                                            setCompletedTests([...completedTests, mockCompletedTest]);
+                                            
+                                            // Close the modal and reset step
                                             setShowCustomTestModal(false);
                                             setCustomTestStep(1);
-                                            // Here you would navigate to the test page
+                                            
+                                            // Show the custom tests section
+                                            setShowCustomTests(true);
                                         }}
                                     >
                                         Start Test
