@@ -59,11 +59,7 @@ const SubjectGoalChart = ({ data }) => {
         fontFamily: 'Roboto, Arial, sans-serif',
         background: 'transparent'
       },
-      grid :{
-          padding :{
-            top: 1
-          }
-        },
+
       plotOptions: {
         bar: {
           columnWidth: '60%',
@@ -131,6 +127,9 @@ const SubjectGoalChart = ({ data }) => {
       },
       grid: {
         show: false,
+        padding: {
+          top: 1
+        },
         xaxis: {
           lines: {
             show: true

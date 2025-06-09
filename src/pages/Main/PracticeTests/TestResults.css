@@ -922,14 +922,6 @@
     max-width: 800px;
 }
 
-.test-name {
-    font-size: 24px;
-    font-weight: 600;
-    margin-bottom: 24px;
-    text-align: center;
-    color: #111111;
-}
-
 /* Score section styling */
 .score-section {
     display: flex;
