@@ -1,5 +1,9 @@
 import React from 'react';
 import './TestPerformance.css';
+import clipboard_icon from '../../icons/BsClipboardData.svg';
+import lightning_icon from '../../icons/BsLightningCharge.svg';
+import clock_icon from '../../icons/BsClock.svg';
+import tick_icon from '../../icons/left-icon.svg';
 import LearningTimePieChart from '../Charts/pieChart';
 import WeeklyLearningChart from '../Charts/WeeklyLearningChart';
 import SubjectPracticeChart from '../Charts/SubjectPracticeChart';
@@ -42,18 +46,19 @@ const TestPerformance = () => {
      // Define pie chart data
      const chartData = [
         {
-            category: 'Video Lectures',
-            value: 4.5,  // 4.5 hours
+            category: 'Mock Exam',
+            value: 3,  // 4.5 hours
             color: '#a8c7e7',
-            label: '5h 30min',
+            label: '4',
             labelX: 0.1, // Center (50%)
             labelY: 0.4, // 60% from top
         },
+
         {
-            category: 'Reading Material',
-            value: 0.67,  // 40 minutes = 0.67 hours
+            category: 'Custom Tests',
+            value: 1,  // 40 minutes = 0.67 hours
             color: '#ffd7c3',
-            label: '40min',
+            label: '1',
             labelX: 0.6, // 70% from left
             labelY: 0.5, // 30% from top
         },
@@ -191,13 +196,11 @@ const TestPerformance = () => {
                 <div className="summary-card" style={{ width: 'calc(40% - 10px)' }}>
                     <div className="learning-time-card">
                         <div className="time-header">
-                            <div className="time-icon">
-                                <i className="bi bi-clock"></i>
-                            </div>
+                            <img className="time-icon" src={clipboard_icon} alt="clipboard" />
                             <div className="time-title">
-                                <h2>Total Learning Time</h2>
+                                <h2>Test Taken</h2>
                             </div>
-                            <div className="total-time">6h 30min</div>
+                            <div className="total-time">5</div>
                         </div>
                         
                         <div className="chart-container">
@@ -207,11 +210,11 @@ const TestPerformance = () => {
                         <div className="legend-container">
                             <div className="legend-item">
                                 <span className="legend-dot blue-dot"></span>
-                                <span className="legend-text">Video Lectures</span>
+                                <span className="legend-text">Mock Tests</span>
                             </div>
                             <div className="legend-item">
                                 <span className="legend-dot peach-dot"></span>
-                                <span className="legend-text">Reading Material</span>
+                                <span className="legend-text">Custom Tests</span>
                             </div>
                         </div>
                     </div>
@@ -219,9 +222,7 @@ const TestPerformance = () => {
                 <div className="summary-card" style={{ width: 'calc(60% - 10px)' }}>
                     <div className="learning-time-card">
                         <div className="time-header">
-                            <div className="time-icon">
-                                <i className="bi bi-clock"></i>
-                            </div>
+                            <img className="time-icon" src={lightning_icon} alt="lightning_icon" />
                             <div className="time-title">
                                 <h2>Questions Answered</h2>
                             </div>
@@ -236,12 +237,12 @@ const TestPerformance = () => {
 
                 <div className="summary-card" style={{ width: 'calc(50% - 10px)' }}>
                     <div className="learning-time-card">
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M9 16.2L4.8 12L3.4 13.4L9 19L21 7L19.6 5.6L9 16.2Z" fill="#333" />
-                            </svg>
-                            <h2>Average Accuracy Rate</h2>
-                            <span style={{ marginLeft: 'auto', color: '#0066CC', fontWeight: 'bold', fontSize: '18px' }}>64%</span>
+                        <div className="time-header">
+                            <img className="time-icon" src={tick_icon} alt="tick_icon" />
+                            <div className="time-title">
+                                <h2>Average Score Percentage</h2>
+                            </div>
+                            <div className="total-time">64%</div>
                         </div>
                         <div className="chart-container" style={{ height: '250px' }}>
                             <AccuracyGaugeChart accuracy={64} />
@@ -251,7 +252,11 @@ const TestPerformance = () => {
 
                 <div className="summary-card" style={{ width: 'calc(50% - 10px)' }}>
                     <div className="learning-time-card">
-                        <h2>Week wise Accuracy Rate</h2>
+                        <div className="time-header">
+                            <div className='time-title'>
+                                <h2>Week wise Avg. Score Percentage</h2>
+                            </div>
+                        </div>
                         <div className="chart-container" style={{ height: '250px' }}>
                             <WeeklyAccuracyChart />
                         </div>
@@ -260,7 +265,11 @@ const TestPerformance = () => {
 
                 <div className="summary-card" style={{ width: 'calc(50% - 10px)' }}>
                     <div className="learning-time-card">
-                        <h2>Subject Performance vs Goals</h2>
+                        <div className="time-header">
+                            <div className='time-title'>
+                                <h2>Subject wise Score Percentages</h2>
+                            </div>
+                        </div>
                         <div className="chart-container" style={{ height: '350px' }}>
                             <SubjectGoalChart />
                         </div>
@@ -269,7 +278,11 @@ const TestPerformance = () => {
 
                 <div className="summary-card" style={{ width: 'calc(50% - 10px)' }}>
                     <div className="learning-time-card">
-                        <h2>Week wise Learning Time</h2>
+                        <div className="time-header">
+                            <div className='time-title'>
+                                <h2>Subject wise Weekly Scores</h2>
+                            </div>
+                        </div>
                         <div className="subject-legend">
                             <div className="legend-item">
                                 <span className="legend-dot math-dot"></span>
@@ -304,7 +317,13 @@ const TestPerformance = () => {
 
                 <div className="summary-card" style={{ width: 'calc(50% - 10px)' }}>
                     <div className="learning-time-card">
-                        <h2>Practice Questions 200</h2>
+                        <div className="time-header">
+                            <img className="time-icon" src={clock_icon} alt="clock_icon" />
+                            <div className='time-title'>
+                                <h2>Avg Time Taken Per Question</h2>
+                            </div>
+                            <div className="total-time">2 Min 22 sec</div>
+                        </div>
                         
                         <div className="chart-container">
                             <WeeklyLearningChart 
@@ -325,24 +344,28 @@ const TestPerformance = () => {
 
                 <div className="summary-card" style={{ width: 'calc(50% - 10px)' }}>
                     <div className="learning-time-card">
-                        <h2>Subject wise Practice Questions</h2>
+                        <div className="time-header">
+                            <div className='time-title'>
+                                <h2>Subject wise Time Taken Per Questions</h2>
+                            </div>
+                        </div>
                         
                         <div className="chart-container">
                             <SubjectPracticeChart data={subjectPracticeData} />
                         </div>
                         
-                        <div className="subject-legend" style={{ display: 'flex', justifyContent: 'center', marginTop: '10px', gap: '20px' }}>
-                            <div style={{ display: 'flex', alignItems: 'center' }}>
-                                <div style={{ width: '20px', height: '20px', backgroundColor: '#94b4d4', marginRight: '8px' }}></div>
-                                <span>Mathematics</span>
+                        <div className="subject-legend" style={{ padding: '20px' }}>
+                            <div className="legend-item">
+                                <span className="legend-dot math-dot"></span>
+                                <span className="legend-text">Mathematics</span>
                             </div>
-                            <div style={{ display: 'flex', alignItems: 'center' }}>
-                                <div style={{ width: '20px', height: '20px', backgroundColor: '#f4b183', marginRight: '8px' }}></div>
-                                <span>Physics</span>
+                            <div className="legend-item">
+                                <span className="legend-dot physics-dot"></span>
+                                <span className="legend-text">Physics</span>
                             </div>
-                            <div style={{ display: 'flex', alignItems: 'center' }}>
-                                <div style={{ width: '20px', height: '20px', backgroundColor: '#8dd3f7', marginRight: '8px' }}></div>
-                                <span>Chemistry</span>
+                            <div className="legend-item">
+                                <span className="legend-dot chemistry-dot"></span>
+                                <span className="legend-text">Chemistry</span>
                             </div>
                         </div>
                     </div>
@@ -350,7 +373,11 @@ const TestPerformance = () => {
 
                 <div className="summary-card" style={{ width: 'calc(100% - 10px)' }}>
                     <div className="learning-time-card">
-                        <h2>Topic Wise Accuracy Percentage</h2>
+                        <div className="time-header">
+                            <div className='time-title'>
+                                <h2>Topic Wise Accuracy Percentage</h2>
+                            </div>
+                        </div>
                         <div className="chart-container" style={{ height: '450px' }}>
                             <TopicWiseAccuracyChart />
                         </div>
