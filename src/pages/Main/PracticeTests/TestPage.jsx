@@ -159,13 +159,13 @@ const TestPage = ({ testData, onClose }) => {
             <div className="main-and-footer-wrapper">
                 <div className="test-content">
                 <div className="question-section">
-                    <div className="question-header">
-                        <div className="question-number">Q{currentQuestion} (Single Correct)</div>
-                        <div className="question-actions">
-                            <button className="bookmark-btn" title="Bookmark this question">
+                    <div className="question-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', border: 'none', boxShadow: 'none', background: 'none', marginBottom: '16px', paddingBottom: '12px' }}>
+                        <div className="question-number" style={{ fontSize: '14px', fontWeight: '600', color: '#101828', border: 'none', boxShadow: 'none', background: 'none' }}>Q{currentQuestion} (Single Correct)</div>
+                        <div style={{ display: 'flex', gap: '5px', border: 'none', boxShadow: 'none', background: 'none' }}>
+                            <button style={{ background: 'none', border: 'none', padding: 0, margin: 0, cursor: 'pointer' }} title="Bookmark this question">
                                 <img src={mcqBookmarkIcon} alt="Bookmark" width="20" height="20" />
                             </button>
-                            <button className="report-btn" title="Report this question">
+                            <button style={{ background: 'none', border: 'none', padding: 0, margin: 0, cursor: 'pointer' }} title="Report this question">
                                 <img src={mcqReportIcon} alt="Report" width="20" height="20" />
                             </button>
                         </div>

@@ -2,6 +2,9 @@ import React from 'react';
 import './LearningPracticeSummary.css';
 import LearningTimePieChart from '../Charts/pieChart';
 import WeeklyLearningChart from '../Charts/WeeklyLearningChart';
+import stopwatch_icon from '../../icons/BsStopwatch.svg';
+import ppt_icon from '../../icons/BsFilePpt.svg';
+import tick_icon from '../../icons/left-icon.svg';
 import SubjectPracticeChart from '../Charts/SubjectPracticeChart';
 import AccuracyGaugeChart from '../Charts/AccuracyGaugeChart';
 import WeeklyAccuracyChart from '../Charts/WeeklyAccuracyChart';
@@ -18,7 +21,7 @@ const LearningPracticeSummary = () => {
             color: '#a8c7e7',
             label: '5h 30min',
             labelX: 0.1, // Center (50%)
-            labelY: 0.4, // 60% from top
+            labelY: 0.4 // 60% from top
         },
         {
             category: 'Reading Material',
@@ -162,13 +165,11 @@ const LearningPracticeSummary = () => {
                 <div className="summary-card" style={{ width: 'calc(50% - 10px)' }}>
                     <div className="learning-time-card">
                         <div className="time-header">
-                            <div className="time-icon">
-                                <i className="bi bi-clock"></i>
-                            </div>
+                            <img className="time-icon" src={stopwatch_icon} alt="stopwatch_icon" />
                             <div className="time-title">
                                 <h2>Total Learning Time</h2>
                             </div>
-                            <div className="total-time">6h 30min</div>
+                            <div className="total-time">6H 30 min</div>
                         </div>
                         
                         <div className="chart-container">
@@ -189,7 +190,11 @@ const LearningPracticeSummary = () => {
                 </div>
                 <div className="summary-card" style={{ width: 'calc(50% - 10px)' }}>
                     <div className="learning-time-card">
-                        <h2>Week wise Learning Time</h2>
+                        <div className="time-header">
+                            <div className="time-title">
+                                <h2>Week wise Learning Time</h2>
+                            </div>
+                        </div>
                         <div className="subject-legend">
                             <div className="legend-item">
                                 <span className="legend-dot math-dot"></span>
@@ -223,7 +228,13 @@ const LearningPracticeSummary = () => {
                 </div>
                 <div className="summary-card" style={{ width: 'calc(50% - 10px)' }}>
                     <div className="learning-time-card">
-                        <h2>Practice Questions 200</h2>
+                        <div className="time-header">
+                            <img className="time-icon" src={ppt_icon} alt="ppt icon" />
+                            <div className="time-title">
+                                <h2>Practice Questions</h2>
+                            </div>
+                            <div className="total-time">200</div>
+                        </div>
                         
                         <div className="chart-container">
                             <WeeklyLearningChart 
@@ -243,37 +254,41 @@ const LearningPracticeSummary = () => {
                 </div>
                 <div className="summary-card" style={{ width: 'calc(50% - 10px)' }}>
                     <div className="learning-time-card">
-                        <h2>Subject wise Practice Questions</h2>
+                        <div className="time-header">
+                            <div className="time-title">
+                                <h2>Subject wise Practice Questions</h2>
+                            </div>
+                        </div>
                         
                         <div className="chart-container">
                             <SubjectPracticeChart data={subjectPracticeData} />
                         </div>
                         
-                        <div className="subject-legend" style={{ display: 'flex', justifyContent: 'center', marginTop: '10px', gap: '20px' }}>
-                            <div style={{ display: 'flex', alignItems: 'center' }}>
-                                <div style={{ width: '20px', height: '20px', backgroundColor: '#94b4d4', marginRight: '8px' }}></div>
-                                <span>Mathematics</span>
+                        <div className="subject-legend" style={{ paddingLeft: '20px'}}>
+                            <div className="legend-item">
+                                <span className="legend-dot math-dot"></span>
+                                <span className="legend-text">Mathematics</span>
                             </div>
-                            <div style={{ display: 'flex', alignItems: 'center' }}>
-                                <div style={{ width: '20px', height: '20px', backgroundColor: '#f4b183', marginRight: '8px' }}></div>
-                                <span>Physics</span>
+                            <div className="legend-item">
+                                <span className="legend-dot physics-dot"></span>
+                                <span className="legend-text">Physics</span>
                             </div>
-                            <div style={{ display: 'flex', alignItems: 'center' }}>
-                                <div style={{ width: '20px', height: '20px', backgroundColor: '#8dd3f7', marginRight: '8px' }}></div>
-                                <span>Chemistry</span>
+                            <div className="legend-item">
+                                <span className="legend-dot chemistry-dot"></span>
+                                <span className="legend-text">Chemistry</span>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div className="summary-card" style={{ width: 'calc(50% - 10px)' }}>
                     <div className="learning-time-card">
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M9 16.2L4.8 12L3.4 13.4L9 19L21 7L19.6 5.6L9 16.2Z" fill="#333" />
-                            </svg>
-                            <h2>Average Accuracy Rate</h2>
-                            <span style={{ marginLeft: 'auto', color: '#0066CC', fontWeight: 'bold', fontSize: '18px' }}>64%</span>
-                        </div>
+                            <div className="time-header">
+                                <img className="time-icon" src={tick_icon} alt="tick icon" />
+                                <div className="time-title">
+                                    <h2>Average Accuracy Rate </h2>
+                                </div>
+                                <div className="total-time">64%</div>
+                            </div>
                         <div className="chart-container" style={{ height: '250px' }}>
                             <AccuracyGaugeChart accuracy={64} />
                         </div>
@@ -281,7 +296,11 @@ const LearningPracticeSummary = () => {
                 </div>
                 <div className="summary-card" style={{ width: 'calc(50% - 10px)' }}>
                     <div className="learning-time-card">
-                        <h2>Week wise Accuracy Rate</h2>
+                        <div className="time-header">
+                            <div className="time-title">
+                                <h2>Week wise Accuracy Rate</h2>
+                            </div>
+                        </div>
                         <div className="chart-container" style={{ height: '250px' }}>
                             <WeeklyAccuracyChart />
                         </div>
@@ -299,8 +318,12 @@ const LearningPracticeSummary = () => {
 
                 <div className="summary-card" style={{ width: 'calc(50% - 10px)' }}>
                     <div className="learning-time-card">
-                        <h2>Subject Performance vs Goals</h2>
-                        <div className="chart-container" style={{ height: '350px' }}>
+                        <div className="time-header">
+                            <div className="time-title">
+                                <h2>Subject wise Accuracy Rate</h2>
+                            </div>
+                        </div>
+                        <div className="chart-container">
                             <SubjectGoalChart />
                         </div>
                     </div>
@@ -308,7 +331,11 @@ const LearningPracticeSummary = () => {
 
                 <div className="summary-card" style={{ width: 'calc(50% - 10px)' }}>
                     <div className="learning-time-card">
-                        <h2>Difficulty level wise Accuracy Percentage</h2>
+                        <div className="time-header">
+                            <div className="time-title">
+                                <h2>Difficulty level wise Accuracy Percentage</h2>
+                            </div>
+                        </div>
                         <div className="chart-container" style={{ height: '280px' }}>
                             <DifficultyAccuracyChart />
                         </div>
@@ -317,7 +344,11 @@ const LearningPracticeSummary = () => {
 
                 <div className="summary-card" style={{ width: 'calc(100% - 10px)' }}>
                     <div className="learning-time-card">
-                        <h2>Topic Wise Accuracy Percentage</h2>
+                        <div className="time-header">
+                            <div className="time-title">
+                                <h2>Topic Wise Accuracy Percentage</h2>
+                            </div>
+                        </div>
                         <div className="chart-container" style={{ height: '450px' }}>
                             <TopicWiseAccuracyChart />
                         </div>
