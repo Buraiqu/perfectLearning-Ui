@@ -247,13 +247,19 @@ const CourseMaterialContentViewer = () => {
                             </div>
                         </div>
                         <div className="content-section">
-                            {selectedContent && selectedContent.type === 'video' ? (
-                                <VideoViewer src={video}/>
-                            ) : selectedContent.type === 'pdf' ? (
-                                <PDFViewer/>
-                            ) : selectedContent.type === 'pptx' ? (
-                                <McqViewer/>
-                            ) : null}
+                            {selectedContent ? (
+                                selectedContent.type === 'video' ? (
+                                    <VideoViewer src={video}/>
+                                ) : selectedContent.type === 'pdf' ? (
+                                    <PDFViewer/>
+                                ) : selectedContent.type === 'pptx' ? (
+                                    <McqViewer/>
+                                ) : (
+                                    <div className="content-placeholder">Content type not supported</div>
+                                )
+                            ) : (
+                                <div className="content-placeholder">No content selected</div>
+                            )}
                         </div>
                         {selectedContent && selectedContent.type !== 'pptx' ? (
                             <>

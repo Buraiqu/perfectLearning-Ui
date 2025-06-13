@@ -1,0 +1,72 @@
+.my-performance-container {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    
+    /* Tab styling */
+    .performance-tabs {
+        display: flex;
+        border-bottom: none;
+        background-color: #f0f0f0;
+        border-radius: 8px 8px 0 0;
+        overflow: hidden;
+    }
+    
+    .tab {
+        padding: 15px 30px;
+        cursor: pointer;
+        text-align: center;
+        font-weight: 500;
+        flex: 1;
+        transition: background-color 0.3s;
+        color: #1A202C;
+    }
+
+    .tab.active {
+        background-color: #C5DDF3;
+        color: #03488B;
+        font-weight: 500;
+    }
+
+    .tab:first-child {
+        border-radius: 8px 10px 10px 0px;
+    }
+    
+    .tab:last-child {
+        border-radius: 10px 8px 0px 10px;
+    }
+    
+    .tab-content {
+        padding: 5px;
+        border-radius: 8px;
+    }
+
+    .date-range-selector {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        margin-bottom: 20px;
+    }
+
+    .date-input {
+        padding: 8px 12px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 14px;
+    }
+
+    .date-separator {
+        margin: 0 10px;
+        color: #555;
+    }
+
+    .calendar-button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        margin-left: 10px;
+        color: #555;
+        font-size: 16px;
+    }
+}
