@@ -29,6 +29,7 @@ import TestResults from './pages/Main/PracticeTests/TestResults';
 import TestNavigator from './pages/Main/PracticeTests/TestNavigator';
 import MyPerformance from './pages/Main/MyPerformance/myPerformance';
 import MyNotes from './pages/Main/MyNotes/MyNotes';
+import BookmarkedQuestions from './pages/Main/BookmarkedQuestions/BookmarkedQuestions';
 
 function App() {
 
@@ -80,6 +81,7 @@ function App() {
               <Route path="practice-tests/navigator" element={<TestNavigator />} />
               <Route path="my-performance" element={<MyPerformance />} />
               <Route path="my-notes" element={<MyNotes />} />
+              <Route path="bookmarked-questions/:subject/:topic" element={<BookmarkedQuestions />} />
             </Route>
           </Route>
 

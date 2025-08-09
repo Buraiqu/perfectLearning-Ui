@@ -1,64 +1,112 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './MyNotes.css';
-import { useState } from 'react';
-import MathImage from '../../../icons/math-image.svg'
-import PhysicsImage from '../../../icons/physics-image.svg'
-import ChemistryImage from '../../../icons/chemistry-image.svg'
+import MathImage from '../../../icons/math-image.svg';
+import PhysicsImage from '../../../icons/physics-image.svg';
+import ChemistryImage from '../../../icons/chemistry-image.svg';
 
 const MyNotes = () => {
-  const [selectedSubject, setSelectedSubject] = useState('Mathematics');
+  const navigate = useNavigate();
+  const [selectedSubject, setSelectedSubject] = useState(null);
+  const [selectedTopic, setSelectedTopic] = useState(null);
 
   const subjects = [
     {
       name: 'Mathematics',
       image: MathImage,
-      percentage: 10,
+      topics: [
+        { name: 'Sets, Relations, and Functions', bookmarks: 20, notesAdded: true },
+        { name: 'Inequalities, Modulus and Logarithms', bookmarks: 0, notesAdded: false },
+        { name: 'Relations & Functions 1', bookmarks: 0, notesAdded: false },
+        { name: 'Quadratic Equations', bookmarks: 0, notesAdded: false },
+      ],
     },
     {
       name: 'Physics',
       image: PhysicsImage,
-      percentage: 50,
+      topics: [
+        { name: 'Mechanics', bookmarks: 5, notesAdded: true },
+        { name: 'Thermodynamics', bookmarks: 0, notesAdded: false },
+        { name: 'Electromagnetism', bookmarks: 0, notesAdded: false },
+      ],
     },
     {
       name: 'Chemistry',
       image: ChemistryImage,
-      percentage: 0,
+      topics: [
+        { name: 'Organic Chemistry', bookmarks: 0, notesAdded: false },
+        { name: 'Inorganic Chemistry', bookmarks: 0, notesAdded: false },
+        { name: 'Physical Chemistry', bookmarks: 0, notesAdded: false },
+      ],
     },
   ];
 
   const handleSubjectClick = (subjectName) => {
-    setSelectedSubject(subjectName);
-    // console.log(`Selected subject: ${subjectName}`);
+    if (subjectName === selectedSubject) {
+      setSelectedSubject(null);
+      setSelectedTopic(null);
+    } else {
+      setSelectedSubject(subjectName);
+      setSelectedTopic(null);
+    }
+  };
+  
+  const handleTopicClick = (topicName, subject) => {
+    setSelectedTopic(topicName === selectedTopic ? null : topicName);
+    
+    // Navigate to the bookmarked questions page when a topic is selected
+    if (topicName !== selectedTopic) {
+      navigate(`/main/bookmarked-questions/${subject}/${topicName}`);
+    }
   };
 
   return (
-    <div className="my-notes-container">
-      <h1>My Notes - Select a Subject</h1>
-      <div className="subjects-list">
+    <div className="mynotes-main-container">
+      <h2 className="mynotes-subject-title">Pick a subject</h2>
+      <div className="mynotes-subjects-grid">
         {subjects.map((subject) => (
           <div
             key={subject.name}
-            className={`subject-item ${selectedSubject === subject.name ? 'selected' : ''}`}
+            className={`mynotes-subject-card ${selectedSubject === subject.name ? 'mynotes-subject-card-selected' : ''}`}
             onClick={() => handleSubjectClick(subject.name)}
-            role="button" // for accessibility
-            tabIndex={0} // for accessibility
-            onKeyPress={(e) => e.key === 'Enter' && handleSubjectClick(subject.name)} // for accessibility
+            role="button"
+            tabIndex={0}
+            onKeyPress={(e) => e.key === 'Enter' && handleSubjectClick(subject.name)}
           >
-            <img src={subject.image} alt={subject.name} className="subject-image" />
-            <p className="subject-name">{subject.name}</p>
-            <p className="subject-percentage">Progress: {subject.percentage}%</p>
+            <div className="mynotes-card-inner">
+              <img src={subject.image} alt={subject.name} className="mynotes-subject-img" />
+              <div className="mynotes-subject-label">{subject.name}</div>
+            </div>
           </div>
         ))}
       </div>
+      
       {selectedSubject && (
-        <div className="selected-subject-content">
-          <h2>Notes for {selectedSubject}</h2>
-          <p>Your notes for {selectedSubject} will appear here.</p>
+        <div className="mynotes-topics-container">
+          <h3 className="mynotes-topics-title">Select a topic</h3>
+          <div className="mynotes-topics-list">
+            {subjects.find(subject => subject.name === selectedSubject)?.topics.map((topic) => (
+              <div 
+                key={topic.name} 
+                className={`mynotes-topic-item ${topic.name === selectedTopic ? 'mynotes-topic-item-selected' : ''}`}
+                onClick={() => handleTopicClick(topic.name, selectedSubject)}
+              >
+                <div className="mynotes-topic-name">{topic.name}</div>
+                <div className="mynotes-topic-info">
+                  {topic.bookmarks > 0 ? (
+                    <span className="mynotes-bookmarks">{topic.bookmarks} Bookmarks</span>
+                  ) : (
+                    <span className="mynotes-no-bookmarks">No Bookmarks yet</span>
+                  )}
+                  {topic.notesAdded && <span className="mynotes-notes-added">Notes Added</span>}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       )}
     </div>
   );
-
 };
 
 export default MyNotes;
