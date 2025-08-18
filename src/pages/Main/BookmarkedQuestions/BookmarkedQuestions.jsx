@@ -11,6 +11,12 @@ import { BiNote } from 'react-icons/bi';
 import { IoIosWarning } from 'react-icons/io';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { RiPencilLine } from 'react-icons/ri';
+import VideoViewer from  '../../../components/VideoViewer/videoViewer'
+import PDFViewer from  '../../../components/PDFViewer/pdfViewer'
+import video from './movie.mov'
+import BSBookMarkIcon from '../../../icons/BsBookmarks.svg'
+import BsBlueTriangleExclamation from '../../../icons/BsExclamationTriangle.svg'
+import BsBluePatchCheckIcon from '../../../icons/BsBluePatchCheck.svg'
 
 const BookmarkedQuestions = () => {
   const { subject, topic } = useParams();
@@ -140,7 +146,7 @@ const BookmarkedQuestions = () => {
                 
                 <div className="bq-option bq-correct">
                   <div className="bq-option-radio">
-                    <input type="radio" id="option-b" name="question-option" checked />
+                    <input type="radio" id="option-b" name="question-option" defaultChecked/>
                     <label htmlFor="option-b"></label>
                   </div>
                   <div className="bq-option-label">(B)</div>
@@ -178,6 +184,137 @@ const BookmarkedQuestions = () => {
                   <span className="bq-video-icon">▶</span>
                   Concept Video
                 </button>
+              </div>
+            </div>
+          )}
+          {activeTab === 'videos' && (
+            <div className="bq-questions">
+              <VideoViewer src={video}/>
+            </div>
+          )}
+          {activeTab === 'formula' && (
+            <div className="bq-questions">
+              <PDFViewer/>
+            </div>
+          )}
+          {activeTab === 'bookmarked-notes' && (
+            <div className="bq-questions">
+              <PDFViewer/>
+            </div>
+          )}
+          {activeTab === 'bookmarked-notes' && (
+            <div className="bq-questions">
+              <div className="bookmarked-notes-container">
+                <div className="notes-header">
+                  <h3>Bookmarked Questions</h3>
+                  <div className="notes-count">
+                    <span className="count-number">1</span>
+                    <span className="count-label">Questions</span>
+                  </div>
+                </div>
+                
+                <div className="note-group">
+                  <div className="group-header">
+                    <span className="group-title">Group 1</span>
+                    <div className="group-actions">
+                      <button className="action-btn">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M8 13.5C11.0376 13.5 13.5 11.0376 13.5 8C13.5 4.96243 11.0376 2.5 8 2.5C4.96243 2.5 2.5 4.96243 2.5 8C2.5 11.0376 4.96243 13.5 8 13.5Z" stroke="#64748B" stroke-linecap="round" stroke-linejoin="round"/>
+                          <path d="M8 5.5V8.5" stroke="#64748B" stroke-linecap="round" stroke-linejoin="round"/>
+                          <path d="M8 11.5H8.01" stroke="#64748B" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </button>
+                      <button className="action-btn">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M8 13.5C11.0376 13.5 13.5 11.0376 13.5 8C13.5 4.96243 11.0376 2.5 8 2.5C4.96243 2.5 2.5 4.96243 2.5 8C2.5 11.0376 4.96243 13.5 8 13.5Z" stroke="#64748B" stroke-linecap="round" stroke-linejoin="round"/>
+                          <path d="M8 5.5V8.5" stroke="#64748B" stroke-linecap="round" stroke-linejoin="round"/>
+                          <path d="M8 11.5H8.01" stroke="#64748B" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </button>
+                      <button className="action-btn">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M8 13.5C11.0376 13.5 13.5 11.0376 13.5 8C13.5 4.96243 11.0376 2.5 8 2.5C4.96243 2.5 2.5 4.96243 2.5 8C2.5 11.0376 4.96243 13.5 8 13.5Z" stroke="#64748B" stroke-linecap="round" stroke-linejoin="round"/>
+                          <path d="M8 5.5V8.5" stroke="#64748B" stroke-linecap="round" stroke-linejoin="round"/>
+                          <path d="M8 11.5H8.01" stroke="#64748B" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                  
+                  <div className="note-item">
+                    <div className="note-content">
+                      <div className="note-text">
+                        <span className="note-title">Question 1</span>
+                        <p className="note-description">A sample Q has half life 20min. It decays by emitting alpha particle and beta particle with probability of 60% and 40% respectively. Initial sample of Q contains 1000 nuclei, then number of α-particle decay after one hour will be</p>
+                        <div className="note-tag">Types of Sets</div>
+                      </div>
+                      <div className="note-actions">
+                        <button className="action-btn">
+                          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 13.5C11.0376 13.5 13.5 11.0376 13.5 8C13.5 4.96243 11.0376 2.5 8 2.5C4.96243 2.5 2.5 4.96243 2.5 8C2.5 11.0376 4.96243 13.5 8 13.5Z" stroke="#64748B" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M8 5.5V8.5" stroke="#64748B" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M8 11.5H8.01" stroke="#64748B" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>
+                        </button>
+                        <button className="action-btn">
+                          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 13.5C11.0376 13.5 13.5 11.0376 13.5 8C13.5 4.96243 11.0376 2.5 8 2.5C4.96243 2.5 2.5 4.96243 2.5 8C2.5 11.0376 4.96243 13.5 8 13.5Z" stroke="#64748B" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M8 5.5V8.5" stroke="#64748B" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M8 11.5H8.01" stroke="#64748B" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>
+                        </button>
+                        <button className="action-btn">
+                          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 13.5C11.0376 13.5 13.5 11.0376 13.5 8C13.5 4.96243 11.0376 2.5 8 2.5C4.96243 2.5 2.5 4.96243 2.5 8C2.5 11.0376 4.96243 13.5 8 13.5Z" stroke="#64748B" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M8 5.5V8.5" stroke="#64748B" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M8 11.5H8.01" stroke="#64748B" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="add-note">
+                  <div className="add-note-input">
+                    <input type="text" placeholder="Add a note to this question" />
+                    <button className="add-btn">
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8 3.5V12.5" stroke="#3B82F6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M3.5 8H12.5" stroke="#3B82F6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+          {activeTab === 'flashcards' && (
+            <div className="bq-questions" style={{background: 'none'}}>
+              <div className="flash-card-main">
+                  <div className="flash-card-container">
+                      <div className="flash-card">
+                          <button className="icon-button warning-icon" onClick={() => setReportModal(true)}>
+                              <img src={BsBlueTriangleExclamation} alt="" />
+                          </button>
+                          <button className="icon-button bookmark-icon">
+                              <img src={BSBookMarkIcon} alt="" />
+                          </button>
+                          <button className="icon-button check-icon">
+                              <img src={BsBluePatchCheckIcon} alt="" />
+                          </button>
+
+                          <div className='flash-content'>
+                              <p>The atomic weight of an element is defined as the average relative weight (or mass) of an atom of an element with respect to (1/12)th of an atom of carbon.</p>
+                          </div>
+
+                          <div className='flash-content'>
+                              <div className="flash-card-formula">
+                                  <img src="data:image/png;base64," alt="Weight formula" />
+                              </div>
+                          </div>
+                      </div>
+                  </div>
               </div>
             </div>
           )}
