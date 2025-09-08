@@ -33,7 +33,7 @@ const SubscriptionPlansComponent = ({courseId, data}) => {
         const payload = { "LoggedInUser": "VEL_S_PIL_1", "CourseID": courseId}
         publicContentService.getCourseDetailsForEnroll(payload).then(response => {
             if(response.success){
-                setCourseDetails(response.data[0])
+                setCourseDetails(response.data.data[0])
             }
         }).catch(error => {
             console.log('Error fetching course details for enroll')
@@ -47,9 +47,9 @@ const SubscriptionPlansComponent = ({courseId, data}) => {
         const payload = { "LoggedInUser": "VEL_S_PIL_1", "CourseID": courseId, "CoursePlanID": "", "StudentID": "", "ScreenName": "ENROLLCOURSE" }
         publicContentService.getCoursePlanDetailsAndFeatures(payload).then(response => {
             if(response.success){
-                console.log(response.data.coursePlan)
-                setCoursePlan(response.data.coursePlan)
-                setCoursePlanFeatures(response.data.coursePlanFeature)
+
+                setCoursePlan(response.data.data.coursePlans)
+                setCoursePlanFeatures(response.data.data.coursePlanFeatures)
             }
         }).catch(error => {
             console.log('Error fetching course plan details and features')

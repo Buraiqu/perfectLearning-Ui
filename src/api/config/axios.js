@@ -41,4 +41,4 @@ axiosAuthInstance.interceptors.response.use(
   errorInterceptor
 );
 
-export { axiosAuthInstance as default, axiosPublicInstance };
+export { axiosAuthInstance, axiosPublicInstance };
