@@ -8,22 +8,22 @@ class PublicContentService extends PublicBaseService {
   }
 
   async getCourseCategoryCount(payload) {
-    return this.post('/GetCourseCategoryCount', payload);
+    return this.post('/FEGetCourseCategoryCount', payload);
   }
 
   async getCourseListForApplication(payload) {
-    return this.post('/GetCourseListForFEApplication', payload);
+    return this.post('/FEGetCourseList', payload);
   }
 
   async getCourseDetailsForEnroll(payload) {
-    return this.post('/GetCourseForEnroll', payload);
+    return this.post('/FEGetCourseForEnroll', payload);
   }
 
   async getCourseUpdatesAndNotifications(payload) {
-    return this.post('/GetCourseNotidicationSubscriptionCheck', payload);
+    return this.post('/FEGetCourseNotificationSubscriptionCheck', payload);
   }
   async getCoursePlanDetailsAndFeatures(payload) {
-    return this.post('/GetCoursePlanForEnrollAndFeature', payload);
+    return this.post('/FEGetCoursePlanAndFeaturesForEnroll', payload);
   }
 
 }
