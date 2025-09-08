@@ -4,14 +4,23 @@ import { Link, useNavigate } from 'react-router-dom';
 import { FcGoogle } from 'react-icons/fc';
 import PerfectLearningLogo from '/assets/logo_full.svg';
 import './signup.css';
+import authService from '../../../api/services/AuthService';
 
 const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [formData, setFormData] = useState({
-    email: '',
-    password: '',
-    confirmPassword: ''
+    EmailAddress: '',
+    passwordText: '',
+    confirmPassword: '',
+    LoggedInUser : 'VEL_S_PIL_1',
+    CalledFrom : 'Student Profile: SignUp',
+    StudentId : null,
+    Username : null,
+    NewStudentID : null,
+    NumberOfFailedLogin : null,
+    ErrorMessage : null,
+    SuccessInd : null
   });
   const navigate = useNavigate();
 
@@ -25,9 +34,10 @@ const Signup = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    localStorage.setItem('email', formData.email);
+    localStorage.setItem('email', formData.EmailAddress);
     localStorage.setItem('userId', '12345');
     localStorage.setItem('stage', 'onboarding');
+    authService.register(formData)
     navigate('/signupVerification');
     console.log('Form submitted:', formData);
   };
@@ -61,9 +71,9 @@ const Signup = () => {
         <Form.Group className="form-group">
           <Form.Label>Email ID</Form.Label>
           <Form.Control
-            type="email"
-            name="email"
-            value={formData.email}
+            type="EmailAddress"
+            name="EmailAddress"
+            value={formData.EmailAddress}
             onChange={handleChange}
             placeholder="example@gmail.com"
             className="custom-input"
@@ -75,8 +85,8 @@ const Signup = () => {
           <div className="password-input-container">
             <Form.Control
               type={showPassword ? "text" : "password"}
-              name="password"
-              value={formData.password}
+              name="passwordText"
+              value={formData.passwordText}
               onChange={handleChange}
               placeholder="••••••••••••"
               className="custom-input"

@@ -1,13 +1,155 @@
-.my-notes-container {
+.mynotes-main-container {
   padding: 20px;
-  background-color: #f9f9f9; /* Added a light background for distinction */
-  min-height: calc(100vh - 56px); /* Assuming header height is 56px */
+  background-color: #f5f7fa;
+  min-height: calc(100vh - 56px);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  .mynotes-subject-title {
+    color: #333;
+    margin-bottom: 0px;
+    font-size: 24px;
+    font-weight: 500;
+    text-align: left;
+  }
+  
+  .mynotes-subjects-grid {
+    display: flex;
+    justify-content: flex-start;
+    gap: 15px;
+    flex-wrap: wrap;
+    max-width: 1000px;
+    margin-top: 10px;
+  }
+  
+  .mynotes-subject-card {
+    width: 160px;
+    height: 145px;
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  .mynotes-subject-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .mynotes-subject-card-selected {
+    /*box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.3);*/
+    background-color: #c9def0;
+  }
+  
+  .mynotes-subject-card-selected:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(52, 152, 219, 0.3);
+  }
+  
+  .mynotes-card-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+  }
+  
+  .mynotes-subject-img {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+  }
+  
+  .mynotes-subject-label {
+    padding-top: 12px;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    font-weight: 500;
+    text-align: center;
+    color: #333;
+    line-height: 1.2;
+  }
+  
+  .mynotes-subject-card-selected .mynotes-subject-label {
+    color: #003986;
+    font-weight: 500;
+  }
+  
+  /* Topics list styles */
+  .mynotes-topics-container {
+    margin-top: 30px;
+    width: 100%;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+  }
+  
+  .mynotes-topics-title {
+    font-size: 18px;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 15px;
+  }
+  
+  .mynotes-topics-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .mynotes-topic-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+    cursor: pointer;
+    transition: background-color 0.2s, box-shadow 0.2s;
+  }
+  
+  .mynotes-topic-item:hover {
+    background-color: #f0f0f0;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.12);
+  }
+  
+  .mynotes-topic-item-selected {
+    background-color: #e6f2ff;
+    box-shadow: 0 2px 5px rgba(52, 152, 219, 0.2);
+  }
+  
+  .mynotes-topic-item-selected:hover {
+    box-shadow: 0 3px 7px rgba(52, 152, 219, 0.3);
+  }
+  
+  .mynotes-topic-name {
+    font-weight: 500;
+    color: #333;
+  }
+  
+  .mynotes-topic-info {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    font-size: 14px;
+  }
+  
+  .mynotes-bookmarks {
+    color: #666;
+  }
+  
+  .mynotes-no-bookmarks {
+    color: #666;
+  }
+  
+  .mynotes-notes-added {
+    color: #666;
+    border-left: 1px solid #ddd;
+    padding-left: 10px;
+  }
 }
 
-.my-notes-container h1 {
-  color: #333;
-  margin-bottom: 20px;
-  font-size: 24px;
-  border-bottom: 1px solid #eee;
-  padding-bottom: 10px;
-}

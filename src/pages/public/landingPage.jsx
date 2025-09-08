@@ -27,10 +27,10 @@ const LandingPage = () => {
 
   function getCourseCategoryCount(){
     setCategoryLoading(true);
-    const payload = { "LoggedInUser": "VEL_S_PIL_1", "ScreenName": "CourseDashboard" };
+    const payload = { "LoggedInUser": "VEL_S_PIL_1", "LocationID": null, "Keyword": null};
     publicContentService.getCourseCategoryCount(payload).then(response => {
       if(response.success){
-        setCourseCategoryCount(response.data.result)
+        setCourseCategoryCount(response.data.data)
       }
     }).catch(error => {
       console.log('Error fetching course category count')
@@ -44,7 +44,7 @@ const LandingPage = () => {
     const payload = { "LoggedInUser": "VEL_S_PIL_1", "Keyword": searchQuery || "" };
     publicContentService.getCourseListForApplication(payload).then(response => {
       if(response.success){
-        setCourseList(response.data)
+        setCourseList(response.data.data)
       }
     }).catch(error => {
       console.log('Error fetching course list')
