@@ -1,18 +1,25 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './preparationTimeModal.css';
 
 const PreparationTimeModal = ({ isOpen, onClose, initialWeeks = 40 }) => {
     const [weeks, setWeeks] = useState(initialWeeks);
 
+    const updateSliderBackground = (value) => {
+        const percent = (value - 1) / (52 - 1) * 100;
+        document.documentElement.style.setProperty('--value-percent', `${percent}%`);
+    };
+
+    // Initialize slider background on mount
+    useEffect(() => {
+        if (isOpen) {
+            updateSliderBackground(weeks);
+        }
+    }, [isOpen, weeks]);
+
     if (!isOpen) return null;
 
     const handleSave = () => {
         onClose();
-    };
-
-    const updateSliderBackground = (value) => {
-        const percent = (value - 1) / (52 - 1) * 100;
-        document.documentElement.style.setProperty('--value-percent', `${percent}%`);
     };
 
     const handleSliderChange = (e) => {

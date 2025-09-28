@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import './mcqViewer.css';
-import mcqReportIcon from '../../icons/mcq_report.svg';
+import mcqReportIcon from '../../icons/BsExclamationTriangle.svg';
 import mcqBookmarkIcon from '../../icons/mcq_bookmark.svg';
 import mcqSolutionIcon from '../../icons/mcq_solution.svg';
 import mcqCorrectPercentageIcon from '../../icons/mcq_correct_percentage.svg';
 import mcqConceptVideoIcon from '../../icons/mcq_concept_video.svg';
 import mcqConceptNotesIcon from '../../icons/mcq_concept_notes.svg';
+import ReportModal from '../../components/Modals/ReportQuestion-Modal/reportQuestionModal';
 
 const McqViewer = ({ question }) => {
     // Array of MCQ states for each instance
@@ -70,8 +71,22 @@ const McqViewer = ({ question }) => {
         );
     };
 
+    const [showReportModal, setShowReportModal] = useState(false);
+    const [selectedQuestionId, setSelectedQuestionId] = useState(null);
+
+    const onReportIssue = (questionId) => {
+        setSelectedQuestionId(questionId);
+        setShowReportModal(true);
+    };
+
     return (
         <>
+            {showReportModal && (
+                <ReportModal
+                    questionId={selectedQuestionId}
+                    onClose={() => setShowReportModal(false)}
+                />
+            )}
             {mcqStates.map(mcqState => (
                 <div key={mcqState.id} className="pl-mcq-viewer">
                     <div className="pl-mcq-header">
@@ -81,7 +96,7 @@ const McqViewer = ({ question }) => {
                                 <img src={mcqBookmarkIcon} alt="Bookmark" width="20" height="20" />
                             </button>
                             <button className="pl-icon-button">
-                                <img src={mcqReportIcon} alt="Report" width="20" height="20" />
+                                <img src={mcqReportIcon} alt="Report" width="20" height="20" onClick={() => onReportIssue(mcqState.id)} />
                             </button>
                         </div>
                     </div>

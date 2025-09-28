@@ -12,65 +12,80 @@ import reportIssueIcon from '../../../icons/test-result-question-review-report-i
 import './QuestionReview.css';
 import './TestResults.css';
 
-// SVG icons imported above
+const mockData = {
+  testName: "JEE Advanced Mock Test 1",
+  totalScore: 80,
+  totalQuestions: 120,
+  scorePercentage: 66.67,
+  peerAverage: 58,
+  subjectScores: [
+    { subject: "Mathematics", percentage: 70 },
+    { subject: "Physics", percentage: 60 },
+    { subject: "Chemistry", percentage: 75 }
+  ],
+  questions: [
+    {
+      id: 1, status: 'correct', text: "What is the derivative of f(x) = x²?",
+      options: ["2x", "x", "x³", "2"], userAnswer: 0, correctAnswer: 0,
+      difficulty: "Medium", timeTaken: 45, subject: "Mathematics"
+    },
+    {
+      id: 2, status: 'incorrect', text: "What is the integral of 1/x?",
+      options: ["ln(x)", "1", "-1/x²", "x"], userAnswer: 1, correctAnswer: 0,
+      difficulty: "Easy", timeTaken: 30, subject: "Physics"
+    },
+    {
+      id: 3, status: 'unattempted', text: "What is the value of e^(iπ)?",
+      options: ["-1", "1", "0", "i"], userAnswer: null, correctAnswer: 0,
+      difficulty: "Hard", timeTaken: 0, subject: "Mathematics"
+    },
+    {
+      id: 4, status: 'correct', text: "What is the formula for momentum?",
+      options: ["p = mv", "F = ma", "E = mc²", "v = d/t"], userAnswer: 0, correctAnswer: 0,
+      difficulty: "Easy", timeTaken: 25, subject: "Physics"
+    },
+    {
+      id: 5, status: 'incorrect', text: "Which planet is known as the Red Planet?",
+      options: ["Venus", "Mars", "Jupiter", "Saturn"], userAnswer: 0, correctAnswer: 1,
+      difficulty: "Easy", timeTaken: 15, subject: "Chemistry"
+    }
+  ],
+  statistics: {
+    allQuestions: 40,
+    attempted: 35,
+    unattempted: 5,
+    correct: 25,
+    incorrect: 10
+  }
+};
 
 const TestResults = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const [currentQuestion, setCurrentQuestion] = useState(0);
+
+  const testData = location.state?.testData || mockData;
+
+  const [selectedStat, setSelectedStat] = useState('all');
+  const [filteredQuestions, setFilteredQuestions] = useState(testData.questions);
   const chartRef = useRef(null);
   const subjectChartRefs = useRef([]);
-  
-  // Get test data from location state or use mock data
-  const mockData = {
-    testName: "JEE Advanced Mock Test 1",
-    totalScore: 80,
-    totalQuestions: 120,
-    scorePercentage: 66.67,
-    peerAverage: 58,
-    subjectScores: [
-      { subject: "Mathematics", percentage: 70 },
-      { subject: "Physics", percentage: 60 },
-      { subject: "Chemistry", percentage: 75 }
-    ],
-    questions: [
-      {
-        id: 1,
-        text: "What is the derivative of f(x) = x² with respect to x?",
-        options: ["f'(x) = x", "f'(x) = 2x", "f'(x) = 2", "f'(x) = x²"],
-        correctAnswer: 1,
-        userAnswer: 1,
-        difficulty: "Medium",
-        timeTaken: 45,
-        subject: "Mathematics"
-      },
-      {
-        id: 2,
-        text: "Which of the following is Newton's first law?",
-        options: [
-          "Force equals mass times acceleration", 
-          "An object at rest stays at rest unless acted upon by a force", 
-          "For every action, there is an equal and opposite reaction", 
-          "Energy cannot be created or destroyed"
-        ],
-        correctAnswer: 1,
-        userAnswer: 2,
-        difficulty: "Easy",
-        timeTaken: 30,
-        subject: "Physics"
-      }
-    ],
-    statistics: {
-      allQuestions: 40,
-      attempted: 35,
-      unattempted: 5,
-      correct: 25,
-      incorrect: 10
-    }
-  };
 
-  // Use location state if available, otherwise use mock data
-  const testData = location.state?.testData || mockData;
+  useEffect(() => {
+    let questionsToShow = [];
+    if (selectedStat === 'all') {
+      questionsToShow = testData.questions;
+    } else if (selectedStat === 'correct') {
+      questionsToShow = testData.questions.filter(q => q.status === 'correct');
+    } else if (selectedStat === 'incorrect') {
+      questionsToShow = testData.questions.filter(q => q.status === 'incorrect');
+    } else if (selectedStat === 'unattempted') {
+      questionsToShow = testData.questions.filter(q => q.status === 'unattempted');
+    } else if (selectedStat === 'attempted') {
+      questionsToShow = testData.questions.filter(q => q.status === 'correct' || q.status === 'incorrect');
+    }
+    setFilteredQuestions(questionsToShow);
+  }, [selectedStat, testData.questions]);
+  
   
   const handleExitClick = () => {
     navigate('/main/practice-tests');
@@ -80,18 +95,14 @@ const TestResults = () => {
   const handleBackToDashboard = () => {
     navigate('/main/practice-tests');
   };
-  
-  const handlePrevQuestion = () => {
-    setCurrentQuestion(prev => Math.max(0, prev - 1));
-  };
 
-  const handleNextQuestion = () => {
-    setCurrentQuestion(prev => Math.min(testData.questions.length - 1, prev + 1));
+  const handleStatSelect = (statId) => {
+    setSelectedStat(statId);
   };
   
-  // Prepare data for the ColumnChartWithImages component
+  
   const prepareSubjectChartData = () => {
-    // Transform the subject scores data into the format expected by ColumnChartWithImages
+  
     return testData.subjectScores.map(subject => {
       let color, iconSrc;
       
@@ -100,13 +111,13 @@ const TestResults = () => {
         iconSrc = chartTrophyIcon;
       } else if (subject.subject === "Physics") {
         color = "#B0CCE7";
-        iconSrc = chartStarIcon; // Using star logo for Physics
+        iconSrc = chartStarIcon;
       } else if (subject.subject === "Chemistry") {
-        color = "#B0CCE7"; // Using blue color for Chemistry
-        iconSrc = chartStarIcon; // Using star logo for Chemistry
+        color = "#B0CCE7";
+        iconSrc = chartStarIcon;
       } else {
         color = "#FFCFB6";
-        iconSrc = chartWarningIcon; // Using chemistry logo (warning icon) for other subjects
+        iconSrc = chartWarningIcon;
       }
       
       return {
@@ -120,25 +131,10 @@ const TestResults = () => {
     });
   };
   
-  // Always add a fourth subject with the warning icon
-  const getChartData = () => {
-    const data = prepareSubjectChartData();
-    // Always add "Another Subject" with warning icon
-    data.push({
-      name: "Another Subject",
-      value: 50,
-      color: "#FFCFB6",
-      bulletSettings: {
-        src: chartWarningIcon // Using warning icon for the fourth subject
-      }
-    });
-    return data;
-  };
-  
   return (
     
       <div className="content-viewer">
-        <div className="content-viewer-header">
+        <div className="content-viewer-header" style={{paddingLeft: '22px'}}>
           <div className="content-viewer-breadcrumb">
             <span>
               <span className="breadcrumb-item" onClick={handleBackToDashboard}>Dashboard</span>
@@ -153,7 +149,6 @@ const TestResults = () => {
           <div className="content-viewer-container">
             <div className="test-results-content">
               <div className="results-container">
-                {/* Score Cards Section */}
                 <div className="score-cards">
                   <div className="score-card">
                     <h3>Test Score</h3>
@@ -174,12 +169,11 @@ const TestResults = () => {
                   <div className="score-card">
                     <div className="score-title">Subject wise score</div>
                     <div className="subject-percentage-chart">
-                      <ColumnChartWithImages data={getChartData()} />
+                      <ColumnChartWithImages data={prepareSubjectChartData()} />
                     </div>
                   </div>
                 </div>
               
-              {/* Subject-wise Summary Section */}
               <div className="subject-wise-summary-section">
                 <h3 className="subject-wise-summary-title">Subject wise Summary</h3>
                 <div className="subject-wise-summary-chart-container">
@@ -212,105 +206,90 @@ const TestResults = () => {
                 </div>
               </div>
               
-              {/* Question Review Section */}
               <div className="question-review-section">
-                {/* Test Statistics Section */}
                 <div className="test-stats-section">
-                  <div className="stat-box all-questions">
-                    <div className="stat-title">All Questions</div>
-                    <div className="stat-value">40</div>
-                  </div>
-                  
-                  <div className="stat-box">
-                    <div className="stat-title">Attempted</div>
-                    <div className="stat-value">36</div>
-                  </div>
-                  
-                  <div className="stat-box">
-                    <div className="stat-title">Unattempted</div>
-                    <div className="stat-value">4</div>
-                  </div>
-                  
-                  <div className="stat-box">
-                    <div className="stat-title">Correct Answers</div>
-                    <div className="stat-value">25</div>
-                  </div>
-                  
-                  <div className="stat-box">
-                    <div className="stat-title">Incorrect Answers</div>
-                    <div className="stat-value">11</div>
-                  </div>
+                  {[ 
+                    { id: 'all', title: 'All Questions', value: testData.questions.length, className: 'all-questions' },
+                    { id: 'attempted', title: 'Attempted', value: testData.questions.filter(q => q.status !== 'unattempted').length, className: '' },
+                    { id: 'unattempted', title: 'Unattempted', value: testData.questions.filter(q => q.status === 'unattempted').length, className: 'unattempted' },
+                    { id: 'correct', title: 'Correct Answers', value: testData.questions.filter(q => q.status === 'correct').length, className: 'correct' },
+                    { id: 'incorrect', title: 'Incorrect Answers', value: testData.questions.filter(q => q.status === 'incorrect').length, className: 'incorrect' }
+                  ].map(stat => (
+                    <div 
+                      key={stat.id}
+                      className={`stat-box ${stat.className} ${selectedStat === stat.id ? 'active' : ''}`}
+                      onClick={() => handleStatSelect(stat.id)}
+                    >
+                      <div className="stat-title">{stat.title}</div>
+                      <div className="stat-value">{stat.value}</div>
+                    </div>
+                  ))}
                 </div>
-                <div className="question-review">
-                  <div className="question-header">
-                    <div className="question-number">Q1 (Single Correct)</div>
-                    <div className="question-time">
-                      <span className="time-icon"></span>
-                      <span>2min 30sec</span>
-                    </div>
-                  </div>
-                  
-                  <div className="question-text">
-                    A sample Q has half life 20min. It decays by emitting alpha particle and beta particle with probability of 60% and 40% respectively. Initial sample of Q contains 1000 nuclei, then number of α-particle decay after one hour will be
-                  </div>
-                  
-                  <div className="scoring-info-container">
-                    <div className="scoring-info">
-                      <span className="correct-score">Correct: +3</span>
-                      <span className="wrong-score">Wrong: -1</span>
-                    </div>
-                  </div>
-                  
-                  <div className="test-options-container">
-                    <div className="test-option test-selected-wrong">
-                      <div className="test-option-marker">
-                        <span className="test-user-selected-indicator"></span>
+
+                <div className="questions-list">
+                  {filteredQuestions.map((question, index) => (
+                    <div className="question-review" key={question.id}>
+                      <div className="question-header">
+                        <div className="question-number">Q{index + 1} (Single Correct)</div>
+                        <div className="question-time">
+                          <span className="time-icon"></span>
+                          <span>{question.timeTaken} sec</span>
+                        </div>
                       </div>
-                      <div className="test-option-text">350</div>
+                      
+                      <div className="question-text">{question.text}</div>
+                      
+                      <div className="scoring-info-container">
+                        <div className="scoring-info">
+                          <span className="correct-score">Correct: +3</span>
+                          <span className="wrong-score">Wrong: -1</span>
+                        </div>
+                      </div>
+                      
+                      <div className="test-options-container">
+                        {question.options.map((option, i) => (
+                          <div 
+                            key={i}
+                            className={`test-option ${
+                              i === question.correctAnswer ? 'test-correct' : ''
+                            } ${
+                              i === question.userAnswer && i !== question.correctAnswer ? 'test-selected-wrong' : ''
+                            } ${
+                              question.userAnswer === null ? 'test-unattempted' : ''
+                            }`}>
+                            <div className="test-option-marker"></div>
+                            <div className="test-option-text">{option}</div>
+                            {i === question.correctAnswer && <div className="test-correct-answer-label">Correct Answer</div>}
+                          </div>
+                        ))}
+                      </div>
+                      
+                      {question.status === 'incorrect' && 
+                        <div className="answer-feedback">
+                          <span>You scored -1 for wrong answer</span>
+                        </div>
+                      }
+                      
+                      <div className="question-actions">
+                        <button className="action-button bookmark">
+                          <img src={bookmarkIcon} alt="Bookmark" className="action-icon" />
+                          <span>Bookmark</span>
+                        </button>
+                        <button className="action-button solution">
+                          <img src={solutionIcon} alt="Solution" className="action-icon" />
+                          <span>Solution</span>
+                        </button>
+                        <button className="action-button correct-page">
+                          <img src={correctPercentIcon} alt="Correct Percentage" className="action-icon" />
+                          <span>Correct %age</span>
+                        </button>
+                        <button className="action-button report">
+                          <img src={reportIssueIcon} alt="Report Issue" className="action-icon" />
+                          <span>Report Issue</span>
+                        </button>
+                      </div>
                     </div>
-                    
-                    <div className="test-option test-correct">
-                      <div className="test-option-marker"></div>
-                      <div className="test-option-text">75</div>
-                      <div className="test-correct-answer-label">Correct Answer</div>
-                    </div>
-                    
-                    <div className="test-option">
-                      <div className="test-option-marker"></div>
-                      <div className="test-option-text">50</div>
-                    </div>
-                    
-                    <div className="test-option">
-                      <div className="test-option-marker"></div>
-                      <div className="test-option-text">525</div>
-                    </div>
-                  </div>
-                  
-                  <div className="answer-feedback">
-                    <span>You scored -1 for wrong answer</span>
-                  </div>
-                  
-                  <div className="question-actions">
-                    <button className="action-button bookmark">
-                      <img src={bookmarkIcon} alt="Bookmark" className="action-icon" />
-                      <span>Bookmark</span>
-                    </button>
-                    
-                    <button className="action-button solution">
-                      <img src={solutionIcon} alt="Solution" className="action-icon" />
-                      <span>Solution</span>
-                    </button>
-                    
-                    <button className="action-button correct-page">
-                      <img src={correctPercentIcon} alt="Correct Percentage" className="action-icon" />
-                      <span>Correct %age</span>
-                    </button>
-                    
-                    <button className="action-button report">
-                      <img src={reportIssueIcon} alt="Report Issue" className="action-icon" />
-                      <span>Report Issue</span>
-                    </button>
-                  </div>
+                  ))}
                 </div>
                 </div>
               </div>

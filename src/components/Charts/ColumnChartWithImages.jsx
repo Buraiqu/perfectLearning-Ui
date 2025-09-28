@@ -17,11 +17,12 @@ const ColumnChartWithImages = ({ data }) => {
     // Create chart
     const chart = root.container.children.push(
       am5xy.XYChart.new(root, {
-        panX: false,
+        panX: data.length > 4 ? true : false,
         panY: false,
-        wheelX: "none",
+        wheelX: data.length > 4 ? "panX" : "none",
         wheelY: "none",
-        paddingLeft: 0
+        paddingLeft: 0,
+        paddingRight: 0
       })
     );
 
@@ -159,7 +160,54 @@ const ColumnChartWithImages = ({ data }) => {
     };
   }, [data]);
 
-  return <div id="chartdiv" style={{ width: '100%', height: '230px' }} />;
+  const uniqueId = `chart-container-${Math.random().toString(36).substr(2, 9)}`;
+  
+  const containerStyle = {
+    width: '100%',
+    height: '250px',
+    overflowX: data.length > 4 ? 'scroll' : 'hidden',
+    overflowY: 'hidden',
+    position: 'relative',
+    border: '1px solid transparent' // Force container boundaries
+  };
+
+  const chartStyle = {
+    width: data.length > 4 ? `${data.length * 100}px` : '100%',
+    height: '230px',
+    minWidth: data.length > 4 ? `${data.length * 100}px` : '100%',
+    flexShrink: 0
+  };
+
+  // CSS for scrollbar styling
+  const scrollbarCSS = `
+    .${uniqueId}::-webkit-scrollbar {
+      height: 8px;
+    }
+    .${uniqueId}::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 4px;
+    }
+    .${uniqueId}::-webkit-scrollbar-thumb {
+      background: #c1c1c1;
+      border-radius: 4px;
+    }
+    .${uniqueId}::-webkit-scrollbar-thumb:hover {
+      background: #a8a8a8;
+    }
+    .${uniqueId} {
+      scrollbar-width: thin;
+      scrollbar-color: #c1c1c1 #f1f1f1;
+    }
+  `;
+
+  return (
+    <>
+      <style>{scrollbarCSS}</style>
+      <div className={uniqueId} style={containerStyle}>
+        <div id="chartdiv" style={chartStyle} />
+      </div>
+    </>
+  );
 };
 
 export default ColumnChartWithImages;

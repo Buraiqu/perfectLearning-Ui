@@ -480,39 +480,38 @@
     }
     
     .test-modal {
-        position: relative;
-        background-color: white;
-        border-radius: 8px;
-        padding: 32px;
-        width: 100%;
-        max-width: 550px;
-        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-    }
+    position: relative;
+    background-color: white;
+    border-radius: 7px;
+    padding: 24px;
+    width: 100%;
+    max-width: 650px; /* Adjusted width */
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+}
     
-    .close-modal {
-        position: absolute;
-        top: 24px;
-        right: 24px;
-        background: none;
-        border: none;
-        cursor: pointer;
-        padding: 4px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+    .close-modal-btn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+}
     
-    .test-modal-title {
-        font-size: 20px;
-        font-weight: 600;
-        margin-bottom: 16px;
-        color: #101828;
-    }
+    .modal-title {
+    font-size: 20px; /* Adjusted font size */
+    font-weight: 600;
+    margin-bottom: 20px; /* Adjusted margin */
+    color: #101828;
+    text-align: left;
+}
     
     .test-modal-details {
-        display: flex;
-        margin-bottom: 24px;
-    }
+    display: flex;
+    gap: 24px;
+    margin-bottom: 24px;
+}
     
     .test-modal-time,
     .test-modal-questions {
@@ -527,57 +526,68 @@
     }
     
     .detail-label {
-        font-size: 16px;
-        color: #101828;
-        margin-right: 5px;
-        font-weight: normal;
-    }
+    font-size: 14px;
+    color: #344054; /* Darker grey for label */
+    margin-right: 4px;
+    font-weight: 400;
+}
     
     .detail-value {
-        font-size: 16px;
-        color: #0b4d8c;
-        font-weight: normal;
-    }
+    font-size: 14px;
+    color: #003986; /* Corrected to primary dark blue */
+    font-weight: 500;
+}
     
     .test-modal-section {
-        margin-bottom: 16px;
-    }
+    margin-bottom: 20px;
+}
     
     .test-modal-section h3 {
         font-size: 16px;
-        font-weight: 600;
+        font-weight: 500; /* Lighter font weight */
         margin-bottom: 8px;
         color: #101828;
     }
     
     .modal-link {
-        color: #0b4d8c;
-        text-decoration: none;
-        font-size: 14px;
-        font-weight: 500;
-    }
+    color: #03488B; /* Lighter blue for link */
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+}
     
     .modal-link:hover {
         text-decoration: underline;
     }
     
     .start-test-btn {
-        background-color: #e9ecef;
-        color: #101828;
-        border: none;
-        border-radius: 4px;
-        padding: 10px 16px;
-        font-size: 16px;
-        font-weight: 500;
-        cursor: pointer;
-        width: 100%;
-        margin-top: 24px;
-        transition: background-color 0.2s ease;
-    }
+    background-color: #003986; /* Corrected to primary button blue */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 16px; /* Further reduced padding for compact button */
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    width: auto;
+    transition: background-color 0.2s ease, opacity 0.2s ease;
+}
+
+.start-test-btn.disabled {
+    background-color: #F2F4F7;
+    color: #98A2B3;
+    cursor: not-allowed;
+}
+
+.start-test-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 24px;
+}
     
-    .start-test-btn:hover {
-        background-color: #dee2e6;
-    }
+    .start-test-btn:not(.disabled):hover {
+    background-color: #002d69;
+}
     
     /* Take test button */
     .take-test-btn {
@@ -1296,8 +1306,105 @@
             width: calc(50% - 8px);
         }
         
-        .difficulty-buttons {
-            flex-direction: column;
-        }
     }
+
+/* Topics Accordion Styles */
+.topics-accordion-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.topic-accordion-item {
+    border: 1px solid #E4E7EC;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.topic-accordion-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    cursor: pointer;
+    background-color: #F9FAFB;
+}
+
+.topic-accordion-header span {
+    font-size: 16px;
+    font-weight: 500;
+    color: #344054;
+}
+
+.topic-accordion-header svg {
+    transition: transform 0.2s ease;
+}
+
+.topic-accordion-header svg.expanded {
+    transform: rotate(180deg);
+}
+
+.topic-accordion-content {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.topic-checkbox .subject-name {
+    font-size: 16px;
+    font-weight: 400;
+    color: #344054;
+}
+
+/* Topics Accordion Styles */
+.topics-accordion-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.topic-accordion-item {
+    border: 1px solid #E4E7EC;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.topic-accordion-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    cursor: pointer;
+    background-color: #F9FAFB;
+}
+
+.topic-accordion-header span {
+    font-size: 16px;
+    font-weight: 500;
+    color: #344054;
+}
+
+.topic-accordion-header svg {
+    transition: transform 0.2s ease;
+}
+
+.topic-accordion-header svg.expanded {
+    transform: rotate(180deg);
+}
+
+.topic-accordion-content {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.topic-checkbox .subject-name {
+    font-size: 16px;
+    font-weight: 400;
+    color: #344054;
+}
 }

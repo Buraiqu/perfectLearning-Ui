@@ -37,7 +37,7 @@ class AuthService extends BaseService {
    * @returns {Promise} Promise resolving to registration response
    */
   async register(userData) {
-    return this.post('/FEInsertOrUpdateStudentSignUp', userData);
+    return this.post('/register', userData);
   }
 
   /**
