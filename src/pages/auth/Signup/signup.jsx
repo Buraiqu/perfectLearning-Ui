@@ -13,14 +13,6 @@ const Signup = () => {
     EmailAddress: '',
     passwordText: '',
     confirmPassword: '',
-    LoggedInUser : 'VEL_S_PIL_1',
-    CalledFrom : 'Student Profile: SignUp',
-    StudentId : null,
-    Username : null,
-    NewStudentID : null,
-    NumberOfFailedLogin : null,
-    ErrorMessage : null,
-    SuccessInd : null
   });
   const navigate = useNavigate();
 
@@ -32,14 +24,41 @@ const Signup = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    localStorage.setItem('email', formData.EmailAddress);
-    localStorage.setItem('userId', '12345');
-    localStorage.setItem('stage', 'onboarding');
-    authService.register(formData)
-    navigate('/signupVerification');
-    console.log('Form submitted:', formData);
+    
+    try {
+    
+      const { confirmPassword, ...submitData } = formData;
+      const doubleEncodedPassword = btoa(btoa(submitData.passwordText));
+      
+      submitData.passwordText = doubleEncodedPassword;
+
+      const jsonString = JSON.stringify(submitData);
+      
+      const base64Encoded = btoa(jsonString);
+      
+      const payload = {
+        c: base64Encoded
+      };
+      
+      const response = await authService.register(payload);
+      
+      if (response) {
+        if (response.success) {
+        } else {
+          console.error('Registration failed:', response.message || 'Unknown error');
+        }
+      }
+    } catch (error) {
+      console.error('Error during signup:', error);
+      console.error('Error details:', {
+        message: error.message,
+        response: error.response?.data,
+        status: error.response?.status,
+        headers: error.response?.headers
+      });
+    }
   };
 
   const handleGoogleSignup = () => {

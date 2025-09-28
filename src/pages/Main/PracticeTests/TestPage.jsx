@@ -1,29 +1,168 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import './TestPage.css';
-import mcqReportIcon from '../../../icons/mcq_report.svg';
+import mcqReportIcon from '../../../icons/BsExclamationTriangle.svg';
 import mcqBookmarkIcon from '../../../icons/mcq_bookmark.svg';
 import logo_short from '/assets/logo_short.svg';
 import { BsQuestionCircle } from 'react-icons/bs';
+import ReportQuestionModal from '../../../components/Modals/ReportQuestion-Modal/reportQuestionModal';
 
-const TestPage = ({ testData, onClose }) => {
+const mockTestData = {
+    'jee-main-2024-paper-1': {
+        id: 'jee-main-2024-paper-1',
+        title: '2024 JEE Main Paper 1',
+        duration: 180,
+        questions: 90,
+        subjects: ['Mathematics', 'Physics', 'Chemistry'],
+        difficulty: 'Hard',
+        maxMarks: 300
+    },
+    'jee-main-2024-paper-2': {
+        id: 'jee-main-2024-paper-2',
+        title: '2024 JEE Main Paper 2',
+        duration: 180,
+        questions: 90,
+        subjects: ['Mathematics', 'Physics', 'Chemistry'],
+        difficulty: 'Hard',
+        maxMarks: 300
+    },
+    'jee-main-2023-paper-1': {
+        id: 'jee-main-2023-paper-1',
+        title: '2023 JEE Main Paper 1',
+        duration: 180,
+        questions: 90,
+        subjects: ['Mathematics', 'Physics', 'Chemistry'],
+        difficulty: 'Hard',
+        maxMarks: 300
+    },
+    'neet-2024-paper-1': {
+        id: 'neet-2024-paper-1',
+        title: '2024 NEET Paper 1',
+        duration: 200,
+        questions: 200,
+        subjects: ['Physics', 'Chemistry', 'Biology'],
+        difficulty: 'Hard',
+        maxMarks: 720
+    }
+};
+
+const TestPage = () => {
     const navigate = useNavigate();
+    const { testId } = useParams();
+    const location = useLocation();
     
-    // State for timer
+    const [testData, setTestData] = useState(null);
     const [timeLeft, setTimeLeft] = useState('119:30');
     const [isAllQuestionsPanelOpen, setIsAllQuestionsPanelOpen] = useState(false);
     const [showFinishModal, setShowFinishModal] = useState(false);
-    
-    // State for attempted questions
     const [attempted, setAttempted] = useState(36);
     const [totalQuestions, setTotalQuestions] = useState(40);
-    
-    // Current question
     const [currentQuestion, setCurrentQuestion] = useState(1);
     const [selectedAnswer, setSelectedAnswer] = useState('A');
-    const [revisitLater, setRevisitLater] = useState(false);
+    const [showReportModal, setShowReportModal] = useState(false);
+    const [showExitModal, setShowExitModal] = useState(false);
+    const [showTimesUpModal, setShowTimesUpModal] = useState(false);
+
+    const [questions, setQuestions] = useState(
+        Array(40).fill(null).map((_, i) => ({
+            id: i + 1,
+            status: 'not-attempted',
+            answer: null
+        }))
+    );
+    const [activeFilter, setActiveFilter] = useState('all');
+
+    // Derived counts from questions state
+    const attemptedCount = questions.filter(q => q.status === 'attempted').length;
+    const revisitCount = questions.filter(q => q.status === 'revisit-later').length;
+    const unattemptedCount = questions.filter(q => q.status === 'not-attempted').length;
+
+    // Apply filter from modal summary and reveal the panel
+    const handleSummaryFilter = (type) => {
+        setActiveFilter(type);
+        setShowFinishModal(false);
+        setShowTimesUpModal(false);
+        setIsAllQuestionsPanelOpen(true);
+    };
     
-    // Question data
+    useEffect(() => {
+        
+        if (location.state?.testData) {
+            setTestData(location.state.testData);
+        } else {
+            const mockData = mockTestData[testId];
+            if (mockData) {
+                setTestData(mockData);
+            } else {
+                navigate('/main/practice-tests');
+            }
+        }
+    }, [testId, location.state, navigate]);
+    
+    if (!testData) {
+        return (
+            <div className="test-page" style={{ 
+                display: 'flex', 
+                justifyContent: 'center', 
+                alignItems: 'center', 
+                height: '100vh',
+                flexDirection: 'column',
+                backgroundColor: '#F5F5F7'
+            }}>
+                <div className="loading-container" style={{
+                    textAlign: 'center',
+                    padding: '40px',
+                    backgroundColor: 'white',
+                    borderRadius: '12px',
+                    boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
+                }}>
+                    <div className="loading-spinner"></div>
+                    <p style={{ fontSize: '16px', color: '#666', margin: '0' }}>Loading test...</p>
+                    <p style={{ fontSize: '14px', color: '#999', marginTop: '10px' }}>
+                        TestId: {testId || 'undefined'}
+                    </p>
+                </div>
+            </div>
+        );
+    }
+    
+
+    const updateQuestionStatus = (qId, newStatus, newAnswer = null) => {
+        setQuestions(prevQuestions =>
+            prevQuestions.map(q => {
+                if (q.id === qId) {
+                    const updatedQ = { ...q, status: newStatus };
+                    if (newAnswer !== null) {
+                        updatedQ.answer = newAnswer;
+                    }
+                    if (newStatus === 'revisit-later') {
+                        updatedQ.previousStatus = q.status;
+                    } else if (q.status === 'revisit-later' && newStatus !== 'revisit-later') {
+                        updatedQ.status = q.previousStatus || 'not-attempted';
+                    }
+                    return updatedQ;
+                }
+                return q;
+            })
+        );
+    };
+
+    const handleSelectAnswer = (optionId) => {
+        setSelectedAnswer(optionId);
+        const currentQ = questions.find(q => q.id === currentQuestion);
+        if (currentQ && currentQ.status !== 'revisit-later') {
+            updateQuestionStatus(currentQuestion, 'attempted', optionId);
+        }
+    };
+
+    const handleToggleRevisit = () => {
+        const currentQ = questions.find(q => q.id === currentQuestion);
+        if (currentQ) {
+            const newStatus = currentQ.status === 'revisit-later' ? (currentQ.previousStatus || 'not-attempted') : 'revisit-later';
+            updateQuestionStatus(currentQuestion, newStatus);
+        }
+    };
+    
     const questionData = {
         text: "A sample Q has half life 20min. It decays by emitting alpha particle and beta particle with probability of 60% and 40% respectively.\nInitial sample of Q contains 1000 nuclei, then number of α-particle decay after one hour will be",
         type: "Single Correct",
@@ -39,16 +178,14 @@ const TestPage = ({ testData, onClose }) => {
         }
     };
     
-    // Questions list for sidebar (used by sidebar and for total count)
     const questionsList = Array(40).fill().map((_, i) => i + 1);
 
-    // Mock data for the 'All Questions' panel - replace with actual data later
     const allQuestionsDataForPanel = [
         {
             id: 1,
             type: "Single Correct",
             text: "A sample Q has half life 20min. It decays by emitting alpha particle and beta particle with probability of 60% and 40% respectively. Initial sample of Q contains 1000 nuclei, then number of α-particle decay after one hour will be",
-            status: "not-answered" // 'not-answered', 'answered', 'revisit-later'
+            status: "not-answered"
         },
         {
             id: 2,
@@ -62,18 +199,15 @@ const TestPage = ({ testData, onClose }) => {
             text: "This is a placeholder text for question 3 which is marked for revisit later.",
             status: "revisit-later"
         },
-        // Add more questions as needed to fill up to 'totalQuestions'
-        // For demonstration, let's add a few more generic ones if questionsList is longer
+
         ...Array(Math.max(0, totalQuestions - 3)).fill(null).map((_, i) => ({
             id: i + 4,
             type: "Single Correct",
             text: `This is the placeholder text for question ${i + 4}.`,
             status: "not-answered"
         }))
-    ].slice(0, totalQuestions); // Ensure we don't exceed totalQuestions
+    ].slice(0, totalQuestions);
 
-    
-    // Function to handle navigation
     const handleNavigation = (direction) => {
         if (direction === 'next' && currentQuestion < totalQuestions) {
             setCurrentQuestion(currentQuestion + 1);
@@ -82,15 +216,12 @@ const TestPage = ({ testData, onClose }) => {
         }
     };
 
-    // Function to toggle the 'All Questions' panel
     const toggleAllQuestionsPanel = () => {
         setIsAllQuestionsPanelOpen(!isAllQuestionsPanelOpen);
     };
 
     const handleQuestionSelectFromPanel = (qNum) => {
         setCurrentQuestion(qNum);
-        // Optionally close the panel after selection, or leave it open
-        // setIsAllQuestionsPanelOpen(false);
     };
 
     const handleFinishTest = () => {
@@ -98,16 +229,16 @@ const TestPage = ({ testData, onClose }) => {
     };
 
     const confirmFinishTest = () => {
-        console.log("Test finished and confirmed!"); // Placeholder for actual submission
-        
-        // In a real implementation, you would submit the test data to your backend here
-        // const response = await submitTestData(testData, answers);
-        
-        // Navigate to the test results page
-        // You can pass test data as state or query parameters if needed
+        setShowFinishModal(false);
+        setShowTimesUpModal(true);
+    };
+
+    const handleFinalFinish = () => {
+        setShowTimesUpModal(false);
         navigate('/main/practice-tests/results', { 
             state: { 
-                testId: testData?.id || '2023-IIT-JEE-Mains-Paper-1',
+                testId: testData.id,
+                testTitle: testData.title,
                 score: '80/120',
                 scorePercentage: '66.67%',
                 attempted: attempted,
@@ -117,17 +248,15 @@ const TestPage = ({ testData, onClose }) => {
                 timeSpent: '119:30'
             } 
         });
-        
-        setShowFinishModal(false);
     };
     
     return (
         <div className="test-page">
-            {/* Header */}
+            {showReportModal && <ReportQuestionModal onClose={() => setShowReportModal(false)} />}
             <div className="test-header">
                 <div className="header-left-content">
                     <img src={logo_short} alt="Perfect Learning Logo" width="48" height="48" />
-                    <span>2023 IIT JEE Mains Paper 1</span>
+                    <span>{testData.title}</span>
                 </div>
 
                 <div className="header-middle-group">
@@ -147,7 +276,7 @@ const TestPage = ({ testData, onClose }) => {
                     </div>
                 </div>
 
-                <div className="exit-section" onClick={onClose}>
+                <div className="exit-section" onClick={() => setShowExitModal(true)}>
                     <svg width="12" height="12" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M14 1.41L12.59 0L7 5.59L1.41 0L0 1.41L5.59 7L0 12.59L1.41 14L7 8.41L12.59 14L14 12.59L8.41 7L14 1.41Z" fill="#111111"/>
                     </svg>
@@ -161,12 +290,12 @@ const TestPage = ({ testData, onClose }) => {
                 <div className="question-section">
                     <div className="question-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', border: 'none', boxShadow: 'none', background: 'none', marginBottom: '16px', paddingBottom: '12px' }}>
                         <div className="question-number" style={{ fontSize: '14px', fontWeight: '600', color: '#101828', border: 'none', boxShadow: 'none', background: 'none' }}>Q{currentQuestion} (Single Correct)</div>
-                        <div style={{ display: 'flex', gap: '5px', border: 'none', boxShadow: 'none', background: 'none' }}>
+                        <div style={{ display: 'flex', gap: '10px', border: 'none', boxShadow: 'none', background: 'none' }}>
                             <button style={{ background: 'none', border: 'none', padding: 0, margin: 0, cursor: 'pointer' }} title="Bookmark this question">
                                 <img src={mcqBookmarkIcon} alt="Bookmark" width="20" height="20" />
                             </button>
                             <button style={{ background: 'none', border: 'none', padding: 0, margin: 0, cursor: 'pointer' }} title="Report this question">
-                                <img src={mcqReportIcon} alt="Report" width="20" height="20" />
+                                <img src={mcqReportIcon} alt="Report" width="20" height="20" onClick={() => setShowReportModal(true)} />
                             </button>
                         </div>
                     </div>
@@ -185,7 +314,7 @@ const TestPage = ({ testData, onClose }) => {
                             <div 
                                 key={option.id}
                                 className={`answer-option ${selectedAnswer === option.id ? 'selected' : ''}`}
-                                onClick={() => setSelectedAnswer(option.id)}
+                                onClick={() => handleSelectAnswer(option.id)}
                             >
                                 <div className="option-radio">
                                     {selectedAnswer === option.id && <div className="radio-inner"></div>}
@@ -200,8 +329,8 @@ const TestPage = ({ testData, onClose }) => {
                         <label className="revisit-checkbox">
                             <input 
                                 type="checkbox" 
-                                checked={revisitLater}
-                                onChange={() => setRevisitLater(!revisitLater)}
+                                checked={questions.find(q => q.id === currentQuestion)?.status === 'revisit-later'}
+                                onChange={handleToggleRevisit}
                             />
                             <span className="checkbox-text">Revisit later</span>
                         </label>
@@ -219,11 +348,10 @@ const TestPage = ({ testData, onClose }) => {
                             </button>
                             {currentQuestion === totalQuestions ? (
                                 <button 
-                                    className="nav-btn next" // Using 'next' class for same styling
+                                    className="nav-btn next" 
                                     onClick={handleFinishTest}
                                 >
                                     Finish
-                                    {/* Using the same arrow icon as 'Next' for visual consistency */}
                                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M6 12L10 8L6 4" stroke="#ffffff" strokeWidth="1.33333" strokeLinecap="round" strokeLinejoin="round"/>
                                     </svg>
@@ -245,23 +373,56 @@ const TestPage = ({ testData, onClose }) => {
                 </div>
                 
                 <div className="question-sidebar">
+                    <div className="sidebar-filter-buttons">
+                        <button 
+                            className={`filter-btn ${activeFilter === 'all' ? 'active' : ''}`}
+                            onClick={() => setActiveFilter('all')}
+                        >
+                            All
+                        </button>
+                        <button 
+                            className={`filter-btn ${activeFilter === 'attempted' ? 'active' : ''}`}
+                            onClick={() => setActiveFilter('attempted')}
+                        >
+                            Attempted
+                        </button>
+                        <button 
+                            className={`filter-btn ${activeFilter === 'not-attempted' ? 'active' : ''}`}
+                            onClick={() => setActiveFilter('not-attempted')}
+                        >
+                            Not Attempted
+                        </button>
+                        <button 
+                            className={`filter-btn ${activeFilter === 'revisit-later' ? 'active' : ''}`}
+                            onClick={() => setActiveFilter('revisit-later')}
+                        >
+                            Visit Later
+                        </button>
+                    </div>
                     <div className="questions-grid">
-                        {questionsList.map((qNum) => {
-                            // Determine the class for the question button
-                            let btnClass = 'q-btn';
-                            if (qNum === currentQuestion) btnClass += ' active';
-                            if (qNum <= attempted && qNum !== currentQuestion) btnClass += ' attempted';
-                            
-                            return (
-                                <button 
-                                    key={qNum} 
-                                    className={btnClass}
-                                    onClick={() => setCurrentQuestion(qNum)}
-                                >
-                                    Q{qNum}
-                                </button>
-                            );
-                        })}
+                        {questions
+                            .filter(q => {
+                                if (activeFilter === 'all') return true;
+                                return q.status === activeFilter;
+                            })
+                            .map((q) => {
+                                // Determine the class for the question button
+                                let btnClass = 'q-btn';
+                                if (q.status === 'attempted') btnClass += ' attempted';
+                                if (q.status === 'revisit-later') btnClass += ' revisit-later';
+                                if (q.status === 'not-attempted') btnClass += ' not-attempted';
+                                if (q.id === currentQuestion) btnClass += ' active';
+                                
+                                return (
+                                    <button 
+                                        key={q.id} 
+                                        className={btnClass}
+                                        onClick={() => setCurrentQuestion(q.id)}
+                                    >
+                                        Q{q.id}
+                                    </button>
+                                );
+                            })} 
                     </div>
                 </div>
             </div>
@@ -325,7 +486,7 @@ const TestPage = ({ testData, onClose }) => {
                         <h2 className="finish-modal-title">Are you sure that you would like to finish the test?</h2>
                         
                         <div className="finish-modal-summary">
-                            <div className="summary-item">
+                            <div className="summary-item" onClick={() => handleSummaryFilter('attempted')} style={{cursor: 'pointer'}}>
                                 <div className="summary-item-header">
                                     <span className="summary-icon attempted-icon">
                                         <svg width="20" height="20" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -335,9 +496,9 @@ const TestPage = ({ testData, onClose }) => {
                                     </span>
                                     <span className="summary-label">Attempted</span>
                                 </div>
-                                <span className="summary-value">{attempted}</span>
+                                <span className="summary-value">{attemptedCount}</span>
                             </div>
-                            <div className="summary-item">
+                            <div className="summary-item" onClick={() => handleSummaryFilter('revisit-later')} style={{cursor: 'pointer'}}>
                                 <div className="summary-item-header">
                                     <span className="summary-icon revisit-icon">
                                         <svg width="20" height="20" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -346,16 +507,16 @@ const TestPage = ({ testData, onClose }) => {
                                     </span>
                                     <span className="summary-label">Revisit Later</span>
                                 </div>
-                                <span className="summary-value">3</span>
+                                <span className="summary-value">{revisitCount}</span>
                             </div>
-                            <div className="summary-item">
+                            <div className="summary-item" onClick={() => handleSummaryFilter('not-attempted')} style={{cursor: 'pointer'}}>
                                 <div className="summary-item-header">
                                     <span className="summary-icon unattempted-icon">
                                         <BsQuestionCircle size={22} color="#475467" />
                                     </span>
                                     <span className="summary-label">Unattempted</span>
                                 </div>
-                                <span className="summary-value">4</span>
+                                <span className="summary-value">{unattemptedCount}</span>
                             </div>
                             <div className="summary-item">
                                 <div className="summary-item-header">
@@ -373,6 +534,87 @@ const TestPage = ({ testData, onClose }) => {
                         <div className="finish-modal-actions">
                             <button onClick={confirmFinishTest} className="finish-modal-confirm-btn">
                                 Finish test
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {/* Time's Up Modal */}
+            {showTimesUpModal && (
+                <div className="times-up-modal-overlay">
+                    <div className="times-up-modal">
+                        <h2 className="times-up-title">Time's Up!</h2>
+                        <p className="times-up-message">
+                            Your allotted time for this test has expired. To receive your results, please click 'Finish Test' below
+                        </p>
+                        <div className="times-up-summary">
+                            <div className="summary-item">
+                                <div className="summary-item-header">
+                                    <span className="summary-icon attempted-icon">
+                                        <svg width="20" height="20" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <rect x="2" y="2" width="12" height="12" rx="2" stroke="#475467" strokeWidth="1.33333" />
+                                            <path d="M11.3333 5.33333L6.66667 10L4.66667 8" stroke="#475467" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                                        </svg>
+                                    </span>
+                                    <span className="summary-label">Attempted</span>
+                                </div>
+                                <span className="summary-value">{attemptedCount}</span>
+                            </div>
+                            <div className="summary-item" >
+                                <div className="summary-item-header">
+                                    <span className="summary-icon unattempted-icon">
+                                        <BsQuestionCircle size={22} color="#475467" />
+                                    </span>
+                                    <span className="summary-label">Unattempted</span>
+                                </div>
+                                <span className="summary-value">{unattemptedCount}</span>
+                            </div>
+                            <div className="summary-item">
+                                <div className="summary-item-header">
+                                    <span className="summary-icon time-icon">
+                                        <svg width="20" height="20" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M8 4V8L10.6667 9.33333M14.6667 8C14.6667 11.6819 11.6819 14.6667 8 14.6667C4.3181 14.6667 1.33333 11.6819 1.33333 8C1.33333 4.3181 4.3181 1.33333 8 1.33333C11.6819 1.33333 14.6667 4.3181 14.6667 8Z" stroke="#475467" strokeWidth="1.33333" strokeLinecap="round" strokeLinejoin="round"/>
+                                        </svg>
+                                    </span>
+                                    <span className="summary-label">Time Left</span>
+                                </div>
+                                <span className="summary-value red-text">0 Min</span>
+                            </div>
+                            <div className="summary-item" >
+                                <div className="summary-item-header">
+                                    <span className="summary-icon revisit-icon">
+                                        <svg width="20" height="20" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M8 10.6667V8M8 5.33333H8.00667M14.6667 8C14.6667 11.6819 11.682 14.6667 8 14.6667C4.31811 14.6667 1.33337 11.6819 1.33337 8C1.33337 4.31811 4.31811 1.33333 8 1.33333C11.682 1.33333 14.6667 4.31811 14.6667 8Z" stroke="#475467" strokeWidth="1.33333" strokeLinecap="round" strokeLinejoin="round"/>
+                                        </svg>
+                                    </span>
+                                    <span className="summary-label">Revisit Later</span>
+                                </div>
+                                <span className="summary-value">{revisitCount}</span>
+                            </div>
+                        </div>
+                        <div className="times-up-actions">
+                            <button onClick={handleFinalFinish} className="times-up-confirm-btn">
+                                Finish test
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {/* Exit Confirmation Modal */}
+            {showExitModal && (
+                <div className="exit-confirm-modal-overlay">
+                    <div className="exit-confirm-modal">
+                        <button onClick={() => setShowExitModal(false)} className="close-modal-btn" aria-label="Close exit confirmation">
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M13 1L1 13M1 1L13 13" stroke="#667085" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                            </svg>
+                        </button>
+                        <h2 className="exit-confirm-title">Are you sure that you would like to Exit the test?</h2>
+                        <div className="exit-confirm-actions">
+                            <button onClick={() => navigate('/main/practice-tests')} className="exit-confirm-btn">
+                                Confirm Exit
                             </button>
                         </div>
                     </div>

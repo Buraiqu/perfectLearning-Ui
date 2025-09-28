@@ -12,6 +12,7 @@ import TopicsSideBardLoader from '../../../../components/TopicsSideBardLoader/to
 import VideoViewer from '../../../../components/VideoViewer/videoViewer';
 import PDFViewer from '../../../../components/PDFViewer/pdfViewer';
 import McqViewer from '../../../../components/McqViewer/mcqViewer';
+import ReportQuestionModal from '../../../../components/Modals/ReportQuestion-Modal/reportQuestionModal'
 
 const CourseMaterialContentViewer = () => {
     const location = useLocation()
@@ -31,6 +32,14 @@ const CourseMaterialContentViewer = () => {
     
     const toggleNotes = () => {
         setNotesOpen(!notesOpen)
+    }
+
+    const [showReportModal, setShowReportModal] = useState(false)
+    const [selectedQuestionId, setSelectedQuestionId] = useState(null)
+
+    const onReportIssue = (id) => {
+        setSelectedQuestionId(id)
+        setShowReportModal(true)
     }
     
     const handleAddNote = () => {
@@ -149,180 +158,189 @@ const CourseMaterialContentViewer = () => {
     }, [location])
 
     return (
-        <div className="content-viewer-section">
-            {/* Notes Sidebar */}
-            {/* Removed overlay as per request */}
-            <div className={`notes-sidebar ${notesOpen ? 'open' : ''}`}>
-                <div className="notes-content-container">
-                    <div className="notes-header">
-                        <h2>Notes</h2>
-                        <button className="close-notes" onClick={toggleNotes}>
-                            ×
-                        </button>
-                    </div>
-                    <div className="notes-content">
-                        {notes.map(note => (
-                            <div key={note.id} className="note-item">
-                                <div className="note-content">
-                                    <p className="note-text">{note.text}</p>
-                                    <p className="note-date">{note.date}</p>
-                                    <div className="note-actions">
-                                        <button className="edit-note">
-                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M12.5 6.5L9.5 3.5L2 11V14H5L12.5 6.5Z" stroke="#03488B" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                                            </svg>
-                                        </button>
-                                        <button className="delete-note" onClick={() => handleDeleteNote(note.id)}>
-                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M2 4H3.33333H14" stroke="#03488B" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                                                <path d="M5.33334 4V2.66667C5.33334 2.31305 5.47382 1.97391 5.72387 1.72386C5.97392 1.47381 6.31305 1.33334 6.66668 1.33334H9.33334C9.68697 1.33334 10.0261 1.47381 10.2762 1.72386C10.5262 1.97391 10.6667 2.31305 10.6667 2.66667V4M12.6667 4V13.3333C12.6667 13.687 12.5262 14.0261 12.2762 14.2761C12.0261 14.5262 11.687 14.6667 11.3333 14.6667H4.66668C4.31305 14.6667 3.97392 14.5262 3.72387 14.2761C3.47382 14.0261 3.33334 13.687 3.33334 13.3333V4H12.6667Z" stroke="#03488B" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                                            </svg>
-                                        </button>
+        <div className="course-material-viewer">
+            <div className="content-viewer-section">
+                {/* Notes Sidebar */}
+                {/* Removed overlay as per request */}
+                <div className={`notes-sidebar ${notesOpen ? 'open' : ''}`}>
+                    <div className="notes-content-container">
+                        <div className="notes-header">
+                            <h2>Notes</h2>
+                            <button className="close-notes" onClick={toggleNotes}>
+                                ×
+                            </button>
+                        </div>
+                        <div className="notes-content">
+                            {notes.map(note => (
+                                <div key={note.id} className="note-item">
+                                    <div className="note-content">
+                                        <p className="note-text">{note.text}</p>
+                                        <p className="note-date">{note.date}</p>
+                                        <div className="note-actions">
+                                            <button className="edit-note">
+                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M12.5 6.5L9.5 3.5L2 11V14H5L12.5 6.5Z" stroke="#03488B" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                                                </svg>
+                                            </button>
+                                            <button className="delete-note" onClick={() => handleDeleteNote(note.id)}>
+                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M2 4H3.33333H14" stroke="#03488B" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                                                    <path d="M5.33334 4V2.66667C5.33334 2.31305 5.47382 1.97391 5.72387 1.72386C5.97392 1.47381 6.31305 1.33334 6.66668 1.33334H9.33334C9.68697 1.33334 10.0261 1.47381 10.2762 1.72386C10.5262 1.97391 10.6667 2.31305 10.6667 2.66667V4M12.6667 4V13.3333C12.6667 13.687 12.5262 14.0261 12.2762 14.2761C12.0261 14.5262 11.687 14.6667 11.3333 14.6667H4.66668C4.31305 14.6667 3.97392 14.5262 3.72387 14.2761C3.47382 14.0261 3.33334 13.687 3.33334 13.3333V4H12.6667Z" stroke="#03488B" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                                                </svg>
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        ))}
-                    </div>
-                    <div className="add-note-container">
-                        <input 
-                            type="text" 
-                            placeholder="Add Note" 
-                            className="add-note-input" 
-                            value={newNote} 
-                            onChange={(e) => setNewNote(e.target.value)}
-                            ref={noteInputRef}
-                            onKeyPress={(e) => e.key === 'Enter' && handleAddNote()}
-                        />
-                        <button className="add-note-button" onClick={handleAddNote}>
-                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M10 5V15M5 10H15" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                            </svg>
-                        </button>
+                            ))}
+                        </div>
+                        <div className="add-note-container">
+                            <input 
+                                type="text" 
+                                placeholder="Add Note" 
+                                className="add-note-input" 
+                                value={newNote} 
+                                onChange={(e) => setNewNote(e.target.value)}
+                                ref={noteInputRef}
+                                onKeyPress={(e) => e.key === 'Enter' && handleAddNote()}
+                            />
+                            <button className="add-note-button" onClick={handleAddNote}>
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10 5V15M5 10H15" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                </svg>
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div className="content-viewer">
-                <div className="content-viewer-header">
-                    <div className="content-viewer-breadcrumb">
-                        {breadcrumb.map((item, index) => (
-                            <span key={index}>
-                                {index > 0 && <span className="breadcrumb-separator"> &gt; </span>}
-                                <span 
-                                    className={`breadcrumb-item ${index == (breadcrumb.length - 1) ? 'last-item' : ''}`}
-                                    onClick={() => navigate(item.path)}
-                                >
-                                    {item.name}
+                <div className="content-viewer">
+                    <div className="content-viewer-header">
+                        <div className="content-viewer-breadcrumb">
+                            {breadcrumb.map((item, index) => (
+                                <span key={index}>
+                                    {index > 0 && <span className="breadcrumb-separator"> &gt; </span>}
+                                    <span 
+                                        className={`breadcrumb-item ${index == (breadcrumb.length - 1) ? 'last-item' : ''}`}
+                                        onClick={() => navigate(item.path)}
+                                    >
+                                        {item.name}
+                                    </span>
                                 </span>
-                            </span>
-                        ))}
+                            ))}
+                        </div>
                     </div>
-                </div>
-                <div className="content-viewer-body">
-                    <div className="content-viewer-container">
-                        <div className="content-controls">
-                            {selectedContent && selectedContent.type !== 'pptx' ? (
-                                <button className="take-notes-button" onClick={toggleNotes}>
-                                    Take Notes
-                                </button>
-                            ):(
-                                <div></div>
-                            )}
-                            <div className="navigation-controls">
-                                <button 
-                                    className="nav-button prev" 
-                                    onClick={() => navigateContent('prev')}
-                                    disabled={currentTopicIndex === 0 && currentItemIndex === 0}
-                                >
-                                    <img src={downArrowIcon} alt="" />
-                                    Previous
-                                </button>
-                                <button 
-                                    className="nav-button next"
-                                    onClick={() => navigateContent('next')}
-                                    disabled={currentTopicIndex === topics.length - 1 && currentItemIndex === topics[currentTopicIndex].items.length - 1}
-                                >
-                                    Next
-                                    <img src={downArrowIcon} alt="" />
-                                </button>
-                            </div>
-                        </div>
-                        <div className="content-section">
-                            {selectedContent ? (
-                                selectedContent.type === 'video' ? (
-                                    <VideoViewer src={video}/>
-                                ) : selectedContent.type === 'pdf' ? (
-                                    <PDFViewer/>
-                                ) : selectedContent.type === 'pptx' ? (
-                                    <McqViewer/>
-                                ) : (
-                                    <div className="content-placeholder">Content type not supported</div>
-                                )
-                            ) : (
-                                <div className="content-placeholder">No content selected</div>
-                            )}
-                        </div>
-                        {selectedContent && selectedContent.type !== 'pptx' ? (
-                            <>
-                                <div className="content-actions">
-                                    <div className="bookmark-container">
-                                        <button 
-                                            className="content-action-button" 
-                                            onClick={() => {
-                                                setBookMark(!bookMark);
-                                            }}>
-                                            <img src={!bookMark ? BsBookMark : BsBookMarkRemove} alt="Bookmark" />
-                                            Bookmark video
-                                        </button>
-                                        {bookMark && (
-                                            <div className="bookmark-tooltip">
-                                                <div className="tooltip-content">
-                                                    <h3>Added to Bookmarks</h3>
-                                                </div>
-                                            </div>
-                                        )}
-                                    </div>
-                                    <button className="content-action-button">
-                                        <img src={BsSaveBlueIcon} alt="Save" />
-                                        Save Offline
+                    <div className="content-viewer-body">
+                        <div className="content-viewer-container">
+                            <div className="content-controls">
+                                {selectedContent && selectedContent.type !== 'pptx' ? (
+                                    <button className="take-notes-button" onClick={toggleNotes}>
+                                        Take Notes
+                                    </button>
+                                ):(
+                                    <div></div>
+                                )}
+                                <div className="navigation-controls">
+                                    <button 
+                                        className="nav-button prev" 
+                                        onClick={() => navigateContent('prev')}
+                                        disabled={currentTopicIndex === 0 && currentItemIndex === 0}
+                                    >
+                                        <img src={downArrowIcon} alt="" />
+                                        Previous
+                                    </button>
+                                    <button 
+                                        className="nav-button next"
+                                        onClick={() => navigateContent('next')}
+                                        disabled={currentTopicIndex === topics.length - 1 && currentItemIndex === topics[currentTopicIndex].items.length - 1}
+                                    >
+                                        Next
+                                        <img src={downArrowIcon} alt="" />
                                     </button>
                                 </div>
-                                <div className="formula-sheet">
-                                    <h2>Formula Sheet</h2>
-                                    <div className="formula-list">
-                                        {[1, 2, 3].map((num) => (
-                                            <div key={num} className="formula-item">
-                                                <div className="formula-content">
-                                                    <span className="formula-title">Formula {num}</span>
-                                                    <div className="formula-actions">
-                                                        <button className="action-button">
-                                                            <img src={BsBookMarkBlue} alt="Bookmark" />
-                                                            Bookmark
-                                                        </button>
-                                                        <button className="action-button outline">
-                                                            <img src={BsExclamationTriangle} alt="Report" />
-                                                            Report
-                                                        </button>
+                            </div>
+                            <div className="content-section">
+                                {selectedContent ? (
+                                    selectedContent.type === 'video' ? (
+                                        <VideoViewer src={video}/>
+                                    ) : selectedContent.type === 'pdf' ? (
+                                        <PDFViewer pdfUrl="https://www.orimi.com/pdf-test.pdf" />
+                                    ) : selectedContent.type === 'pptx' ? (
+                                        <McqViewer/>
+                                    ) : (
+                                        <div className="content-placeholder">Content type not supported</div>
+                                    )
+                                ) : (
+                                    <div className="content-placeholder">No content selected</div>
+                                )}
+                            </div>
+                            {selectedContent && selectedContent.type !== 'pptx' ? (
+                                <>
+                                    <div className="content-actions">
+                                        <div className="bookmark-container">
+                                            <button 
+                                                className="content-action-button" 
+                                                onClick={() => {
+                                                    setBookMark(!bookMark);
+                                                }}>
+                                                <img src={!bookMark ? BsBookMark : BsBookMarkRemove} alt="Bookmark" />
+                                                Bookmark video
+                                            </button>
+                                            {bookMark && (
+                                                <div className="bookmark-tooltip">
+                                                    <div className="tooltip-content">
+                                                        <h3>Added to Bookmarks</h3>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        ))}
+                                            )}
+                                        </div>
+                                        <button className="content-action-button">
+                                            <img src={BsSaveBlueIcon} alt="Save" />
+                                            Save Offline
+                                        </button>
                                     </div>
-                                </div>
-                            </>
-                        ) : null}
+                                    <div className="formula-sheet">
+                                        <h2>Formula Sheet</h2>
+                                        <div className="formula-list">
+                                            {[1, 2, 3].map((num) => (
+                                                <div key={num} className="formula-item">
+                                                    <div className="formula-content">
+                                                        <span className="formula-title">Formula {num}</span>
+                                                        <div className="formula-actions">
+                                                            <button className="action-button-course">
+                                                                <img src={BsBookMarkBlue} alt="Bookmark" />
+                                                                Bookmark
+                                                            </button>
+                                                            <button className="action-button-course outline">
+                                                                <img src={BsExclamationTriangle} alt="Report" onClick={() => onReportIssue(id)} />
+                                                                Report
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </>
+                            ) : null}
+                        </div>
                     </div>
                 </div>
+                <TopicsSideBardLoader
+                    selectedTopic={currentTopicIndex}
+                    selectedItem={currentItemIndex}
+                    topics={topics} 
+                    onSelectItem={(item, topicIndex, itemIndex) => {
+                        setSelectedContent(item);
+                        setCurrentTopicIndex(topicIndex);
+                        setCurrentItemIndex(itemIndex);
+                    }}
+                />
             </div>
-            <TopicsSideBardLoader
-                selectedTopic={currentTopicIndex}
-                selectedItem={currentItemIndex}
-                topics={topics} 
-                onSelectItem={(item, topicIndex, itemIndex) => {
-                    setSelectedContent(item);
-                    setCurrentTopicIndex(topicIndex);
-                    setCurrentItemIndex(itemIndex);
-                }}
-            />
+            {showReportModal && (
+                <ReportQuestionModal
+                    show={showReportModal}
+                    onClose={() => setShowReportModal(false)}
+                    onReport={() => setShowReportModal(false)}
+                />
+            )}
         </div>
     )
 }
