@@ -110,11 +110,6 @@ const SubjectBarChart = ({ data }) => {
     
     // Create series
     function createSeries(name, field, color) {
-      // Only create series if chart exists
-      if (!chart || !chart.series) {
-        return null;
-      }
-      
       const series = chart.series.push(
         am5xy.ColumnSeries.new(root, {
           name: name,
@@ -126,44 +121,34 @@ const SubjectBarChart = ({ data }) => {
           stacked: false,
           fill: am5.color(color),
           tooltip: am5.Tooltip.new(root, {
-            labelText: "{name}: {valueY}"
-          })
+            labelText: "{name}: {valueY}",
+          }),
         })
       );
-      
-      // Configure column template
+
       series.columns.template.setAll({
         width: am5.percent(100),
         tooltipY: 0,
         strokeOpacity: 0,
         cornerRadiusTopLeft: 4,
-        cornerRadiusTopRight: 4
+        cornerRadiusTopRight: 4,
       });
-      
-      // Add value labels inside the columns
-      try {
-        // Make sure children property exists before pushing
-        if (!series.columns.template.children) {
-          series.columns.template.children = new am5.List(root);
-        }
-        
-        series.columns.template.children.push(am5.Label.new(root, {
-          text: field === "unattempted" ? "{originalUnattempted}" : "{valueY}",
-          centerX: am5.p50,
-          centerY: 0,
-          dy: 3,  // Position exactly 3px from the top
-          fill: am5.color(0x000000),
-          populateText: true
-        }));
-      } catch (e) {
-        console.error("Error adding label to column:", e);
-      }
-      
-      // Set data
-      if (series.data) {
-        series.data.setAll(processedData);
-      }
-      
+
+      series.bullets.push(function () {
+        return am5.Bullet.new(root, {
+          locationY: 0,
+          sprite: am5.Label.new(root, {
+            text: field === "unattempted" ? "{originalUnattempted}" : "{valueY}",
+            centerX: am5.p50,
+            centerY: 0,
+            dy: 3,
+            fill: am5.color(0x000000),
+            populateText: true,
+          }),
+        });
+      });
+
+      series.data.setAll(processedData);
       return series;
     }
     

@@ -76,7 +76,7 @@ function App() {
               <Route path="course-material-topics" element={<CourseMaterialTopics />} />
               <Route path="course-material-content-viewer" element={<CourseMaterialContentViewer />} />
               <Route path="practice-tests" element={<PracticeTests />} />
-              <Route path="practice-tests/test" element={<TestPage />} />
+              <Route path="practice-tests/test/:testId" element={<TestPage />} />
               <Route path="practice-tests/results" element={<TestResults />} />
               <Route path="practice-tests/navigator" element={<TestNavigator />} />
               <Route path="my-performance" element={<MyPerformance />} />

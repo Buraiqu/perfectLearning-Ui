@@ -1,0 +1,61 @@
+.bookmarked-video-player {
+  width: 100%;
+  max-width: 900px; /* Adjust as needed */
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.video-title {
+  font-size: 18px;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 16px;
+}
+
+.video-actions {
+  display: flex;
+  justify-content: flex-start;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid #03488B;
+  background-color: #ffffff;
+  color: #374151;
+}
+
+.action-btn:hover {
+  background-color: #f9fafb;
+  border-color: #014386;
+}
+
+.action-btn .btn-icon {
+  margin-right: 8px;
+  width: 16px;
+  height: 16px;
+  /* You can use background-image to set the icons */
+}
+
+/* Specific button styles can be added here if needed */
+.remove-bookmark-btn .btn-icon {
+  background-image: url('../../icons/BsBookMarkRemove.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.save-offline-btn .btn-icon {
+  background-image: url('../../icons/BsCloudArrowDown.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
