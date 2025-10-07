@@ -239,7 +239,7 @@ const CourseMaterialContentViewer = () => {
                                 )}
                                 <div className="navigation-controls">
                                     <button 
-                                        className="nav-button prev" 
+                                        className="nvg-button prev" 
                                         onClick={() => navigateContent('prev')}
                                         disabled={currentTopicIndex === 0 && currentItemIndex === 0}
                                     >
@@ -247,7 +247,7 @@ const CourseMaterialContentViewer = () => {
                                         Previous
                                     </button>
                                     <button 
-                                        className="nav-button next"
+                                        className="nvg-button next"
                                         onClick={() => navigateContent('next')}
                                         disabled={currentTopicIndex === topics.length - 1 && currentItemIndex === topics[currentTopicIndex].items.length - 1}
                                     >
@@ -270,56 +270,57 @@ const CourseMaterialContentViewer = () => {
                                 ) : (
                                     <div className="content-placeholder">No content selected</div>
                                 )}
-                            </div>
-                            {selectedContent && selectedContent.type !== 'pptx' ? (
-                                <>
-                                    <div className="content-actions">
-                                        <div className="bookmark-container">
-                                            <button 
-                                                className="content-action-button" 
-                                                onClick={() => {
-                                                    setBookMark(!bookMark);
-                                                }}>
-                                                <img src={!bookMark ? BsBookMark : BsBookMarkRemove} alt="Bookmark" />
-                                                Bookmark video
-                                            </button>
-                                            {bookMark && (
-                                                <div className="bookmark-tooltip">
-                                                    <div className="tooltip-content">
-                                                        <h3>Added to Bookmarks</h3>
-                                                    </div>
-                                                </div>
-                                            )}
-                                        </div>
-                                        <button className="content-action-button">
-                                            <img src={BsSaveBlueIcon} alt="Save" />
-                                            Save Offline
-                                        </button>
-                                    </div>
-                                    <div className="formula-sheet">
-                                        <h2>Formula Sheet</h2>
-                                        <div className="formula-list">
-                                            {[1, 2, 3].map((num) => (
-                                                <div key={num} className="formula-item">
-                                                    <div className="formula-content">
-                                                        <span className="formula-title">Formula {num}</span>
-                                                        <div className="formula-actions">
-                                                            <button className="action-button-course">
-                                                                <img src={BsBookMarkBlue} alt="Bookmark" />
-                                                                Bookmark
-                                                            </button>
-                                                            <button className="action-button-course outline">
-                                                                <img src={BsExclamationTriangle} alt="Report" onClick={() => onReportIssue(id)} />
-                                                                Report
-                                                            </button>
+
+                                {selectedContent && selectedContent.type !== 'pptx' ? (
+                                    <>
+                                        <div className="content-actions">
+                                            <div className="bookmark-container">
+                                                <button 
+                                                    className="content-action-button" 
+                                                    onClick={() => {
+                                                        setBookMark(!bookMark);
+                                                    }}>
+                                                    <img src={!bookMark ? BsBookMark : BsBookMarkRemove} alt="Bookmark" />
+                                                    Bookmark video
+                                                </button>
+                                                {bookMark && (
+                                                    <div className="bookmark-tooltip">
+                                                        <div className="tooltip-content">
+                                                            <h3>Added to Bookmarks</h3>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            ))}
+                                                )}
+                                            </div>
+                                            <button className="content-action-button">
+                                                <img src={BsSaveBlueIcon} alt="Save" />
+                                                Save Offline
+                                            </button>
                                         </div>
-                                    </div>
-                                </>
-                            ) : null}
+                                        <div className="formula-sheet">
+                                            <h2>Formula Sheet</h2>
+                                            <div className="formula-list">
+                                                {[1, 2, 3].map((num) => (
+                                                    <div key={num} className="formula-item">
+                                                        <div className="formula-content">
+                                                            <span className="formula-title">Formula {num}</span>
+                                                            <div className="formula-actions">
+                                                                <button className="action-button-course">
+                                                                    <img src={BsBookMarkBlue} alt="Bookmark" />
+                                                                    Bookmark
+                                                                </button>
+                                                                <button className="action-button-course outline">
+                                                                    <img src={BsExclamationTriangle} alt="Report" onClick={() => onReportIssue(id)} />
+                                                                    Report
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    </>
+                                ) : null}
+                            </div>
                         </div>
                     </div>
                 </div>
