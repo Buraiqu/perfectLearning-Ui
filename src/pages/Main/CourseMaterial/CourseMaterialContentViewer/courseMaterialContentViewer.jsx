@@ -14,6 +14,16 @@ import PDFViewer from '../../../../components/PDFViewer/pdfViewer';
 import McqViewer from '../../../../components/McqViewer/mcqViewer';
 import ReportQuestionModal from '../../../../components/Modals/ReportQuestion-Modal/reportQuestionModal'
 
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 1024)
+  useEffect(() => {
+    const handler = () => setIsMobile(window.innerWidth <= 1024)
+    window.addEventListener('resize', handler)
+    return () => window.removeEventListener('resize', handler)
+  }, [])
+  return isMobile
+}
+
 const CourseMaterialContentViewer = () => {
     const location = useLocation()
     const navigate = useNavigate()
@@ -157,6 +167,98 @@ const CourseMaterialContentViewer = () => {
         document.documentElement.style.setProperty('--value-percent', '1%')
     }, [location])
 
+    const isMobile = useIsMobile();
+    if (isMobile) {
+      // --- MOBILE VIEW ---
+      return (
+        <div className="course-material-viewer mobile-viewer">
+          <div className="breadcrumb-mobile">
+            {breadcrumb.map((item, index) => (
+              <span key={index}>
+                {index > 0 && <span className="breadcrumb-separator"> &gt; </span>}
+                <span className={`breadcrumb-item ${index === breadcrumb.length - 1 ? 'last-item' : ''}`}
+                  onClick={() => navigate(item.path)}>
+                  {item.name}
+                </span>
+              </span>
+            ))}
+          </div>
+          <div className="main-content-mobile">
+            {/* Main content viewer (video/pdf/mcq) */}
+            {selectedContent.type === 'video' && <VideoViewer src={video} />}
+            {selectedContent.type === 'pdf' && <PDFViewer src={selectedContent.pdfSrc} />}
+            {selectedContent.type === 'pptx' && <PDFViewer src={selectedContent.pdfSrc} />}
+            {selectedContent.type === 'mcq' && <McqViewer data={selectedContent.mcqData} />}
+          </div>
+          {/* Bookmark & Save Offline mobile buttons */}
+          <div className="bookmark-save-mobile">
+            <button className="bookmark-btn-mobile" onClick={() => setBookMark(!bookMark)}>
+              <img src={bookMark ? BsBookMarkRemove : BsBookMark} alt="Bookmark" style={{width: 20, height: 20, marginRight: 7}} />
+              {bookMark ? 'Bookmarked' : 'Bookmark video'}
+            </button>
+            <button className="save-offline-btn-mobile" onClick={() => alert('Saved offline!')}>
+              <img src={BsSaveBlueIcon} alt="Save Offline" style={{width: 20, height: 20, marginRight: 7}} />
+              Save Offline
+            </button>
+          </div>
+          {/* Formula Sheet mobile section */}
+          <div className="formula-sheet-mobile">
+            <h3>Formula Sheet</h3>
+            {["Formula 1", "Formula 2", "Formula 3"].map((formula, idx) => (
+              <div className="formula-row-mobile" key={idx}>
+                <span>{formula}</span>
+                <div className="formula-row-actions-mobile">
+                  <button className="bookmark-formula-btn-mobile" onClick={() => alert(`Bookmarked ${formula}`)}>
+                    <img src={BsBookMarkBlue} alt="Bookmark" style={{width: 18, height: 18, marginRight: 4}} />
+                    Bookmark
+                  </button>
+                  <button className="report-formula-btn-mobile" onClick={() => alert(`Reported ${formula}`)}>
+                    <img src={BsExclamationTriangle} alt="Report" style={{width: 18, height: 18, marginRight: 4}} />
+                    Report
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+          {/* Mobile notes drawer */}
+          {notesOpen && (
+            <div className="notes-drawer-mobile">
+              <div className="notes-header-mobile">
+                <h2>Notes</h2>
+                <button className="close-notes-mobile" onClick={toggleNotes}>×</button>
+              </div>
+              <div className="notes-content-mobile">
+                {notes.map(note => (
+                  <div key={note.id} className="note-item-mobile">
+                    <div className="note-content-mobile">
+                      <p className="note-text-mobile">{note.text}</p>
+                      <p className="note-date-mobile">{note.date}</p>
+                      <button className="delete-note-mobile" onClick={() => handleDeleteNote(note.id)}>Delete</button>
+                    </div>
+                  </div>
+                ))}
+                <div className="add-note-mobile">
+                  <input
+                    ref={noteInputRef}
+                    value={newNote}
+                    onChange={e => setNewNote(e.target.value)}
+                    placeholder="Add a note..."
+                  />
+                  <button onClick={handleAddNote}>Add</button>
+                </div>
+              </div>
+            </div>
+          )}
+          {/* Mobile navigation buttons */}
+          <div className="mobile-nav-buttons">
+            <button onClick={() => navigateContent('prev')}>Previous</button>
+            <button onClick={() => setNotesOpen(true)}>Notes</button>
+            <button onClick={() => navigateContent('next')}>Next</button>
+          </div>
+        </div>
+      );
+    }
+    // --- DESKTOP VIEW (unchanged) ---
     return (
         <div className="course-material-viewer">
             <div className="content-viewer-section">

@@ -10,6 +10,16 @@ import BsGeo from '../../../../icons/BsGeo.svg'
 import BsGeoAlt from '../../../../icons/BsGeoAlt.svg'
 import './courseMaterialTopics.css'
 
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 1024)
+  useEffect(() => {
+    const handler = () => setIsMobile(window.innerWidth <= 1024)
+    window.addEventListener('resize', handler)
+    return () => window.removeEventListener('resize', handler)
+  }, [])
+  return isMobile
+}
+
 const CourseMaterialTopics = () => {
     const location = useLocation()
     const navigate = useNavigate()
@@ -97,6 +107,118 @@ const CourseMaterialTopics = () => {
         }
     }
 
+    const isMobile = useIsMobile();
+    if (isMobile) {
+      // --- MOBILE VIEW ---
+      return (
+        <div className="course-material-topics-section mobile-view">
+          <div className="course-material-topics-header">
+            <div className="topics-breadcrumb">
+              {breadcrumb.map((item, index) => (
+                <span key={index}>
+                  {index > 0 && <span className="breadcrumb-separator"> &gt; </span>}
+                  <span 
+                    className={`breadcrumb-item ${index == (breadcrumb.length - 1) ? 'last-item' : ''}`}
+                    onClick={() => navigate(item.path)}
+                  >
+                    {item.name}
+                  </span>
+                </span>
+              ))}
+            </div>
+          </div>
+          <div className="topics-container-mobile">
+            {topics.map((topic, index) => (
+              <div key={index} className="topic-section-mobile">
+                <div className={`topic-header-mobile ${index === expandedSection ? 'expanded' : ''}`}
+                  onClick={() => setExpandedSection(index === expandedSection ? '' : index)}>
+                  <div className="left-section-mobile">
+                    <img src={downArrowIcon} className={`dropdown-arrow ${index === expandedSection ? 'rotated' : ''}`} alt="" />
+                    <span className="topic-name-mobile">{topic.name}</span>
+                  </div>
+                </div>
+                {index === expandedSection && topic.subSections.length ? (
+                  <>
+                    <div className="progress-summary-mobile">
+                      <div className="time-left-mobile"><img src={bsCameraVideoIcon} alt="" /><span className="time">2h 15Mins</span><span className="label">Videos left</span></div>
+                      <div className="time-left-mobile"><img src={BsFileEaMarkText} style={{width: '19px'}} alt="" /><span className="time">40Mins</span><span className="label">Reading left</span></div>
+                      <div className="time-left-mobile"><img src={BsFilePpt} style={{width: '19px'}} alt="" /><span className="time">50</span><span className="label">Practice Questions left</span></div>
+                    </div>
+                    <div className="progress-bar-settings-mobile">
+                      <div className="course-topics-progress-bar-section">
+                        <div className="course-topics-progress-bar">
+                          <div className="course-topics-progress"></div>
+                        </div>
+                      </div>
+                      <div className="threedot-container">
+                        <img className="vertical-threedot" src={verticalThreeDot} alt="" onClick={(e) => {
+                          e.stopPropagation();
+                          setSelectedTopic(topic);
+                          setShowDropdown(!showDropdown);
+                        }} />
+                        {showDropdown && selectedTopic?.name === topic.name && (
+                          <div className="topic-info-dropdown">
+                            <div className="topic-info-item">
+                              <img src={BsGeoAlt} className="topic-info-icon" alt="" />
+                              <div className="topic-info-text">
+                                <span className="info-label">Start Date :</span>
+                                <span className="info-value">12 Aug 2023</span>
+                              </div>
+                            </div>
+                            <div className="topic-info-item">
+                              <img src={BsGeo} className="topic-info-icon" alt="" />
+                              <div className="topic-info-text">
+                                <span className="info-label">End Date :</span>
+                                <span className="info-value">In Progress</span>
+                              </div>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                    <div className="subsections-mobile">
+                      {topic.subSections.map((subSection, subIndex) => (
+                        <div key={subIndex} className="subsection-mobile">
+                          <div className={`subsection-header-mobile ${subSection.name === expandedSubSection ? 'expanded' : ''}`}
+                            onClick={() => setExpandedSubSection(subSection.name === expandedSubSection ? '' : subSection.name)}>
+                            <img src={downArrowIcon} className={`dropdown-arrow ${subSection.name === expandedSubSection ? 'rotated' : ''}`} alt="" />
+                            <span className="subsection-name-mobile">{subSection.name}</span>
+                          </div>
+                          {subSection.name === expandedSubSection && (
+                            <div className="items-list-mobile">
+                              {subSection.items.map((item, itemIndex) => (
+                                <div key={itemIndex} className={`topic-item-mobile ${item.status === 'completed' ? 'completed' : ''}`} onClick={() => handleSubTopicClick(item)}>
+                                  {item.status === 'completed' ? (
+                                    <img className='type-icon' src={circleGreenTick} alt="" />
+                                  ) : (
+                                    <img className="type-icon" src={getTypeIcon(item.type)} alt="" />
+                                  )}
+                                  <div className="item-content-mobile">
+                                    <span className="item-name-mobile">{item.name}</span>
+                                    <span className="item-duration-mobile">{item.duration}</span>
+                                  </div>
+                                  {item.status === 'started' && (
+                                    <button className='resume-button-mobile' onClick={(e) => {
+                                      e.stopPropagation();
+                                      handleSubTopicClick(item);
+                                    }}>Resume</button>
+                                  )}
+                                </div>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </>
+                ) : null}
+              </div>
+            ))}
+          </div>
+        </div>
+      );
+    }
+    // --- DESKTOP VIEW (unchanged) ---
     return (
         <div className="course-material-topics-section">
             <div className="course-material-topics-header">

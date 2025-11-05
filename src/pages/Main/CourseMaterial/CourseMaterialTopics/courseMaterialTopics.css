@@ -332,3 +332,331 @@
         font-size: 18px;
     }
 }
+
+/* Add this for mobile/tablet view (≤1024px) */
+@media (max-width: 1024px) {
+  .mobile-view {
+    padding: 0 0 24px 0;
+    background: #f6f8fa;
+    min-height: 100vh;
+  }
+  .course-material-topics-header {
+    padding: 12px 12px 0 12px;
+    background: #fff;
+    border-radius: 0 0 16px 16px;
+    margin-bottom: 12px;
+  }
+  .topics-breadcrumb {
+    font-size: 15px;
+    flex-wrap: wrap;
+    gap: 2px;
+    color: #03488B;
+  }
+  .topics-container-mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding: 0 8px;
+  }
+  .topic-section-mobile {
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 2px 12px rgba(16,24,40,0.07);
+    padding: 0 0 8px 0;
+    margin-bottom: 10px;
+    overflow: hidden;
+  }
+  .topic-header-mobile {
+    display: flex;
+    align-items: center;
+    padding: 18px 16px 10px 16px;
+    cursor: pointer;
+    border-bottom: 1px solid #f0f2f5;
+  }
+  .topic-header-mobile.expanded {
+    background: #f5f8fb;
+  }
+  .left-section-mobile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .topic-name-mobile {
+    font-size: 18px;
+    font-weight: 600;
+    color: #03488B;
+  }
+  .progress-summary-mobile {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: stretch;
+    gap: 6px;
+    padding: 10px 4px 6px 4px;
+    background: #fff;
+    border-bottom: 1px solid #f0f2f5;
+    flex-wrap: wrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .progress-summary-mobile::-webkit-scrollbar {
+    display: none;
+  }
+  .time-left-mobile {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 13px;
+    color: #3b3b3b;
+    min-width: 110px;
+    max-width: 160px;
+    white-space: nowrap;
+    flex: 0 0 auto;
+    justify-content: flex-start;
+    padding: 0 2px;
+    font-weight: 400;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    background: #f8fafc;
+    border-radius: 8px;
+    margin-right: 2px;
+  }
+  .time-left-mobile img {
+    width: 17px;
+    height: 17px;
+    margin-right: 2px;
+    display: inline-block;
+    vertical-align: middle;
+    flex-shrink: 0;
+  }
+  .time-left-mobile .time {
+    font-weight: 600;
+    margin-right: 2px;
+    color: #03488B;
+    font-size: 14px;
+  }
+  .time-left-mobile .label {
+    color: #6C6E79;
+    font-size: 12px;
+    font-weight: 400;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 70px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .time-left-mobile img {
+    width: 19px;
+    height: 19px;
+    margin-right: 2px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .time-left-mobile .time {
+    font-weight: 600;
+    margin-right: 2px;
+    color: #03488B;
+  }
+  .time-left-mobile .label {
+    color: #6C6E79;
+    font-size: 13px;
+    font-weight: 400;
+  }
+  .progress-bar-settings-mobile {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 0 8px 0 8px;
+    background: #fff;
+    position: relative;
+    margin-top: 4px;
+    margin-bottom: 8px;
+  }
+  .course-topics-progress-bar-section {
+    flex: 1 1 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+  }
+  .course-topics-progress-bar {
+    width: 100%;
+    max-width: 400px;
+    min-width: 80px;
+    height: 5px;
+    background: #E0E1E9;
+    border-radius: 3px;
+    overflow: hidden;
+    position: relative;
+  }
+  .course-topics-progress {
+    background: #03488B;
+    height: 100%;
+    width: 60%; /* Example: set dynamically in React for real progress */
+    transition: width 0.3s;
+  }
+  .subsections-mobile {
+    padding: 0 8px 8px 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .subsection-mobile {
+    margin-bottom: 6px;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #f9fafb;
+  }
+  .subsection-header-mobile {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 12px 10px;
+    cursor: pointer;
+    background: #f9fafb;
+    border-bottom: 1px solid #f0f2f5;
+  }
+  .subsection-header-mobile.expanded {
+    background: #e9f2fb;
+  }
+  .subsection-name-mobile {
+    color: #023A6F;
+    font-size: 16px;
+    font-weight: 500;
+  }
+  .items-list-mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px 0;
+  }
+  .topic-item-mobile {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 1px 6px rgba(16,24,40,0.07);
+    padding: 14px 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: box-shadow 0.17s;
+    border: 1px solid #f0f2f5;
+  }
+  .topic-item-mobile.completed {
+    background: #eafbe7;
+    border: 1px solid #b7e6c2;
+  }
+  .topic-item-mobile:active,
+  .topic-item-mobile:focus,
+  .topic-item-mobile:hover {
+    box-shadow: 0 3px 16px rgba(16,24,40,0.13);
+    background: #f4f8fd;
+  }
+  .item-content-mobile {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .item-name-mobile {
+    font-size: 15px;
+    font-weight: 500;
+    color: #0E0E0E;
+  }
+  .item-duration-mobile {
+    font-size: 13px;
+    color: #666;
+  }
+  .resume-button-mobile {
+    background: #03488B;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 0;
+    font-size: 15px;
+    width: 90px;
+    margin-left: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background 0.15s;
+  }
+  .resume-button-mobile:active,
+  .resume-button-mobile:focus,
+  .resume-button-mobile:hover {
+    background: #023A6F;
+  }
+  .dropdown-arrow {
+    width: 18px;
+    height: 18px;
+    transition: transform 0.2s;
+    margin-right: 8px;
+  }
+  .dropdown-arrow.rotated {
+    transform: rotate(0deg);
+  }
+  .vertical-threedot {
+    width: 36px;
+    height: 36px;
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 50%;
+    background: #f5f8fb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s;
+  }
+  .vertical-threedot:active,
+  .vertical-threedot:focus,
+  .vertical-threedot:hover {
+    background: #e0eafc;
+  }
+  .topic-info-dropdown {
+    position: absolute;
+    z-index: 100;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.13);
+    width: 88vw;
+    min-width: 160px;
+    max-width: 320px;
+    right: 0;
+    padding: 14px 16px;
+    top: 48px;
+    border: 1px solid #e0eafc;
+  }
+}
+
+@media (max-width: 600px) {
+  .topics-container-mobile {
+    padding: 0 2px;
+  }
+  .topic-section-mobile {
+    border-radius: 8px;
+    padding: 0 0 4px 0;
+  }
+  .topic-header-mobile {
+    padding: 12px 8px 8px 8px;
+  }
+  .progress-summary-mobile,
+  .progress-bar-settings-mobile {
+    padding: 8px 8px;
+  }
+  .subsections-mobile {
+    padding: 0 2px 6px 2px;
+  }
+  .topic-item-mobile {
+    padding: 10px 6px;
+    border-radius: 7px;
+  }
+  .resume-button-mobile {
+    font-size: 13px;
+    width: 80px;
+    padding: 7px 0;
+  }
+}
+
