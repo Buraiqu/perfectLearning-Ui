@@ -928,3 +928,409 @@ height: 36px;
 .times-up-confirm-btn:hover {
     background-color: #002d69;
 }
+
+/* --- Mobile Specific Styles --- */
+.test-page-mobile {
+    display: flex;
+    flex-direction: column;
+    background-color: #F5F5F7;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+.test-page-mobile .mobile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    background-color: #fff;
+    border-bottom: 1px solid #eaecf0;
+    flex-shrink: 0;
+}
+
+.test-page-mobile .mobile-header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    overflow: hidden;
+}
+
+.test-page-mobile .mobile-logo {
+    height: 32px;
+    flex-shrink: 0;
+}
+
+.test-page-mobile .mobile-test-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #101828;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.test-page-mobile .mobile-header-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-shrink: 0;
+}
+
+.test-page-mobile .mobile-timer, .test-page-mobile .mobile-attempted {
+    font-size: 12px;
+    font-weight: 500;
+    color: #475467;
+    white-space: nowrap;
+}
+
+.test-page-mobile .mobile-question-area {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 16px;
+    max-height: 79%;
+}
+
+.test-page-mobile .mobile-question-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    font-size: 14px;
+    color: #475467;
+}
+
+.test-page-mobile .mobile-question-actions {
+    display: flex;
+    gap: 16px;
+}
+
+.test-page-mobile .mobile-revisit-btn, .test-page-mobile .mobile-report-btn {
+    font-size: 13px;
+    font-weight: 500;
+    color: #475467;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+}
+
+.test-page-mobile .mobile-question-content p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #344054;
+    margin-bottom: 24px;
+}
+
+.test-page-mobile .mobile-options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.test-page-mobile .mobile-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    border: 1px solid #d0d5dd;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.test-page-mobile .mobile-option.selected {
+    background-color: #e6f0ff;
+    border-color: #003986;
+}
+
+.test-page-mobile .mobile-question-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 1px solid #eaecf0;
+}
+
+.test-page-mobile .revisit-checkbox-mobile {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #344054;
+}
+
+.test-page-mobile .revisit-checkbox-mobile input {
+    width: 18px;
+    height: 18px;
+    accent-color: #003986;
+}
+
+.test-page-mobile .mobile-action-icons {
+    display: flex;
+    gap: 16px;
+}
+
+.test-page-mobile .mobile-icon-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.test-page-mobile .mobile-icon-btn img {
+    width: 20px;
+    height: 20px;
+}
+
+.test-page-mobile .mobile-footer {
+    padding: 12px 16px;
+    background-color: #fff;
+    border-top: 1px solid #eaecf0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+.test-page-mobile .mobile-top-actions {
+    display: flex;
+    justify-content: space-between;
+}
+
+.test-page-mobile .mobile-main-nav {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+}
+
+.test-page-mobile .mobile-nav-btn {
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    border: 1px solid transparent;
+    text-align: center;
+}
+
+.test-page-mobile .mobile-nav-btn.all-questions, .test-page-mobile .mobile-nav-btn.instructions {
+    color: #003986;
+    background: none;
+    padding: 4px;
+}
+
+.test-page-mobile .mobile-nav-btn.prev {
+    border-color: #d0d5dd;
+    background-color: #fff;
+    color: #344054;
+}
+
+.test-page-mobile .mobile-nav-btn.next, .test-page-mobile .mobile-nav-btn.finish {
+    background-color: #003986;
+    color: #fff;
+}
+
+.test-page-mobile .mobile-nav-btn.exit {
+    color: #D92D20;
+    background: none;
+    width: 100%;
+    padding-top: 8px;
+}
+
+/* Mobile Slide-in Sidebar */
+.mobile-sidebar-toggle {
+    position: fixed;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    width: 24px;
+    height: 48px;
+    background-color: #003986;
+    border: none;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.mobile-sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.mobile-sidebar-overlay.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.mobile-question-sidebar {
+    position: fixed;
+    top: 0;
+    right: -300px; /* Hidden off-screen */
+    width: 300px;
+    height: 100%;
+    background-color: #fff;
+    z-index: 1000;
+    padding: 16px;
+    box-shadow: -2px 0 8px rgba(0,0,0,0.15);
+    transition: right 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.mobile-question-sidebar.open {
+    right: 0; /* Slides into view */
+}
+
+.mobile-question-sidebar .sidebar-filter-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+.mobile-question-sidebar .questions-grid {
+    flex-grow: 1;
+    overflow-y: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+    gap: 12px;
+    align-content: flex-start;
+}
+
+.mobile-question-sidebar .q-btn {
+    height: 40px;
+}
+
+@media (max-width: 768px) {
+    /* --- All Questions Panel --- */
+    .all-questions-panel {
+        width: 100%;
+        height: 100%;
+        bottom: 0;
+        right: 0;
+        top: 0;
+        left: 0;
+        max-height: 100%;
+        border-radius: 0;
+        transform: translateY(100%);
+    }
+
+    .all-questions-panel.open {
+        transform: translateY(0);
+    }
+
+    /* --- Finish Test Modal --- */
+    .finish-test-modal {
+        padding: 20px;
+    }
+
+    .finish-modal-title {
+        font-size: 18px;
+        line-height: 1.4;
+    }
+
+    .finish-modal-summary {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+        margin-bottom: 24px;
+    }
+
+    .summary-item {
+        gap: 4px;
+    }
+
+    .summary-label {
+        font-size: 12px;
+    }
+
+    .summary-value {
+        font-size: 20px;
+    }
+
+    .finish-modal-confirm-btn {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+    }
+
+    /* --- Time's Up Modal --- */
+    .times-up-modal {
+        padding: 20px 16px;
+        max-width: 95%;
+        margin: 0 auto;
+    }
+
+    .times-up-title {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+    .times-up-message {
+        font-size: 13px;
+        margin-bottom: 20px;
+        line-height: 1.4;
+    }
+
+    .times-up-summary {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+        padding: 16px 8px;
+        margin-bottom: 24px;
+    }
+
+    .times-up-summary .summary-item {
+        gap: 6px;
+    }
+
+    .times-up-summary .summary-label {
+        font-size: 12px;
+        text-align: center;
+        white-space: nowrap;
+    }
+
+    .times-up-summary .summary-value {
+        font-size: 20px;
+    }
+
+    .times-up-summary .summary-icon {
+        font-size: 16px;
+    }
+
+    .times-up-confirm-btn {
+        width: 100%;
+        padding: 12px;
+        font-size: 15px;
+    }
+
+    /* --- Exit Confirm Modal --- */
+    .exit-confirm-modal {
+        padding: 24px;
+    }
+
+    .exit-confirm-title {
+        font-size: 18px;
+    }
+
+    .exit-confirm-btn {
+        width: 100%;
+        padding: 12px;
+    }
+}

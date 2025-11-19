@@ -164,6 +164,27 @@
     @media screen and (max-width: 480px) {
         .modal-container {
             margin: 20px;
+            width: 90%;
+        }
+
+        .modal-header h2 {
+            font-size: 18px;
+        }
+
+        .slider-container {
+            width: 100%;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .weeks-slider {
+            width: 100%;
+        }
+
+        .completion-date {
+            flex-direction: column;
+            gap: 5px;
+            text-align: center;
         }
     
         .modal-header {

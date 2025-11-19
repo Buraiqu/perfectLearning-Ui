@@ -83,3 +83,152 @@
     margin: 24px auto;
     font-size: 14px;
 }
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+    .subscription-content {
+        padding: 16px;
+    }
+
+    .subscription-table {
+        border: none;
+        border-radius: 0;
+        margin-bottom: 16px;
+    }
+
+    /* Hide table header on mobile */
+    .table-header {
+        display: none;
+    }
+
+    .table-body {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    /* Convert table rows to cards */
+    .table-row {
+        display: flex;
+        flex-direction: column;
+        padding: 16px;
+        background: #fff;
+        border: 1px solid #E0E1E9;
+        border-radius: 12px;
+        gap: 12px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+
+    .table-row:nth-child(odd) {
+        background-color: #fff;
+    }
+
+    /* Add labels before each cell */
+    .body-cell {
+        display: grid;
+        grid-template-columns: auto auto 1fr;
+        gap: 12px;
+        align-items: center;
+        padding: 12px 0;
+        border-bottom: 1px solid #F0F0F0;
+    }
+
+    .body-cell:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+    }
+
+    .body-cell:first-child {
+        padding-top: 0;
+    }
+
+    .body-cell::before {
+        content: attr(data-label) " :";
+        font-weight: 500;
+        color: #6C6E79;
+        font-size: 13px;
+        text-align: left;
+        white-space: nowrap;
+    }
+
+    .body-cell:first-child {
+        font-size: 15px;
+        font-weight: 600;
+        color: #2E69A2;
+    }
+
+    .body-cell:nth-child(2) {
+        font-size: 14px;
+        color: #2E69A2;
+    }
+
+    .status-badge.active {
+        font-size: 13px;
+        padding: 4px 12px;
+        background-color: #E8F5E9;
+        color: #2E7D32;
+        border-radius: 12px;
+        font-weight: 500;
+        text-align: center;
+        display: inline-block;
+    }
+
+    .upgrade-btn {
+        padding: 10px 16px;
+        font-size: 13px;
+        width: 100%;
+        font-weight: 500;
+        border-radius: 8px;
+    }
+
+    .explore-courses-btn {
+        width: 100%;
+        padding: 12px 24px;
+        font-size: 15px;
+        margin: 16px 0;
+        font-weight: 500;
+    }
+}
+
+@media (max-width: 480px) {
+    .subscription-content {
+        padding: 12px;
+    }
+
+    .table-row {
+        padding: 14px;
+        gap: 10px;
+    }
+
+    .body-cell {
+        padding: 10px 0;
+    }
+
+    .body-cell::before {
+        font-size: 12px;
+        content: attr(data-label) " :";
+    }
+
+    .body-cell:first-child {
+        font-size: 14px;
+    }
+
+    .body-cell:nth-child(2) {
+        font-size: 13px;
+    }
+
+    .status-badge.active {
+        font-size: 12px;
+        padding: 3px 10px;
+    }
+
+    .upgrade-btn {
+        padding: 10px 16px;
+        font-size: 13px;
+    }
+
+    .explore-courses-btn {
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+}

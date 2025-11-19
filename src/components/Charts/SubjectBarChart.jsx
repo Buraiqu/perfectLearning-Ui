@@ -1,10 +1,20 @@
-import React, { useLayoutEffect, useRef } from 'react';
+import React, { useLayoutEffect, useRef, useState, useEffect } from 'react';
 import * as am5 from "@amcharts/amcharts5";
 import * as am5xy from "@amcharts/amcharts5/xy";
 import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
 
 const SubjectBarChart = ({ data }) => {
   const chartRef = useRef(null);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
   
   useLayoutEffect(() => {
     // Don't create chart if no data
@@ -34,26 +44,26 @@ const SubjectBarChart = ({ data }) => {
     // Set themes
     root.setThemes([am5themes_Animated.new(root)]);
     
-    // Create chart
+    // Create chart with responsive padding
     const chart = root.container.children.push(
       am5xy.XYChart.new(root, {
         panX: false,
         panY: false,
         wheelX: "none",
         wheelY: "none",
-        paddingLeft: 10,
-        paddingRight: 30,
-        paddingTop: -50,
+        paddingLeft: isMobile ? 5 : 10,
+        paddingRight: isMobile ? 10 : 30,
+        paddingTop: isMobile ? -30 : -50,
         paddingBottom: 0,
         layout: root.verticalLayout
       })
     );
     
-    // Create axes
+    // Create axes with responsive settings
     const xRenderer = am5xy.AxisRendererX.new(root, {
-      minGridDistance: 120,
-      cellStartLocation: 0.25,
-      cellEndLocation: 0.75
+      minGridDistance: isMobile ? 60 : 120,
+      cellStartLocation: isMobile ? 0.15 : 0.25,
+      cellEndLocation: isMobile ? 0.85 : 0.75
     });
     
     xRenderer.grid.template.set("visible", false);
@@ -76,7 +86,7 @@ const SubjectBarChart = ({ data }) => {
     const yAxis = chart.yAxes.push(
       am5xy.ValueAxis.new(root, {
         min: 0,
-        max: 45,
+        max: isMobile ? 35 : 45,
         strictMinMax: true,
         renderer: yRenderer,
         visible: false
@@ -144,6 +154,7 @@ const SubjectBarChart = ({ data }) => {
             dy: 3,
             fill: am5.color(0x000000),
             populateText: true,
+            fontSize: isMobile ? 10 : 12,
           }),
         });
       });
@@ -169,14 +180,14 @@ const SubjectBarChart = ({ data }) => {
         am5.Legend.new(root, {
           centerX: am5.p50,
           x: am5.p50,
-          marginTop: 20,
+          marginTop: isMobile ? 10 : 20,
           marginBottom: 0,
-          paddingTop: 10,
+          paddingTop: isMobile ? 5 : 10,
           paddingBottom: 0,
-          layout: root.horizontalLayout,
+          layout: isMobile ? root.verticalLayout : root.horizontalLayout,
           y: am5.percent(100),
           centerY: am5.percent(100),
-          dy: -20
+          dy: isMobile ? -10 : -20
         })
       );
       
@@ -205,9 +216,9 @@ const SubjectBarChart = ({ data }) => {
         }
       }
     };
-  }, [data]);
+  }, [data, isMobile]);
   
-  return <div ref={chartRef} style={{ width: "100%", height: "650px" }}></div>;
+  return <div ref={chartRef} style={{ width: "100%", height: isMobile ? "450px" : "650px" }}></div>;
 };
 
 export default SubjectBarChart;

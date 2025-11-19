@@ -37,14 +37,14 @@ const ProfileSubscriptions = () => {
                 <div className="table-body">
                     {subscriptionData.map((subscription, index) => (
                         <div className="table-row" key={index}>
-                            <div className="body-cell">{subscription.course}</div>
-                            <div className="body-cell">{subscription.plan}</div>
-                            <div className="body-cell">{subscription.purchaseDate}</div>
-                            <div className="body-cell">{subscription.amount}</div>
-                            <div className="body-cell">
+                            <div className="body-cell" data-label="Course">{subscription.course}</div>
+                            <div className="body-cell" data-label="Subscription Plan">{subscription.plan}</div>
+                            <div className="body-cell" data-label="Purchased on">{subscription.purchaseDate}</div>
+                            <div className="body-cell" data-label="Amount">{subscription.amount}</div>
+                            <div className="body-cell" data-label="Status">
                                 <span className="status-badge active">{subscription.status}</span>
                             </div>
-                            <div className="body-cell">
+                            <div className="body-cell" data-label="Upgradation">
                                 <button className="upgrade-btn" onClick={() => navigate('/main/upgrade-plan')}>Upgrade</button>
                             </div>
                         </div>
