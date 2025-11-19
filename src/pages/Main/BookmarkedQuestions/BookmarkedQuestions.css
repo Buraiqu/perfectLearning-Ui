@@ -132,12 +132,82 @@
 }
 
 @media (max-width: 768px) {
+  .bookmarked-questions-header {
+    padding: 12px 16px;
+  }
+
+  .content-viewer-breadcrumb {
+    font-size: 13px;
+  }
+
+  .breadcrumb-separator {
+    margin: 0 4px;
+  }
+
   .bookmarked-questions-content {
-    padding: 16px;
+    padding: 12px;
+    gap: 12px;
+  }
+
+  .questions-main-content {
+    padding: 0;
   }
   
   .content-header {
     justify-content: center;
+    padding: 0;
+  }
+
+  .bookmarked-notes-container {
+    padding: 16px;
+  }
+
+  .note-topic-title {
+    font-size: 18px;
+  }
+
+  .add-note-container {
+    flex-direction: row;
+    gap: 8px;
+  }
+
+  .add-note-input {
+    flex: 1;
+    font-size: 15px;
+    padding: 10px 14px;
+  }
+
+  .add-note-button {
+    width: 48px;
+    height: 48px;
+  }
+
+  .bookmarked-pdf-topic-title {
+    font-size: 16px;
+  }
+
+  .bookmarked-pdf-content-card {
+    height: 400px;
+  }
+
+  .bookmarked-pdf-actions {
+    margin-top: 16px;
+  }
+
+  .remove-bookmark-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 12px 16px;
+  }
+
+  .loading-container,
+  .empty-state {
+    padding: 40px 16px;
+  }
+
+  .loading-container p,
+  .empty-state p {
+    font-size: 14px;
   }
 }
 /* Flashcard specific styles */

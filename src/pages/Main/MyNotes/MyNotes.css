@@ -153,3 +153,89 @@
   }
 }
 
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+  .mynotes-main-container {
+    padding: 15px;
+  }
+
+  .mynotes-main-container .mynotes-subject-title {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  .mynotes-main-container .mynotes-subjects-grid {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    gap: 12px !important;
+    padding-bottom: 10px;
+    margin-top: 10px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: #ccc transparent;
+    max-width: calc(100vw - 30px) !important;
+  }
+
+  .mynotes-main-container .mynotes-subjects-grid::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .mynotes-main-container .mynotes-subjects-grid::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .mynotes-main-container .mynotes-subjects-grid::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 3px;
+  }
+
+  .mynotes-main-container .mynotes-subject-card {
+    min-width: 140px !important;
+    width: 140px !important;
+    height: 130px !important;
+    flex-shrink: 0 !important;
+  }
+
+  .mynotes-main-container .mynotes-subject-img {
+    height: 85px !important;
+  }
+
+  .mynotes-main-container .mynotes-subject-label {
+    font-size: 14px !important;
+    padding-top: 10px;
+  }
+
+  .mynotes-topics-container {
+    margin-top: 20px;
+    padding: 15px;
+  }
+
+  .mynotes-topics-title {
+    font-size: 16px;
+    margin-bottom: 12px;
+  }
+
+  .mynotes-topic-item {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 12px;
+    gap: 8px;
+  }
+
+  .mynotes-topic-name {
+    font-size: 14px;
+  }
+
+  .mynotes-topic-info {
+    font-size: 13px;
+    flex-wrap: wrap;
+  }
+
+  .mynotes-notes-added {
+    border-left: none;
+    padding-left: 0;
+  }
+}

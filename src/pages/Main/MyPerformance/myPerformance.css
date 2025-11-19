@@ -70,3 +70,59 @@
         font-size: 16px;
     }
 }
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+    .my-performance-container {
+        padding: 15px;
+        gap: 16px;
+    }
+
+    .performance-tabs {
+        flex-direction: row;
+        border-radius: 8px;
+    }
+
+    .tab {
+        padding: 12px 15px;
+        font-size: 13px;
+    }
+
+    .tab:first-child {
+        border-radius: 8px 0 0 8px;
+    }
+    
+    .tab:last-child {
+        border-radius: 0 8px 8px 0;
+    }
+
+    .date-range-selector {
+        flex-wrap: nowrap;
+        justify-content: flex-end;
+        gap: 8px;
+        margin-bottom: 15px;
+    }
+
+    .date-input {
+        padding: 6px 8px;
+        font-size: 12px;
+        width: auto;
+        min-width: 100px;
+        flex-shrink: 1;
+    }
+
+    .date-separator {
+        margin: 0 3px;
+        font-size: 14px;
+    }
+
+    .calendar-button {
+        margin-left: 3px;
+        font-size: 16px;
+        padding: 4px;
+    }
+
+    .tab-content {
+        padding: 0;
+    }
+}

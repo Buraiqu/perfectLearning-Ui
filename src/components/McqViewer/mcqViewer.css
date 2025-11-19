@@ -254,3 +254,178 @@
         filter: brightness(0) saturate(100%) hue-rotate(210deg) saturate(200%) brightness(40%);
     }
 }
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+    .pl-mcq-viewer {
+        padding: 16px;
+        margin: 12px 0;
+        border-radius: 10px;
+    }
+
+    .pl-mcq-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        margin-bottom: 12px;
+    }
+
+    .pl-mcq-type {
+        font-size: 14px;
+        line-height: 1.4;
+    }
+
+    .pl-mcq-actions {
+        gap: 12px;
+        align-self: flex-end;
+    }
+
+    .pl-icon-button {
+        padding: 6px;
+    }
+
+    .pl-icon-button img {
+        width: 18px !important;
+        height: 18px !important;
+    }
+
+    .pl-mcq-question {
+        font-size: 15px;
+        line-height: 1.5;
+        margin-bottom: 12px;
+    }
+
+    .pl-mcq-difficulty {
+        font-size: 13px;
+        padding: 3px 10px;
+        margin-bottom: 16px;
+        margin-top: 6px;
+    }
+
+    .pl-mcq-options {
+        gap: 10px;
+        margin-bottom: 16px;
+    }
+
+    .pl-mcq-option {
+        padding: 12px;
+        border-radius: 8px;
+    }
+
+    .pl-option-radio {
+        width: 18px;
+        height: 18px;
+        margin-right: 10px;
+    }
+
+    .pl-option-text {
+        font-size: 14px;
+        line-height: 1.4;
+    }
+
+    .pl-correct-label {
+        position: static;
+        margin-left: auto;
+        font-size: 12px;
+    }
+
+    .pl-wrong-answer-message {
+        font-size: 13px;
+        padding: 10px 12px;
+        margin-bottom: 16px;
+        margin-top: 12px;
+    }
+
+    .pl-submit-button {
+        width: 100%;
+        padding: 12px 18px;
+        font-size: 15px;
+        border-radius: 8px;
+    }
+
+    .pl-mcq-footer {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        height: auto;
+        gap: 0;
+        margin-top: 16px;
+        padding-top: 0;
+        border-top: none;
+    }
+
+    .pl-footer-button {
+        width: 100%;
+        height: 56px;
+        padding: 12px 8px;
+        font-size: 13px;
+        justify-content: center;
+        flex-direction: column;
+        gap: 6px;
+        border: 1px solid #EAECF0;
+        border-radius: 8px;
+        margin: 4px;
+    }
+
+    .pl-footer-button:last-child {
+        border: 1px solid #EAECF0;
+    }
+
+    .pl-footer-button:not(:last-child)::after {
+        display: none;
+    }
+
+    .pl-footer-button img {
+        width: 20px !important;
+        height: 20px !important;
+    }
+
+    .pl-footer-button span {
+        text-align: center;
+        line-height: 1.2;
+    }
+}
+
+@media (max-width: 480px) {
+    .pl-mcq-viewer {
+        padding: 14px;
+        margin: 10px 0;
+    }
+
+    .pl-mcq-type {
+        font-size: 13px;
+    }
+
+    .pl-mcq-question {
+        font-size: 14px;
+    }
+
+    .pl-mcq-difficulty {
+        font-size: 12px;
+        padding: 2px 8px;
+    }
+
+    .pl-option-text {
+        font-size: 13px;
+    }
+
+    .pl-correct-label {
+        font-size: 11px;
+    }
+
+    .pl-submit-button {
+        font-size: 14px;
+        padding: 11px 16px;
+    }
+
+    .pl-footer-button {
+        height: 52px;
+        font-size: 12px;
+        gap: 5px;
+        padding: 10px 6px;
+    }
+
+    .pl-footer-button img {
+        width: 18px !important;
+        height: 18px !important;
+    }
+}

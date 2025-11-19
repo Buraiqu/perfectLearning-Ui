@@ -1,0 +1,66 @@
+/* TestPerformance inherits most styles from LearningPracticeSummary.css */
+/* This file contains TestPerformance-specific responsive overrides */
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+    .learning-practice-summary {
+        .row {
+            flex-direction: column;
+            gap: 15px !important;
+        }
+
+        .summary-card {
+            width: 100% !important;
+            padding: 20px;
+        }
+
+        .time-header {
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .time-icon {
+            width: 24px;
+            height: 24px;
+        }
+
+        .time-title h2 {
+            font-size: 16px;
+        }
+
+        .total-time {
+            font-size: 14px;
+        }
+
+        .chart-container {
+            margin: 10px 0;
+        }
+
+        .legend-container {
+            flex-wrap: wrap;
+            gap: 15px;
+            padding-top: 15px;
+        }
+
+        .subject-legend {
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 15px !important;
+        }
+
+        .legend-text {
+            font-size: 13px;
+        }
+
+        .time-periods {
+            flex-wrap: wrap;
+            padding: 0 10px 15px 10px;
+            gap: 5px;
+        }
+
+        .time-period {
+            font-size: 11px;
+            flex: 0 0 calc(50% - 5px);
+        }
+    }
+}

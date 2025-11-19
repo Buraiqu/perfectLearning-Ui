@@ -1,0 +1,156 @@
+/* Finish Test Modal Styles */
+.finish-test-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.finish-test-modal {
+    position: relative;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    width: 650px;
+    max-width: 90%;
+    padding: 24px;
+    border: 1px solid #e4e7ec;
+}
+
+.finish-modal-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #101828;
+    margin: 0 0 16px 0;
+    text-align: center;
+    padding-bottom: 12px;
+}
+
+.close-modal-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.close-modal-btn:hover {
+    background-color: #f2f4f7;
+}
+
+.close-modal-btn svg {
+    display: block;
+}
+
+.finish-modal-summary {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 8px 0;
+    margin-bottom: 16px;
+}
+
+.summary-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 8px;
+    padding: 0 8px;
+}
+
+.summary-item-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
+}
+
+.summary-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #475467;
+}
+
+.summary-label {
+    font-size: 14px;
+    color: #475467;
+    font-weight: 500;
+}
+
+.summary-value {
+    font-size: 22px;
+    font-weight: 600;
+    color: #003986; /* Perfect Learning Blue */
+}
+
+.finish-modal-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 12px;
+}
+
+.finish-modal-confirm-btn {
+    background-color: #003986; /* Perfect Learning Blue */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 12px 32px; /* Increased padding for bigger button */
+    font-size: 16px; /* Increased font size */
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.finish-modal-confirm-btn:hover {
+    background-color: #002b66; /* Darker blue on hover */
+}
+
+@media (max-width: 768px) {
+    .finish-test-modal {
+        padding: 20px;
+    }
+
+    .finish-modal-title {
+        font-size: 18px;
+        line-height: 1.4;
+    }
+
+    .finish-modal-summary {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+        margin-bottom: 24px;
+    }
+
+    .summary-item {
+        gap: 4px;
+    }
+
+    .summary-label {
+        font-size: 12px;
+    }
+
+    .summary-value {
+        font-size: 20px;
+    }
+
+    .finish-modal-confirm-btn {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+    }
+}

@@ -40,12 +40,37 @@ const CourseMaterialContentViewer = () => {
     const [newNote, setNewNote] = useState('')
     const noteInputRef = useRef(null)
     
+    // Touch gesture handling for swipe
+    const [touchStart, setTouchStart] = useState(null)
+    const [touchEnd, setTouchEnd] = useState(null)
+    
+    const minSwipeDistance = 50
+    
+    const onTouchStart = (e) => {
+        setTouchEnd(null)
+        setTouchStart(e.targetTouches[0].clientX)
+    }
+    
+    const onTouchMove = (e) => {
+        setTouchEnd(e.targetTouches[0].clientX)
+    }
+    
+    const onTouchEnd = () => {
+        if (!touchStart || !touchEnd) return
+        const distance = touchStart - touchEnd
+        const isLeftSwipe = distance > minSwipeDistance
+        if (isLeftSwipe && touchStart > window.innerWidth - 50) {
+            setIsTopicsSidebarOpen(true)
+        }
+    }
+    
     const toggleNotes = () => {
         setNotesOpen(!notesOpen)
     }
 
     const [showReportModal, setShowReportModal] = useState(false)
     const [selectedQuestionId, setSelectedQuestionId] = useState(null)
+    const [isTopicsSidebarOpen, setIsTopicsSidebarOpen] = useState(false)
 
     const onReportIssue = (id) => {
         setSelectedQuestionId(id)
@@ -171,7 +196,12 @@ const CourseMaterialContentViewer = () => {
     if (isMobile) {
       // --- MOBILE VIEW ---
       return (
-        <div className="course-material-viewer mobile-viewer">
+        <div 
+          className="course-material-viewer mobile-viewer"
+          onTouchStart={onTouchStart}
+          onTouchMove={onTouchMove}
+          onTouchEnd={onTouchEnd}
+        >
           <div className="breadcrumb-mobile">
             {breadcrumb.map((item, index) => (
               <span key={index}>
@@ -185,41 +215,45 @@ const CourseMaterialContentViewer = () => {
           </div>
           <div className="main-content-mobile">
             {/* Main content viewer (video/pdf/mcq) */}
-            {selectedContent.type === 'video' && <VideoViewer src={video} />}
-            {selectedContent.type === 'pdf' && <PDFViewer src={selectedContent.pdfSrc} />}
-            {selectedContent.type === 'pptx' && <PDFViewer src={selectedContent.pdfSrc} />}
-            {selectedContent.type === 'mcq' && <McqViewer data={selectedContent.mcqData} />}
+            {selectedContent.type === 'video' && <VideoViewer key={selectedContent.id} src={video} />}
+            {selectedContent.type === 'pdf' && <PDFViewer  pdfUrl="https://www.orimi.com/pdf-test.pdf" />}
+            {selectedContent.type === 'pptx' && <McqViewer />}
+
           </div>
-          {/* Bookmark & Save Offline mobile buttons */}
-          <div className="bookmark-save-mobile">
-            <button className="bookmark-btn-mobile" onClick={() => setBookMark(!bookMark)}>
-              <img src={bookMark ? BsBookMarkRemove : BsBookMark} alt="Bookmark" style={{width: 20, height: 20, marginRight: 7}} />
-              {bookMark ? 'Bookmarked' : 'Bookmark video'}
-            </button>
-            <button className="save-offline-btn-mobile" onClick={() => alert('Saved offline!')}>
-              <img src={BsSaveBlueIcon} alt="Save Offline" style={{width: 20, height: 20, marginRight: 7}} />
-              Save Offline
-            </button>
-          </div>
-          {/* Formula Sheet mobile section */}
-          <div className="formula-sheet-mobile">
-            <h3>Formula Sheet</h3>
-            {["Formula 1", "Formula 2", "Formula 3"].map((formula, idx) => (
-              <div className="formula-row-mobile" key={idx}>
-                <span>{formula}</span>
-                <div className="formula-row-actions-mobile">
-                  <button className="bookmark-formula-btn-mobile" onClick={() => alert(`Bookmarked ${formula}`)}>
-                    <img src={BsBookMarkBlue} alt="Bookmark" style={{width: 18, height: 18, marginRight: 4}} />
-                    Bookmark
-                  </button>
-                  <button className="report-formula-btn-mobile" onClick={() => alert(`Reported ${formula}`)}>
-                    <img src={BsExclamationTriangle} alt="Report" style={{width: 18, height: 18, marginRight: 4}} />
-                    Report
-                  </button>
+          {/* Bookmark & Save Offline mobile buttons - Only show for non-pptx content */}
+          {selectedContent && selectedContent.type !== 'pptx' && (
+            <div className="bookmark-save-mobile">
+              <button className="bookmark-btn-mobile" onClick={() => setBookMark(!bookMark)}>
+                <img src={bookMark ? BsBookMarkRemove : BsBookMark} alt="Bookmark" style={{width: 20, height: 20, marginRight: 7}} />
+                {bookMark ? 'Bookmarked' : 'Bookmark video'}
+              </button>
+              <button className="save-offline-btn-mobile" onClick={() => alert('Saved offline!')}>
+                <img src={BsSaveBlueIcon} alt="Save Offline" style={{width: 20, height: 20, marginRight: 7}} />
+                Save Offline
+              </button>
+            </div>
+          )}
+          {/* Formula Sheet mobile section - Only show for non-pptx content */}
+          {selectedContent && selectedContent.type !== 'pptx' && (
+            <div className="formula-sheet-mobile">
+              <h3>Formula Sheet</h3>
+              {["Formula 1", "Formula 2", "Formula 3"].map((formula, idx) => (
+                <div className="formula-row-mobile" key={idx}>
+                  <span>{formula}</span>
+                  <div className="formula-row-actions-mobile">
+                    <button className="bookmark-formula-btn-mobile" onClick={() => alert(`Bookmarked ${formula}`)}>
+                      <img src={BsBookMarkBlue} alt="Bookmark" style={{width: 18, height: 18, marginRight: 4}} />
+                      Bookmark
+                    </button>
+                    <button className="report-formula-btn-mobile" onClick={() => alert(`Reported ${formula}`)}>
+                      <img src={BsExclamationTriangle} alt="Report" style={{width: 18, height: 18, marginRight: 4}} />
+                      Report
+                    </button>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
           {/* Mobile notes drawer */}
           {notesOpen && (
             <div className="notes-drawer-mobile">
@@ -250,10 +284,37 @@ const CourseMaterialContentViewer = () => {
             </div>
           )}
           {/* Mobile navigation buttons */}
+          {isTopicsSidebarOpen && (
+            <div className="topics-sidebar-mobile-overlay" onClick={() => setIsTopicsSidebarOpen(false)}>
+                <div className="topics-sidebar-mobile" onClick={(e) => e.stopPropagation()}>
+                    <TopicsSideBardLoader
+                        isMobile={true}
+                        selectedTopic={currentTopicIndex}
+                        selectedItem={currentItemIndex}
+                        topics={topics} 
+                        onSelectItem={(item, topicIndex, itemIndex) => {
+                            setSelectedContent(item);
+                            setCurrentTopicIndex(topicIndex);
+                            setCurrentItemIndex(itemIndex);
+                            setIsTopicsSidebarOpen(false); // Close sidebar on selection
+                        }}
+                        onClose={() => setIsTopicsSidebarOpen(false)} // Pass close handler
+                    />
+                </div>
+            </div>
+          )}
+          {/* Floating Topics button on right edge */}
+          <button type="button" className="topics-toggle-btn-mobile" onClick={(e) => { e.preventDefault(); setIsTopicsSidebarOpen(true); }}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M15 18l-6-6 6-6"/>
+            </svg>
+          </button>
           <div className="mobile-nav-buttons">
-            <button onClick={() => navigateContent('prev')}>Previous</button>
-            <button onClick={() => setNotesOpen(true)}>Notes</button>
-            <button onClick={() => navigateContent('next')}>Next</button>
+            <button type="button" onClick={(e) => { e.preventDefault(); navigateContent('prev'); }}>Previous</button>
+            {selectedContent && selectedContent.type !== 'pptx' && (
+              <button type="button" onClick={(e) => { e.preventDefault(); setNotesOpen(true); }}>Notes</button>
+            )}
+            <button type="button" onClick={(e) => { e.preventDefault(); navigateContent('next'); }}>Next</button>
           </div>
         </div>
       );
