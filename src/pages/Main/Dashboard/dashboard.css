@@ -1007,7 +1007,30 @@
     
         .study-card,
         .flashcard-stats {
-            flex-direction: column;
+            flex-direction: row;
+            padding: 10px 0;
+            justify-content: space-around;
+        }
+
+        .flashcard-stat {
+            padding: 0 10px;
+        }
+
+        .flashcard-stat:not(:last-child)::after {
+            display: none;
+        }
+
+        .flashcard-stat .stat-icon img {
+            width: 20px;
+            height: 20px;
+        }
+
+        .flashcard-stat span {
+            font-size: 12px;
+        }
+
+        .flashcard-stat h3 {
+            font-size: 20px;
         }
     
         .flashcard-stats {

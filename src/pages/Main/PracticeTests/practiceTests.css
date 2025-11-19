@@ -321,6 +321,60 @@
         font-size: 14px;
         color: #667085;
         margin-left: 4px;
+}
+
+/* Mobile-specific styles for the completed test card */
+.completed-test-item-mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 16px;
+    border: 1px solid #eaecf0;
+    box-shadow: 0 1px 2px rgba(16, 24, 40, 0.05);
+    background-color: #fff;
+    border-radius: 8px;
+    margin-bottom: 12px;
+}
+
+.test-name-mobile {
+    font-size: 16px;
+    font-weight: 600;
+    color: #101828;
+}
+
+.test-info-mobile {
+    font-size: 13px;
+    color: #667085;
+    line-height: 1.5;
+    margin-bottom: 8px;
+}
+
+.completed-test-footer-mobile {
+    width: 100%;
+    margin-top: 8px;
+    padding-top: 12px;
+    border-top: 1px solid #eaecf0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.test-score-mobile {
+    font-size: 14px;
+    color: #344054;
+}
+
+.test-score-mobile strong {
+    font-weight: 600;
+    color: #003986;
+}
+
+.test-summary-link-mobile {
+    color: #003986;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+
     }
     
     .expand-icon {
@@ -1266,60 +1320,284 @@
         color: #003986;
         cursor: pointer;
         font-size: 16px;
-        text-decoration: underline;
-    }
-    
-    /* Responsive styles */
-    @media screen and (max-width: 768px) {
-        .test-cards-container {
+        }
+        
+        .difficulty-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: start;
+            max-width: 400px;
+            margin: 0;
+        }
+        
+        .difficulty-button {
+            flex: 1;
+            padding: 10px 10px;
+            background-color: #fff;
+            border-radius: 16px;
+            font-size: 16px;
+            font-weight: 400;
+            color: #000;
+            cursor: pointer;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.2s;
+            max-width: 160px;
+            width: 100%;
+            border: none;
+        }
+        
+        .difficulty-button:hover {
+            background-color: #f5f5f7;
+        }
+        
+        .difficulty-button.selected {
+            background-color: #217bf135;
+            box-shadow: none;
+            color: #003986;
+        }
+        
+        /* Step 3 Styles */
+        .final-step {
+            padding-top: 32px;
+        }
+        
+        .test-summary {
+            background-color: #F9FAFB;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 30px;
+        }
+        
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+        
+        .summary-item {
+            display: flex;
             flex-direction: column;
+            gap: 4px;
+        }
+        
+        .summary-label {
+            font-size: 16px;
+            color: #667085;
+            font-weight: normal;
+        }
+        
+        .summary-value {
+            font-size: 18px;
+            color: #003986;
+            font-weight: 600;
+        }
+        
+        .instructions-section {
+            margin-bottom: 40px;
+        }
+        
+        .instructions-section h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #101828;
+            margin-bottom: 12px;
+        }
+        
+        .instructions-link {
+            color: #003986;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+        }
+        
+        .instructions-link:hover {
+            text-decoration: underline;
+        }
+        
+        .final-step {
+            padding: 0;
+        }
+        
+        .back-button-container {
+            display: flex;
+            align-items: center;
+            padding: 16px 20px;
+            border-bottom: 1px solid #E4E7EC;
+        }
+        
+        .modal-back-button {
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+        }
+        
+        .test-title-display {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 18px;
+            font-weight: 600;
+            color: #101828;
+        }
+        
+        .edit-title-btn {
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .test-info-row {
+            display: flex;
+            padding: 16px 20px;
+            gap: 24px;
+            border-bottom: 1px solid #E4E7EC;
+        }
+        
+        .info-item {
+            display: flex;
+            gap: 8px;
             align-items: center;
         }
-    
-        .test-card {
-            width: 100%;
-            max-width: 300px;
-        }
-    
-        .test-item {
-            grid-template-columns: 1fr;
-            grid-template-rows: auto auto auto;
-            gap: 12px;
-            align-items: flex-start;
+        
+        .info-label {
+            font-size: 16px;
+            color: #667085;
+            font-weight: normal;
         }
         
-        .test-details {
-            justify-self: flex-start;
-        }
-    
-        .take-test-btn {
-            width: 100%;
-            justify-self: stretch;
+        .info-value {
+            font-size: 16px;
+            color: #003986;
+            font-weight: 600;
         }
         
-        .custom-test-modal {
-            max-width: 90%;
-            max-height: 90vh;
+        .instructions-section {
+            padding: 16px 20px;
+            margin-bottom: 0;
         }
         
-        .subject-card {
-            width: calc(50% - 8px);
+        .instructions-section h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #101828;
+            margin-bottom: 8px;
         }
         
+        .instructions-link {
+            color: #003986;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+        }
+        
+        .start-test-container {
+            display: flex;
+            justify-content: center;
+            padding: 16px 20px;
+            margin-top: auto;
+        }
+        
+        .clickable {
+            color: #003986;
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: underline;
+        }
+        
+        /* Responsive styles */
+        @media screen and (max-width: 768px) {
+    .test-cards-container {
+        flex-direction: row;
+        gap: 16px;
     }
 
-/* Topics Accordion Styles */
-.topics-accordion-container {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-top: 20px;
-}
+    .test-card {
+        flex: 1;
+        height: auto;
+        padding: 16px;
+        min-width: 0;
+    }
 
-.topic-accordion-item {
-    border: 1px solid #E4E7EC;
-    border-radius: 8px;
-    overflow: hidden;
+    .test-card-title {
+        font-size: 14px;
+    }
+
+    .custom-tests-container {
+        padding: 16px;
+    }
+
+    .create-test-button {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+
+    .completed-tests-section h3 {
+        font-size: 16px;
+    }
+
+    .no-tests-message {
+        font-size: 13px;
+    }
+
+    .custom-test-modal {
+        width: 95%;
+        max-width: none;
+        height: 90vh;
+        max-height: none;
+    }
+
+    .custom-test-modal-content {
+        max-height: calc(90vh - 150px);
+    }
+
+    .subject-cards-container {
+        display: grid; /* Use grid for two columns */
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+
+    .subject-card {
+        width: 100%; /* Make cards fill the grid column */
+    }
+
+    .test-item {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .test-details {
+        flex-direction: row; /* Keep it inline */
+        flex-wrap: wrap; /* Allow items to wrap to the next line */
+        align-items: center;
+        gap: 8px;
+        position: static; /* Remove absolute positioning */
+        transform: none;
+        justify-content: flex-start;
+        white-space: normal; /* Allow text within items to wrap */
+    }
+
+    .test-details .divider {
+        display: block; /* Ensure dividers are visible */
+    }
+
+    .take-test-btn {
+        width: 100%;
+        margin-top: 10px;
+        justify-self: stretch;
+    }
 }
 
 .topic-accordion-header {

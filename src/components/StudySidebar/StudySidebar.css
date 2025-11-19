@@ -51,3 +51,46 @@
   color: #1e40af;
   font-weight: 600;
 }
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+  .study-sidebar {
+    width: 100%;
+    flex-direction: row;
+    gap: 10px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 10px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: #ccc transparent;
+  }
+
+  .study-sidebar::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .study-sidebar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .study-sidebar::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 3px;
+  }
+
+  .study-sidebar-item {
+    min-width: 160px;
+    flex-shrink: 0;
+    padding: 20px 16px;
+    justify-content: center;
+  }
+
+  .study-sidebar-icon {
+    font-size: 16px;
+  }
+
+  .study-sidebar-label {
+    font-size: 13px;
+  }
+}

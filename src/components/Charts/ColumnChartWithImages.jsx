@@ -1,9 +1,19 @@
-import React, { useEffect, useLayoutEffect } from 'react';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 import * as am5 from "@amcharts/amcharts5";
 import * as am5xy from "@amcharts/amcharts5/xy";
 import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
 
 const ColumnChartWithImages = ({ data }) => {
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
   useLayoutEffect(() => {
     // Create root element
     const root = am5.Root.new("chartdiv");
@@ -30,9 +40,9 @@ const ColumnChartWithImages = ({ data }) => {
     const cursor = chart.set("cursor", am5xy.XYCursor.new(root, {}));
     cursor.lineY.set("visible", false);
 
-    // Create axes
+    // Create axes with responsive settings
     const xRenderer = am5xy.AxisRendererX.new(root, {
-      minGridDistance: 30,
+      minGridDistance: isMobile ? 20 : 30,
       minorGridEnabled: true
     });
 
@@ -109,7 +119,7 @@ const ColumnChartWithImages = ({ data }) => {
       return stroke;
     });
 
-    // Add value labels on top of bars
+    // Add value labels on top of bars with responsive font size
     series.bullets.push(function(root, series, dataItem) {
       const labelBullet = am5.Bullet.new(root, {
         locationY: 1.11,
@@ -118,29 +128,29 @@ const ColumnChartWithImages = ({ data }) => {
           centerX: am5.p50,
           centerY: am5.p100,
           populateText: true,
-          dy: -10,
-          fontSize: 14,
+          dy: isMobile ? -8 : -10,
+          fontSize: isMobile ? 12 : 14,
           fill: dataItem.dataContext.color ? am5.color(dataItem.dataContext.color) : am5.color(0x000000)
         })
       });
       return labelBullet;
     });
 
-    // Add bullet for images - more submerged in the bar graph
+    // Add bullet for images with responsive sizing
     series.bullets.push(function() {
       return am5.Bullet.new(root, {
         locationY: 1,
         sprite: am5.Picture.new(root, {
           templateField: "bulletSettings",
-          width: 50, // Increased from 40 to 50
-          height: 50, // Increased from 40 to 50
+          width: isMobile ? 35 : 50,
+          height: isMobile ? 35 : 50,
           centerX: am5.p50,
           centerY: am5.p100,
-          dy: 30, // Changed to positive 30px to position much deeper into the bar
+          dy: isMobile ? 20 : 30,
           shadowColor: am5.color(0x000000),
-          shadowBlur: 3,
-          shadowOffsetX: 2,
-          shadowOffsetY: 2,
+          shadowBlur: isMobile ? 2 : 3,
+          shadowOffsetX: isMobile ? 1 : 2,
+          shadowOffsetY: isMobile ? 1 : 2,
           shadowOpacity: 0.4
         })
       });
@@ -158,13 +168,13 @@ const ColumnChartWithImages = ({ data }) => {
     return () => {
       root.dispose();
     };
-  }, [data]);
+  }, [data, isMobile]);
 
   const uniqueId = `chart-container-${Math.random().toString(36).substr(2, 9)}`;
   
   const containerStyle = {
     width: '100%',
-    height: '250px',
+    height: isMobile ? '200px' : '250px',
     overflowX: data.length > 4 ? 'scroll' : 'hidden',
     overflowY: 'hidden',
     position: 'relative',
@@ -172,9 +182,9 @@ const ColumnChartWithImages = ({ data }) => {
   };
 
   const chartStyle = {
-    width: data.length > 4 ? `${data.length * 100}px` : '100%',
-    height: '230px',
-    minWidth: data.length > 4 ? `${data.length * 100}px` : '100%',
+    width: data.length > 4 ? `${data.length * (isMobile ? 80 : 100)}px` : '100%',
+    height: isMobile ? '180px' : '230px',
+    minWidth: data.length > 4 ? `${data.length * (isMobile ? 80 : 100)}px` : '100%',
     flexShrink: 0
   };
 

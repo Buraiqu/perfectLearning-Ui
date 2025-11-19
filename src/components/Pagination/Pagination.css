@@ -66,3 +66,32 @@
   font-size: 14px;
   font-weight: 500;
 }
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+  .pagination-container {
+    gap: 3px;
+    margin: 16px 0;
+  }
+
+  .prev-page {
+    margin-right: 3px;
+  }
+
+  .next-page {
+    margin-left: 3px;
+  }
+
+  .pagination-nav,
+  .pagination-page {
+    min-width: 36px;
+    height: 36px;
+    font-size: 13px;
+  }
+
+  .pagination-ellipsis {
+    min-width: 36px;
+    height: 36px;
+    font-size: 13px;
+  }
+}

@@ -1801,4 +1801,552 @@
         mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z'/%3E%3C/svg%3E") no-repeat 50% 50%;
         -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z'/%3E%3C/svg%3E") no-repeat 50% 50%;
     }
+
+    /* ===== COMPREHENSIVE MOBILE RESPONSIVE STYLES ===== */
+    @media (max-width: 768px) {
+        /* Header adjustments */
+        .content-viewer-header {
+            padding: 12px 16px !important;
+        }
+
+        .content-viewer-breadcrumb {
+            font-size: 12px;
+        }
+
+        /* Main content padding */
+        .test-results-content {
+            padding: 16px 12px;
+        }
+
+        .results-container {
+            max-width: 100%;
+        }
+
+        /* Score cards - stack vertically */
+        .score-cards {
+            grid-template-columns: 1fr !important;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .score-card {
+            padding: 20px 16px;
+            min-height: auto;
+        }
+
+        .score-card h3 {
+            font-size: 16px;
+            margin-bottom: 12px;
+        }
+
+        .score-title {
+            font-size: 14px;
+        }
+
+        .score-card .score-value {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+
+        .score-comparison {
+            font-size: 14px;
+            position: static;
+            margin-top: 12px;
+        }
+
+        .subject-percentage-chart {
+            height: 180px;
+            margin-top: -10px;
+        }
+
+        /* Subject wise summary */
+        .subject-wise-summary-section {
+            padding: 20px 16px;
+            margin-top: 16px;
+            margin-bottom: 16px;
+        }
+
+        .subject-wise-summary-title {
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .subject-wise-summary-chart-container {
+            height: 450px;
+            margin-top: -100px;
+            overflow: visible;
+        }
+
+        /* Test stats section */
+        .test-stats-section {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .stat-box {
+            padding: 12px 8px;
+        }
+
+        .stat-title {
+            font-size: 12px;
+            margin-bottom: 4px;
+        }
+
+        .stat-value {
+            font-size: 20px;
+        }
+
+        /* Question review section */
+        .question-review-section {
+            padding: 16px 12px;
+            margin-bottom: 16px;
+        }
+
+        .question-review {
+            padding: 16px;
+        }
+
+        .question-header {
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .question-number {
+            font-size: 14px;
+        }
+
+        .question-time {
+            font-size: 13px;
+        }
+
+        .question-text {
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        .scoring-info {
+            font-size: 11px;
+            gap: 12px;
+            padding: 4px 10px;
+            margin-bottom: 12px;
+        }
+
+        .scoring-info-container {
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+        }
+
+        /* Test options */
+        .test-options-container {
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .test-option {
+            padding: 10px 12px;
+        }
+
+        .test-option-marker {
+            width: 14px;
+            height: 14px;
+            min-width: 14px;
+            min-height: 14px;
+        }
+
+        .test-option-text {
+            font-size: 13px;
+        }
+
+        .test-correct-answer-label {
+            font-size: 11px;
+            right: 12px;
+        }
+
+        /* Answer feedback */
+        .answer-feedback {
+            padding: 8px 12px;
+            margin-bottom: 16px;
+            font-size: 12px;
+        }
+
+        /* Question actions */
+        .question-actions {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            padding-top: 12px;
+            border-top: 1px solid #EAECF0;
+        }
+
+        .action-button {
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 12px 8px;
+            font-size: 13px;
+            height: auto;
+            border: 1px solid #EAECF0;
+            border-radius: 8px;
+            background-color: #fff;
+        }
+
+        .action-button:hover {
+            background-color: #f9fafb;
+        }
+
+        .action-button:not(:last-child)::after {
+            display: none;
+        }
+
+        .action-icon {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Navigation buttons */
+        .navigation-buttons {
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            width: 100%;
+            padding: 12px;
+            font-size: 14px;
+        }
+
+        /* Results cards row */
+        .results-cards-row {
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .result-card {
+            max-width: 100%;
+            min-height: auto;
+            padding: 20px 16px;
+        }
+
+        .result-card h2 {
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+
+        .score-display h3, .score-percentage h4 {
+            font-size: 28px;
+            margin-bottom: 12px;
+        }
+
+        .score-note p {
+            font-size: 13px;
+        }
+
+        /* Subject performance card */
+        .subject-performance-card {
+            padding: 16px;
+        }
+
+        .subject-performance-card h2 {
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        /* Bar graph adjustments */
+        .bar-graph-row {
+            min-height: 140px;
+            margin-top: 16px;
+        }
+
+        .bar-column {
+            width: 100px;
+            padding-top: 20px;
+        }
+
+        .percentage-label {
+            font-size: 14px;
+            top: -18px;
+        }
+
+        .test-results-chart-icon {
+            width: 50px;
+            height: 50px;
+        }
+
+        .bar {
+            width: 90px;
+            height: 80px;
+            min-height: 30px;
+        }
+
+        .subject-name, .subject-label {
+            font-size: 12px;
+            margin-top: 6px;
+        }
+
+        /* Subject wise summary */
+        .subject-wise-summary {
+            padding: 16px;
+            margin-bottom: 24px;
+        }
+
+        .subject-wise-summary h2 {
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+
+        .subject-summary-charts {
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .subject-summary-chart h3 {
+            font-size: 13px;
+            margin-bottom: 12px;
+        }
+
+        /* Chart adjustments */
+        .chart-bars {
+            height: 180px;
+        }
+
+        .chart-bar {
+            width: 30px;
+        }
+
+        .bar-value {
+            font-size: 12px;
+            top: -20px;
+        }
+
+        .bar-label {
+            font-size: 9px;
+            bottom: -25px;
+        }
+
+        /* Test stats summary */
+        .test-stats-summary {
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .stat-item {
+            padding: 12px;
+        }
+
+        .stat-item h3 {
+            font-size: 13px;
+            margin-bottom: 6px;
+        }
+
+        .stat-value {
+            font-size: 20px;
+        }
+
+        /* Question review card */
+        .question-review-card {
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        .question-id {
+            font-size: 14px;
+        }
+
+        .time-spent {
+            font-size: 13px;
+        }
+
+        .question-scoring {
+            gap: 12px;
+            font-size: 12px;
+            margin-bottom: 12px;
+        }
+
+        .options-container {
+            margin-bottom: 12px;
+        }
+
+        .option {
+            padding: 10px;
+            margin-bottom: 6px;
+        }
+
+        .option-radio {
+            width: 16px;
+            height: 16px;
+            margin-right: 6px;
+        }
+
+        .radio-inner {
+            width: 8px;
+            height: 8px;
+        }
+
+        .option-id {
+            font-size: 13px;
+            margin-right: 6px;
+        }
+
+        .answer-status {
+            font-size: 13px;
+            margin-bottom: 12px;
+        }
+
+        .action-btn {
+            padding: 8px 12px;
+            font-size: 13px;
+        }
+
+        /* Back button */
+        .back-to-tests {
+            margin-bottom: 24px;
+        }
+
+        .back-btn {
+            width: 100%;
+            padding: 12px;
+            font-size: 15px;
+        }
+
+        /* Score overview section */
+        .score-overview-section {
+            grid-template-columns: 1fr !important;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .score-card, .score-percentage-card, .subject-score-card {
+            padding: 16px;
+        }
+
+        .horizontal-chart {
+            height: 120px;
+        }
+
+        /* Subject summary section */
+        .subject-summary-section {
+            padding: 20px 16px;
+            margin-bottom: 20px;
+        }
+
+        .subject-summary-section h2 {
+            font-size: 16px;
+            margin-bottom: 12px;
+        }
+
+        .subject-charts-container {
+            grid-template-columns: 1fr !important;
+            gap: 20px;
+        }
+
+        .subject-chart {
+            height: 180px;
+        }
+
+        /* Results stats */
+        .results-stats {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .stat-label {
+            font-size: 12px;
+        }
+
+        .stat-value {
+            font-size: 20px;
+        }
+
+        /* Results actions */
+        .results-actions {
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .view-solutions-btn, .back-dashboard-btn {
+            width: 100%;
+            padding: 12px;
+            font-size: 15px;
+        }
+
+        /* Score circle */
+        .score-circle {
+            width: 140px;
+            height: 140px;
+            border-width: 6px;
+        }
+
+        .score-percentage {
+            font-size: 28px;
+        }
+
+        .score-value {
+            font-size: 16px;
+        }
+    }
+
+    /* Extra small devices */
+    @media (max-width: 480px) {
+        .content-viewer-breadcrumb {
+            font-size: 11px;
+        }
+
+        .test-results-content {
+            padding: 12px 8px;
+        }
+
+        .score-card {
+            padding: 16px 12px;
+        }
+
+        .score-card .score-value {
+            font-size: 28px;
+        }
+
+        .score-comparison {
+            font-size: 13px;
+        }
+
+        .test-stats-section {
+            grid-template-columns: 1fr;
+        }
+
+        .stat-box {
+            padding: 14px 12px;
+        }
+
+        .question-text {
+            font-size: 13px;
+        }
+
+        .test-option-text {
+            font-size: 12px;
+        }
+
+        .action-button {
+            font-size: 12px;
+            padding: 12px 10px;
+        }
+
+        .bar-column {
+            width: 80px;
+        }
+
+        .bar {
+            width: 70px;
+        }
+
+        .test-results-chart-icon {
+            width: 40px;
+            height: 40px;
+        }
+    }
 }

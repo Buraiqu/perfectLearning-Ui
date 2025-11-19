@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './practiceTests.css';
 
@@ -103,6 +103,16 @@ const PracticeTests = () => {
     });
 
     const [completedTests, setCompletedTests] = useState([]);
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     const mockTopics = {
         Mathematics: ["Sets", "Relations & Functions", "Quadratic Equations", "Complex Numbers", "Sequences and Series"],
@@ -179,16 +189,27 @@ const PracticeTests = () => {
                             ) : (
                                 <div className="completed-tests-list">
                                     {completedTests.map(test => (
-                                        <div key={test.id} className="completed-test-item">
-                                            <div className="test-name">{test.name}</div>
-                                            <div className="test-info">
-                                                <span className="duration-icon"></span> {test.duration} Mins | {test.questions} Questions | {test.difficulty} Difficulty
+                                        isMobile ? (
+                                            <div key={test.id} className="completed-test-item-mobile">
+                                                <div className="test-name-mobile">{test.name}</div>
+                                                <div className="test-info-mobile">{test.duration} Mins | {test.questions} Questions | {test.difficulty} Difficulty</div>
+                                                <div className="completed-test-footer-mobile">
+                                                    <div className="test-score-mobile">Score: <strong>{test.scorePercentage}%</strong></div>
+                                                    <a href="#" className="test-summary-link-mobile">Test Summary</a>
+                                                </div>
                                             </div>
-                                            <div className="test-score">Score Percentage: <span className="score-value">{test.scorePercentage}%</span></div>
-                                            <div className="test-summary-link-container">
-                                                <a href="#" className="test-summary-link">Test Summary</a>
+                                        ) : (
+                                            <div key={test.id} className="completed-test-item">
+                                                <div className="test-name">{test.name}</div>
+                                                <div className="test-info">
+                                                    <span className="duration-icon"></span> {test.duration} Mins | {test.questions} Questions | {test.difficulty} Difficulty
+                                                </div>
+                                                <div className="test-score">Score Percentage: <span className="score-value">{test.scorePercentage}%</span></div>
+                                                <div className="test-summary-link-container">
+                                                    <a href="#" className="test-summary-link">Test Summary</a>
+                                                </div>
                                             </div>
-                                        </div>
+                                        )
                                     ))}
                                 </div>
                             )}
